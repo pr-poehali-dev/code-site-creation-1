@@ -530,27 +530,40 @@ export default function Index() {
             <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
             <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Баня — это храм<br /><em>трансформации</em>
+              Иней и Магма<br /><em>corp</em>
             </h2>
 
-            <blockquote className="eth-quote text-base mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.2rem" }}>
+            <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)" }}>
+              Я — создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp»</strong>.
+            </p>
+            <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+              Благодаря ему каждый может ощутить то, чего так не хватало…
+            </p>
+
+            <div className="space-y-3 mb-6">
+              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(212,98,42,0.5)" }}>
+                Для кого‑то это — обновление, мощное и дерзкое, словно горящий вулкан.
+              </p>
+              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(122,171,158,0.5)" }}>
+                Для кого‑то — возврат к себе: тихий, плавный и глубокий, как ледяные воды океана.
+              </p>
+              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(200,146,58,0.5)" }}>
+                А для кого‑то — тотальное расслабление в моменте, здесь и сейчас: сияющее, обволакивающее, нежное, словно тёплый ветер на берегу звёздного неба.
+              </p>
+            </div>
+
+            <p className="text-sm leading-relaxed italic mb-6"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.05rem" }}>
+              Каждый в этом проекте найдёт для себя что‑то своё: личное, неприкосновенное, незыблемое. Только твоё.
+            </p>
+
+            <blockquote className="eth-quote text-base" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
               Баня — это храм трансформации, где стихии огня, воды, воздуха и земли помогают человеку обрести баланс. Я не просто провожу процедуры — я возвращаю телу его природное право на восстановление.
             </blockquote>
 
-            <p className="text-sm leading-relaxed mb-4 opacity-80" style={{ color: "var(--eth-smoke)" }}>
-              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется.
+            <p className="text-sm leading-relaxed mt-4 mb-4 opacity-80" style={{ color: "var(--eth-smoke)" }}>
+              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется. Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
             </p>
-            <p className="text-sm leading-relaxed opacity-80" style={{ color: "var(--eth-smoke)" }}>
-              Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
-            </p>
-
-            <div className="mt-6 rounded-xl px-5 py-4"
-              style={{ background: "rgba(200,146,58,0.06)", border: "1px solid rgba(200,146,58,0.15)" }}>
-              <p className="text-sm leading-relaxed italic"
-                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.05rem" }}>
-                Мои программы — это не просто банные процедуры, это тщательно продуманные ритуалы, направленные на очищение, омоложение и глубокое расслабление. Каждая программа разработана для достижения максимального эффекта.
-              </p>
-            </div>
 
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
               {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 часа", "максимум\nудовольствия"]].map(([num, label]) => (
@@ -562,21 +575,67 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Visual */}
+          {/* Visual — ковш со звёздной водой */}
           <div className="relative flex items-center justify-center">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center relative"
-              style={{ background: "radial-gradient(circle, #2a1f10, #1a1410)", border: "1px solid rgba(200,146,58,0.2)" }}>
-              {/* Inner glow */}
-              <div className="absolute inset-4 rounded-full"
-                style={{ background: "radial-gradient(circle at 50% 80%, rgba(212,98,42,0.3), transparent 70%)" }} />
-              <div className="text-center relative z-10">
-                <p className="text-7xl mb-2 animate-flicker">🔥</p>
-                <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--eth-gold)", opacity: 0.7 }}>Огонь лечит</p>
-              </div>
+            {/* Outer glow ring */}
+            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full opacity-20 animate-float"
+              style={{ background: "radial-gradient(circle, #3a6080, transparent 70%)", filter: "blur(30px)" }} />
+
+            <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-end justify-center">
+              {/* Stars above */}
+              {["top-2 left-8", "top-6 right-10", "top-0 left-1/2", "top-10 left-4", "top-4 right-4"].map((pos, i) => (
+                <span key={i} className={`absolute ${pos} animate-pulse-gold text-xs`}
+                  style={{ color: "rgba(200,220,255,0.6)", animationDelay: `${i * 0.4}s` }}>★</span>
+              ))}
+
+              {/* Ladle / ковш SVG */}
+              <svg viewBox="0 0 200 220" className="w-full h-full drop-shadow-2xl" style={{ filter: "drop-shadow(0 0 20px rgba(100,160,220,0.3))" }}>
+                {/* Ковш — чаша */}
+                <ellipse cx="90" cy="145" rx="60" ry="18" fill="rgba(40,60,80,0.9)" stroke="rgba(200,146,58,0.6)" strokeWidth="1.5"/>
+                <path d="M30 145 Q28 185 90 188 Q152 185 150 145 Z" fill="rgba(25,45,65,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
+
+                {/* Звёздная вода внутри */}
+                <ellipse cx="90" cy="148" rx="52" ry="12" fill="rgba(20,40,80,0.9)"/>
+                <ellipse cx="90" cy="148" rx="50" ry="10"
+                  fill="url(#starwater)" opacity="0.9"/>
+                <defs>
+                  <radialGradient id="starwater" cx="50%" cy="40%">
+                    <stop offset="0%" stopColor="#6aa8d8" stopOpacity="0.9"/>
+                    <stop offset="40%" stopColor="#1a3a6a" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#0a1a30" stopOpacity="1"/>
+                  </radialGradient>
+                </defs>
+                {/* Блики воды */}
+                <ellipse cx="75" cy="146" rx="12" ry="3" fill="rgba(180,220,255,0.25)" transform="rotate(-15 75 146)"/>
+                <ellipse cx="105" cy="150" rx="8" ry="2" fill="rgba(180,220,255,0.15)" transform="rotate(10 105 150)"/>
+
+                {/* Звёзды в воде */}
+                <text x="78" y="150" fontSize="7" fill="rgba(200,230,255,0.7)">★</text>
+                <text x="96" y="153" fontSize="5" fill="rgba(200,230,255,0.5)">✦</text>
+                <text x="65" y="153" fontSize="4" fill="rgba(200,230,255,0.4)">★</text>
+
+                {/* Пар над ковшом */}
+                <path d="M70 135 Q68 120 72 108 Q76 96 73 84" stroke="rgba(200,220,255,0.2)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-1"/>
+                <path d="M90 132 Q88 117 92 105 Q96 93 93 78" stroke="rgba(200,220,255,0.15)" strokeWidth="1.5" fill="none" strokeLinecap="round" className="steam-2"/>
+                <path d="M108 135 Q106 120 110 108 Q114 96 111 82" stroke="rgba(200,220,255,0.18)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-3"/>
+
+                {/* Ручка ковша */}
+                <rect x="148" y="135" width="45" height="8" rx="4"
+                  fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
+                <rect x="185" y="131" width="8" height="16" rx="4"
+                  fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.4)" strokeWidth="1"/>
+
+                {/* Орнамент на чаше */}
+                <path d="M50 165 Q90 170 130 165" stroke="rgba(200,146,58,0.3)" strokeWidth="1" fill="none"/>
+              </svg>
             </div>
-            {/* Orbit ornaments */}
-            <div className="absolute top-0 right-0 text-3xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.3 }}>◆</div>
-            <div className="absolute bottom-4 left-0 text-2xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◇</div>
+
+            {/* Подпись */}
+            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ color: "var(--eth-gold)", opacity: 0.5 }}>Алхимия стихий</p>
+
+            <div className="absolute top-4 right-0 text-2xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◆</div>
+            <div className="absolute bottom-8 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
           </div>
         </div>
       </section>
@@ -606,9 +665,8 @@ export default function Index() {
           <div className="mt-14 text-center">
             <p className="text-3xl md:text-4xl font-light italic"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
-              «Огонь, который лечит —<br />это не метафора, это физиология»
+              «Алхимия стихий в ковше»
             </p>
-            <p className="mt-3 text-sm" style={{ color: "var(--eth-stone)" }}>— Мария, пармастер</p>
           </div>
         </div>
       </section>
