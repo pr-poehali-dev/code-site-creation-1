@@ -6,40 +6,39 @@ import Icon from "@/components/ui/icon";
 const programs = [
   {
     id: "tsaritsa",
-    emoji: "👑",
+    symbol: "♛",
     title: "Кабы я была... Царица",
-    tagline: "Погрузитесь в сказку — с авторским уходом в SPA-бане",
-    description: "Роскошный банный ритуал в духе русских сказок. Цветочный пар, уход за волосами, кожей и ногами — всё по-царски.",
+    tagline: "Авторский уход в SPA-бане",
+    description: "Глубокое восстановление через цветочный пар, уход за волосами и кожей. Тело регенерирует, каждая клетка дышит. Ритуал создан для полного отпускания напряжения — от корней волос до кончиков пальцев.",
+    effect: "Регенерация кожи · Восстановление волос · Расслабление всего тела",
     procedures: [
-      "Церемония цветочного пара",
-      "Ритуал «Расти коса до пояса» — уход за волосами",
+      "Церемония цветочного пара — открывает поры, насыщает кожу влагой",
+      "Ритуал «Расти коса до пояса» — питание и восстановление волос",
       "Солевой скраб с цитрусовыми цветами или массаж перчаткой кесе",
-      "Теплый чан с травами",
+      "Теплый чан с травами — снимает воспаления, успокаивает нервную систему",
       "Кокошники и сладкие брускеты для каждой гостьи",
       "Звуковая медитация в парной с нанесением альгинатной маски",
-      "Ритуал «По тропинке босиком» — уход за ножками",
+      "Ритуал «По тропинке босиком» — уход за ножками, восстановление стоп",
     ],
     extra: "Обёртывание тела — 3 500 ₽",
     guests: "5–8 гостей",
     duration: "",
     price: "8 500 ₽",
-    color: "#8b1a1a",
-    accent: "#c0392b",
-    bgGradient: "linear-gradient(135deg, #fdf0f0 0%, #fce8e8 100%)",
-    bgCard: "#fff5f5",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/3a02ef48-a89e-4b7e-a630-8655f59083b0.png",
+    color: "#c8923a",
+    dimColor: "rgba(200,146,58,0.08)",
   },
   {
     id: "briz",
-    emoji: "🌊",
+    symbol: "≋",
     title: "Летний Бриз",
     tagline: "Нежный пар с ароматами летних трав",
-    description: "Лёгкость морского ветра, пилинг как дождь в жаркий день и парафинотерапия для мягкости кожи.",
+    description: "Лёгкий пар с ароматами луга восстанавливает дыхание и снимает усталость с мышц. Пилинг с мёдом и травами запускает обновление кожи. Парафинотерапия возвращает мягкость и эластичность.",
+    effect: "Обновление кожи · Дренаж мышц · Снятие хронической усталости",
     procedures: [
-      "Нежный пар с ароматами летних трав",
+      "Нежный пар с ароматами летних трав — глубокое расслабление дыхательной системы",
       "Пилинг с натуральной травой, мёдом и контрастными прикосновениями",
-      "Медитация с элементами погружения",
-      "Парафинотерапия для ладоней и стоп",
+      "Медитация с элементами погружения — перезагрузка нервной системы",
+      "Парафинотерапия для ладоней и стоп — восстановление суставов и кожи",
       "Бодрящий кофе или травяной чай",
       "Сливки с ягодами и тёплый кекс",
       "В подарок — альгинатная маска для лица",
@@ -48,49 +47,45 @@ const programs = [
     guests: "5–8 гостей",
     duration: "",
     price: "6 500 ₽",
-    color: "#1a6b8b",
-    accent: "#2980b9",
-    bgGradient: "linear-gradient(135deg, #f0f8fd 0%, #e8f4fb 100%)",
-    bgCard: "#f0f8fd",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/7b20add8-7758-4248-95d2-98e407720338.png",
+    color: "#7aab9e",
+    dimColor: "rgba(122,171,158,0.08)",
   },
   {
     id: "japan",
-    emoji: "🌸",
+    symbol: "❋",
     title: "Сладкая Япония",
     tagline: "Древняя философия очищения",
-    description: "Глубокий ароматный пар под звуки бамбуковой флейты и ханга, погружающий в атмосферу Японии.",
+    description: "Церемония глубокого пара под медитативные звуки пробуждает тело. Японские техники очищения через контраст температур запускают мощный процесс регенерации — кожа обновляется, сосуды укрепляются.",
+    effect: "Детокс · Укрепление сосудов · Глубокое очищение кожи",
     procedures: [
       "Церемония глубокого ароматного пара под звуки бамбуковой флейты и ханга",
-      "Контрастный ритуал для головы с сандаловыми гребнями",
-      "Спа-массаж",
+      "Контрастный ритуал для головы с сандаловыми гребнями — расслабление шеи и головы",
+      "Спа-массаж — восстановление лимфотока и мышечное расслабление",
       "Скрабирование с виноградным соком или медово-травяной пилинг",
       "Церемония «Сад камней» — пилинг для стоп с ковриком из натуральной гальки",
-      "Травяной чай, мёд, пломбир с сушеными сливами, грейпфрутом и солёными палочками",
+      "Травяной чай, мёд, пломбир с сушеными сливами и грейпфрутом",
       "Холодная купель, тёплый чан с травами, качели на свежем воздухе",
     ],
     extra: "Классическое парение вениками — 3 500 ₽",
     guests: "5–8 гостей",
     duration: "4 часа",
     price: "7 500 ₽",
-    color: "#6b4a8b",
-    accent: "#8e44ad",
-    bgGradient: "linear-gradient(135deg, #fdf5ff 0%, #f8eeff 100%)",
-    bgCard: "#fdf5ff",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/bae10646-5dcf-42a6-8403-fb9a5d6b8428.png",
+    color: "#b87a6a",
+    dimColor: "rgba(184,122,106,0.08)",
   },
   {
     id: "sdobnaya",
-    emoji: "🥐",
+    symbol: "✦",
     title: "Сдобная Баня",
-    tagline: "Пышная авторская программа с ингредиентами на ваш выбор",
-    description: "Соберите свою идеальную банную программу: сами выбираете парение, уход и массаж. Уют, тепло и звуковая медитация на сеновале.",
+    tagline: "Авторская программа с ингредиентами на ваш выбор",
+    description: "Самая полная программа восстановления. Глубокое парение запускает терморегуляцию организма, контраст температур — мощный иммунный ответ. Вы выбираете каждый элемент под свои потребности. Звуковая медитация завершает цикл — тело и психика перезагружаются полностью.",
+    effect: "Иммунитет · Полная перезагрузка · Глубокий мышечный релакс",
     procedures: [
       "Глубокое парение с выходом в купель или классическое парение — на выбор",
       "Обёртывание тела или альгинатная маска для лица — на выбор",
-      "Глубокотканный массаж верхней части тела или массаж ладоней, стоп и шеи — на выбор",
+      "Глубокотканный массаж верхней части тела или массаж ладоней, стоп и шеи",
       "Медово-травяной пилинг или солевое выкатывание — на выбор",
-      "Звуковая медитация на сеновале",
+      "Звуковая медитация на сеновале — полная перезагрузка нервной системы",
       "Тёплое какао, ароматный пирог и свежие ягоды",
       "Холодная купель, плед, качели на свежем воздухе",
       "Банные вязаные шапки, халаты, полотенца и тапочки",
@@ -99,12 +94,16 @@ const programs = [
     guests: "2 гостя",
     duration: "4 часа",
     price: "36 000 ₽",
-    color: "#7a4a1a",
-    accent: "#a0522d",
-    bgGradient: "linear-gradient(135deg, #fdf8f0 0%, #faf0e6 100%)",
-    bgCard: "#fdf8f0",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/2e54fc39-8705-4976-995f-cfbc84b03100.png",
+    color: "#c8923a",
+    dimColor: "rgba(200,146,58,0.08)",
   },
+];
+
+const benefits = [
+  { icon: "🔥", title: "Детокс через жар", text: "Пар открывает поры и выводит токсины через кожу — самый древний способ очищения тела, известный тысячелетиями." },
+  { icon: "❄️", title: "Контраст температур", text: "Переход от жара к холоду тренирует сосуды, укрепляет иммунитет и запускает мощный выброс эндорфинов." },
+  { icon: "🌿", title: "Сила трав", text: "Натуральные масла и травяные настои проникают в кожу через расширенные поры, питая и восстанавливая изнутри." },
+  { icon: "🎵", title: "Звуковая медитация", text: "Частоты поющих чаш и живых инструментов перезагружают нервную систему и снимают хронический стресс." },
 ];
 
 const faqData = [
@@ -113,7 +112,7 @@ const faqData = [
   { q: "Что нужно взять с собой?", a: "Только хорошее настроение! Халаты, тапочки, шапки и полотенца предоставляются." },
   { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу. Напишите — договоримся." },
   { q: "Есть ли противопоказания?", a: "При беременности, варикозе и некоторых заболеваниях часть процедур ограничена. Уточните при записи, подберём оптимальный вариант." },
-  { q: "Можно ли изменить состав программы?", a: "Конечно! Программы гибкие, можно кое-что скорректировать под ваши предпочтения." },
+  { q: "Как баня помогает телу?", a: "Жар расширяет сосуды и открывает поры, контраст температур укрепляет иммунитет, травяные пары насыщают кожу и лёгкие. Это комплексная работа с телом, проверенная веками." },
 ];
 
 // ─── Chatbot ─────────────────────────────────────────────────────────────────
@@ -121,7 +120,7 @@ const faqData = [
 function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<{ from: "bot" | "user"; text: string }[]>([
-    { from: "bot", text: "Привет! Я помогу с вопросами о банных программах Марии 🌿 Спрашивайте!" },
+    { from: "bot", text: "Добро пожаловать 🔥 Я отвечу на ваши вопросы о банных программах Марии." },
   ]);
   const [input, setInput] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
@@ -133,24 +132,26 @@ function Chatbot() {
     if (l.includes("цен") || l.includes("стоит") || l.includes("сколько") || l.includes("прайс"))
       return "Программы от 6 500 до 36 000 ₽. «Летний Бриз» — 6 500 ₽, «Сладкая Япония» — 7 500 ₽, «Царица» — 8 500 ₽, «Сдобная Баня» для двоих — 36 000 ₽.";
     if (l.includes("записат") || l.includes("запись") || l.includes("бронь"))
-      return "Заполните форму внизу страницы или напишите Марии напрямую. Подтвердим бронь в течение нескольких часов 🌸";
-    if (l.includes("сколько") || l.includes("гостей") || l.includes("человек") || l.includes("групп"))
+      return "Заполните форму внизу страницы или напишите Марии. Подтвердим бронь в течение нескольких часов 🌿";
+    if (l.includes("гостей") || l.includes("человек") || l.includes("групп"))
       return "Групповые программы на 5–8 гостей. «Сдобная Баня» — эксклюзивно для двоих.";
     if (l.includes("подарок") || l.includes("сертифик"))
       return "Оформляю подарочные сертификаты на любую программу 🎁 Напишите Марии — всё организует.";
-    if (l.includes("взять") || l.includes("принести") || l.includes("готовит"))
-      return "Только хорошее настроение 😊 Халаты, шапки, тапочки и полотенца — всё есть.";
+    if (l.includes("взять") || l.includes("принести"))
+      return "Только хорошее настроение. Халаты, шапки, тапочки и полотенца — всё предоставляется.";
+    if (l.includes("польза") || l.includes("зачем") || l.includes("помогает"))
+      return "Жар открывает поры и выводит токсины, контраст температур укрепляет сосуды и иммунитет, травяные пары питают кожу и дыхательную систему. Древняя практика, проверенная веками 🔥";
     if (l.includes("царица") || l.includes("сказка"))
-      return "«Кабы я была Царица» — это 8 500 ₽ для 5–8 гостей: цветочный пар, уход за волосами и ножками, кокошники и сладкие угощения 👑";
+      return "«Кабы я была Царица» — 8 500 ₽ для 5–8 гостей: цветочный пар, уход за волосами и ножками, альгинатная маска, кокошники 👑";
     if (l.includes("бриз") || l.includes("летн"))
-      return "«Летний Бриз» — 6 500 ₽ для 5–8 гостей: пар с летними травами, пилинг, парафинотерапия и в подарок альгинатная маска 🌊";
-    if (l.includes("япон") || l.includes("японии"))
-      return "«Сладкая Япония» — 7 500 ₽ за 4 часа: бамбуковая флейта, ханг, виноградный скраб, холодная купель и качели 🌸";
-    if (l.includes("сдобн") || l.includes("баня") || l.includes("двоих"))
-      return "«Сдобная Баня» — 36 000 ₽ для двоих на 4 часа. Вы сами выбираете состав: парение, массаж, уход. Звуковая медитация на сеновале 🥐";
+      return "«Летний Бриз» — 6 500 ₽: пар с летними травами, медовый пилинг, парафинотерапия и в подарок маска для лица.";
+    if (l.includes("япон"))
+      return "«Сладкая Япония» — 7 500 ₽ за 4 часа: бамбуковая флейта, ханг, виноградный скраб, холодная купель и качели.";
+    if (l.includes("сдобн") || l.includes("двоих"))
+      return "«Сдобная Баня» — 36 000 ₽ для двоих на 4 часа. Вы сами выбираете каждый элемент программы. Звуковая медитация на сеновале 🔥";
     if (l.includes("привет") || l.includes("здравств"))
-      return "Привет! Рада вас видеть 🌿 Чем могу помочь?";
-    return "Хороший вопрос! Лучше уточнить у Марии напрямую — она ответит на всё подробно 💚";
+      return "Добро пожаловать! Чем могу помочь?";
+    return "Хороший вопрос! Лучше уточнить у Марии напрямую — она ответит подробно и подберёт программу под вас.";
   }
 
   function send() {
@@ -158,27 +159,26 @@ function Chatbot() {
     const msg = input.trim();
     setInput("");
     setMessages(p => [...p, { from: "user", text: msg }]);
-    setTimeout(() => setMessages(p => [...p, { from: "bot", text: getAnswer(msg) }]), 600);
+    setTimeout(() => setMessages(p => [...p, { from: "bot", text: getAnswer(msg) }]), 500);
   }
 
   return (
     <>
-      <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
-        style={{ background: "var(--spa-green)", color: "white" }}
-      >
-        {open ? <Icon name="X" size={22} /> : <span className="text-2xl">🌿</span>}
+      <button onClick={() => setOpen(!open)}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+        style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white" }}>
+        {open ? <Icon name="X" size={22} /> : <span className="text-2xl">🔥</span>}
       </button>
 
       {open && (
         <div className="fixed bottom-24 right-6 z-50 w-80 rounded-2xl shadow-2xl overflow-hidden animate-slide-up"
-          style={{ background: "var(--spa-cream)", border: "1px solid #c5d5c0" }}>
-          <div className="px-4 py-3 flex items-center gap-3" style={{ background: "var(--spa-green)" }}>
-            <span className="text-xl">🌿</span>
+          style={{ background: "var(--eth-bg2)", border: "1px solid rgba(200,146,58,0.25)" }}>
+          <div className="px-4 py-3 flex items-center gap-3"
+            style={{ background: "linear-gradient(135deg, #2a1f14, #1a1410)", borderBottom: "1px solid rgba(200,146,58,0.2)" }}>
+            <span className="text-xl">🔥</span>
             <div>
-              <p className="text-sm font-medium text-white" style={{ fontFamily: "'Cormorant', serif" }}>Мария</p>
-              <p className="text-xs text-white/70">Пармастер · всегда на связи</p>
+              <p className="text-sm font-medium" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Мария</p>
+              <p className="text-xs" style={{ color: "var(--eth-stone)" }}>Пармастер · всегда на связи</p>
             </div>
           </div>
           <div className="p-4 flex flex-col gap-3 overflow-y-auto" style={{ maxHeight: "280px" }}>
@@ -186,21 +186,21 @@ function Chatbot() {
               <div key={i} className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}>
                 <div className="max-w-[85%] px-3 py-2 rounded-xl text-sm leading-relaxed"
                   style={m.from === "bot"
-                    ? { background: "#e8f0e6", color: "var(--spa-dark)" }
-                    : { background: "var(--spa-green)", color: "white" }}>
+                    ? { background: "var(--eth-bg3)", color: "var(--eth-cream)" }
+                    : { background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white" }}>
                   {m.text}
                 </div>
               </div>
             ))}
             <div ref={endRef} />
           </div>
-          <div className="px-3 py-3 flex gap-2 border-t" style={{ borderColor: "#d5e0d0" }}>
+          <div className="px-3 py-3 flex gap-2" style={{ borderTop: "1px solid rgba(200,146,58,0.15)" }}>
             <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()}
               placeholder="Напишите вопрос..."
               className="flex-1 text-sm px-3 py-2 rounded-xl outline-none"
-              style={{ background: "#f0f5ef", color: "var(--spa-dark)", fontFamily: "'Golos Text', sans-serif" }} />
-            <button onClick={send} className="w-9 h-9 rounded-xl flex items-center justify-center hover:opacity-80"
-              style={{ background: "var(--spa-green)", color: "white" }}>
+              style={{ background: "var(--eth-bg3)", color: "var(--eth-cream)", fontFamily: "'Golos Text', sans-serif", border: "1px solid rgba(200,146,58,0.15)" }} />
+            <button onClick={send} className="w-9 h-9 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity"
+              style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white" }}>
               <Icon name="Send" size={16} />
             </button>
           </div>
@@ -215,62 +215,72 @@ function Chatbot() {
 function ProgramModal({ program, onClose }: { program: typeof programs[0]; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4"
-      style={{ background: "rgba(20,15,10,0.7)", backdropFilter: "blur(8px)" }}
+      style={{ background: "rgba(10,8,5,0.85)", backdropFilter: "blur(10px)" }}
       onClick={onClose}>
-      <div className="relative w-full max-w-lg rounded-3xl overflow-y-auto animate-slide-up"
-        style={{ background: "var(--spa-cream)", maxHeight: "90vh" }}
+      <div className="relative w-full max-w-lg rounded-2xl overflow-y-auto animate-slide-up"
+        style={{ background: "var(--eth-bg2)", border: "1px solid rgba(200,146,58,0.2)", maxHeight: "92vh" }}
         onClick={e => e.stopPropagation()}>
 
-        {/* Image header */}
-        <div className="relative h-48 overflow-hidden">
-          <img src={program.image} alt={program.title}
-            className="w-full h-full object-cover object-top" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5))" }} />
+        {/* Header */}
+        <div className="px-8 pt-8 pb-6" style={{ borderBottom: "1px solid rgba(200,146,58,0.12)" }}>
           <button onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-all">
+            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all hover:opacity-70"
+            style={{ background: "rgba(200,146,58,0.1)", color: "var(--eth-stone)" }}>
             <Icon name="X" size={16} />
           </button>
-          <div className="absolute bottom-4 left-6">
-            <p className="text-white/80 text-xs uppercase tracking-widest mb-1">{program.guests}{program.duration ? ` · ${program.duration}` : ""}</p>
-            <h2 className="text-3xl font-light text-white" style={{ fontFamily: "'Cormorant', serif" }}>{program.title}</h2>
+
+          <span className="text-4xl mb-4 block" style={{ color: program.color, opacity: 0.7 }}>{program.symbol}</span>
+          <h2 className="text-4xl font-light mb-2 leading-tight" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+            {program.title}
+          </h2>
+          <p className="text-sm italic mb-4" style={{ color: "var(--eth-stone)" }}>{program.tagline}</p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)" }}>{program.description}</p>
+
+          {/* Effect tags */}
+          <div className="flex flex-wrap gap-2 mt-4">
+            {program.effect.split(" · ").map(e => (
+              <span key={e} className="text-xs px-3 py-1 rounded-full"
+                style={{ background: `${program.color}18`, color: program.color, border: `1px solid ${program.color}30` }}>
+                {e}
+              </span>
+            ))}
           </div>
         </div>
 
-        <div className="p-7">
-          <p className="text-sm leading-relaxed mb-6 opacity-75">{program.description}</p>
-
-          <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--spa-stone)" }}>Программа включает</p>
-          <ul className="space-y-2 mb-6">
+        <div className="px-8 py-6">
+          <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--eth-stone)" }}>Состав программы</p>
+          <ul className="space-y-3 mb-6">
             {program.procedures.map((p, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: "var(--spa-dark)" }}>
-                <span style={{ color: program.accent }} className="mt-0.5 flex-shrink-0">✦</span>
+              <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "var(--eth-smoke)" }}>
+                <span className="mt-1 flex-shrink-0 text-xs" style={{ color: program.color }}>◆</span>
                 {p}
               </li>
             ))}
           </ul>
 
           {program.extra && (
-            <div className="rounded-2xl px-4 py-3 mb-6"
-              style={{ background: `${program.color}10`, border: `1px solid ${program.color}20` }}>
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--spa-stone)" }}>Можно дополнить</p>
-              <p className="text-sm" style={{ color: program.color }}>{program.extra}</p>
+            <div className="rounded-xl px-4 py-3 mb-6"
+              style={{ background: "rgba(200,146,58,0.06)", border: "1px solid rgba(200,146,58,0.15)" }}>
+              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--eth-stone)" }}>Можно дополнить</p>
+              <p className="text-sm" style={{ color: "var(--eth-gold)" }}>{program.extra}</p>
             </div>
           )}
 
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 pt-4"
+            style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
             <div>
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--spa-stone)" }}>Гостей</p>
-              <p className="font-medium text-sm">{program.guests}</p>
+              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--eth-stone)" }}>Гостей</p>
+              <p className="text-sm" style={{ color: "var(--eth-cream)" }}>{program.guests}{program.duration ? ` · ${program.duration}` : ""}</p>
             </div>
             <div className="text-right">
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--spa-stone)" }}>Стоимость</p>
-              <p className="text-3xl font-light" style={{ fontFamily: "'Cormorant', serif", color: program.accent }}>{program.price}</p>
+              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--eth-stone)" }}>Стоимость</p>
+              <p className="text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{program.price}</p>
             </div>
           </div>
 
-          <button className="w-full py-3.5 rounded-2xl text-sm font-medium tracking-wide transition-all hover:opacity-90 hover:scale-[1.02]"
-            style={{ background: program.color, color: "white" }}>
-            Записаться на программу
+          <button className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90"
+            style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
+            Записаться
           </button>
         </div>
       </div>
@@ -298,229 +308,292 @@ export default function Index() {
   }
 
   return (
-    <div style={{ background: "var(--spa-cream)", color: "var(--spa-dark)" }}>
+    <div style={{ background: "var(--eth-bg)", color: "var(--eth-cream)", minHeight: "100vh" }}>
 
-      {/* ── Nav ────────────────────────────────────────────── */}
+      {/* ── Nav ─────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-30 px-6 py-4 flex items-center justify-between"
-        style={{ background: "rgba(245,240,232,0.93)", backdropFilter: "blur(14px)", borderBottom: "1px solid rgba(139,128,112,0.12)" }}>
+        style={{ background: "rgba(26,20,16,0.95)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,146,58,0.12)" }}>
         <button onClick={() => scrollTo("hero")}
-          className="text-xl tracking-wider" style={{ fontFamily: "'Cormorant', serif", color: "var(--spa-green)", fontWeight: 500 }}>
-          Мария · Пармастер
+          className="text-xl tracking-widest" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontWeight: 400 }}>
+          Мария
         </button>
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-8">
           {navItems.map(n => (
             <button key={n.id} onClick={() => scrollTo(n.id)}
-              className="nav-link text-sm tracking-wide hover:opacity-70 transition-opacity"
-              style={{ color: "var(--spa-dark)", fontFamily: "'Golos Text', sans-serif" }}>
+              className="nav-link text-sm tracking-wider hover:opacity-70 transition-opacity"
+              style={{ color: "var(--eth-smoke)", fontFamily: "'Golos Text', sans-serif", letterSpacing: "0.08em" }}>
               {n.label}
             </button>
           ))}
         </div>
         <button onClick={() => scrollTo("contacts")}
-          className="hidden md:block px-5 py-2 rounded-full text-sm tracking-wide transition-all hover:opacity-90"
-          style={{ background: "var(--spa-green)", color: "white" }}>
+          className="hidden md:block px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all hover:opacity-90"
+          style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.12em" }}>
           Записаться
         </button>
-        <button className="md:hidden" onClick={() => setNavOpen(!navOpen)}>
+        <button className="md:hidden" onClick={() => setNavOpen(!navOpen)} style={{ color: "var(--eth-gold)" }}>
           <Icon name={navOpen ? "X" : "Menu"} size={22} />
         </button>
       </nav>
 
       {navOpen && (
-        <div className="fixed inset-0 z-20 flex flex-col items-center justify-center gap-6 animate-fade-in"
-          style={{ background: "var(--spa-cream)" }}>
+        <div className="fixed inset-0 z-20 flex flex-col items-center justify-center gap-8 animate-fade-in"
+          style={{ background: "var(--eth-bg)" }}>
           {navItems.map(n => (
             <button key={n.id} onClick={() => scrollTo(n.id)}
-              className="text-3xl font-light" style={{ fontFamily: "'Cormorant', serif" }}>
+              className="text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               {n.label}
             </button>
           ))}
         </div>
       )}
 
-      {/* ── Hero ───────────────────────────────────────────── */}
+      {/* ── Hero ────────────────────────────────────────── */}
       <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20"
-        style={{ background: "linear-gradient(160deg, #e8f0e4 0%, #f5f0e8 45%, #f2e8e0 100%)" }}>
+        style={{ background: "radial-gradient(ellipse at 50% 60%, #2a1f10 0%, #1a1410 50%, #0f0c08 100%)" }}>
 
-        {/* Ambient blobs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-10 -left-16 w-80 h-80 opacity-20 animate-float blob-1"
-            style={{ background: "radial-gradient(circle, #7a9e76, transparent 70%)" }} />
-          <div className="absolute top-1/3 -right-20 w-96 h-96 opacity-15 animate-float delay-300 blob-2"
-            style={{ background: "radial-gradient(circle, #b5714a, transparent 70%)" }} />
-          <div className="absolute -bottom-16 left-1/3 w-72 h-72 opacity-10 animate-float delay-500 blob-3"
-            style={{ background: "radial-gradient(circle, #6b7fa3, transparent 70%)" }} />
-          <span className="absolute top-28 left-8 text-5xl opacity-10 animate-float delay-100">🌿</span>
-          <span className="absolute bottom-32 right-10 text-4xl opacity-10 animate-float delay-400">🌸</span>
-          <span className="absolute top-1/2 right-1/4 text-3xl opacity-10 animate-float delay-200">✦</span>
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-64 rounded-full opacity-20"
+            style={{ background: "radial-gradient(ellipse, #d4622a, transparent 70%)", filter: "blur(40px)" }} />
+          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full opacity-10"
+            style={{ background: "radial-gradient(ellipse, #c8923a, transparent 70%)", filter: "blur(60px)" }} />
         </div>
 
-        <div className="relative text-center px-6 max-w-2xl mx-auto">
-          {/* Avatar placeholder */}
-          <div className="w-28 h-28 mx-auto mb-6 rounded-full flex items-center justify-center text-5xl animate-fade-up"
-            style={{ background: "linear-gradient(135deg, #e8f4e6, #f5ecd8)", border: "3px solid rgba(74,103,65,0.2)" }}>
-            🌿
-          </div>
+        {/* Steam decorations */}
+        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 pointer-events-none flex gap-8">
+          {[0,1,2].map(i => (
+            <div key={i} className={`w-1 h-16 rounded-full steam-${i+1}`}
+              style={{ background: "linear-gradient(to top, rgba(200,180,150,0.4), transparent)" }} />
+          ))}
+        </div>
 
-          <p className="text-xs uppercase tracking-[0.4em] mb-3 animate-fade-up delay-100"
-            style={{ color: "var(--spa-stone)" }}>Пармастер · Краснодар</p>
+        {/* Ornamental top */}
+        <div className="absolute top-28 left-1/2 -translate-x-1/2">
+          <div className="eth-divider"><span>◆ ◇ ◆</span></div>
+        </div>
 
-          <h1 className="text-6xl md:text-8xl font-light leading-none mb-4 animate-fade-up delay-200"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--spa-dark)" }}>
+        <div className="relative text-center px-6 max-w-3xl mx-auto">
+          <p className="text-xs uppercase tracking-[0.5em] mb-6 animate-fade-up"
+            style={{ color: "var(--eth-stone)", letterSpacing: "0.4em" }}>
+            Пармастер · Краснодар
+          </p>
+
+          <h1 className="text-7xl md:text-9xl font-light leading-none mb-3 animate-fade-up delay-100 fire-glow"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
             Мария
           </h1>
 
-          <p className="text-lg font-light leading-relaxed mb-3 animate-fade-up delay-300"
-            style={{ color: "var(--spa-stone)" }}>
-            Авторские банные программы и SPA-ритуалы
+          <div className="eth-divider my-6 animate-fade-up delay-200">
+            <span>✦</span>
+          </div>
+
+          {/* KEY PHRASES */}
+          <p className="text-2xl md:text-3xl font-light italic mb-3 animate-fade-up delay-300"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)" }}>
+            Мудрость предков в каждой капле пара
           </p>
-          <p className="text-sm leading-relaxed mb-10 animate-fade-up delay-300"
-            style={{ color: "var(--spa-stone)", opacity: 0.7, maxWidth: "420px", margin: "0 auto 2.5rem" }}>
-            Каждая программа — это особый ритуал, где пар, прикосновения и ароматы создают незабываемый опыт. Для тех, кто хочет выдохнуть по-настоящему.
+          <p className="text-lg md:text-xl font-light mb-10 animate-fade-up delay-400"
+            style={{ color: "var(--eth-gold)", letterSpacing: "0.05em" }}>
+            Огонь, который лечит
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-400">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-500">
             <button onClick={() => scrollTo("programs")}
-              className="px-8 py-3.5 rounded-full text-sm tracking-wide transition-all hover:scale-105 hover:shadow-lg"
-              style={{ background: "var(--spa-green)", color: "white" }}>
-              Смотреть программы
+              className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.12em" }}>
+              Программы
             </button>
             <button onClick={() => scrollTo("contacts")}
-              className="px-8 py-3.5 rounded-full text-sm tracking-wide transition-all hover:opacity-70"
-              style={{ border: "1px solid var(--spa-green)", color: "var(--spa-green)" }}>
+              className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:opacity-70"
+              style={{ border: "1px solid rgba(200,146,58,0.4)", color: "var(--eth-gold2)", letterSpacing: "0.12em" }}>
               Записаться
             </button>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <p className="text-xs tracking-widest uppercase" style={{ color: "var(--spa-stone)" }}>Пролистайте вниз</p>
-          <Icon name="ChevronDown" size={16} color="var(--spa-stone)" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-pulse-gold">
+          <Icon name="ChevronDown" size={18} color="var(--eth-gold)" />
         </div>
       </section>
 
-      {/* ── About ──────────────────────────────────────────── */}
-      <section id="about" className="py-24 px-6">
+      {/* ── About ───────────────────────────────────────── */}
+      <section id="about" className="py-24 px-6 eth-pattern">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--spa-stone)" }}>Обо мне</p>
-            <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6" style={{ fontFamily: "'Cormorant', serif" }}>
-              Баня —<br /><em>это не просто жара</em>
+            <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
+            <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Баня — это<br /><em>древнее искусство</em>
             </h2>
-            <p className="text-base leading-relaxed mb-5 opacity-80">
-              Я пармастер с авторским подходом. Каждая моя программа — это продуманный ритуал: от выбора трав и ароматов до финальной чашки чая. Я работаю только с натуральными ингредиентами и создаю атмосферу, в которой хочется остаться.
+
+            <blockquote className="eth-quote text-base mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.2rem" }}>
+              Мудрость предков в каждой капле пара — я не просто провожу процедуры, я возвращаю телу его природное право на восстановление.
+            </blockquote>
+
+            <p className="text-sm leading-relaxed mb-4 opacity-80" style={{ color: "var(--eth-smoke)" }}>
+              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется.
             </p>
-            <p className="text-base leading-relaxed opacity-80">
-              Мои гости приходят за восстановлением — и уходят с ощущением, что побывали в другом мире. Именно за этим я создаю то, что делаю.
+            <p className="text-sm leading-relaxed opacity-80" style={{ color: "var(--eth-smoke)" }}>
+              Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
             </p>
 
-            <div className="mt-10 grid grid-cols-3 gap-6">
-              {[["4", "авторских\nпрограммы"], ["5–8", "гостей\nв группе"], ["Краснодар", "ул. Карельская\n102"]].map(([num, label]) => (
+            <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
+              {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 часа", "максимум\nудовольствия"]].map(([num, label]) => (
                 <div key={num}>
-                  <p className="text-2xl font-light whitespace-pre-line" style={{ fontFamily: "'Cormorant', serif", color: "var(--spa-terra)", lineHeight: 1.1 }}>{num}</p>
-                  <p className="text-xs uppercase tracking-wider mt-2 opacity-60 whitespace-pre-line leading-relaxed">{label}</p>
+                  <p className="text-2xl font-light whitespace-pre-line" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", lineHeight: 1.1 }}>{num}</p>
+                  <p className="text-xs uppercase tracking-wider mt-2 opacity-50 whitespace-pre-line leading-relaxed" style={{ color: "var(--eth-stone)" }}>{label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative">
-            <div className="w-full aspect-square blob-2 flex items-center justify-center text-[100px]"
-              style={{ background: "linear-gradient(135deg, #e8f0e4, #f5ecd8)" }}>
-              🌿
+          {/* Visual */}
+          <div className="relative flex items-center justify-center">
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center relative"
+              style={{ background: "radial-gradient(circle, #2a1f10, #1a1410)", border: "1px solid rgba(200,146,58,0.2)" }}>
+              {/* Inner glow */}
+              <div className="absolute inset-4 rounded-full"
+                style={{ background: "radial-gradient(circle at 50% 80%, rgba(212,98,42,0.3), transparent 70%)" }} />
+              <div className="text-center relative z-10">
+                <p className="text-7xl mb-2 animate-flicker">🔥</p>
+                <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--eth-gold)", opacity: 0.7 }}>Огонь лечит</p>
+              </div>
             </div>
-            <div className="absolute -bottom-6 -right-4 w-28 h-28 blob-3 flex items-center justify-center text-4xl"
-              style={{ background: "#fdf0f0" }}>🌸</div>
-            <div className="absolute -top-4 -left-4 w-20 h-20 blob-1 flex items-center justify-center text-3xl"
-              style={{ background: "#f0f8fd" }}>✦</div>
+            {/* Orbit ornaments */}
+            <div className="absolute top-0 right-0 text-3xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.3 }}>◆</div>
+            <div className="absolute bottom-4 left-0 text-2xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◇</div>
           </div>
         </div>
       </section>
 
-      <div className="px-6"><div className="max-w-5xl mx-auto leaf-divider" /></div>
+      {/* ── Benefits ────────────────────────────────────── */}
+      <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <div className="eth-divider mb-6"><span>◆</span></div>
+            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Как баня восстанавливает тело
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {benefits.map((b, i) => (
+              <div key={i} className="rounded-2xl p-6 eth-card text-center"
+                style={{ background: "var(--eth-bg3)" }}>
+                <span className="text-4xl block mb-4">{b.icon}</span>
+                <h3 className="text-lg font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{b.title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{b.text}</p>
+              </div>
+            ))}
+          </div>
 
-      {/* ── Programs ───────────────────────────────────────── */}
+          {/* Quote block */}
+          <div className="mt-14 text-center">
+            <p className="text-3xl md:text-4xl font-light italic"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
+              «Огонь, который лечит —<br />это не метафора, это физиология»
+            </p>
+            <p className="mt-3 text-sm" style={{ color: "var(--eth-stone)" }}>— Мария, пармастер</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Programs ────────────────────────────────────── */}
       <section id="programs" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--spa-stone)" }}>Авторские ритуалы</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif" }}>Программы</h2>
-            <p className="mt-4 text-sm opacity-60 max-w-md mx-auto">Нажмите на карточку, чтобы увидеть полный состав программы</p>
+            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Авторские ритуалы</p>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Программы
+            </h2>
+            <div className="eth-divider mt-6 max-w-xs mx-auto"><span>◇</span></div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
             {programs.map((p) => (
               <button key={p.id} onClick={() => setActiveProgram(p)}
-                className="tarot-card text-left rounded-3xl overflow-hidden cursor-pointer group"
-                style={{ background: p.bgCard, border: `1px solid ${p.color}18` }}>
+                className="eth-card fire-card-glow text-left rounded-2xl cursor-pointer group"
+                style={{ background: "var(--eth-bg2)" }}>
+                <div className="p-7">
+                  {/* Symbol + title */}
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-3xl font-light animate-pulse-gold" style={{ color: p.color, fontFamily: "'Cormorant', serif" }}>
+                      {p.symbol}
+                    </span>
+                    <span className="text-xs uppercase tracking-widest px-3 py-1 rounded-full"
+                      style={{ background: p.dimColor, color: p.color, border: `1px solid ${p.color}25` }}>
+                      {p.guests}
+                    </span>
+                  </div>
 
-                {/* Program image */}
-                <div className="relative h-44 overflow-hidden">
-                  <img src={p.image} alt={p.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0"
-                    style={{ background: `linear-gradient(to bottom, transparent 40%, ${p.bgCard}ee)` }} />
-                  <div className="absolute bottom-3 right-4">
-                    <span className="text-2xl font-light" style={{ fontFamily: "'Cormorant', serif", color: p.color }}>
+                  <h3 className="text-2xl font-light mb-1 leading-tight"
+                    style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                    {p.title}
+                  </h3>
+                  <p className="text-xs italic mb-4" style={{ color: "var(--eth-stone)" }}>{p.tagline}</p>
+
+                  {/* Effect */}
+                  <p className="text-xs mb-4 font-medium" style={{ color: p.color }}>
+                    ◆ {p.effect}
+                  </p>
+
+                  <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                    {p.description}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4"
+                    style={{ borderTop: `1px solid ${p.color}18` }}>
+                    <span className="text-xs flex items-center gap-1 transition-all group-hover:gap-2"
+                      style={{ color: "var(--eth-stone)" }}>
+                      Полный состав <Icon name="ArrowRight" size={12} />
+                    </span>
+                    <span className="text-3xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                       {p.price}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <h3 className="text-2xl font-light leading-tight" style={{ fontFamily: "'Cormorant', serif", color: "var(--spa-dark)" }}>
-                      {p.emoji} {p.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs mb-3 italic" style={{ color: p.accent }}>{p.tagline}</p>
-                  <p className="text-sm leading-relaxed opacity-70 mb-4">{p.description}</p>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs px-3 py-1 rounded-full" style={{ background: `${p.color}15`, color: p.color }}>
-                      {p.guests}{p.duration ? ` · ${p.duration}` : ""}
-                    </span>
-                    <span className="text-xs flex items-center gap-1 opacity-50">
-                      Подробнее <Icon name="ArrowRight" size={12} />
                     </span>
                   </div>
                 </div>
               </button>
             ))}
           </div>
+
+          <p className="text-center mt-8 text-xs tracking-widest uppercase" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>
+            Нажмите на программу для полного состава
+          </p>
         </div>
       </section>
 
-      {/* ── Reviews ────────────────────────────────────────── */}
-      <section id="reviews" className="py-24 px-6" style={{ background: "linear-gradient(160deg, #f0ece0, #e8f0e4)" }}>
+      {/* ── Reviews ─────────────────────────────────────── */}
+      <section id="reviews" className="py-24 px-6" style={{ background: "var(--eth-bg2)" }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--spa-stone)" }}>Говорят гости</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif" }}>Отзывы</h2>
+            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Говорят гости</p>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Отзывы
+            </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
-              { name: "Ирина М.", text: "«Царица» — это что-то невероятное. Пришла просто расслабиться, а получила настоящий ритуал. Кокошники, сладкие угощения, цветочный пар... Буду возвращаться!", program: "Царица", emoji: "👑" },
-              { name: "Светлана Д.", text: "«Летний Бриз» перенёс меня к морю прямо в бане. Парафинотерапия для рук — просто волшебство. Кожа как у ребёнка. Мария — настоящий мастер!", program: "Летний Бриз", emoji: "🌊" },
-              { name: "Анастасия К.", text: "Сладкая Япония стала для нас с подругами целым приключением. Бамбуковая флейта, качели, холодная купель — это надо пережить самой. Рекомендую всем!", program: "Сладкая Япония", emoji: "🌸" },
-              { name: "Марина и Артём", text: "«Сдобная Баня» для двоих — лучший подарок на годовщину. Мы сами выбирали программу, всё было идеально. Звуковая медитация на сеновале — это отдельная история!", program: "Сдобная Баня", emoji: "🥐" },
+              { name: "Ирина М.", text: "«Царица» — это не просто баня, это полное погружение в другой мир. После программы тело чувствует себя так, словно отдыхало неделю. Восстановление ощущается буквально на клеточном уровне.", program: "Царица", symbol: "♛" },
+              { name: "Светлана Д.", text: "«Летний Бриз» — открытие для меня. Пар с травами, медовый пилинг — кожа обновилась полностью. Парафинотерапия вернула мягкость рукам, которой не было годами. Мария — настоящий мастер своего дела.", program: "Летний Бриз", symbol: "≋" },
+              { name: "Анастасия К.", text: "Сладкая Япония — это не просто расслабление, это работа с телом. Контрастные купели, звуки ханга, качели на свежем воздухе. Ощущение лёгкости не проходило несколько дней.", program: "Сладкая Япония", symbol: "❋" },
+              { name: "Марина и Артём", text: "«Сдобная Баня» стала лучшим подарком. Мы сами выбирали программу, и это создало ощущение особого ритуала. Звуковая медитация на сеновале — отдельный опыт, который невозможно описать словами.", program: "Сдобная Баня", symbol: "✦" },
             ].map((r, i) => (
-              <div key={i} className="rounded-3xl p-7 transition-all duration-300 hover:shadow-md"
-                style={{ background: "var(--spa-cream)" }}>
-                <div className="flex items-center gap-2 mb-4">
+              <div key={i} className="eth-card rounded-2xl p-7" style={{ background: "var(--eth-bg3)" }}>
+                <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
-                    <span key={j} className="text-sm" style={{ color: "var(--spa-terra)" }}>✦</span>
+                    <span key={j} style={{ color: "var(--eth-gold)", fontSize: "12px" }}>◆</span>
                   ))}
                 </div>
-                <p className="leading-relaxed mb-5 opacity-80"
-                  style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>
-                  {r.text}
+                <p className="leading-relaxed mb-5 italic"
+                  style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-smoke)" }}>
+                  «{r.text}»
                 </p>
                 <div className="flex items-center justify-between">
-                  <p className="font-medium text-sm">{r.name}</p>
-                  <span className="text-xs px-3 py-1 rounded-full" style={{ background: "#e8f4e6", color: "var(--spa-green)" }}>
-                    {r.emoji} {r.program}
+                  <p className="text-sm font-medium" style={{ color: "var(--eth-cream)" }}>{r.name}</p>
+                  <span className="text-xs px-3 py-1 rounded-full"
+                    style={{ background: "rgba(200,146,58,0.1)", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.2)" }}>
+                    {r.symbol} {r.program}
                   </span>
                 </div>
               </div>
@@ -529,25 +602,27 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── FAQ ────────────────────────────────────────────── */}
+      {/* ── FAQ ─────────────────────────────────────────── */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--spa-stone)" }}>Вопросы</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif" }}>Частые вопросы</h2>
+            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Вопросы</p>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Часто спрашивают
+            </h2>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {faqData.map((item, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden transition-all duration-200"
-                style={{ background: activeFaq === i ? "#e8f4e6" : "#f5f0e8", border: "1px solid rgba(139,128,112,0.12)" }}>
+              <div key={i} className="rounded-xl overflow-hidden transition-all duration-200"
+                style={{ background: activeFaq === i ? "var(--eth-bg3)" : "var(--eth-bg2)", border: "1px solid rgba(200,146,58,0.12)" }}>
                 <button className="w-full text-left px-6 py-4 flex items-center justify-between gap-4"
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}>
-                  <span className="text-base font-medium">{item.q}</span>
-                  <Icon name={activeFaq === i ? "ChevronUp" : "ChevronDown"} size={18} color="var(--spa-stone)" />
+                  <span className="text-base" style={{ color: "var(--eth-cream)" }}>{item.q}</span>
+                  <Icon name={activeFaq === i ? "ChevronUp" : "ChevronDown"} size={16} color="var(--eth-stone)" />
                 </button>
                 {activeFaq === i && (
                   <div className="px-6 pb-5 animate-slide-up">
-                    <p className="text-sm leading-relaxed opacity-75">{item.a}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)" }}>{item.a}</p>
                   </div>
                 )}
               </div>
@@ -556,82 +631,94 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── Contacts ───────────────────────────────────────── */}
+      {/* ── Contacts ────────────────────────────────────── */}
       <section id="contacts" className="py-24 px-6"
-        style={{ background: "linear-gradient(160deg, #4a6741, #3a5233)" }}>
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] mb-4 text-white/50">Записаться</p>
-            <h2 className="text-5xl md:text-6xl font-light text-white leading-tight mb-8"
-              style={{ fontFamily: "'Cormorant', serif" }}>
-              Ждём вас<br /><em>в гости</em>
+        style={{ background: "radial-gradient(ellipse at 50% 100%, #2a1808 0%, #1a1410 60%, #0f0c08 100%)" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="eth-divider mb-6 max-w-sm mx-auto"><span>◆ ◇ ◆</span></div>
+            <h2 className="text-5xl md:text-6xl font-light leading-tight"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Ждём вас<br /><em>у огня</em>
             </h2>
-            <div className="space-y-5">
-              {[
-                { icon: "MapPin", text: "Краснодар, ул. Карельская, 102" },
-                { icon: "Phone", text: "+7 (999) 123-45-67" },
-                { icon: "Clock", text: "По предварительной записи" },
-                { icon: "Instagram", text: "@mariya.parmaster" },
-              ].map(({ icon, text }) => (
-                <div key={text} className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                    <Icon name={icon} size={15} color="white" />
-                  </div>
-                  <p className="text-white/80 text-sm">{text}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Program quick links */}
-            <div className="mt-10">
-              <p className="text-white/50 text-xs uppercase tracking-widest mb-4">Программы</p>
-              <div className="flex flex-wrap gap-2">
-                {programs.map(p => (
-                  <button key={p.id} onClick={() => setActiveProgram(p)}
-                    className="px-3 py-1.5 rounded-full text-xs transition-all hover:opacity-80"
-                    style={{ background: "rgba(255,255,255,0.12)", color: "white" }}>
-                    {p.emoji} {p.title}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+              Мудрость предков в каждой капле пара
+            </p>
           </div>
 
-          <div className="rounded-3xl p-8" style={{ background: "rgba(255,255,255,0.08)", backdropFilter: "blur(10px)" }}>
-            <h3 className="text-2xl font-light text-white mb-6" style={{ fontFamily: "'Cormorant', serif" }}>
-              Оставьте заявку
-            </h3>
-            <div className="space-y-4">
-              {[{ placeholder: "Ваше имя", type: "text" }, { placeholder: "Телефон или Telegram", type: "text" }].map(f => (
-                <input key={f.placeholder} type={f.type} placeholder={f.placeholder}
-                  className="w-full px-4 py-3 rounded-2xl text-sm outline-none"
-                  style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-              ))}
-              <select className="w-full px-4 py-3 rounded-2xl text-sm outline-none"
-                style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.2)", fontFamily: "'Golos Text', sans-serif" }}>
-                <option value="" style={{ color: "#333" }}>Выберите программу</option>
-                {programs.map(p => (
-                  <option key={p.id} value={p.id} style={{ color: "#333" }}>
-                    {p.emoji} {p.title} — {p.price}
-                  </option>
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Info */}
+            <div>
+              <div className="space-y-5 mb-10">
+                {[
+                  { icon: "MapPin", text: "Краснодар, ул. Карельская, 102" },
+                  { icon: "Phone", text: "+7 (999) 123-45-67" },
+                  { icon: "Clock", text: "По предварительной записи" },
+                  { icon: "Instagram", text: "@mariya.parmaster" },
+                ].map(({ icon, text }) => (
+                  <div key={text} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full flex items-center justify-center"
+                      style={{ background: "rgba(200,146,58,0.1)", border: "1px solid rgba(200,146,58,0.2)" }}>
+                      <Icon name={icon} size={15} color="var(--eth-gold)" />
+                    </div>
+                    <p className="text-sm" style={{ color: "var(--eth-smoke)" }}>{text}</p>
+                  </div>
                 ))}
-              </select>
-              <textarea placeholder="Пожелания или вопросы" rows={3}
-                className="w-full px-4 py-3 rounded-2xl text-sm outline-none resize-none"
-                style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-              <button className="w-full py-3.5 rounded-2xl text-sm font-medium tracking-wide transition-all hover:opacity-90 hover:scale-[1.02]"
-                style={{ background: "var(--spa-cream)", color: "var(--spa-green)" }}>
-                Отправить заявку
-              </button>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--eth-stone)" }}>Программы</p>
+                <div className="flex flex-wrap gap-2">
+                  {programs.map(p => (
+                    <button key={p.id} onClick={() => setActiveProgram(p)}
+                      className="px-3 py-1.5 rounded-full text-xs transition-all hover:opacity-80"
+                      style={{ background: "rgba(200,146,58,0.08)", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.15)", letterSpacing: "0.05em" }}>
+                      {p.symbol} {p.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div className="rounded-2xl p-8"
+              style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.15)" }}>
+              <h3 className="text-2xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                Оставьте заявку
+              </h3>
+              <div className="space-y-4">
+                {[{ placeholder: "Ваше имя", type: "text" }, { placeholder: "Телефон или Telegram", type: "text" }].map(f => (
+                  <input key={f.placeholder} type={f.type} placeholder={f.placeholder}
+                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all focus:border-amber-600"
+                    style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+                ))}
+                <select className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(240,230,208,0.6)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }}>
+                  <option value="" style={{ background: "#1a1410" }}>Выберите программу</option>
+                  {programs.map(p => (
+                    <option key={p.id} value={p.id} style={{ background: "#1a1410", color: "var(--eth-cream)" }}>
+                      {p.symbol} {p.title} — {p.price}
+                    </option>
+                  ))}
+                </select>
+                <textarea placeholder="Пожелания или вопросы" rows={3}
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+                <button className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02]"
+                  style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
+                  Отправить заявку
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Footer ─────────────────────────────────────────── */}
-      <footer className="py-8 px-6 text-center" style={{ background: "#2d2820", color: "rgba(245,240,232,0.4)" }}>
-        <p className="text-lg mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(245,240,232,0.7)" }}>Мария · Пармастер</p>
-        <p className="text-xs tracking-wider">© 2024 · Краснодар · Авторские банные программы</p>
+      {/* ── Footer ──────────────────────────────────────── */}
+      <footer className="py-8 px-6 text-center" style={{ background: "#0f0c08", borderTop: "1px solid rgba(200,146,58,0.1)" }}>
+        <div className="eth-divider max-w-xs mx-auto mb-5"><span>◆</span></div>
+        <p className="text-xl mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.8 }}>Мария · Пармастер</p>
+        <p className="text-xs tracking-widest" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>© 2024 · Краснодар · Авторские банные программы</p>
       </footer>
 
       {activeProgram && <ProgramModal program={activeProgram} onClose={() => setActiveProgram(null)} />}
