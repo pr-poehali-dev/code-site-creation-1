@@ -456,7 +456,7 @@ export default function Tarot() {
           </p>
           <p className="text-sm leading-relaxed mb-4 animate-fade-up delay-200"
             style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "500px", margin: "0 auto 1rem" }}>
-            Я верю, что интуиция и мудрость карт Таро — прекрасное дополнение к выбору идеальной спа-программы. Карты помогут раскрыть ваши текущие потребности и желания.
+            Мудрость карт Таро поможет раскрыть ваши текущие потребности и желания.
           </p>
           <p className="text-sm leading-relaxed mb-10 animate-fade-up delay-300"
             style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "460px", margin: "0 auto 2.5rem" }}>
@@ -553,11 +553,21 @@ export default function Tarot() {
       <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-5xl block mb-8 opacity-30" style={{ color: "#9b7fb5" }}>◆</span>
-          <p className="text-3xl md:text-4xl font-light italic leading-relaxed mb-6"
+          <p className="text-2xl md:text-3xl font-light italic leading-relaxed mb-4"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-            «Карты не предсказывают будущее — они отражают то, что уже живёт внутри вас»
+            Парная ведунья,<br />
+            трав знахарка, огня хранительница.
           </p>
-          <p className="text-sm" style={{ color: "var(--eth-stone)" }}>— Мария, пармастер</p>
+          <p className="text-lg md:text-xl font-light italic leading-relaxed mb-4"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", opacity: 0.85 }}>
+            Веник шепчет, мёд питает, чаша поёт —<br />
+            Тело очищается, душа покой обретёт.
+          </p>
+          <p className="text-base md:text-lg font-light italic leading-relaxed"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-stone)" }}>
+            Каждому — свой путь, каждому — свой пар,<br />
+            По обычаю древнему, по сердцу и в дар.
+          </p>
         </div>
       </section>
 

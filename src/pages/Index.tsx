@@ -589,9 +589,7 @@ export default function Index() {
             <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               Путь к обновлению на всех уровнях
             </h2>
-            <p className="text-sm max-w-xl mx-auto leading-relaxed" style={{ color: "var(--eth-stone)" }}>
-              Я создаю индивидуальные ритуалы парения, где каждая процедура — не просто SPA, а путь к обновлению на всех уровнях
-            </p>
+
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {benefits.map((b, i) => (
