@@ -501,7 +501,7 @@ export default function Index() {
           </p>
           <p className="text-lg md:text-xl font-light mb-10 animate-fade-up delay-400"
             style={{ color: "var(--eth-gold)", letterSpacing: "0.05em" }}>
-            Огонь, который лечит
+            Иней и Магма corp
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-500">
@@ -534,7 +534,7 @@ export default function Index() {
             </h2>
 
             <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)" }}>
-              Я — создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp»</strong>.
+              Меня зовут Мария. Я — создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp»</strong>.
             </p>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
               Благодаря ему каждый может ощутить то, чего так не хватало…
@@ -555,14 +555,6 @@ export default function Index() {
             <p className="text-sm leading-relaxed italic mb-6"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.05rem" }}>
               Каждый в этом проекте найдёт для себя что‑то своё: личное, неприкосновенное, незыблемое. Только твоё.
-            </p>
-
-            <blockquote className="eth-quote text-base" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Баня — это храм трансформации, где стихии огня, воды, воздуха и земли помогают человеку обрести баланс. Я не просто провожу процедуры — я возвращаю телу его природное право на восстановление.
-            </blockquote>
-
-            <p className="text-sm leading-relaxed mt-4 mb-4 opacity-80" style={{ color: "var(--eth-smoke)" }}>
-              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется. Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
@@ -635,10 +627,16 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <div className="eth-divider mb-6"><span>◆</span></div>
-            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               Путь к обновлению на всех уровнях
             </h2>
 
+            <blockquote className="eth-quote text-base mx-auto max-w-2xl mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+              Баня — это храм трансформации, где стихии огня, воды, воздуха и земли помогают человеку обрести баланс. Я не просто провожу процедуры — я возвращаю телу его природное право на восстановление.
+            </blockquote>
+            <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}>
+              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется. Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
+            </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {benefits.map((b, i) => (
