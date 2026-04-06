@@ -201,8 +201,11 @@ function CertPreview({ certStyle, value, recipientName }: {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: `1px solid ${p.accent}20` }} />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
-        <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: p.accent, opacity: 0.7 }}>
-          Мария · Пармастер
+        <p className="text-xs uppercase tracking-[0.3em] mb-1" style={{ color: p.accent, opacity: 0.7 }}>
+          Solutions "Иней и Магма corp"
+        </p>
+        <p className="text-xs uppercase tracking-[0.3em] mb-3" style={{ color: p.accent, opacity: 0.5 }}>
+          & "ВаняБаня"
         </p>
         <p className="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: subColor }}>
           Подарочный сертификат
@@ -222,7 +225,7 @@ function CertPreview({ certStyle, value, recipientName }: {
 
         <div className="w-16 h-px mt-3 mb-2" style={{ background: `linear-gradient(90deg, transparent, ${p.accent}, transparent)` }} />
 
-        <p className="text-xs" style={{ color: subColor }}>Краснодар · Авторские банные программы</p>
+        <p className="text-xs" style={{ color: subColor }}>Авторские банные программы</p>
       </div>
     </div>
   );
