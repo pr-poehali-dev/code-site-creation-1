@@ -101,10 +101,11 @@ const programs = [
 ];
 
 const benefits = [
-  { icon: "🔥", title: "Детокс через жар", text: "Пар открывает поры и выводит токсины через кожу — самый древний способ очищения тела, известный тысячелетиями." },
-  { icon: "❄️", title: "Контраст температур", text: "Переход от жара к холоду тренирует сосуды, укрепляет иммунитет и запускает мощный выброс эндорфинов." },
-  { icon: "🌿", title: "Сила трав", text: "Натуральные масла и травяные настои проникают в кожу через расширенные поры, питая и восстанавливая изнутри." },
-  { icon: "🎵", title: "Звуковая медитация", text: "Частоты поющих чаш и живых инструментов перезагружают нервную систему и снимают хронический стресс." },
+  { icon: "🌿", title: "Парение с вениками", text: "Берёза для очищения, дуб для силы, эвкалипт для дыхания. Мягкие техники, которые расслабляют без стресса для тела." },
+  { icon: "🌱", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
+  { icon: "💧", title: "Водные практики", text: "Контрастные обливания и купель для пробуждения жизненной силы и укрепления сосудов." },
+  { icon: "🍯", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление изнутри." },
+  { icon: "🎵", title: "Звуковая медитация", text: "Гармонизация внутреннего состояния через вибрации звука — перезагрузка нервной системы и глубокий покой." },
 ];
 
 const faqData = [
@@ -585,11 +586,14 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <div className="eth-divider mb-6"><span>◆</span></div>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Как баня восстанавливает тело
+            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Путь к обновлению на всех уровнях
             </h2>
+            <p className="text-sm max-w-xl mx-auto leading-relaxed" style={{ color: "var(--eth-stone)" }}>
+              Я создаю индивидуальные ритуалы парения, где каждая процедура — не просто SPA, а путь к обновлению на всех уровнях
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {benefits.map((b, i) => (
               <div key={i} className="rounded-2xl p-6 eth-card text-center"
                 style={{ background: "var(--eth-bg3)" }}>

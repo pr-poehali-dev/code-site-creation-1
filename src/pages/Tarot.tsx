@@ -460,7 +460,7 @@ export default function Tarot() {
           </p>
           <p className="text-sm leading-relaxed mb-10 animate-fade-up delay-300"
             style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "460px", margin: "0 auto 2.5rem" }}>
-            На основе карты я составлю программу, которая резонирует именно с вами — обеспечивая тотальное обновление организма.
+            На основе карты для вас будет выбрана программа, которая резонирует именно с вами — обеспечивая тотальное обновление организма.
           </p>
 
           <button onClick={() => document.getElementById("spread")?.scrollIntoView({ behavior: "smooth" })}
