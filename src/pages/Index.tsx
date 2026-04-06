@@ -528,11 +528,11 @@ export default function Index() {
             <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
             <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Баня — это<br /><em>древнее искусство</em>
+              Баня — это храм<br /><em>трансформации</em>
             </h2>
 
             <blockquote className="eth-quote text-base mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.2rem" }}>
-              Мудрость предков в каждой капле пара — я не просто провожу процедуры, я возвращаю телу его природное право на восстановление.
+              Баня — это храм трансформации, где стихии огня, воды, воздуха и земли помогают человеку обрести баланс. Я не просто провожу процедуры — я возвращаю телу его природное право на восстановление.
             </blockquote>
 
             <p className="text-sm leading-relaxed mb-4 opacity-80" style={{ color: "var(--eth-smoke)" }}>
