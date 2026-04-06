@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -291,6 +292,7 @@ function ProgramModal({ program, onClose }: { program: typeof programs[0]; onClo
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Index() {
+  const navigate = useNavigate();
   const [activeProgram, setActiveProgram] = useState<typeof programs[0] | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [navOpen, setNavOpen] = useState(false);
@@ -298,11 +300,13 @@ export default function Index() {
   const navItems = [
     { label: "Обо мне", id: "about" },
     { label: "Программы", id: "programs" },
+    { label: "Таро", id: "tarot-nav" },
     { label: "Отзывы", id: "reviews" },
     { label: "Контакты", id: "contacts" },
   ];
 
   function scrollTo(id: string) {
+    if (id === "tarot-nav") { navigate("/tarot"); setNavOpen(false); return; }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setNavOpen(false);
   }
@@ -559,6 +563,34 @@ export default function Index() {
           <p className="text-center mt-8 text-xs tracking-widest uppercase" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>
             Нажмите на программу для полного состава
           </p>
+        </div>
+      </section>
+
+      {/* ── Tarot Banner ────────────────────────────────── */}
+      <section className="py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e1530 0%, #0f0c08 80%)" }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl px-8 py-12 text-center relative overflow-hidden"
+            style={{ border: "1px solid rgba(155,127,181,0.25)", background: "radial-gradient(ellipse at 50% 0%, rgba(155,127,181,0.08), transparent 70%)" }}>
+            <div className="absolute top-0 left-0 right-0 h-px"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(155,127,181,0.4), transparent)" }} />
+            <span className="text-5xl block mb-5 opacity-60" style={{ color: "#9b7fb5" }}>◆</span>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>
+              Индивидуальный подход
+            </p>
+            <h2 className="text-4xl md:text-5xl font-light leading-tight mb-4"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Магия Таро<br /><em>и ваша уникальная программа</em>
+            </h2>
+            <p className="text-base leading-relaxed mb-8 max-w-xl mx-auto"
+              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>
+              Каждый человек уникален. Я верю, что карты Таро помогают раскрыть ваши текущие потребности и составить программу, которая резонирует именно с вами.
+            </p>
+            <button onClick={() => navigate("/tarot")}
+              className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.12em" }}>
+              Пройти таро-расклад
+            </button>
+          </div>
         </div>
       </section>
 
