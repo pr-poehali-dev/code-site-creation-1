@@ -806,7 +806,23 @@ export default function Index() {
                 ))}
               </div>
 
-              <div>
+              <a
+                href="https://t.me/+79186860650"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 w-full px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl"
+                style={{ background: "linear-gradient(135deg, #229ed9, #1a7db8)", color: "white", textDecoration: "none" }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.613c-.15.672-.546.836-1.107.52l-3.07-2.262-1.48 1.424c-.164.164-.3.3-.616.3l.22-3.11 5.67-5.12c.247-.22-.054-.342-.382-.122L7.34 14.6l-3.01-.94c-.654-.205-.667-.654.137-.968l11.726-4.522c.546-.197 1.023.133.87.078z"/>
+                </svg>
+                <div>
+                  <p className="text-sm font-medium tracking-wide">Написать в Telegram</p>
+                  <p className="text-xs opacity-70">Max · ответит быстро</p>
+                </div>
+              </a>
+
+              <div className="mt-5">
                 <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--eth-stone)" }}>Программы</p>
                 <div className="flex flex-wrap gap-2">
                   {programs.map(p => (
