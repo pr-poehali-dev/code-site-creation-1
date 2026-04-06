@@ -291,6 +291,106 @@ function ProgramModal({ program, onClose }: { program: typeof programs[0]; onClo
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
+const TELEGRAM_URL = "https://functions.poehali.dev/b19212c6-df7b-49bb-9d3d-e1121d88dacb";
+
+async function sendToTelegram(data: Record<string, string>) {
+  const res = await fetch(TELEGRAM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.ok;
+}
+
+// ─── Booking Form ─────────────────────────────────────────────────────────────
+
+function BookingForm({ tarotCard }: { tarotCard?: string }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [program, setProgram] = useState("");
+  const [comment, setComment] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setStatus("loading");
+    const ok = await sendToTelegram({
+      name, phone,
+      program: program || "не выбрана",
+      comment,
+      source: tarotCard ? "Таро-страница" : "Главная страница",
+      ...(tarotCard ? { tarotCard } : {}),
+    });
+    setStatus(ok ? "ok" : "err");
+  }
+
+  if (status === "ok") {
+    return (
+      <div className="rounded-2xl p-10 text-center"
+        style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.15)" }}>
+        <p className="text-5xl mb-4">🔥</p>
+        <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+          Заявка отправлена!
+        </h3>
+        <p className="text-sm" style={{ color: "var(--eth-stone)" }}>
+          Мария свяжется с вами в ближайшее время
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="rounded-2xl p-8"
+      style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.15)" }}>
+      <h3 className="text-2xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+        Оставьте заявку
+      </h3>
+      <div className="space-y-4">
+        <input required value={name} onChange={e => setName(e.target.value)}
+          placeholder="Ваше имя" type="text"
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+        <input required value={phone} onChange={e => setPhone(e.target.value)}
+          placeholder="Телефон или Telegram" type="text"
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+        <select value={program} onChange={e => setProgram(e.target.value)}
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+          style={{ background: "rgba(30,24,18,0.98)", color: program ? "var(--eth-cream)" : "rgba(240,230,208,0.5)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }}>
+          <option value="">Выберите программу</option>
+          {programs.map(p => (
+            <option key={p.id} value={p.title} style={{ background: "#1a1410", color: "var(--eth-cream)" }}>
+              {p.symbol} {p.title} — {p.price}
+            </option>
+          ))}
+        </select>
+        {tarotCard && (
+          <div className="px-4 py-3 rounded-xl flex items-center gap-2"
+            style={{ background: "rgba(155,127,181,0.08)", border: "1px solid rgba(155,127,181,0.2)" }}>
+            <span style={{ color: "#9b7fb5" }}>🃏</span>
+            <p className="text-sm" style={{ color: "var(--eth-smoke)" }}>Карта Таро: <strong style={{ color: "#9b7fb5" }}>{tarotCard}</strong></p>
+          </div>
+        )}
+        <textarea value={comment} onChange={e => setComment(e.target.value)}
+          placeholder="Пожелания или вопросы" rows={3}
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+        {status === "err" && (
+          <p className="text-sm text-center" style={{ color: "#e57373" }}>
+            Ошибка отправки. Напишите напрямую в Telegram.
+          </p>
+        )}
+        <button type="submit" disabled={status === "loading"}
+          className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
+          style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
+          {status === "loading" ? "Отправляем..." : "Отправить заявку"}
+        </button>
+      </div>
+    </form>
+  );
+}
+
 export default function Index() {
   const navigate = useNavigate();
   const [activeProgram, setActiveProgram] = useState<typeof programs[0] | null>(null);
@@ -441,6 +541,14 @@ export default function Index() {
             <p className="text-sm leading-relaxed opacity-80" style={{ color: "var(--eth-smoke)" }}>
               Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
             </p>
+
+            <div className="mt-6 rounded-xl px-5 py-4"
+              style={{ background: "rgba(200,146,58,0.06)", border: "1px solid rgba(200,146,58,0.15)" }}>
+              <p className="text-sm leading-relaxed italic"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.05rem" }}>
+                Мои программы — это не просто банные процедуры, это тщательно продуманные ритуалы, направленные на очищение, омоложение и глубокое расслабление. Каждая программа разработана для достижения максимального эффекта.
+              </p>
+            </div>
 
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
               {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 часа", "максимум\nудовольствия"]].map(([num, label]) => (
@@ -713,35 +821,7 @@ export default function Index() {
             </div>
 
             {/* Form */}
-            <div className="rounded-2xl p-8"
-              style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.15)" }}>
-              <h3 className="text-2xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Оставьте заявку
-              </h3>
-              <div className="space-y-4">
-                {[{ placeholder: "Ваше имя", type: "text" }, { placeholder: "Телефон или Telegram", type: "text" }].map(f => (
-                  <input key={f.placeholder} type={f.type} placeholder={f.placeholder}
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all focus:border-amber-600"
-                    style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-                ))}
-                <select className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(240,230,208,0.6)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }}>
-                  <option value="" style={{ background: "#1a1410" }}>Выберите программу</option>
-                  {programs.map(p => (
-                    <option key={p.id} value={p.id} style={{ background: "#1a1410", color: "var(--eth-cream)" }}>
-                      {p.symbol} {p.title} — {p.price}
-                    </option>
-                  ))}
-                </select>
-                <textarea placeholder="Пожелания или вопросы" rows={3}
-                  className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-                <button className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02]"
-                  style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
-                  Отправить заявку
-                </button>
-              </div>
-            </div>
+            <BookingForm />
           </div>
         </div>
       </section>

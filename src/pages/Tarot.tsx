@@ -2,6 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
+const TELEGRAM_URL = "https://functions.poehali.dev/b19212c6-df7b-49bb-9d3d-e1121d88dacb";
+
+async function sendToTelegram(data: Record<string, string>) {
+  const res = await fetch(TELEGRAM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.ok;
+}
+
 // ─── Tarot cards data ─────────────────────────────────────────────────────────
 
 const tarotCards = [
@@ -179,6 +190,87 @@ function TarotCard({ card, isFlipped, onClick }: {
 }
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
+
+// ─── Tarot Booking Form ───────────────────────────────────────────────────────
+
+function TarotBookingForm({ selectedCard }: { selectedCard: typeof tarotCards[0] | null }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [intention, setIntention] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setStatus("loading");
+    const ok = await sendToTelegram({
+      name, phone,
+      program: selectedCard ? selectedCard.program : "Таро-консультация",
+      comment: intention,
+      source: "Таро-страница",
+      ...(selectedCard ? { tarotCard: `${selectedCard.symbol} ${selectedCard.name}` } : {}),
+    });
+    setStatus(ok ? "ok" : "err");
+  }
+
+  if (status === "ok") {
+    return (
+      <div className="rounded-2xl p-10 text-center"
+        style={{ background: "rgba(155,127,181,0.06)", border: "1px solid rgba(155,127,181,0.2)" }}>
+        <p className="text-5xl mb-4">✨</p>
+        <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+          Заявка отправлена!
+        </h3>
+        <p className="text-sm" style={{ color: "var(--eth-stone)" }}>
+          Мария свяжется с вами и мы проведём ваш особенный ритуал
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="rounded-2xl p-8"
+      style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.15)" }}>
+      <div className="space-y-4">
+        <input required value={name} onChange={e => setName(e.target.value)}
+          placeholder="Ваше имя" type="text"
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+        <input required value={phone} onChange={e => setPhone(e.target.value)}
+          placeholder="Телефон или Telegram" type="text"
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+
+        {selectedCard && (
+          <div className="px-4 py-3 rounded-xl flex items-center gap-2"
+            style={{ background: `${selectedCard.color}10`, border: `1px solid ${selectedCard.color}25` }}>
+            <span style={{ color: selectedCard.color }}>{selectedCard.symbol}</span>
+            <p className="text-sm" style={{ color: "var(--eth-smoke)" }}>
+              Карта: <strong style={{ color: selectedCard.color }}>{selectedCard.name}</strong> → {selectedCard.program}
+            </p>
+          </div>
+        )}
+
+        <textarea value={intention} onChange={e => setIntention(e.target.value)}
+          placeholder="Расскажите о своём намерении — чего хотите достичь на сеансе" rows={3}
+          className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
+          style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+
+        {status === "err" && (
+          <p className="text-sm text-center" style={{ color: "#e57373" }}>
+            Ошибка. Напишите Марии напрямую в Telegram.
+          </p>
+        )}
+
+        <button type="submit" disabled={status === "loading"}
+          className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
+          style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.15em" }}>
+          {status === "loading" ? "Отправляем..." : "Отправить заявку"}
+        </button>
+      </div>
+    </form>
+  );
+}
 
 export default function Tarot() {
   const navigate = useNavigate();
@@ -484,38 +576,7 @@ export default function Tarot() {
             </p>
           </div>
 
-          <div className="rounded-2xl p-8"
-            style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.15)" }}>
-            <div className="space-y-4">
-              {[
-                { placeholder: "Ваше имя", type: "text" },
-                { placeholder: "Телефон или Telegram", type: "text" },
-              ].map(f => (
-                <input key={f.placeholder} type={f.type} placeholder={f.placeholder}
-                  className="w-full px-4 py-3 rounded-xl text-sm outline-none"
-                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-              ))}
-
-              {selectedCard && (
-                <div className="px-4 py-3 rounded-xl flex items-center gap-2"
-                  style={{ background: `${selectedCard.color}10`, border: `1px solid ${selectedCard.color}20` }}>
-                  <span style={{ color: selectedCard.color }}>{selectedCard.symbol}</span>
-                  <p className="text-sm" style={{ color: "var(--eth-smoke)" }}>
-                    Карта: <strong style={{ color: selectedCard.color }}>{selectedCard.name}</strong> → Программа: {selectedCard.program}
-                  </p>
-                </div>
-              )}
-
-              <textarea placeholder="Расскажите о своём намерении — чего хотите достичь на сеансе" rows={3}
-                className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
-                style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
-
-              <button className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.15em" }}>
-                Отправить заявку
-              </button>
-            </div>
-          </div>
+          <TarotBookingForm selectedCard={selectedCard} />
         </div>
       </section>
 

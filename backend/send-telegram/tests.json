@@ -1,0 +1,25 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Send booking request",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "phone": "+7 999 000-00-00",
+        "program": "Летний Бриз",
+        "comment": "Тестовая заявка",
+        "source": "Сайт"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
