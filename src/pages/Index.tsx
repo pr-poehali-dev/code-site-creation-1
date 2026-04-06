@@ -114,6 +114,7 @@ const faqData = [
   { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
   { q: "Есть ли противопоказания?", a: "При беременности, варикозе и некоторых заболеваниях часть процедур ограничена. Уточните при записи, подберём оптимальный вариант." },
   { q: "Как баня помогает телу?", a: "Жар расширяет сосуды и открывает поры, контраст температур укрепляет иммунитет, травяные пары насыщают кожу и лёгкие. Это комплексная работа с телом, проверенная веками." },
+  { q: "Кому подойдёт?", a: "• Тем, кто чувствует эмоциональное выгорание и усталость\n• Желающим проработать внутренние блоки и страхи\n• Ищущим глубокий релакс с осознанным эффектом\n• Практикующим йогу, медитацию или эзотерические техники\n• Ценящим традиции русской бани с современным подходом" },
 ];
 
 // ─── Chatbot ─────────────────────────────────────────────────────────────────
@@ -762,7 +763,11 @@ export default function Index() {
                 </button>
                 {activeFaq === i && (
                   <div className="px-6 pb-5 animate-slide-up">
-                    <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)" }}>{item.a}</p>
+                    <div className="text-sm leading-relaxed mb-3 space-y-1.5" style={{ color: "var(--eth-smoke)" }}>
+                      {item.a.split("\n").map((line, j) => (
+                        <p key={j}>{line}</p>
+                      ))}
+                    </div>
                     {"link" in item && item.link && (
                       <button onClick={() => navigate(item.link as string)}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-widest uppercase transition-all hover:opacity-90 hover:scale-105"
