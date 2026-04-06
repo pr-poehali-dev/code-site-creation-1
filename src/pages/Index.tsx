@@ -113,7 +113,7 @@ const faqData = [
   { q: "Что нужно взять с собой?", a: "Только хорошее настроение! Халаты, тапочки, шапки и полотенца предоставляются." },
   { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
   { q: "Есть ли противопоказания?", a: "При беременности, варикозе и некоторых заболеваниях часть процедур ограничена. Уточните при записи, подберём оптимальный вариант." },
-  { q: "Как баня помогает телу?", a: "Жар расширяет сосуды и открывает поры, контраст температур укрепляет иммунитет, травяные пары насыщают кожу и лёгкие. Это комплексная работа с телом, проверенная веками." },
+
   { q: "Кому подойдёт?", a: "• Тем, кто чувствует эмоциональное выгорание и усталость\n• Желающим проработать внутренние блоки и страхи\n• Ищущим глубокий релакс с осознанным эффектом\n• Практикующим йогу, медитацию или эзотерические техники\n• Ценящим традиции русской бани с современным подходом" },
 ];
 
@@ -481,7 +481,7 @@ export default function Index() {
         <div className="relative text-center px-6 max-w-3xl mx-auto">
           <p className="text-xs uppercase tracking-[0.5em] mb-6 animate-fade-up"
             style={{ color: "var(--eth-stone)", letterSpacing: "0.4em" }}>
-            Пармастер · Краснодар
+            Пармастер · Хилер · Практик
           </p>
 
           <h1 className="text-7xl md:text-9xl font-light leading-none mb-3 animate-fade-up delay-100 fire-glow"
@@ -804,10 +804,8 @@ export default function Index() {
             <div>
               <div className="space-y-5 mb-10">
                 {[
-                  { icon: "MapPin", text: "Краснодар, ул. Карельская, 102" },
-                  { icon: "Phone", text: "+7 (999) 123-45-67" },
+                  { icon: "Phone", text: "+7 (918) 686-06-50" },
                   { icon: "Clock", text: "По предварительной записи" },
-                  { icon: "Instagram", text: "@mariya.parmaster" },
                 ].map(({ icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center"
@@ -831,7 +829,7 @@ export default function Index() {
                 </svg>
                 <div>
                   <p className="text-sm font-medium tracking-wide">Написать в Telegram</p>
-                  <p className="text-xs opacity-70">Max · ответит быстро</p>
+                  <p className="text-xs opacity-70">Мария · ответит быстро</p>
                 </div>
               </a>
 
