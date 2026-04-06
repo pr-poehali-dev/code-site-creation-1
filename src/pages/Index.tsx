@@ -575,67 +575,82 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Visual — ковш со звёздной водой */}
+          {/* Visual — свеча с паром */}
           <div className="relative flex items-center justify-center">
-            {/* Outer glow ring */}
-            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full opacity-20 animate-float"
-              style={{ background: "radial-gradient(circle, #3a6080, transparent 70%)", filter: "blur(30px)" }} />
+            {/* Amber glow */}
+            <div className="absolute w-64 h-64 rounded-full opacity-25 animate-float"
+              style={{ background: "radial-gradient(circle, #c8923a, transparent 70%)", filter: "blur(40px)" }} />
 
-            <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-end justify-center">
-              {/* Stars above */}
-              {["top-2 left-8", "top-6 right-10", "top-0 left-1/2", "top-10 left-4", "top-4 right-4"].map((pos, i) => (
-                <span key={i} className={`absolute ${pos} animate-pulse-gold text-xs`}
-                  style={{ color: "rgba(200,220,255,0.6)", animationDelay: `${i * 0.4}s` }}>★</span>
-              ))}
+            <div className="relative w-56 h-72 md:w-64 md:h-80 flex items-end justify-center">
 
-              {/* Ladle / ковш SVG */}
-              <svg viewBox="0 0 200 220" className="w-full h-full drop-shadow-2xl" style={{ filter: "drop-shadow(0 0 20px rgba(100,160,220,0.3))" }}>
-                {/* Ковш — чаша */}
-                <ellipse cx="90" cy="145" rx="60" ry="18" fill="rgba(40,60,80,0.9)" stroke="rgba(200,146,58,0.6)" strokeWidth="1.5"/>
-                <path d="M30 145 Q28 185 90 188 Q152 185 150 145 Z" fill="rgba(25,45,65,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
-
-                {/* Звёздная вода внутри */}
-                <ellipse cx="90" cy="148" rx="52" ry="12" fill="rgba(20,40,80,0.9)"/>
-                <ellipse cx="90" cy="148" rx="50" ry="10"
-                  fill="url(#starwater)" opacity="0.9"/>
+              <svg viewBox="0 0 160 260" className="w-full h-full" style={{ filter: "drop-shadow(0 0 24px rgba(200,146,58,0.35))" }}>
                 <defs>
-                  <radialGradient id="starwater" cx="50%" cy="40%">
-                    <stop offset="0%" stopColor="#6aa8d8" stopOpacity="0.9"/>
-                    <stop offset="40%" stopColor="#1a3a6a" stopOpacity="0.8"/>
-                    <stop offset="100%" stopColor="#0a1a30" stopOpacity="1"/>
+                  <radialGradient id="candleGlow" cx="50%" cy="80%">
+                    <stop offset="0%" stopColor="#f5c842" stopOpacity="0.5"/>
+                    <stop offset="100%" stopColor="#c8923a" stopOpacity="0"/>
                   </radialGradient>
+                  <radialGradient id="waxTop" cx="50%" cy="40%">
+                    <stop offset="0%" stopColor="#f0e8d8"/>
+                    <stop offset="100%" stopColor="#c8b89a"/>
+                  </radialGradient>
+                  <linearGradient id="waxBody" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#a08060"/>
+                    <stop offset="30%" stopColor="#d4b896"/>
+                    <stop offset="70%" stopColor="#c8a878"/>
+                    <stop offset="100%" stopColor="#907050"/>
+                  </linearGradient>
                 </defs>
-                {/* Блики воды */}
-                <ellipse cx="75" cy="146" rx="12" ry="3" fill="rgba(180,220,255,0.25)" transform="rotate(-15 75 146)"/>
-                <ellipse cx="105" cy="150" rx="8" ry="2" fill="rgba(180,220,255,0.15)" transform="rotate(10 105 150)"/>
 
-                {/* Звёзды в воде */}
-                <text x="78" y="150" fontSize="7" fill="rgba(200,230,255,0.7)">★</text>
-                <text x="96" y="153" fontSize="5" fill="rgba(200,230,255,0.5)">✦</text>
-                <text x="65" y="153" fontSize="4" fill="rgba(200,230,255,0.4)">★</text>
+                {/* Ореол пламени */}
+                <ellipse cx="80" cy="68" rx="28" ry="32" fill="url(#candleGlow)" opacity="0.6" className="animate-flicker"/>
 
-                {/* Пар над ковшом */}
-                <path d="M70 135 Q68 120 72 108 Q76 96 73 84" stroke="rgba(200,220,255,0.2)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-1"/>
-                <path d="M90 132 Q88 117 92 105 Q96 93 93 78" stroke="rgba(200,220,255,0.15)" strokeWidth="1.5" fill="none" strokeLinecap="round" className="steam-2"/>
-                <path d="M108 135 Q106 120 110 108 Q114 96 111 82" stroke="rgba(200,220,255,0.18)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-3"/>
+                {/* Пар — 3 нити */}
+                <path d="M72 30 Q69 18 73 8 Q77 -2 74 -12" stroke="rgba(220,210,200,0.25)" strokeWidth="2.5" fill="none" strokeLinecap="round" className="steam-1"/>
+                <path d="M80 26 Q77 14 81 4 Q85 -6 82 -16" stroke="rgba(220,210,200,0.2)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-2"/>
+                <path d="M88 30 Q85 18 89 8 Q93 -2 90 -12" stroke="rgba(220,210,200,0.22)" strokeWidth="2.5" fill="none" strokeLinecap="round" className="steam-3"/>
 
-                {/* Ручка ковша */}
-                <rect x="148" y="135" width="45" height="8" rx="4"
-                  fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
-                <rect x="185" y="131" width="8" height="16" rx="4"
-                  fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.4)" strokeWidth="1"/>
+                {/* Пламя */}
+                <path d="M80 70 Q70 58 72 46 Q76 34 80 28 Q84 34 88 46 Q90 58 80 70Z"
+                  fill="#f5c842" className="animate-flicker"/>
+                <path d="M80 68 Q74 58 76 48 Q78 40 80 34 Q82 40 84 48 Q86 58 80 68Z"
+                  fill="#ff8c00" opacity="0.8" className="animate-flicker"/>
+                <ellipse cx="80" cy="62" rx="4" ry="6" fill="#fff5e0" opacity="0.9"/>
 
-                {/* Орнамент на чаше */}
-                <path d="M50 165 Q90 170 130 165" stroke="rgba(200,146,58,0.3)" strokeWidth="1" fill="none"/>
+                {/* Фитиль */}
+                <line x1="80" y1="70" x2="80" y2="82" stroke="#3a2a1a" strokeWidth="2" strokeLinecap="round"/>
+
+                {/* Верх свечи (воск подтёкший) */}
+                <ellipse cx="80" cy="84" rx="32" ry="8" fill="url(#waxTop)"/>
+                <path d="M58 84 Q60 92 56 96 Q58 90 60 88Z" fill="#d4b896" opacity="0.7"/>
+                <path d="M102 84 Q100 93 104 97 Q102 90 100 88Z" fill="#d4b896" opacity="0.6"/>
+
+                {/* Тело свечи */}
+                <rect x="48" y="84" width="64" height="148" rx="4" fill="url(#waxBody)"/>
+
+                {/* Блик на свече */}
+                <rect x="56" y="90" width="10" height="130" rx="5" fill="rgba(255,255,255,0.12)"/>
+
+                {/* Орнамент на свече */}
+                <path d="M55 130 Q80 126 105 130" stroke="rgba(200,146,58,0.4)" strokeWidth="1" fill="none"/>
+                <text x="72" y="158" fontSize="11" fill="rgba(200,146,58,0.5)" fontFamily="serif">◆</text>
+                <path d="M55 175 Q80 171 105 175" stroke="rgba(200,146,58,0.25)" strokeWidth="0.8" fill="none"/>
+
+                {/* Подставка */}
+                <rect x="40" y="230" width="80" height="10" rx="5" fill="rgba(80,55,30,0.9)" stroke="rgba(200,146,58,0.4)" strokeWidth="1"/>
+                <rect x="34" y="238" width="92" height="6" rx="3" fill="rgba(60,40,20,0.9)" stroke="rgba(200,146,58,0.3)" strokeWidth="1"/>
+
+                {/* Блики вокруг пламени */}
+                <circle cx="60" cy="72" r="2" fill="rgba(245,200,66,0.3)"/>
+                <circle cx="100" cy="68" r="1.5" fill="rgba(245,200,66,0.25)"/>
               </svg>
             </div>
 
             {/* Подпись */}
             <p className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ color: "var(--eth-gold)", opacity: 0.5 }}>Алхимия стихий</p>
+              style={{ color: "var(--eth-gold)", opacity: 0.45 }}>Алхимия стихий</p>
 
             <div className="absolute top-4 right-0 text-2xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◆</div>
-            <div className="absolute bottom-8 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
+            <div className="absolute bottom-12 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
           </div>
         </div>
       </section>
