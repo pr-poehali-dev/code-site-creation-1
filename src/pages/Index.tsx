@@ -111,7 +111,7 @@ const faqData = [
   { q: "Как записаться на программу?", a: "Заполните форму на сайте или напишите мне в мессенджер. Я отвечу и подберём удобное время вместе." },
   { q: "Сколько человек в группе?", a: "Групповые программы рассчитаны на 5–8 гостей. «Сдобная Баня» — только для двоих, особый формат." },
   { q: "Что нужно взять с собой?", a: "Только хорошее настроение! Халаты, тапочки, шапки и полотенца предоставляются." },
-  { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу. Напишите — договоримся." },
+  { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
   { q: "Есть ли противопоказания?", a: "При беременности, варикозе и некоторых заболеваниях часть процедур ограничена. Уточните при записи, подберём оптимальный вариант." },
   { q: "Как баня помогает телу?", a: "Жар расширяет сосуды и открывает поры, контраст температур укрепляет иммунитет, травяные пары насыщают кожу и лёгкие. Это комплексная работа с телом, проверенная веками." },
 ];
@@ -762,7 +762,15 @@ export default function Index() {
                 </button>
                 {activeFaq === i && (
                   <div className="px-6 pb-5 animate-slide-up">
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)" }}>{item.a}</p>
+                    <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)" }}>{item.a}</p>
+                    {"link" in item && item.link && (
+                      <button onClick={() => navigate(item.link as string)}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-widest uppercase transition-all hover:opacity-90 hover:scale-105"
+                        style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.1em" }}>
+                        <Icon name="Gift" size={14} />
+                        {item.linkLabel as string}
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
