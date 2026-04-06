@@ -669,7 +669,7 @@ export default function Index() {
 
             <div className="space-y-5">
               {[
-                { icon: "MapPin", text: "Москва, ул. Лесная, 12" },
+                { icon: "MapPin", text: "Краснодар, ул. Карельская, 102" },
                 { icon: "Phone", text: "+7 (999) 123-45-67" },
                 { icon: "Clock", text: "Пн–Вс: 10:00 – 22:00" },
                 { icon: "Instagram", text: "@botanika.spa" },
