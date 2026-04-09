@@ -536,7 +536,7 @@ export default function Index() {
             <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)" }}>
               Меня зовут Мария. Я — создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp»</strong>.
             </p>
-            <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Благодаря этому проекту каждый сможет ощутить то, чего так не хватало… </p>
+            <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Благодаря которому каждый сможет ощутить то, чего так не хватало…</p>
 
             <div className="space-y-3 mb-6">
               <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(212,98,42,0.5)" }}>
