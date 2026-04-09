@@ -530,7 +530,7 @@ export default function Index() {
             <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
             <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Иней и Магма<br /><em>corp</em>
+              Иней и Магма<br /><em>corp.</em>
             </h2>
 
             <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)" }}>
