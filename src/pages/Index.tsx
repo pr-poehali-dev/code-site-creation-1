@@ -524,11 +524,11 @@ export default function Index() {
       </section>
 
       {/* ── About ───────────────────────────────────────── */}
-      <section id="about" className="py-24 px-6 eth-pattern">
+      <section id="about" className="py-24 eth-pattern px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
-            <h2 className="text-5xl md:text-6xl font-light leading-tight mb-6"
+            <h2 className="md:text-6xl font-light leading-tight mb-6 mx-[27px] text-6xl"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               Иней и Магма<br /><em>corp.</em>
             </h2>
