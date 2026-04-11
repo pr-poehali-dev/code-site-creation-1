@@ -773,9 +773,7 @@ export default function Index() {
             <blockquote className="eth-quote text-base mx-auto max-w-2xl mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
               Баня — это храм трансформации, где стихии огня, воды, воздуха и земли помогают человеку обрести баланс. Я не просто провожу процедуры — я возвращаю телу его природное право на восстановление.
             </blockquote>
-            <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}>
-              Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется. Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
-            </p>
+            <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}>Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется. </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {benefits.map((b, i) => (
