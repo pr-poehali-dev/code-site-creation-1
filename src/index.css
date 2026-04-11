@@ -307,3 +307,315 @@
   font-style: italic;
   opacity: 0.85;
 }
+
+/* ══════════════════════════════════════════════════════
+   FOREST SHOP ANIMATIONS
+   ══════════════════════════════════════════════════════ */
+
+/* Forest color palette */
+:root {
+  --forest-bg: #0a0d06;
+  --forest-deep: #0d1109;
+  --forest-mid: #141a0e;
+  --forest-light: #1e2815;
+  --forest-bark: #3d2e1a;
+  --forest-bark2: #5a4228;
+  --forest-moss: #2e4020;
+  --forest-moss2: #4a6030;
+  --forest-gold: #c8923a;
+  --forest-amber: #d4a844;
+  --forest-orange: #c85a1a;
+  --forest-red: #8b3010;
+  --forest-cream: #e8d8b0;
+  --forest-fog: #a8b890;
+  --forest-spirit: #7ab88a;
+}
+
+/* ── Falling Leaves ──────────────────────────────────── */
+@keyframes leaf-fall-1 {
+  0% {
+    transform: translate(0, -80px) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(60px, 110vh) rotate(720deg) scale(0.6);
+    opacity: 0;
+  }
+}
+@keyframes leaf-fall-2 {
+  0% {
+    transform: translate(0, -60px) rotate(30deg) scale(0.9);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-90px, 110vh) rotate(-540deg) scale(0.5);
+    opacity: 0;
+  }
+}
+@keyframes leaf-fall-3 {
+  0% {
+    transform: translate(0, -40px) rotate(-20deg) scale(1.1);
+    opacity: 0;
+  }
+  6% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(40px, 110vh) rotate(600deg) scale(0.7);
+    opacity: 0;
+  }
+}
+@keyframes leaf-sway {
+  0%,
+  100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(18px) rotate(5deg);
+  }
+  75% {
+    transform: translateX(-14px) rotate(-4deg);
+  }
+}
+@keyframes leaf-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(0.8);
+  }
+}
+
+.leaf-fall-1 {
+  animation: leaf-fall-1 8s ease-in infinite;
+}
+.leaf-fall-2 {
+  animation: leaf-fall-2 10s ease-in infinite;
+}
+.leaf-fall-3 {
+  animation: leaf-fall-3 7s ease-in infinite;
+}
+.leaf-sway {
+  animation: leaf-sway 4s ease-in-out infinite;
+}
+
+/* ── Wind ──────────────────────────────────────────── */
+@keyframes wind-sweep {
+  0% {
+    transform: translateX(-100%) skewX(-5deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.15;
+  }
+  80% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translateX(100vw) skewX(-5deg);
+    opacity: 0;
+  }
+}
+@keyframes wind-particle {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(120vw, 40px) rotate(10deg);
+    opacity: 0;
+  }
+}
+.wind-sweep {
+  animation: wind-sweep 4s ease-in-out infinite;
+}
+
+/* ── Forest Spirit ─────────────────────────────────── */
+@keyframes spirit-peek {
+  0%,
+  60%,
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  15%,
+  45% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes spirit-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+@keyframes spirit-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(122, 184, 138, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(122, 184, 138, 0.8));
+  }
+}
+.spirit-peek {
+  animation: spirit-peek 12s ease-in-out infinite;
+}
+.spirit-float {
+  animation: spirit-float 3s ease-in-out infinite;
+}
+.spirit-glow {
+  animation: spirit-glow 2.5s ease-in-out infinite;
+}
+
+/* ── Mist / Fog ────────────────────────────────────── */
+@keyframes mist-drift {
+  0% {
+    transform: translateX(-5%) scaleY(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translateX(5%) scaleY(1.05);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translateX(-5%) scaleY(1);
+    opacity: 0.18;
+  }
+}
+.mist-drift {
+  animation: mist-drift 14s ease-in-out infinite;
+}
+
+/* ── Tree sway ─────────────────────────────────────── */
+@keyframes tree-sway {
+  0%,
+  100% {
+    transform: rotate(0deg) translateX(0);
+  }
+  20% {
+    transform: rotate(1.5deg) translateX(3px);
+  }
+  60% {
+    transform: rotate(-1deg) translateX(-2px);
+  }
+}
+.tree-sway {
+  animation: tree-sway 6s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* ── Firefly / Twinkle ─────────────────────────────── */
+@keyframes firefly {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    opacity: 0.9;
+    transform: translate(8px, -6px) scale(1.2);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(15px, 2px) scale(0.8);
+  }
+  75% {
+    opacity: 0.8;
+    transform: translate(5px, -10px) scale(1.1);
+  }
+}
+.firefly {
+  animation: firefly 3s ease-in-out infinite;
+}
+
+/* ── Page transitions ──────────────────────────────── */
+@keyframes forest-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes forest-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(1.02);
+    filter: blur(6px);
+  }
+}
+.forest-enter {
+  animation: forest-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Mushroom pulse ────────────────────────────────── */
+@keyframes mushroom-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(200, 146, 58, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(200, 146, 58, 0.45),
+      0 0 60px rgba(122, 184, 138, 0.15);
+  }
+}
+.mushroom-glow {
+  animation: mushroom-glow 3.5s ease-in-out infinite;
+}
+
+/* ── Forest card ───────────────────────────────────── */
+.forest-card {
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(122, 184, 138, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.forest-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(122, 184, 138, 0.04),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.forest-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(122, 184, 138, 0.3);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(122, 184, 138, 0.08);
+}
+.forest-card:hover::before {
+  opacity: 1;
+}
