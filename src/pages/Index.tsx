@@ -869,9 +869,7 @@ export default function Index() {
             <div className="eth-divider mb-6"><span>◈</span></div>
             <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
             <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Регулярная регенеративная практика в бане</h2>
-            <p className="text-base leading-relaxed max-w-xl mx-auto" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.05rem", fontStyle: "italic" }}>
-              запускает каскад позитивных изменений
-            </p>
+            <p className="leading-relaxed max-w-xl mx-auto text-lg" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.05rem", fontStyle: "italic" }}>запускает каскад позитивных изменений:</p>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
             {[
@@ -908,7 +906,7 @@ export default function Index() {
               Шелест карт<br /><em>и ваша программа</em>
             </h2>
             <p className="leading-relaxed mb-8 max-w-xl mx-auto text-xl"
-              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Карты помогут раскрыть ваши текущие потребности и составить программу, которая резонирует именно с вами.</p>
+              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Карты помогут раскрыть ваши текущие потребности и подобрать программу, которая резонирует именно с вами.</p>
             <button onClick={() => navigate("/tarot")}
               className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
               style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.12em" }}>
