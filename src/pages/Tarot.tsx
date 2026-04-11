@@ -441,7 +441,7 @@ export default function Tarot() {
           <p className="text-xs uppercase tracking-[0.5em] mb-5" style={{ color: "var(--eth-stone)" }}>Индивидуальный подход</p>
           <h1 className="text-5xl md:text-7xl font-light leading-tight mb-4 animate-fade-up"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-            Магия Таро<br /><em>и ваша программа</em>
+            Шелест Карт<br /><em>и ваша программа</em>
           </h1>
 
           <div className="flex items-center justify-center gap-4 my-6">
