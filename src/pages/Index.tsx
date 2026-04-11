@@ -609,9 +609,9 @@ export default function Index() {
 
               <div className="space-y-5">
                 {[
-                  { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Обновление", text: "Раскалённая сила, дремлющая внутри. После долгого затишья — первый толчок. Вы — это перемена." },
-                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Хруст снега. Морозный воздух. Ветер шепчет: «Замедлись. Прислушайся.» Всё лишнее — позади." },
-                  { color: "rgba(200,146,58,0.6)", label: "ПАР", title: "Расслабление", text: "Тёплый ветер. Звёздный купол. Есть только вы, море и тот момент, ради которого стоит жить." },
+                  { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Обновление", text: "Раскалённый жар пробуждает то, что дремало годами. Тело вспоминает силу, а душа — смелость меняться. Первый шаг к новому — здесь." },
+                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Холодный воздух смывает всё наносное. Остаётся только суть — тихая, настоящая. Вы снова слышите себя." },
+                  { color: "rgba(200,146,58,0.6)", label: "ПАР", title: "Расслабление", text: "Пар обволакивает, как объятие. Мышцы отпускают, мысли растворяются. Остаётся только тепло и покой." },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 group">
                     <div className="flex flex-col items-center mt-1">
@@ -718,13 +718,16 @@ export default function Index() {
               <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "var(--eth-stone)" }}>Философия</p>
               <h2 className="text-4xl md:text-5xl font-light leading-tight mb-8"
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь.</em>
+                Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь.</em><br /><span style={{ fontSize: "0.55em", opacity: 0.7, fontStyle: "normal", letterSpacing: "0.05em" }}>Ваш ритм. Ваше сокровенное переживание.</span>
               </h2>
               <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>
-                Каждая программа рождается в момент встречи — из вашего состояния, желания и внутреннего запроса.
+                Каждая программа будет переформатирована лично под вас — словно древний обряд, сотканный из дыхания и тишины.
               </p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
-                Баня в моём понимании — это не развлечение и не оздоровительная процедура. Это обряд. Пространство, где тело вспоминает, что значит быть живым. Где пар — это голос огня, веник — ладони земли, а вода — дыхание неба.
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.
+              </p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                Мёд — тёплый, обволакивающий, или с ледяными припарками, дарующими свежесть. Каждый момент — ваш, каждый жест — в лад с вашим ритмом.
               </p>
               <p className="text-sm leading-relaxed font-medium pt-5" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
                 Только натуральные ингредиенты · Только живые ароматы · Только настоящий банный опыт
