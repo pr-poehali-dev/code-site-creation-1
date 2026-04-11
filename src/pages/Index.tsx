@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import { useChatGPT } from "@/components/extensions/chatgpt-polza/useChatGPT";
+
+const GPT_URL = "https://functions.poehali.dev/093394c0-7807-4add-8ac3-ec0daee3deb3";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -112,56 +115,57 @@ const faqData = [
   { q: "Сколько человек в группе?", a: "Групповые программы рассчитаны на 5–8 гостей. «Сдобная Баня» — только для двоих, особый формат." },
   { q: "Что нужно взять с собой?", a: "Только хорошее настроение! Халаты, тапочки, шапки и полотенца предоставляются." },
   { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
-  { q: "Есть ли противопоказания?", a: "При беременности, варикозе и некоторых заболеваниях часть процедур ограничена. Уточните при записи, подберём оптимальный вариант." },
-
   { q: "Кому подойдёт?", a: "• Тем, кто чувствует эмоциональное выгорание и усталость\n• Желающим проработать внутренние блоки и страхи\n• Ищущим глубокий релакс с осознанным эффектом\n• Практикующим йогу, медитацию или эзотерические техники\n• Ценящим традиции русской бани с современным подходом" },
 ];
 
 // ─── Chatbot ─────────────────────────────────────────────────────────────────
 
+const SYSTEM_PROMPT = `Ты — Мария, пармастер и создатель проекта «Иней и Магма corp.». Отвечай тепло, поэтично, кратко (2-4 предложения). Ты проводишь авторские банные программы в Краснодаре.
+
+Программы:
+— «Кабы я была Царица» — 8 500 ₽, 5–8 гостей: цветочный пар, уход за волосами, альгинатная маска, кокошники. Дополнительно: бандажное обёртывание 3 500 ₽.
+— «Летний Бриз» — 6 500 ₽, 5–8 гостей: пар с летними травами, медовый пилинг, парафинотерапия, кофе/чай/кекс. Альгинатная маска в подарок при массаже. Доп: массаж 3 500 ₽.
+— «Сладкая Япония» — 7 500 ₽, 4 часа, 5–8 гостей: ароматный пар, звуки ханга, виноградный скраб, холодная купель, качели. Доп: парение вениками 3 500 ₽.
+— «Сдобная Баня» — 36 000 ₽, 4 часа, 2 гостя: выбор каждого элемента, тёплый чан с пихтой, звуковая медитация на сеновале.
+
+Запись: форма на сайте или Telegram. Халаты, тапочки, шапки — предоставляются. Отвечай только на вопросы о бане и программах.`;
+
 function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<{ from: "bot" | "user"; text: string }[]>([
-    { from: "bot", text: "Добро пожаловать 🔥 Я отвечу на ваши вопросы о банных программах Марии." },
+    { from: "bot", text: "Добро пожаловать 🔥 Я отвечу на ваши вопросы о банных программах." },
   ]);
   const [input, setInput] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
+  const { generate, isLoading } = useChatGPT({ apiUrl: GPT_URL });
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
 
-  function getAnswer(q: string): string {
-    const l = q.toLowerCase();
-    if (l.includes("цен") || l.includes("стоит") || l.includes("сколько") || l.includes("прайс"))
-      return "Программы от 6 500 до 36 000 ₽. «Летний Бриз» — 6 500 ₽, «Сладкая Япония» — 7 500 ₽, «Царица» — 8 500 ₽, «Сдобная Баня» для двоих — 36 000 ₽.";
-    if (l.includes("записат") || l.includes("запись") || l.includes("бронь"))
-      return "Заполните форму внизу страницы или напишите Марии. Подтвердим бронь в течение нескольких часов 🌿";
-    if (l.includes("гостей") || l.includes("человек") || l.includes("групп"))
-      return "Групповые программы на 5–8 гостей. «Сдобная Баня» — эксклюзивно для двоих.";
-    if (l.includes("подарок") || l.includes("сертифик"))
-      return "Оформляю подарочные сертификаты на любую программу 🎁 Напишите Марии — всё организует.";
-    if (l.includes("взять") || l.includes("принести"))
-      return "Только хорошее настроение. Халаты, шапки, тапочки и полотенца — всё предоставляется.";
-    if (l.includes("польза") || l.includes("зачем") || l.includes("помогает"))
-      return "Жар открывает поры и выводит токсины, контраст температур укрепляет сосуды и иммунитет, травяные пары питают кожу и дыхательную систему. Древняя практика, проверенная веками 🔥";
-    if (l.includes("царица") || l.includes("сказка"))
-      return "«Кабы я была Царица» — 8 500 ₽ для 5–8 гостей: цветочный пар, уход за волосами и ножками, альгинатная маска, кокошники 👑";
-    if (l.includes("бриз") || l.includes("летн"))
-      return "«Летний Бриз» — 6 500 ₽: пар с летними травами, медовый пилинг, парафинотерапия и в подарок маска для лица.";
-    if (l.includes("япон"))
-      return "«Сладкая Япония» — 7 500 ₽ за 4 часа: бамбуковая флейта, ханг, виноградный скраб, холодная купель и качели.";
-    if (l.includes("сдобн") || l.includes("двоих"))
-      return "«Сдобная Баня» — 36 000 ₽ для двоих на 4 часа. Вы сами выбираете каждый элемент программы. Звуковая медитация на сеновале 🔥";
-    if (l.includes("привет") || l.includes("здравств"))
-      return "Добро пожаловать! Чем могу помочь?";
-    return "Хороший вопрос! Лучше уточнить у Марии напрямую — она ответит подробно и подберёт программу под вас.";
-  }
-
-  function send() {
-    if (!input.trim()) return;
+  async function send() {
+    if (!input.trim() || isLoading) return;
     const msg = input.trim();
     setInput("");
     setMessages(p => [...p, { from: "user", text: msg }]);
-    setTimeout(() => setMessages(p => [...p, { from: "bot", text: getAnswer(msg) }]), 500);
+
+    const history = messages
+      .filter(m => m.from !== "bot" || m.text !== messages[0].text)
+      .map(m => ({ role: m.from === "user" ? "user" as const : "assistant" as const, content: m.text }));
+
+    const result = await generate({
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        ...history,
+        { role: "user", content: msg },
+      ],
+      model: "openai/gpt-4o-mini",
+      temperature: 0.7,
+      max_tokens: 300,
+    });
+
+    setMessages(p => [...p, {
+      from: "bot",
+      text: result.success && result.content ? result.content : "Лучше уточните у Марии напрямую — она ответит и подберёт программу под вас 🌿",
+    }]);
   }
 
   return (
@@ -201,14 +205,56 @@ function Chatbot() {
               placeholder="Напишите вопрос..."
               className="flex-1 text-sm px-3 py-2 rounded-xl outline-none"
               style={{ background: "var(--eth-bg3)", color: "var(--eth-cream)", fontFamily: "'Golos Text', sans-serif", border: "1px solid rgba(200,146,58,0.15)" }} />
-            <button onClick={send} className="w-9 h-9 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity"
+            <button onClick={send} disabled={isLoading} className="w-9 h-9 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity disabled:opacity-50"
               style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white" }}>
-              <Icon name="Send" size={16} />
+              {isLoading ? <span className="animate-spin text-xs">◈</span> : <Icon name="Send" size={16} />}
             </button>
           </div>
         </div>
       )}
     </>
+  );
+}
+
+// ─── About Audio ─────────────────────────────────────────────────────────────
+
+function AboutAudio() {
+  const [playing, setPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  function toggle() {
+    if (!audioRef.current) return;
+    if (playing) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => {});
+    }
+    setPlaying(!playing);
+  }
+
+  return (
+    <div className="inline-flex items-center gap-4 px-5 py-3 rounded-2xl" style={{ background: "rgba(200,146,58,0.07)", border: "1px solid rgba(200,146,58,0.18)" }}>
+      <audio ref={audioRef} loop
+        src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8cb749b4b4.mp3?filename=ethnic-meditation-9818.mp3">
+      </audio>
+      <button onClick={toggle}
+        className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
+        style={{ background: playing ? "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.15)", color: playing ? "white" : "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.3)" }}>
+        {playing ? <Icon name="Pause" size={16} /> : <Icon name="Play" size={16} />}
+      </button>
+      <div>
+        <p className="text-xs font-medium" style={{ color: "var(--eth-gold2)" }}>Этнический звук</p>
+        <p className="text-xs opacity-60" style={{ color: "var(--eth-stone)" }}>{playing ? "Воспроизводится..." : "Нажмите для воспроизведения"}</p>
+      </div>
+      {playing && (
+        <div className="flex items-end gap-0.5 h-5">
+          {[1,2,3,4].map(i => (
+            <div key={i} className="w-0.5 rounded-full bg-amber-400 opacity-70"
+              style={{ height: `${Math.random() * 12 + 6}px`, animation: `bounce ${0.4 + i * 0.15}s ease-in-out infinite alternate` }} />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -402,7 +448,6 @@ export default function Index() {
     { label: "Обо мне", id: "about" },
     { label: "Программы", id: "programs" },
     { label: "Таро", id: "tarot-nav" },
-    { label: "Отзывы", id: "reviews" },
     { label: "Контакты", id: "contacts" },
   ];
 
@@ -522,81 +567,68 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── About ───────────────────────────────────────── */}
-      <section id="about" className="py-24 eth-pattern px-6">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* ── About Slide 1 ───────────────────────────────── */}
+      <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 30% 60%, #2a0e08 0%, #1a1410 50%, #0f0c08 100%)" }}>
+
+        {/* Ambient particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { cls: "top-1/4 left-1/4 w-72 h-72", c: "#c8923a" },
+            { cls: "bottom-1/3 right-1/4 w-64 h-64", c: "#3a6080" },
+            { cls: "top-1/2 left-1/2 w-48 h-48", c: "#8a4020" },
+          ].map((g, i) => (
+            <div key={i} className={`absolute ${g.cls} rounded-full opacity-10 animate-float`}
+              style={{ background: `radial-gradient(circle, ${g.c}, transparent 70%)`, filter: "blur(50px)", animationDelay: `${i * 1.2}s` }} />
+          ))}
+          {["top-10 left-12", "top-20 right-20", "bottom-32 left-20", "bottom-10 right-10", "top-1/3 right-8"].map((pos, i) => (
+            <span key={i} className={`absolute ${pos} animate-pulse-gold`}
+              style={{ color: "rgba(200,146,58,0.25)", fontSize: i % 2 === 0 ? "10px" : "7px", animationDelay: `${i * 0.5}s` }}>✦</span>
+          ))}
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] mb-5" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
-            <h2 className="md:text-6xl font-light leading-tight mb-6 mx-[27px] text-6xl"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Иней и Магма<br /><em>corp.</em>
-            </h2>
+            {/* Audio player */}
+            <AboutAudio />
 
-            <p className="text-base leading-relaxed mb-2" style={{ color: "var(--eth-smoke)" }}>
-              Я, Мария, создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp.»</strong> — объединения противоположностей: обжигающей магмы, рвущейся из глубин земли, и хрустального инея, сотканного из дыхания зимы. Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…
-            </p>
+            <div className="mt-8">
+              <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
+              <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}>corp.</em>
+              </h2>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+                Я — Мария. Пармастер. Создатель пространства, где огонь и лёд существуют в одном дыхании.
+              </p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                <strong style={{ color: "var(--eth-ember)" }}>«Иней и Магма corp.»</strong> — это объединение противоположностей: обжигающей магмы, рвущейся из глубин земли, и хрустального инея, сотканного из дыхания зимы. Каждый находит здесь своё.
+              </p>
 
-            <div className="space-y-4 mb-6">
-              <div className="pl-4" style={{ borderLeft: "2px solid rgba(212,98,42,0.5)" }}>
-                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
-                  Для кого‑то это — обновление: дерзкое и мощное, словно пробуждение вулкана.
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
-                  Но прежде — тишина. Глубокая, древняя, полная ожидания. В недрах земли копится энергия, зреет решение проснуться. И вот — первый толчок. Затем — гул, дрожь, движение. Раскалённая лава прокладывает путь наверх, меняя ландшафт, создавая новую реальность.
-                </p>
-                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
-                  Так и внутри вас: после долгого затишья просыпается дремлющая сила. Она не просит разрешения — она заявляет о себе. И с её приходом вы понимаете: вы готовы к переменам. Вы хотите перемен. Вы — это перемена.
-                </p>
+              <div className="space-y-5">
+                {[
+                  { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Для тех, кто хочет пробудиться", text: "Раскалённая сила, дремлющая внутри. После долгого затишья — первый толчок. Вы — это перемена." },
+                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Для тех, кто хочет вернуться к себе", text: "Хруст снега. Морозный воздух. Ветер шепчет: «Замедлись. Прислушайся.» Всё лишнее — позади." },
+                  { color: "rgba(200,146,58,0.6)", label: "ЗВЁЗДЫ", title: "Для тех, кто хочет раствориться в покое", text: "Тёплый ветер. Звёздный купол. Есть только вы, море и тот момент, ради которого стоит жить." },
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4 group">
+                    <div className="flex flex-col items-center mt-1">
+                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: item.color }} />
+                      <div className="w-px flex-1 mt-2 opacity-30" style={{ background: item.color }} />
+                    </div>
+                    <div>
+                      <p className="text-xs tracking-[0.3em] mb-1" style={{ color: item.color.replace("0.6)", "1)") }}>{item.label}</p>
+                      <p className="text-sm font-medium mb-1" style={{ color: "var(--eth-cream)" }}>{item.title}</p>
+                      <p className="text-xs leading-relaxed italic" style={{ color: "var(--eth-smoke)", opacity: 0.75 }}>{item.text}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-
-              <div className="pl-4" style={{ borderLeft: "2px solid rgba(122,171,158,0.5)" }}>
-                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
-                  Для кого‑то — возвращение к себе: бодрящее, свежее, проясняющее, как хрустящий снег под ногами в морозном лесу.
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
-                  Вы идёте по заснеженной тропе. Каждый шаг отдаётся чистым, живым звуком — хруст снега словно отсчитывает мгновения тишины, свободные от суеты. Морозный воздух бодрит, проясняет мысли. Иней на ветвях учит красоте неподвижности. Ветер шепчет: «Замедлись. Прислушайся. Ты уже почти у цели».
-                </p>
-                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
-                  С каждым вдохом — яснее. С каждым шагом — ближе к себе. Здесь, в зимнем лесу, всё лишнее остаётся позади, а внутри рождается настоящее, глубинное, только ваше.
-                </p>
-              </div>
-
-              <div className="pl-4" style={{ borderLeft: "2px solid rgba(200,146,58,0.5)" }}>
-                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
-                  А для кого‑то — тотальное расслабление здесь и сейчас: нежное, тихое, сияющее, обволакивающее, словно тёплый ветер на берегу под звёздным небом…
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
-                  Вы сидите на песке у кромки воды. Тёплый ветер ласково касается лица, приносит ароматы дальних стран и шёпот древних легенд. Над головой раскинулся звёздный купол — бесконечный, величественный, полный тайн.
-                </p>
-                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
-                  С каждым вдохом напряжение покидает тело. С каждым выдохом растворяются тревоги. Мысли замедляются, как волны, накатывающие на берег. Вы чувствуете, как вас наполняет покой — глубокий, всеобъемлющий, древний, как само небо над вами.
-                </p>
-                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
-                  Здесь и сейчас нет прошлого и будущего. Есть только вы, море, звёзды и тот самый момент, ради которого стоит жить.
-                </p>
-              </div>
-            </div>
-
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
-              В этом проекте нет чужих рецептов и готовых ответов. Только ваш путь. Ваш ритм. Ваше сокровенное переживание. То, что принадлежит только вам — и больше никому.
-            </p>
-
-            <p className="text-sm leading-relaxed font-semibold mt-4 pt-4" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
-              Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
-            </p>
-
-            <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
-              {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 часа", "максимум\nудовольствия"]].map(([num, label]) => (
-                <div key={num}>
-                  <p className="text-2xl font-light whitespace-pre-line" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", lineHeight: 1.1 }}>{num}</p>
-                  <p className="text-xs uppercase tracking-wider mt-2 opacity-50 whitespace-pre-line leading-relaxed" style={{ color: "var(--eth-stone)" }}>{label}</p>
-                </div>
-              ))}
             </div>
           </div>
 
           {/* Visual — ковш со звёздной водой */}
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center group/ladle">
             <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full opacity-20 animate-float"
               style={{ background: "radial-gradient(circle, #3a6080, transparent 70%)", filter: "blur(30px)" }} />
 
@@ -646,6 +678,82 @@ export default function Index() {
               style={{ color: "var(--eth-gold)", opacity: 0.5 }}>Алхимия стихий</p>
             <div className="absolute top-4 right-0 text-2xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◆</div>
             <div className="absolute bottom-8 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/ladle:opacity-100 transition-all duration-700 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(10,6,2,0.92) 0%, rgba(10,6,2,0.7) 100%)", borderRadius: "50%", backdropFilter: "blur(2px)" }}>
+              <div className="text-center px-4">
+                <p className="text-xs uppercase tracking-[0.35em] mb-3" style={{ color: "var(--eth-gold)", opacity: 0.7 }}>◈</p>
+                <p className="font-light leading-snug mb-3" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.05rem", color: "var(--eth-gold2)" }}>
+                  Бронируйте с пометкой<br />
+                  <em style={{ color: "var(--eth-gold)" }}>«Алхимия Стихий»</em>.
+                </p>
+                <p className="text-xs leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85, fontFamily: "'Cormorant', serif", fontSize: "0.9rem", fontStyle: "italic" }}>
+                  Тогда программа будет создана Специально для вас — каждое действие, каждый элемент, каждая пауза..
+                </p>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "0.9rem", fontStyle: "italic" }}>
+                  Словно вы наконец нашли то, что искали всю жизнь..
+                </p>
+                <p className="text-sm font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.1em" }}>
+                  Выдох. Новое начало
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── About Slide 2 ───────────────────────────────── */}
+      <section className="relative py-24 px-6 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0f0c08 0%, #1a1008 50%, #0f0a06 100%)" }}>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.2), transparent)" }} />
+          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.2), transparent)" }} />
+        </div>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-10 mb-16">
+            <div className="md:col-span-2">
+              <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "var(--eth-stone)" }}>Философия</p>
+              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-8"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь.</em>
+              </h2>
+              <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>
+                Каждая программа рождается в момент встречи — из вашего состояния, желания и внутреннего запроса.
+              </p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
+                Баня в моём понимании — это не развлечение и не оздоровительная процедура. Это обряд. Пространство, где тело вспоминает, что значит быть живым. Где пар — это голос огня, веник — ладони земли, а вода — дыхание неба.
+              </p>
+              <p className="text-sm leading-relaxed font-medium pt-5" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
+                Только натуральные ингредиенты · Только живые ароматы · Только настоящий банный опыт
+              </p>
+            </div>
+            <div className="flex flex-col justify-center gap-6">
+              {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 ч", "до полного\nрасслабления"]].map(([num, label]) => (
+                <div key={num} className="rounded-2xl p-5 text-center eth-card" style={{ background: "var(--eth-bg3)" }}>
+                  <p className="text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", lineHeight: 1 }}>{num}</p>
+                  <p className="text-xs uppercase tracking-wider mt-2 opacity-50 whitespace-pre-line leading-relaxed" style={{ color: "var(--eth-stone)" }}>{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 3 pillars */}
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться. Здесь рождается новое." },
+              { sym: "🜄", title: "Вода", sub: "Очищение и обновление", text: "Контраст температур запускает жизненные процессы. Каждое погружение — это возвращение к себе." },
+              { sym: "🜃", title: "Земля", sub: "Укоренение и покой", text: "Соль, глина, травы, мёд — дары земли. Они питают, успокаивают и возвращают природный баланс." },
+            ].map((p, i) => (
+              <div key={i} className="rounded-2xl p-7 eth-card relative overflow-hidden" style={{ background: "var(--eth-bg2)" }}>
+                <div className="absolute top-0 right-0 text-6xl font-light opacity-5 pointer-events-none select-none"
+                  style={{ fontFamily: "serif", color: "var(--eth-gold)", lineHeight: 1 }}>{p.sym}</div>
+                <p className="text-3xl mb-3" style={{ color: "var(--eth-ember)" }}>{p.sym}</p>
+                <h3 className="text-xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{p.title}</h3>
+                <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--eth-stone)", opacity: 0.6 }}>{p.sub}</p>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>{p.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -824,46 +932,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── Reviews ─────────────────────────────────────── */}
-      <section id="reviews" className="py-24 px-6" style={{ background: "var(--eth-bg2)" }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Говорят гости</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Отзывы
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              { name: "Ирина М.", text: "«Царица» — это не просто баня, это полное погружение в другой мир. После программы тело чувствует себя так, словно отдыхало неделю. Восстановление ощущается буквально на клеточном уровне.", program: "Царица", symbol: "♛" },
-              { name: "Светлана Д.", text: "«Летний Бриз» — открытие для меня. Пар с травами, медовый пилинг — кожа обновилась полностью. Парафинотерапия вернула мягкость рукам, которой не было годами. Мария — настоящий мастер своего дела.", program: "Летний Бриз", symbol: "≋" },
-              { name: "Анастасия К.", text: "Сладкая Япония — это не просто расслабление, это работа с телом. Контрастные купели, звуки ханга, качели на свежем воздухе. Ощущение лёгкости не проходило несколько дней.", program: "Сладкая Япония", symbol: "❋" },
-              { name: "Марина и Артём", text: "«Сдобная Баня» стала лучшим подарком. Мы сами выбирали программу, и это создало ощущение особого ритуала. Звуковая медитация на сеновале — отдельный опыт, который невозможно описать словами.", program: "Сдобная Баня", symbol: "✦" },
-            ].map((r, i) => (
-              <div key={i} className="eth-card rounded-2xl p-7" style={{ background: "var(--eth-bg3)" }}>
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => (
-                    <span key={j} style={{ color: "var(--eth-gold)", fontSize: "12px" }}>◆</span>
-                  ))}
-                </div>
-                <p className="leading-relaxed mb-5 italic"
-                  style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-smoke)" }}>
-                  «{r.text}»
-                </p>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium" style={{ color: "var(--eth-cream)" }}>{r.name}</p>
-                  <span className="text-xs px-3 py-1 rounded-full"
-                    style={{ background: "rgba(200,146,58,0.1)", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.2)" }}>
-                    {r.symbol} {r.program}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── FAQ ─────────────────────────────────────────── */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
@@ -954,18 +1022,7 @@ export default function Index() {
                 </div>
               </a>
 
-              <div className="mt-5">
-                <p className="text-xs uppercase tracking-[0.3em] mb-4" style={{ color: "var(--eth-stone)" }}>Программы</p>
-                <div className="flex flex-wrap gap-2">
-                  {programs.map(p => (
-                    <button key={p.id} onClick={() => setActiveProgram(p)}
-                      className="px-3 py-1.5 rounded-full text-xs transition-all hover:opacity-80"
-                      style={{ background: "rgba(200,146,58,0.08)", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.15)", letterSpacing: "0.05em" }}>
-                      {p.symbol} {p.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
+
             </div>
 
             {/* Form */}
