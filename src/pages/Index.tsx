@@ -757,9 +757,7 @@ export default function Index() {
           <div className="text-center mb-12">
             <div className="eth-divider mb-6"><span>◈</span></div>
             <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
-            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Регулярная Регенеративная практика в бане
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Регулярная регенеративная практика в бане</h2>
             <p className="text-base leading-relaxed max-w-xl mx-auto" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.05rem", fontStyle: "italic" }}>
               запускает каскад позитивных изменений
             </p>
@@ -798,10 +796,8 @@ export default function Index() {
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               Шелест карт<br /><em>и ваша программа</em>
             </h2>
-            <p className="text-base leading-relaxed mb-8 max-w-xl mx-auto"
-              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>
-              Каждый человек уникален. Я верю, что карты Таро помогают раскрыть ваши текущие потребности и составить программу, которая резонирует именно с вами.
-            </p>
+            <p className="leading-relaxed mb-8 max-w-xl mx-auto text-xl"
+              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Карты помогут раскрыть ваши текущие потребности и составить программу, которая резонирует именно с вами.</p>
             <button onClick={() => navigate("/tarot")}
               className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
               style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.12em" }}>
@@ -815,13 +811,13 @@ export default function Index() {
       <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, #0f0c08 0%, #100d0a 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <div className="eth-divider mb-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
-          <p className="leading-loose mb-6" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.25rem", color: "var(--eth-smoke)", fontStyle: "italic" }}>
+          <p className="leading-loose mb-6 text-xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.25rem", color: "var(--eth-smoke)", fontStyle: "italic" }}>
             Огонь печи внемлет древним заклинаниям.<br />
             Пар из дубового веника окутывает тело.<br />
             Соль земли растворяется на коже.<br />
             Ароматы трав зовут вспомнить то, что забыто.
           </p>
-          <p className="text-base leading-relaxed" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-gold2)" }}>
+          <p className="leading-relaxed text-xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-gold2)" }}>
             Доверьтесь процессу. Ваше тело уже знает путь.
           </p>
           <div className="eth-divider mt-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
