@@ -602,9 +602,7 @@ export default function Index() {
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}>corp.</em>
               </h2>
-              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-                Я — Мария. Пармастер. Создатель пространства, где огонь и лёд объединяются, создавая Пар.
-              </p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Я — Мария. Пармастер. Создатель проекта, где огонь и лёд объединяются, создавая целебный Пар.</p>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
                 <strong style={{ color: "var(--eth-ember)" }}>«Иней и Магма corp.»</strong> — это объединение противоположностей: обжигающей магмы, рвущейся из глубин земли, и хрустального инея, сотканного из дыхания зимы. Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…
               </p>
