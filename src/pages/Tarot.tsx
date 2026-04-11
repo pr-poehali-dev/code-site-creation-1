@@ -455,13 +455,9 @@ export default function Tarot() {
             Каждый человек уникален, и его путь к гармонии должен быть особенным.
           </p>
           <p className="text-sm leading-relaxed mb-4 animate-fade-up delay-200"
-            style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "500px", margin: "0 auto 1rem" }}>
-            Мудрость карт Таро поможет раскрыть ваши текущие потребности и желания.
-          </p>
+            style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "500px", margin: "0 auto 1rem" }}>Карты помогут раскрыть ваши текущие потребности и желания.</p>
           <p className="text-sm leading-relaxed mb-10 animate-fade-up delay-300"
-            style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "460px", margin: "0 auto 2.5rem" }}>
-            На основе карты для вас будет выбрана программа, которая резонирует именно с вами — обеспечивая тотальное обновление организма.
-          </p>
+            style={{ color: "var(--eth-smoke)", opacity: 0.75, maxWidth: "460px", margin: "0 auto 2.5rem" }}>На основе карты для вас будет выбрана программа, которая резонирует именно с вами — обеспечивая тотальное обновление организма.</p>
 
           <button onClick={() => document.getElementById("spread")?.scrollIntoView({ behavior: "smooth" })}
             className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl animate-fade-up delay-400"
