@@ -533,26 +533,57 @@ export default function Index() {
               Иней и Магма<br /><em>corp.</em>
             </h2>
 
-            <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)" }}>
-              Меня зовут Мария. Я — создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp»</strong>.
+            <p className="text-base leading-relaxed mb-2" style={{ color: "var(--eth-smoke)" }}>
+              Я, Мария, создатель проекта <strong style={{ color: "var(--eth-gold)" }}>«Иней и Магма corp.»</strong> — объединения противоположностей: обжигающей магмы, рвущейся из глубин земли, и хрустального инея, сотканного из дыхания зимы. Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…
             </p>
-            <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Благодаря которому каждый сможет ощутить то, чего так не хватало…</p>
 
-            <div className="space-y-3 mb-6">
-              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(212,98,42,0.5)" }}>
-                Для кого‑то это — обновление, мощное и дерзкое, словно горящий вулкан.
-              </p>
-              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(122,171,158,0.5)" }}>
-                Для кого‑то — возврат к себе: тихий, плавный и глубокий, как ледяные воды океана.
-              </p>
-              <p className="text-sm leading-relaxed pl-4" style={{ color: "var(--eth-smoke)", borderLeft: "2px solid rgba(200,146,58,0.5)" }}>
-                А для кого‑то — тотальное расслабление в моменте, здесь и сейчас: сияющее, обволакивающее, нежное, словно тёплый ветер на берегу звёздного неба.
-              </p>
+            <div className="space-y-4 mb-6">
+              <div className="pl-4" style={{ borderLeft: "2px solid rgba(212,98,42,0.5)" }}>
+                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
+                  Для кого‑то это — обновление: дерзкое и мощное, словно пробуждение вулкана.
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
+                  Но прежде — тишина. Глубокая, древняя, полная ожидания. В недрах земли копится энергия, зреет решение проснуться. И вот — первый толчок. Затем — гул, дрожь, движение. Раскалённая лава прокладывает путь наверх, меняя ландшафт, создавая новую реальность.
+                </p>
+                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                  Так и внутри вас: после долгого затишья просыпается дремлющая сила. Она не просит разрешения — она заявляет о себе. И с её приходом вы понимаете: вы готовы к переменам. Вы хотите перемен. Вы — это перемена.
+                </p>
+              </div>
+
+              <div className="pl-4" style={{ borderLeft: "2px solid rgba(122,171,158,0.5)" }}>
+                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
+                  Для кого‑то — возвращение к себе: бодрящее, свежее, проясняющее, как хрустящий снег под ногами в морозном лесу.
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
+                  Вы идёте по заснеженной тропе. Каждый шаг отдаётся чистым, живым звуком — хруст снега словно отсчитывает мгновения тишины, свободные от суеты. Морозный воздух бодрит, проясняет мысли. Иней на ветвях учит красоте неподвижности. Ветер шепчет: «Замедлись. Прислушайся. Ты уже почти у цели».
+                </p>
+                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                  С каждым вдохом — яснее. С каждым шагом — ближе к себе. Здесь, в зимнем лесу, всё лишнее остаётся позади, а внутри рождается настоящее, глубинное, только ваше.
+                </p>
+              </div>
+
+              <div className="pl-4" style={{ borderLeft: "2px solid rgba(200,146,58,0.5)" }}>
+                <p className="text-sm leading-relaxed font-medium mb-1" style={{ color: "var(--eth-smoke)" }}>
+                  А для кого‑то — тотальное расслабление здесь и сейчас: нежное, тихое, сияющее, обволакивающее, словно тёплый ветер на берегу под звёздным небом…
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>
+                  Вы сидите на песке у кромки воды. Тёплый ветер ласково касается лица, приносит ароматы дальних стран и шёпот древних легенд. Над головой раскинулся звёздный купол — бесконечный, величественный, полный тайн.
+                </p>
+                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                  С каждым вдохом напряжение покидает тело. С каждым выдохом растворяются тревоги. Мысли замедляются, как волны, накатывающие на берег. Вы чувствуете, как вас наполняет покой — глубокий, всеобъемлющий, древний, как само небо над вами.
+                </p>
+                <p className="text-sm leading-relaxed mt-2 italic" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+                  Здесь и сейчас нет прошлого и будущего. Есть только вы, море, звёзды и тот самый момент, ради которого стоит жить.
+                </p>
+              </div>
             </div>
 
-            <p className="text-sm leading-relaxed italic mb-6"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.05rem" }}>
-              Каждый в этом проекте найдёт для себя что‑то своё: личное, неприкосновенное, незыблемое. Только твоё.
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>
+              В этом проекте нет чужих рецептов и готовых ответов. Только ваш путь. Ваш ритм. Ваше сокровенное переживание. То, что принадлежит только вам — и больше никому.
+            </p>
+
+            <p className="text-sm leading-relaxed font-semibold mt-4 pt-4" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
+              Только натуральные ингредиенты, только живые ароматы, только настоящий банный опыт.
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6 pt-8" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
