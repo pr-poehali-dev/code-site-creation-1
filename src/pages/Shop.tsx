@@ -460,9 +460,7 @@ export default function Shop() {
           <p
             className="text-xs uppercase tracking-[0.5em] mb-5"
             style={{ color: "rgba(168,184,144,0.6)" }}
-          >
-            Вечерний лес
-          </p>
+          >Осенний лес</p>
 
           <h1
             className="text-5xl md:text-7xl font-light leading-tight mb-6"
@@ -491,10 +489,7 @@ export default function Shop() {
           <p
             className="text-sm leading-relaxed"
             style={{ color: "rgba(168,184,144,0.55)", maxWidth: "420px", margin: "0 auto" }}
-          >
-            Авторские изделия, сотканные из тишины, трав и древнего знания.
-            Каждый предмет создан вручную с намерением.
-          </p>
+          >Авторские изделия, сотканные из шепотков, трав и древнего знания. Каждый предмет создан вручную с намерением.</p>
 
           <div className="flex items-center justify-center gap-4 mt-10">
             <div
