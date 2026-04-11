@@ -83,181 +83,210 @@ function IceCrystals() {
 function MagmaIceArt() {
   return (
     <div className="relative flex items-center justify-center">
-      {/* Outer glow rings */}
-      <div
-        className="absolute rounded-full animate-float"
-        style={{
-          width: "420px",
-          height: "420px",
-          background:
-            "conic-gradient(from 0deg, rgba(212,98,42,0.08) 0deg, rgba(140,200,220,0.08) 180deg, rgba(212,98,42,0.08) 360deg)",
-          filter: "blur(30px)",
-          animation: "spirit-float 8s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute rounded-full"
-        style={{
-          width: "320px",
-          height: "320px",
-          background:
-            "conic-gradient(from 90deg, rgba(200,146,58,0.12) 0deg, rgba(80,150,200,0.08) 180deg, rgba(200,146,58,0.12) 360deg)",
-          filter: "blur(20px)",
-          animation: "spirit-float 6s ease-in-out 1s infinite reverse",
-        }}
-      />
+      {/* Left glow — magma */}
+      <div className="absolute pointer-events-none" style={{ left: "5%", top: "20%", width: "200px", height: "200px", background: "radial-gradient(circle, rgba(255,80,10,0.18) 0%, transparent 70%)", filter: "blur(40px)", animation: "spirit-float 5s ease-in-out infinite" }} />
+      {/* Right glow — ice */}
+      <div className="absolute pointer-events-none" style={{ right: "5%", top: "15%", width: "200px", height: "200px", background: "radial-gradient(circle, rgba(100,200,255,0.15) 0%, transparent 70%)", filter: "blur(40px)", animation: "spirit-float 7s ease-in-out 1.5s infinite reverse" }} />
 
-      <svg
-        viewBox="0 0 400 460"
-        className="relative z-10"
-        style={{
-          width: "min(380px, 90vw)",
-          filter: "drop-shadow(0 0 30px rgba(0,0,0,0.8))",
-        }}
-      >
+      <svg viewBox="0 0 480 520" className="relative z-10" style={{ width: "min(440px, 92vw)", filter: "drop-shadow(0 0 40px rgba(0,0,0,0.9))" }}>
         <defs>
-          {/* Magma gradient */}
-          <radialGradient id="magmaCore" cx="40%" cy="60%">
-            <stop offset="0%" stopColor="#ff6a20" stopOpacity="0.95" />
-            <stop offset="30%" stopColor="#d44010" stopOpacity="0.9" />
-            <stop offset="70%" stopColor="#8b2010" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#3a0a05" stopOpacity="1" />
+          {/* Magma gradients */}
+          <radialGradient id="lavaPool" cx="50%" cy="70%">
+            <stop offset="0%" stopColor="#ff8020" stopOpacity="1" />
+            <stop offset="40%" stopColor="#d43010" stopOpacity="0.95" />
+            <stop offset="80%" stopColor="#6a1005" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#1a0403" stopOpacity="1" />
           </radialGradient>
-          {/* Ice gradient */}
-          <radialGradient id="iceCore" cx="60%" cy="40%">
-            <stop offset="0%" stopColor="#e8f6ff" stopOpacity="0.95" />
-            <stop offset="30%" stopColor="#90c8e8" stopOpacity="0.85" />
-            <stop offset="70%" stopColor="#1a5878" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#041020" stopOpacity="1" />
-          </radialGradient>
-          {/* Steam / merge gradient */}
-          <radialGradient id="steamMerge" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#e8e0d0" stopOpacity="0.5" />
-            <stop offset="40%" stopColor="#c8b890" stopOpacity="0.2" />
+          <radialGradient id="lavaGlow" cx="50%" cy="50%">
+            <stop offset="0%" stopColor="#ff6010" stopOpacity="0.6" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
-          {/* Gold ornament */}
-          <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+          {/* Ice gradients */}
+          <radialGradient id="iceField" cx="50%" cy="30%">
+            <stop offset="0%" stopColor="#dff4ff" stopOpacity="0.95" />
+            <stop offset="35%" stopColor="#7ec8e8" stopOpacity="0.85" />
+            <stop offset="75%" stopColor="#0e4060" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#030c18" stopOpacity="1" />
+          </radialGradient>
+          <radialGradient id="iceGlowR" cx="50%" cy="50%">
+            <stop offset="0%" stopColor="#80d8ff" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+          {/* Steam center */}
+          <radialGradient id="steamC" cx="50%" cy="50%">
+            <stop offset="0%" stopColor="#e0d8c8" stopOpacity="0.45" />
+            <stop offset="60%" stopColor="#b8a888" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+          {/* Gold */}
+          <linearGradient id="gld" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="transparent" />
-            <stop offset="30%" stopColor="#c8923a" stopOpacity="0.8" />
-            <stop offset="70%" stopColor="#e8b86d" stopOpacity="0.9" />
+            <stop offset="25%" stopColor="#c8923a" stopOpacity="0.7" />
+            <stop offset="75%" stopColor="#e8b86d" stopOpacity="0.8" />
             <stop offset="100%" stopColor="transparent" />
           </linearGradient>
-          {/* Glow filter */}
-          <filter id="magmaGlow">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          {/* Filters */}
+          <filter id="mGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <filter id="iceGlow">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          <filter id="iGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-
-          {/* Clip paths */}
-          <clipPath id="leftHalf">
-            <rect x="0" y="0" width="200" height="460" />
-          </clipPath>
-          <clipPath id="rightHalf">
-            <rect x="200" y="0" width="200" height="460" />
-          </clipPath>
+          <filter id="softBlur">
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+          {/* Clip */}
+          <clipPath id="cL"><rect x="0" y="0" width="240" height="520"/></clipPath>
+          <clipPath id="cR"><rect x="240" y="0" width="240" height="520"/></clipPath>
+          <clipPath id="circle"><circle cx="240" cy="260" r="210"/></clipPath>
         </defs>
 
-        {/* ── Background circle ── */}
-        <circle cx="200" cy="230" r="185" fill="rgba(8,4,2,0.95)" stroke="rgba(200,146,58,0.15)" strokeWidth="1" />
+        {/* ── Background ── */}
+        <circle cx="240" cy="260" r="212" fill="rgba(5,2,1,0.97)" />
+        <circle cx="240" cy="260" r="208" fill="none" stroke="rgba(200,146,58,0.14)" strokeWidth="1.5"/>
 
-        {/* ── MAGMA side (left) ── */}
-        <g clipPath="url(#leftHalf)">
-          {/* Lava pool at bottom */}
-          <ellipse cx="130" cy="360" rx="110" ry="55" fill="url(#magmaCore)" opacity="0.9" />
-          <ellipse cx="120" cy="355" rx="80" ry="38" fill="rgba(255,120,30,0.4)" />
-          {/* Lava flows */}
-          <path d="M80 360 Q60 300 90 250 Q110 210 80 170" stroke="rgba(212,80,20,0.7)" strokeWidth="8" fill="none" strokeLinecap="round" filter="url(#magmaGlow)" />
-          <path d="M120 358 Q100 290 130 240 Q150 200 120 155" stroke="rgba(230,100,30,0.6)" strokeWidth="5" fill="none" strokeLinecap="round" filter="url(#magmaGlow)" />
-          <path d="M155 355 Q140 310 160 270 Q175 240 155 200" stroke="rgba(200,70,15,0.5)" strokeWidth="4" fill="none" strokeLinecap="round" />
-          {/* Rock texture */}
-          <ellipse cx="95" cy="320" rx="20" ry="10" fill="rgba(60,20,8,0.8)" transform="rotate(-15 95 320)" />
-          <ellipse cx="140" cy="340" rx="15" ry="8" fill="rgba(50,15,6,0.7)" transform="rotate(10 140 340)" />
-          {/* Ethnic ornament — magma side */}
-          <path d="M30 200 Q50 180 70 200 Q90 220 110 200 Q130 180 150 200" stroke="rgba(200,80,20,0.4)" strokeWidth="1.5" fill="none" />
-          <path d="M40 220 Q60 205 80 220 Q100 235 120 220 Q140 205 160 220" stroke="rgba(200,80,20,0.25)" strokeWidth="1" fill="none" />
-          {/* Lava bubbles */}
-          {[{ cx: 90, cy: 345, r: 8 }, { cx: 130, cy: 352, r: 6 }, { cx: 155, cy: 342, r: 5 }].map((b, i) => (
-            <circle
-              key={i}
-              cx={b.cx}
-              cy={b.cy}
-              r={b.r}
-              fill="rgba(255,140,40,0.6)"
-              style={{
-                animation: `pulseGold ${1.5 + i * 0.4}s ease-in-out ${i * 0.3}s infinite`,
-              }}
-            />
+        {/* ══ MAGMA HALF (left) ══ */}
+        <g clipPath="url(#cL)">
+          {/* Deep background glow */}
+          <ellipse cx="120" cy="340" rx="180" ry="140" fill="rgba(80,15,3,0.7)" filter="url(#softBlur)"/>
+
+          {/* === ЛАВА — крупный пульсирующий бассейн === */}
+          <ellipse cx="120" cy="400" rx="155" ry="70" fill="url(#lavaPool)" style={{ animation: "pulseGold 2.5s ease-in-out infinite" }}/>
+          {/* Раскалённая поверхность */}
+          <ellipse cx="105" cy="393" rx="110" ry="48" fill="rgba(255,130,30,0.35)" style={{ animation: "pulseGold 1.8s ease-in-out 0.3s infinite" }}/>
+          <ellipse cx="80" cy="388" rx="60" ry="25" fill="rgba(255,200,80,0.2)" />
+          {/* Трещины в породе */}
+          <path d="M20 420 L60 390 L50 370 L90 345 L75 320" stroke="rgba(255,100,10,0.5)" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <path d="M140 415 L165 385 L155 360 L175 335" stroke="rgba(230,80,5,0.4)" strokeWidth="2" fill="none" strokeLinecap="round"/>
+          <path d="M60 410 L95 375 L85 350" stroke="rgba(255,140,20,0.35)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          {/* Камни-глыбы */}
+          <ellipse cx="55" cy="375" rx="28" ry="14" fill="rgba(40,12,4,0.92)" transform="rotate(-20 55 375)"/>
+          <ellipse cx="155" cy="380" rx="22" ry="11" fill="rgba(35,10,3,0.88)" transform="rotate(12 155 380)"/>
+          <ellipse cx="100" cy="360" rx="16" ry="8" fill="rgba(30,8,2,0.85)"/>
+          {/* Пузыри лавы */}
+          {[{cx:75,cy:378,r:9},{cx:118,cy:385,r:7},{cx:155,cy:375,r:5},{cx:45,cy:392,r:6}].map((b,i)=>(
+            <circle key={i} cx={b.cx} cy={b.cy} r={b.r} fill={`rgba(255,${140+i*15},${20+i*10},0.65)`}
+              style={{ animation: `pulseGold ${1.3+i*0.35}s ease-in-out ${i*0.25}s infinite` }}/>
           ))}
-          {/* Flame tips */}
-          <path d="M85 170 Q75 140 90 115 Q100 135 88 170" fill="rgba(255,160,30,0.7)" filter="url(#magmaGlow)" style={{ animation: "flicker 2s ease-in-out infinite" }} />
-          <path d="M110 155 Q100 125 115 100 Q125 120 113 155" fill="rgba(255,120,20,0.6)" filter="url(#magmaGlow)" style={{ animation: "flicker 2.5s ease-in-out 0.4s infinite" }} />
-          <path d="M130 160 Q122 132 135 110 Q143 128 132 160" fill="rgba(240,100,15,0.55)" filter="url(#magmaGlow)" style={{ animation: "flicker 1.8s ease-in-out 0.8s infinite" }} />
+
+          {/* === ПОТОКИ МАГМЫ вверх === */}
+          <path d="M60 390 C50 340 75 290 55 240 C40 200 65 165 50 130" stroke="rgba(255,90,10,0.75)" strokeWidth="10" fill="none" strokeLinecap="round" filter="url(#mGlow)"/>
+          <path d="M100 385 C95 330 115 275 100 225 C88 185 108 148 95 110" stroke="rgba(245,110,20,0.65)" strokeWidth="7" fill="none" strokeLinecap="round" filter="url(#mGlow)"/>
+          <path d="M148 382 C145 340 158 300 148 260 C140 228 152 200 145 170" stroke="rgba(220,80,10,0.55)" strokeWidth="5" fill="none" strokeLinecap="round"/>
+          {/* Свечение потоков */}
+          <ellipse cx="55" cy="240" rx="18" ry="50" fill="rgba(255,80,10,0.12)" filter="url(#softBlur)" style={{ animation: "flicker 3s infinite" }}/>
+
+          {/* === ЯЗЫКИ ПЛАМЕНИ вверху === */}
+          {/* Главное пламя */}
+          <path d="M58 135 C42 100 55 60 68 30 C78 55 72 95 80 135 Z" fill="rgba(255,180,30,0.85)" filter="url(#mGlow)" style={{ animation: "flicker 1.6s ease-in-out infinite" }}/>
+          <path d="M68 130 C52 95 62 50 75 18 C88 48 80 92 90 130 Z" fill="rgba(255,140,15,0.8)" filter="url(#mGlow)" style={{ animation: "flicker 2s ease-in-out 0.3s infinite" }}/>
+          <path d="M82 138 C70 105 78 68 90 42 C100 65 95 100 105 138 Z" fill="rgba(255,100,10,0.75)" filter="url(#mGlow)" style={{ animation: "flicker 1.4s ease-in-out 0.6s infinite" }}/>
+          {/* Малые язычки */}
+          <path d="M105 148 C98 122 104 98 112 80 C119 98 115 122 122 148 Z" fill="rgba(245,90,8,0.7)" filter="url(#mGlow)" style={{ animation: "flicker 2.2s ease-in-out 0.9s infinite" }}/>
+          <path d="M130 155 C124 133 129 112 136 95 C143 112 139 133 145 155 Z" fill="rgba(230,75,5,0.6)" style={{ animation: "flicker 1.8s ease-in-out 1.2s infinite" }}/>
+          {/* Искры */}
+          {[{x:45,y:95},{x:72,y:62},{x:100,y:75},{x:125,y:105},{x:88,y:48}].map((s,i)=>(
+            <circle key={i} cx={s.x} cy={s.y} r={1.5+i%2} fill={`rgba(255,${200+i*10},50,0.8)`}
+              style={{ animation: `firefly ${0.8+i*0.3}s ease-in-out ${i*0.2}s infinite` }}/>
+          ))}
+
+          {/* Этнический орнамент — магма */}
+          <path d="M15 195 C35 175 55 195 75 175 C95 155 115 175 145 165" stroke="rgba(200,80,20,0.45)" strokeWidth="1.5" fill="none" strokeDasharray="3 4"/>
+          <path d="M20 218 C42 200 62 218 82 200 C102 182 122 200 148 192" stroke="rgba(180,60,15,0.3)" strokeWidth="1" fill="none" strokeDasharray="2 5"/>
+          {/* Руна огня */}
+          <text x="28" y="158" fontSize="28" fill="rgba(255,120,20,0.4)" style={{ fontFamily: "serif", animation: "pulseGold 3s ease-in-out infinite" }}>𐌔</text>
         </g>
 
-        {/* ── ICE side (right) ── */}
-        <g clipPath="url(#rightHalf)">
-          {/* Ice floor */}
-          <ellipse cx="280" cy="365" rx="110" ry="50" fill="url(#iceCore)" opacity="0.85" />
-          <ellipse cx="285" cy="358" rx="75" ry="32" fill="rgba(200,240,255,0.25)" />
-          {/* Ice formations / stalactites */}
-          <path d="M220 360 Q240 290 210 230 Q195 190 220 150" stroke="rgba(140,200,230,0.6)" strokeWidth="7" fill="none" strokeLinecap="round" filter="url(#iceGlow)" />
-          <path d="M260 358 Q275 295 250 245 Q238 210 260 165" stroke="rgba(160,215,240,0.5)" strokeWidth="5" fill="none" strokeLinecap="round" filter="url(#iceGlow)" />
-          <path d="M300 355 Q315 305 295 260 Q282 230 300 195" stroke="rgba(120,185,220,0.45)" strokeWidth="4" fill="none" strokeLinecap="round" />
-          {/* Ice shards */}
-          <polygon points="240,120 230,160 250,160" fill="rgba(200,240,255,0.5)" filter="url(#iceGlow)" />
-          <polygon points="270,105 258,148 282,148" fill="rgba(180,230,250,0.45)" filter="url(#iceGlow)" />
-          <polygon points="305,115 295,155 315,158" fill="rgba(160,220,245,0.4)" filter="url(#iceGlow)" />
-          {/* Snowflake ornament */}
-          <text x="320" y="200" fontSize="20" fill="rgba(180,220,240,0.3)" style={{ animation: "spirit-float 4s ease-in-out 1s infinite" }}>❄</text>
-          <text x="240" y="185" fontSize="14" fill="rgba(160,210,235,0.25)" style={{ animation: "spirit-float 5s ease-in-out infinite" }}>❄</text>
-          {/* Ethnic ornament — ice side */}
-          <path d="M220 200 Q240 180 260 200 Q280 220 300 200 Q320 180 360 200" stroke="rgba(80,160,210,0.4)" strokeWidth="1.5" fill="none" />
-          <path d="M230 222 Q250 205 270 222 Q290 238 310 222 Q330 207 360 222" stroke="rgba(80,160,210,0.25)" strokeWidth="1" fill="none" />
-          {/* Ice reflections */}
-          <ellipse cx="260" cy="355" rx="20" ry="8" fill="rgba(200,240,255,0.2)" transform="rotate(5 260 355)" />
-          <ellipse cx="305" cy="362" rx="14" ry="6" fill="rgba(180,230,250,0.15)" transform="rotate(-8 305 362)" />
+        {/* ══ ICE HALF (right) ══ */}
+        <g clipPath="url(#cR)">
+          {/* Deep background */}
+          <ellipse cx="355" cy="200" rx="180" ry="150" fill="rgba(2,10,25,0.75)" filter="url(#softBlur)"/>
+
+          {/* === ЛЕДЯНОЕ поле внизу === */}
+          <ellipse cx="355" cy="390" rx="155" ry="65" fill="url(#iceField)" style={{ animation: "mist-drift 6s ease-in-out infinite" }}/>
+          {/* Блики льда */}
+          <ellipse cx="340" cy="380" rx="80" ry="28" fill="rgba(200,240,255,0.3)"/>
+          <ellipse cx="310" cy="375" rx="35" ry="12" fill="rgba(220,250,255,0.2)" transform="rotate(-8 310 375)"/>
+          {/* Трещины во льду */}
+          <path d="M260 400 L295 375 L285 358 L320 340 L310 315" stroke="rgba(140,200,240,0.45)" strokeWidth="2" fill="none" strokeLinecap="round"/>
+          <path d="M380 395 L405 368 L395 345 L420 320" stroke="rgba(120,185,230,0.35)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          <path d="M340 395 L360 370 L350 348" stroke="rgba(160,215,245,0.3)" strokeWidth="1" fill="none" strokeLinecap="round"/>
+
+          {/* === ЛЕДЯНЫЕ СТАЛАКТИТЫ снизу вверх === */}
+          <path d="M270 385 C265 330 280 270 262 210 C248 165 268 128 255 90" stroke="rgba(140,205,235,0.65)" strokeWidth="9" fill="none" strokeLinecap="round" filter="url(#iGlow)"/>
+          <path d="M308 382 C305 328 318 270 305 218 C295 175 310 142 300 105" stroke="rgba(160,220,245,0.55)" strokeWidth="6.5" fill="none" strokeLinecap="round" filter="url(#iGlow)"/>
+          <path d="M348 378 C348 332 358 282 348 238 C340 202 350 172 345 142" stroke="rgba(120,195,225,0.5)" strokeWidth="5" fill="none" strokeLinecap="round"/>
+          <path d="M390 372 C392 335 398 295 390 258 C384 228 392 202 388 175" stroke="rgba(100,175,215,0.4)" strokeWidth="4" fill="none" strokeLinecap="round"/>
+          {/* Свечение льда */}
+          <ellipse cx="262" cy="210" rx="16" ry="45" fill="rgba(140,200,240,0.1)" filter="url(#softBlur)"/>
+
+          {/* === КРИСТАЛЛЫ льда вверху === */}
+          {/* Главные шипы */}
+          <polygon points="262,95 250,148 274,148" fill="rgba(210,245,255,0.7)" filter="url(#iGlow)" style={{ animation: "spirit-float 4s ease-in-out infinite" }}/>
+          <polygon points="296,78 282,135 310,135" fill="rgba(190,235,250,0.65)" filter="url(#iGlow)" style={{ animation: "spirit-float 5s ease-in-out 0.8s infinite" }}/>
+          <polygon points="330,88 318,142 342,142" fill="rgba(175,228,248,0.6)" filter="url(#iGlow)" style={{ animation: "spirit-float 3.5s ease-in-out 1.4s infinite" }}/>
+          <polygon points="365,98 354,148 376,148" fill="rgba(155,218,242,0.55)" filter="url(#iGlow)" style={{ animation: "spirit-float 4.5s ease-in-out 0.4s infinite" }}/>
+          <polygon points="400,110 390,155 410,155" fill="rgba(140,208,238,0.5)" style={{ animation: "spirit-float 6s ease-in-out 1.8s infinite" }}/>
+          {/* Малые грани */}
+          <polygon points="278,118 270,145 286,145" fill="rgba(200,240,255,0.4)"/>
+          <polygon points="314,105 308,130 320,130" fill="rgba(185,232,250,0.35)"/>
+          <polygon points="348,112 343,135 353,135" fill="rgba(170,225,245,0.35)"/>
+          {/* Снежинки-украшения */}
+          <text x="412" y="175" fontSize="22" fill="rgba(180,225,245,0.35)" style={{ animation: "spirit-float 5s ease-in-out 2s infinite" }}>❄</text>
+          <text x="258" y="195" fontSize="16" fill="rgba(160,215,240,0.28)" style={{ animation: "spirit-float 4s ease-in-out infinite" }}>❄</text>
+          <text x="385" y="240" fontSize="12" fill="rgba(140,205,235,0.22)" style={{ animation: "spirit-float 6s ease-in-out 1s infinite" }}>❄</text>
+          {/* Мерцающие блики */}
+          {[{x:268,y:95},{x:296,y:75},{x:330,y:85},{x:368,y:100},{x:400,y:112}].map((s,i)=>(
+            <circle key={i} cx={s.x} cy={s.y} r={2} fill="rgba(220,248,255,0.9)"
+              style={{ animation: `firefly ${1+i*0.4}s ease-in-out ${i*0.3}s infinite` }}/>
+          ))}
+
+          {/* Этнический орнамент — иней */}
+          <path d="M252 200 C272 182 292 200 312 182 C332 164 352 182 428 172" stroke="rgba(80,160,215,0.4)" strokeWidth="1.5" fill="none" strokeDasharray="3 4"/>
+          <path d="M258 224 C278 208 298 224 318 208 C338 192 358 208 428 200" stroke="rgba(60,140,200,0.28)" strokeWidth="1" fill="none" strokeDasharray="2 5"/>
+          {/* Руна льда */}
+          <text x="402" y="160" fontSize="26" fill="rgba(100,185,230,0.38)" style={{ fontFamily: "serif", animation: "mist-drift 4s ease-in-out infinite" }}>ᛁ</text>
         </g>
 
-        {/* ── MERGE ZONE (center) — Steam ── */}
-        <ellipse cx="200" cy="250" rx="40" ry="120" fill="url(#steamMerge)" style={{ animation: "mist-drift 5s ease-in-out infinite" }} />
-        {/* Steam wisps */}
-        <path d="M195 320 Q190 290 197 265 Q204 240 198 215" stroke="rgba(220,210,195,0.3)" strokeWidth="3" fill="none" strokeLinecap="round" className="steam-1" />
-        <path d="M205 315 Q210 285 203 262 Q196 238 202 210" stroke="rgba(220,210,195,0.25)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-2" />
-        <path d="M200 325 Q194 295 200 270 Q206 248 200 220" stroke="rgba(230,215,200,0.2)" strokeWidth="2.5" fill="none" strokeLinecap="round" className="steam-3" />
+        {/* ══ MERGE CENTER — Пар ══ */}
+        <g clipPath="url(#circle)">
+          <ellipse cx="240" cy="280" rx="50" ry="150" fill="url(#steamC)" style={{ animation: "mist-drift 4s ease-in-out infinite" }}/>
+          <path d="M234 360 Q228 320 236 285 Q244 252 237 218" stroke="rgba(220,208,190,0.32)" strokeWidth="3.5" fill="none" strokeLinecap="round" className="steam-1"/>
+          <path d="M246 355 Q252 315 244 280 Q236 248 243 212" stroke="rgba(215,205,185,0.26)" strokeWidth="2.5" fill="none" strokeLinecap="round" className="steam-2"/>
+          <path d="M240 362 Q233 322 240 288 Q247 256 240 220" stroke="rgba(225,212,195,0.22)" strokeWidth="3" fill="none" strokeLinecap="round" className="steam-3"/>
+        </g>
 
-        {/* ── Dividing line — gold ornament ── */}
-        <line x1="200" y1="60" x2="200" y2="415" stroke="url(#goldLine)" strokeWidth="1" strokeDasharray="4 6" opacity="0.6" />
-        <circle cx="200" cy="230" r="6" fill="rgba(200,146,58,0.6)" style={{ animation: "pulseGold 2s ease-in-out infinite" }} />
-        <circle cx="200" cy="230" r="12" fill="none" stroke="rgba(200,146,58,0.25)" strokeWidth="1" style={{ animation: "pulseGold 2s ease-in-out 0.5s infinite" }} />
+        {/* ══ Центральный медальон — точка слияния ══ */}
+        <circle cx="240" cy="260" r="22" fill="rgba(8,4,2,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
+        <circle cx="240" cy="260" r="15" fill="none" stroke="rgba(200,146,58,0.3)" strokeWidth="1" style={{ animation: "pulseGold 2s ease-in-out 0.5s infinite" }}/>
+        {/* Символ: половина лава / половина лёд */}
+        <path d="M240 245 C235 248 228 255 228 260 C228 265 235 272 240 275 Z" fill="rgba(255,100,15,0.7)" filter="url(#mGlow)"/>
+        <path d="M240 245 C245 248 252 255 252 260 C252 265 245 272 240 275 Z" fill="rgba(160,220,245,0.7)" filter="url(#iGlow)"/>
+        <circle cx="240" cy="260" r="4" fill="rgba(200,146,58,0.8)" style={{ animation: "pulseGold 1.5s ease-in-out infinite" }}/>
 
-        {/* ── Outer ornamental ring ── */}
-        <circle cx="200" cy="230" r="183" fill="none" stroke="rgba(200,146,58,0.12)" strokeWidth="1" />
-        <circle cx="200" cy="230" r="178" fill="none" stroke="rgba(200,146,58,0.06)" strokeWidth="0.5" />
+        {/* Вертикальный разделитель */}
+        <line x1="240" y1="65" x2="240" y2="450" stroke="url(#gld)" strokeWidth="1.2" strokeDasharray="5 7" opacity="0.7"/>
 
-        {/* ── Top & Bottom ornaments ── */}
-        <path d="M160 55 Q200 40 240 55" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5" fill="none" />
-        <path d="M175 50 Q200 38 225 50" stroke="rgba(200,146,58,0.3)" strokeWidth="1" fill="none" />
-        <circle cx="200" cy="42" r="4" fill="rgba(200,146,58,0.6)" />
-        <text x="196" y="46" fontSize="6" fill="rgba(200,146,58,0.9)">✦</text>
+        {/* ══ Внешний орнамент ══ */}
+        <circle cx="240" cy="260" r="210" fill="none" stroke="rgba(200,146,58,0.1)" strokeWidth="1"/>
+        {/* Угловые акценты */}
+        <path d="M190 55 Q240 38 290 55" stroke="rgba(200,146,58,0.55)" strokeWidth="2" fill="none"/>
+        <circle cx="240" cy="42" r="5" fill="rgba(200,146,58,0.65)" style={{ animation: "pulseGold 3s infinite" }}/>
+        <text x="235" y="46" fontSize="7" fill="white" opacity="0.8">✦</text>
+        <path d="M190 468 Q240 482 290 468" stroke="rgba(200,146,58,0.55)" strokeWidth="2" fill="none"/>
+        <circle cx="240" cy="478" r="5" fill="rgba(200,146,58,0.65)"/>
 
-        <path d="M160 408 Q200 422 240 408" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5" fill="none" />
-        <circle cx="200" cy="420" r="4" fill="rgba(200,146,58,0.6)" />
-
-        {/* ── Labels ── */}
-        <text x="80" y="415" textAnchor="middle" fontSize="9" fill="rgba(212,98,42,0.7)" fontFamily="Cormorant, serif" letterSpacing="3">МАГМА</text>
-        <text x="310" y="415" textAnchor="middle" fontSize="9" fill="rgba(140,200,220,0.7)" fontFamily="Cormorant, serif" letterSpacing="3">ИНЕЙ</text>
-        <text x="200" y="440" textAnchor="middle" fontSize="8" fill="rgba(200,180,140,0.5)" fontFamily="Cormorant, serif" letterSpacing="4">✦ ПАР ✦</text>
+        {/* ══ Подписи ══ */}
+        {/* МАГМА */}
+        <rect x="28" y="462" width="90" height="26" rx="13" fill="rgba(180,50,10,0.2)" stroke="rgba(220,80,20,0.4)" strokeWidth="1"/>
+        <text x="73" y="479" textAnchor="middle" fontSize="10" fill="rgba(255,110,30,0.85)" fontFamily="Cormorant, serif" letterSpacing="3" fontStyle="italic">МАГМА</text>
+        {/* ИНЕЙ */}
+        <rect x="362" y="462" width="80" height="26" rx="13" fill="rgba(20,80,140,0.2)" stroke="rgba(80,160,220,0.4)" strokeWidth="1"/>
+        <text x="402" y="479" textAnchor="middle" fontSize="10" fill="rgba(140,210,245,0.85)" fontFamily="Cormorant, serif" letterSpacing="3" fontStyle="italic">ИНЕЙ</text>
+        {/* ПАР центр */}
+        <text x="240" y="503" textAnchor="middle" fontSize="9" fill="rgba(200,180,140,0.5)" fontFamily="Cormorant, serif" letterSpacing="5">✦ ПАР ✦</text>
       </svg>
     </div>
   );

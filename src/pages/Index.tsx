@@ -11,7 +11,7 @@ const programs = [
   {
     id: "tsaritsa",
     symbol: "♛",
-    title: "Кабы я была... Царица",
+    title: "Зазеркалье",
     tagline: "Авторский уход в SPA-бане",
     description: "Глубокое восстановление через цветочный пар, уход за волосами и кожей. Тело регенерирует, каждая клетка дышит. Ритуал создан для полного отпускания напряжения — от корней волос до кончиков пальцев.",
     effect: "Регенерация кожи · Восстановление волос · Расслабление всего тела",
@@ -34,7 +34,7 @@ const programs = [
   {
     id: "briz",
     symbol: "≋",
-    title: "Летний Бриз",
+    title: "Ракушка",
     tagline: "Нежный пар с ароматами летних трав",
     description: "Лёгкий пар с ароматами луга восстанавливает дыхание и снимает усталость с мышц. Пилинг с мёдом и травами запускает обновление кожи. Парафинотерапия возвращает мягкость и эластичность.",
     effect: "Обновление кожи · Дренаж мышц · Снятие хронической усталости",
@@ -56,7 +56,7 @@ const programs = [
   {
     id: "japan",
     symbol: "❋",
-    title: "Сладкая Япония",
+    title: "Сакура",
     tagline: "Древняя философия очищения",
     description: "Церемония глубокого пара под медитативные звуки пробуждает тело. Японские техники очищения через контраст температур запускают мощный процесс регенерации — кожа обновляется, сосуды укрепляются.",
     effect: "Детокс · Укрепление сосудов · Глубокое очищение кожи",
@@ -104,7 +104,7 @@ const programs = [
 
 const benefits = [
   { icon: "⚶", title: "Парение с вениками", text: "Берёза для очищения, дуб для силы, эвкалипт для дыхания. Мягкие техники, которые расслабляют без стресса для тела." },
-  { icon: "꩜", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
+  { icon: "🌿", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
   { icon: "⌁", title: "Водные практики", text: "Контрастные обливания и купель для пробуждения жизненной силы и укрепления сосудов." },
   { icon: "⟐", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление изнутри." },
   { icon: "ᛟ", title: "Звуковая медитация", text: "Гармонизация внутреннего состояния через вибрации звука — перезагрузка нервной системы и глубокий покой." },
@@ -123,12 +123,20 @@ const faqData = [
 const SYSTEM_PROMPT = `Ты — Мария, пармастер и создатель проекта «Иней и Магма corp.». Отвечай тепло, поэтично, кратко (2-4 предложения). Ты проводишь авторские банные программы в Краснодаре.
 
 Программы:
-— «Кабы я была Царица» — 8 500 ₽, 5–8 гостей: цветочный пар, уход за волосами, альгинатная маска, кокошники. Дополнительно: бандажное обёртывание 3 500 ₽.
-— «Летний Бриз» — 6 500 ₽, 5–8 гостей: пар с летними травами, медовый пилинг, парафинотерапия, кофе/чай/кекс. Альгинатная маска в подарок при массаже. Доп: массаж 3 500 ₽.
-— «Сладкая Япония» — 7 500 ₽, 4 часа, 5–8 гостей: ароматный пар, звуки ханга, виноградный скраб, холодная купель, качели. Доп: парение вениками 3 500 ₽.
+— «Зазеркалье» — 8 500 ₽, 5–8 гостей: цветочный пар, уход за волосами, альгинатная маска, кокошники. Дополнительно: бандажное обёртывание 3 500 ₽.
+— «Ракушка» — 6 500 ₽, 5–8 гостей: пар с летними травами, медовый пилинг, парафинотерапия, кофе/чай/кекс. Альгинатная маска в подарок при массаже. Доп: массаж 3 500 ₽.
+— «Сакура» — 7 500 ₽, 4 часа, 5–8 гостей: ароматный пар, звуки ханга, виноградный скраб, холодная купель, качели. Доп: парение вениками 3 500 ₽.
 — «Сдобная Баня» — 36 000 ₽, 4 часа, 2 гостя: выбор каждого элемента, тёплый чан с пихтой, звуковая медитация на сеновале.
 
 Запись: форма на сайте или Telegram. Халаты, тапочки, шапки — предоставляются. Отвечай только на вопросы о бане и программах.`;
+
+const FAQ_QUICK = [
+  { label: "Как записаться?", answer: "Заполните форму на сайте или напишите мне в Telegram. Подберём удобное время вместе 🌿" },
+  { label: "Цены?", answer: "Зазеркалье — 8 500 ₽, Ракушка — 6 500 ₽, Сакура — 7 500 ₽, Сдобная Баня — 36 000 ₽ (2 гостя). Доп. процедуры — 3 500 ₽." },
+  { label: "Что взять с собой?", answer: "Только хорошее настроение 🔥 Халаты, тапочки, шапки и полотенца — всё предоставляю я." },
+  { label: "Сколько человек?", answer: "Группы: 5–8 гостей. Сдобная Баня — только для двоих, особый формат." },
+  { label: "Подарочный сертификат?", answer: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите на странице «Сертификат» 🎁" },
+];
 
 function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -200,6 +208,17 @@ function Chatbot() {
             ))}
             <div ref={endRef} />
           </div>
+          {messages.length <= 2 && (
+            <div className="px-3 pb-2 flex flex-wrap gap-1.5">
+              {FAQ_QUICK.map((fq) => (
+                <button key={fq.label} onClick={() => setMessages(p => [...p, { from: "user", text: fq.label }, { from: "bot", text: fq.answer }])}
+                  className="text-xs px-2.5 py-1 rounded-full transition-all hover:opacity-80"
+                  style={{ background: "rgba(200,146,58,0.1)", border: "1px solid rgba(200,146,58,0.25)", color: "var(--eth-gold2)" }}>
+                  {fq.label}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="px-3 py-3 flex gap-2" style={{ borderTop: "1px solid rgba(200,146,58,0.15)" }}>
             <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && send()}
               placeholder="Напишите вопрос..."
@@ -220,37 +239,34 @@ function Chatbot() {
 
 function AboutAudio() {
   const [playing, setPlaying] = useState(false);
+  const [bars] = useState(() => [1,2,3,4,5].map(() => Math.random() * 12 + 6));
   const audioRef = useRef<HTMLAudioElement>(null);
 
   function toggle() {
     if (!audioRef.current) return;
-    if (playing) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {});
-    }
+    if (playing) { audioRef.current.pause(); } else { audioRef.current.play().catch(() => {}); }
     setPlaying(!playing);
   }
 
   return (
-    <div className="inline-flex items-center gap-4 px-5 py-3 rounded-2xl" style={{ background: "rgba(200,146,58,0.07)", border: "1px solid rgba(200,146,58,0.18)" }}>
-      <audio ref={audioRef} loop
-        src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8cb749b4b4.mp3?filename=ethnic-meditation-9818.mp3">
-      </audio>
+    <div
+      className="fixed bottom-24 left-6 z-50 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-2xl animate-slide-up"
+      style={{ background: "rgba(20,15,10,0.95)", border: "1px solid rgba(200,146,58,0.22)", backdropFilter: "blur(12px)" }}
+    >
+      <audio ref={audioRef} loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8cb749b4b4.mp3?filename=ethnic-meditation-9818.mp3" />
       <button onClick={toggle}
-        className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
-        style={{ background: playing ? "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.15)", color: playing ? "white" : "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.3)" }}>
-        {playing ? <Icon name="Pause" size={16} /> : <Icon name="Play" size={16} />}
+        className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
+        style={{ background: playing ? "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.12)", color: playing ? "white" : "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.25)" }}>
+        {playing ? <Icon name="Pause" size={14} /> : <Icon name="Play" size={14} />}
       </button>
       <div>
-        <p className="text-xs font-medium" style={{ color: "var(--eth-gold2)" }}>Этнический звук</p>
-        <p className="text-xs opacity-60" style={{ color: "var(--eth-stone)" }}>{playing ? "Воспроизводится..." : "Нажмите для воспроизведения"}</p>
+        <p className="text-xs font-medium leading-tight" style={{ color: "var(--eth-gold2)" }}>Этнический звук</p>
+        <p className="text-xs opacity-50 leading-tight" style={{ color: "var(--eth-stone)" }}>{playing ? "Играет..." : "Воспроизвести"}</p>
       </div>
       {playing && (
-        <div className="flex items-end gap-0.5 h-5">
-          {[1,2,3,4].map(i => (
-            <div key={i} className="w-0.5 rounded-full bg-amber-400 opacity-70"
-              style={{ height: `${Math.random() * 12 + 6}px`, animation: `bounce ${0.4 + i * 0.15}s ease-in-out infinite alternate` }} />
+        <div className="flex items-end gap-0.5 h-4">
+          {bars.map((h, i) => (
+            <div key={i} className="w-0.5 rounded-full" style={{ height: `${h}px`, background: "var(--eth-gold)", opacity: 0.7, animation: `flicker ${0.4 + i * 0.12}s ease-in-out infinite alternate` }} />
           ))}
         </div>
       )}
@@ -593,9 +609,6 @@ export default function Index() {
 
         <div className="relative max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
           <div>
-            {/* Audio player */}
-            <AboutAudio />
-
             <div className="mt-8">
               <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
               <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
@@ -740,11 +753,12 @@ export default function Index() {
           </div>
 
           {/* 3 pillars */}
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
             {[
               { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться. Здесь рождается новое." },
               { sym: "🜄", title: "Вода", sub: "Очищение и обновление", text: "Контраст температур запускает жизненные процессы. Каждое погружение — это возвращение к себе." },
               { sym: "🜃", title: "Земля", sub: "Укоренение и покой", text: "Соль, глина, травы, мёд — дары земли. Они питают, успокаивают и возвращают природный баланс." },
+              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт лёгкость и ощущение свободы." },
             ].map((p, i) => (
               <div key={i} className="rounded-2xl p-7 eth-card relative overflow-hidden" style={{ background: "var(--eth-bg2)" }}>
                 <div className="absolute top-0 right-0 text-6xl font-light opacity-5 pointer-events-none select-none"
@@ -1034,6 +1048,7 @@ export default function Index() {
       </footer>
 
       {activeProgram && <ProgramModal program={activeProgram} onClose={() => setActiveProgram(null)} />}
+      <AboutAudio />
       <Chatbot />
     </div>
   );

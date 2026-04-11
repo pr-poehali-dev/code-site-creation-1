@@ -343,6 +343,19 @@ export const shopCategories = [
     path: "/shop/fans",
     featured: "войлок · кожа · дерево · этнический орнамент",
   },
+  {
+    id: "zaparka",
+    emoji: "🫖",
+    title: "Банные запарки",
+    subtitle: "Авторские сборы",
+    tagline: "Лес, настоянный на пару",
+    depth: "Тайная поляна",
+    bg: "radial-gradient(ellipse at 35% 55%, #0a1a0e 0%, #0d1109 60%)",
+    accent: "rgba(80,160,100,0.5)",
+    leafColor: "rgba(80,160,100,0.6)",
+    path: "/shop/zaparka",
+    featured: "душица · чабрец · пихта · эвкалипт · мята",
+  },
 ];
 
 // ─── Main Shop page ───────────────────────────────────────────────────────────
