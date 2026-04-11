@@ -449,12 +449,14 @@ export default function Index() {
     { label: "Программы", id: "programs" },
     { label: "Таро", id: "tarot-nav" },
     { label: "🌿 Лавка", id: "shop-nav" },
+    { label: "✦ Традиция", id: "tradition-nav" },
     { label: "Контакты", id: "contacts" },
   ];
 
   function scrollTo(id: string) {
     if (id === "tarot-nav") { navigate("/tarot"); setNavOpen(false); return; }
     if (id === "shop-nav") { navigate("/shop"); setNavOpen(false); return; }
+    if (id === "tradition-nav") { navigate("/tradition"); setNavOpen(false); return; }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setNavOpen(false);
   }
