@@ -720,12 +720,12 @@ export default function Index() {
               <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "var(--eth-stone)" }}>Философия</p>
               <h2 className="text-4xl md:text-5xl font-light leading-tight mb-8"
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь. Ваш Ритм. </em><br /><span style={{ fontSize: "0.55em", opacity: 0.7, fontStyle: "normal", letterSpacing: "0.05em" }}>Ваше сокровенное переживание.</span>
+                Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь. Ваш Ритм. </em><br /><span style={{ fontSize: "0.55em", opacity: 0.7, fontStyle: "normal", letterSpacing: "0.05em" }}>Каждая программа выстраивается под вас.</span>
               </h2>
-              <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Каждая программа выстраивается лично под вас — словно древний обряд.</p>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. 
-Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
+              <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. </p>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
               <p className="leading-relaxed mb-6 text-sm" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Мёд — тёплый, обволакивающий, или с ледяными припарками, дарующими свежесть. 
+
 Каждый момент — ваш, каждый жест — в лад с вашим ритмом.</p>
               <p className="text-sm leading-relaxed font-medium pt-5" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
                 Только натуральные ингредиенты · Только живые ароматы · Только настоящий банный опыт
