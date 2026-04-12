@@ -755,17 +755,23 @@ export default function Index() {
           {/* 3 pillars */}
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
             {[
-              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться. Здесь рождается новое." },
-              { sym: "🜄", title: "Вода", sub: "Очищение и обновление", text: "Контраст температур запускает жизненные процессы. Каждое погружение — это возвращение к себе." },
-              { sym: "🜃", title: "Земля", sub: "Укоренение и покой", text: "Соль, глина, травы, мёд — дары земли. Они питают, успокаивают и возвращают природный баланс." },
-              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт лёгкость и ощущение свободы." },
+              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться. Здесь рождается новое.", color: "#d4622a", glow: "rgba(212,98,42,0.35)", anim: "flicker" },
+              { sym: "🜄", title: "Вода", sub: "Очищение и обновление", text: "Контраст температур запускает жизненные процессы. Каждое погружение — это возвращение к себе.", color: "#4a9ec8", glow: "rgba(74,158,200,0.35)", anim: "mist-drift" },
+              { sym: "🜃", title: "Земля", sub: "Укоренение и покой", text: "Соль, глина, травы, мёд — дары земли. Они питают, успокаивают и возвращают природный баланс.", color: "#7aaa50", glow: "rgba(122,170,80,0.35)", anim: "spirit-float" },
+              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт лёгкость и ощущение свободы.", color: "#8ac8b8", glow: "rgba(138,200,184,0.35)", anim: "mist-drift" },
             ].map((p, i) => (
               <div key={i} className="rounded-2xl p-7 eth-card relative overflow-hidden" style={{ background: "var(--eth-bg2)" }}>
                 <div className="absolute top-0 right-0 text-6xl font-light opacity-5 pointer-events-none select-none"
-                  style={{ fontFamily: "serif", color: "var(--eth-gold)", lineHeight: 1 }}>{p.sym}</div>
-                <p className="text-3xl mb-3" style={{ color: "var(--eth-ember)" }}>{p.sym}</p>
+                  style={{ fontFamily: "serif", color: p.color, lineHeight: 1 }}>{p.sym}</div>
+                {/* Animated glow circle behind icon */}
+                <div className="relative w-14 h-14 mb-4 flex items-center justify-center">
+                  <div className="absolute inset-0 rounded-full"
+                    style={{ background: `radial-gradient(circle, ${p.glow} 0%, transparent 70%)`, animation: `pulseGold ${2+i*0.4}s ease-in-out ${i*0.2}s infinite` }}/>
+                  <p className="text-3xl relative z-10"
+                    style={{ color: p.color, animation: `${p.anim} ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`, filter: `drop-shadow(0 0 8px ${p.glow})` }}>{p.sym}</p>
+                </div>
                 <h3 className="text-xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{p.title}</h3>
-                <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--eth-stone)", opacity: 0.6 }}>{p.sub}</p>
+                <p className="text-xs uppercase tracking-widest mb-4" style={{ color: p.color, opacity: 0.7 }}>{p.sub}</p>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>{p.text}</p>
               </div>
             ))}
@@ -786,14 +792,30 @@ export default function Index() {
             <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}></p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {benefits.map((b, i) => (
-              <div key={i} className="rounded-2xl p-6 eth-card text-center"
-                style={{ background: "var(--eth-bg3)" }}>
-                <span className="text-4xl block mb-4">{b.icon}</span>
-                <h3 className="text-lg font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{b.title}</h3>
-                <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{b.text}</p>
-              </div>
-            ))}
+            {benefits.map((b, i) => {
+              const iconColors = ["#d4622a","#6aaa80","#c8923a","#e8b86d","#8abeaa"];
+              const iconBg = ["rgba(212,98,42,0.12)","rgba(106,170,128,0.12)","rgba(200,146,58,0.12)","rgba(232,184,109,0.12)","rgba(138,190,170,0.12)"];
+              const iconGlow = ["rgba(212,98,42,0.3)","rgba(106,170,128,0.3)","rgba(200,146,58,0.3)","rgba(232,184,109,0.3)","rgba(138,190,170,0.3)"];
+              return (
+                <div key={i} className="rounded-2xl p-6 eth-card text-center"
+                  style={{
+                    background: "var(--eth-bg3)",
+                    transition: `all 0.4s ease ${i * 0.08}s`,
+                  }}>
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+                    style={{
+                      background: iconBg[i],
+                      border: `1.5px solid ${iconColors[i]}40`,
+                      boxShadow: `0 0 20px ${iconGlow[i]}, 0 0 40px ${iconGlow[i]}`,
+                      animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${i * 0.2}s infinite`,
+                    }}>
+                    <span className="text-3xl" style={{ filter: `drop-shadow(0 0 6px ${iconColors[i]})` }}>{b.icon}</span>
+                  </div>
+                  <h3 className="text-lg font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{b.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{b.text}</p>
+                </div>
+              );
+            })}
           </div>
 
           {/* Quote block */}
@@ -990,10 +1012,10 @@ export default function Index() {
             <div className="eth-divider mb-6 max-w-sm mx-auto"><span>◆ ◇ ◆</span></div>
             <h2 className="text-5xl md:text-6xl font-light leading-tight"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Ждём вас<br /><em>у огня</em>
+              Запишитесь<br /><em>прямо сейчас</em>
             </h2>
             <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Мудрость предков в каждой капле пара
+              Осталось всего несколько мест на ближайшие даты
             </p>
           </div>
 
@@ -1016,17 +1038,17 @@ export default function Index() {
               </div>
 
               <a
-                href="https://t.me/+79186860650"
+                href="https://max.ru/+79186860650"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 w-full px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl"
-                style={{ background: "linear-gradient(135deg, #229ed9, #1a7db8)", color: "white", textDecoration: "none" }}
+                style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.613c-.15.672-.546.836-1.107.52l-3.07-2.262-1.48 1.424c-.164.164-.3.3-.616.3l.22-3.11 5.67-5.12c.247-.22-.054-.342-.382-.122L7.34 14.6l-3.01-.94c-.654-.205-.667-.654.137-.968l11.726-4.522c.546-.197 1.023.133.87.078z"/>
+                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
                 </svg>
                 <div>
-                  <p className="text-sm font-medium tracking-wide">Написать в Telegram</p>
+                  <p className="text-sm font-medium tracking-wide">Написать в Max</p>
                   <p className="text-xs opacity-70">Мария · ответит быстро</p>
                 </div>
               </a>
@@ -1041,7 +1063,25 @@ export default function Index() {
       </section>
 
       {/* ── Footer ──────────────────────────────────────── */}
-      <footer className="py-8 px-6 text-center" style={{ background: "#0f0c08", borderTop: "1px solid rgba(200,146,58,0.1)" }}>
+      <footer className="py-10 px-6 text-center" style={{ background: "#0f0c08", borderTop: "1px solid rgba(200,146,58,0.1)" }}>
+        {/* Лейбл */}
+        <div className="flex justify-center mb-6">
+          <div className="relative" style={{ width: "140px", height: "140px" }}>
+            {/* Mix-blend-mode для удаления белого фона */}
+            <img
+              src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/e7a10d9f-0e81-4def-9095-1e643088df49.jpg"
+              alt="Иней и Магма corp."
+              style={{
+                width: "140px",
+                height: "140px",
+                objectFit: "contain",
+                mixBlendMode: "screen",
+                filter: "contrast(1.15) saturate(1.2) brightness(1.05) drop-shadow(0 0 20px rgba(200,146,58,0.3))",
+                animation: "pulseGold 4s ease-in-out infinite",
+              }}
+            />
+          </div>
+        </div>
         <div className="eth-divider max-w-xs mx-auto mb-5"><span>◆</span></div>
         <p className="text-xl mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.8 }}>Мария · Пармастер</p>
         <p className="text-xs tracking-widest" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>© 2024 · Краснодар · Авторские банные программы</p>

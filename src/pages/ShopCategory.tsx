@@ -663,20 +663,20 @@ export default function ShopCategory() {
               Напишите Марии — создам специально для вас с учётом ваших пожеланий.
             </p>
             <a
-              href="https://t.me/+79186860650"
+              href="https://max.ru/+79186860650"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl text-sm tracking-wider transition-all hover:scale-105"
               style={{
-                background: "linear-gradient(135deg, #1a3a8a, #1060b0)",
+                background: "linear-gradient(135deg, #5b3bb5, #3d2490)",
                 color: "white",
                 textDecoration: "none",
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.613c-.15.672-.546.836-1.107.52l-3.07-2.262-1.48 1.424c-.164.164-.3.3-.616.3l.22-3.11 5.67-5.12c.247-.22-.054-.342-.382-.122L7.34 14.6l-3.01-.94c-.654-.205-.667-.654.137-.968l11.726-4.522c.546-.197 1.023.133.87.078z" />
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z" />
               </svg>
-              Написать Марии
+              Написать Марии в Max
             </a>
           </div>
         </div>
