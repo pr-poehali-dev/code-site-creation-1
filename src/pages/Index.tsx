@@ -1011,9 +1011,8 @@ export default function Index() {
           <div className="text-center mb-16">
             <div className="eth-divider mb-6 max-w-sm mx-auto"><span>◆ ◇ ◆</span></div>
             <h2 className="text-5xl md:text-6xl font-light leading-tight"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Запишитесь<br /><em>прямо сейчас</em>
-            </h2>
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Ждём Вас 
+у огня</h2>
             <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
               Осталось всего несколько мест на ближайшие даты
             </p>
