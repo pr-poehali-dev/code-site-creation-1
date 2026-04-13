@@ -606,9 +606,8 @@ export default function Regeneration() {
           <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
             Пар зовёт.<br /><em style={{ color: "#c8923a" }}>Тело помнит путь.</em>
           </h2>
-          <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
-            Огонь и лёд уже ждут встречи с вами —<br />позвольте магме и инею сделать своё дело.
-          </p>
+          <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>Огонь и лёд уже ждут встречи с вами —
+позвольте алхимии стихий сделать своё дело.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => navigate("/strategy")}
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
