@@ -473,7 +473,7 @@ export default function Shop() {
           <p
             className="text-xs uppercase tracking-[0.5em] mb-5"
             style={{ color: "rgba(168,184,144,0.6)" }}
-          >Осенний лес</p>
+          >Тропа рябины и дыма</p>
 
           <h1
             className="text-5xl md:text-7xl font-light leading-tight mb-6"
