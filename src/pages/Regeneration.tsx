@@ -10,26 +10,27 @@ const HERO_STATS = [
   { value: "1", label: "ваша уникальная стратегия" },
 ];
 
+// БиоХакинг — отдельно, особый стиль
+const biohack = {
+  id: "biohack",
+  title: "БиоХакинг",
+  tagline: "Персонализированная стратегия регенерации",
+  effect: "Запускает глубокое обновление на клеточном уровне",
+  items: [
+    { emoji: "❄️", name: "Криокапсула", desc: "Криотерапия запускает регенерацию тканей, ускоряет обмен веществ и даёт мощный антивоспалительный эффект" },
+    { emoji: "💡", name: "LED-терапия", desc: "Световые панели стимулируют выработку коллагена, улучшают микроциркуляцию и омолаживают кожу" },
+    { emoji: "🌊", name: "Гидромассаж", desc: "Родниковая вода с морской солью, травяными настоями и лечебными грязями — детокс и восстановление" },
+    { emoji: "🌿", name: "Водорослевые обёртывания", desc: "Бандажные обёртывания питают кожу, выводят токсины и моделируют силуэт" },
+    { emoji: "🤲", name: "Авторский массаж", desc: "Глубокая работа с телом — снятие зажимов, восстановление лимфотока, расслабление нервной системы" },
+    { emoji: "✨", name: "Альгинатные маски", desc: "Мгновенный лифтинг и увлажнение — кожа сияет уже после первой процедуры" },
+    { emoji: "💧", name: "Капельницы", desc: "Персональные коктейли витаминов и микроэлементов для восстановления изнутри" },
+    { emoji: "🔥", name: "SPA-баня", desc: "Берёзовый веник, кесе, медово-травяной пилинг и ароматерапия — обновление с головы до пят" },
+    { emoji: "🫧", name: "Гипербарическая оксигенация", desc: "Насыщение тканей кислородом под давлением — ускоряет заживление, усиливает иммунитет и запускает глубокую клеточную регенерацию" },
+  ],
+};
+
+// Остальные программы (5 вместо 6 — SPA + маникюр объединены)
 const programs = [
-  {
-    id: "biohack",
-    icon: "✦",
-    title: "БиоХакинг",
-    tagline: "Персонализированная стратегия регенерации",
-    effect: "Запускает глубокое обновление на клеточном уровне",
-    color: "#c8923a",
-    gradient: "linear-gradient(135deg, rgba(200,146,58,0.15), rgba(200,146,58,0.04))",
-    items: [
-      { emoji: "❄️", name: "Криокапсула", desc: "Криотерапия запускает регенерацию тканей, ускоряет обмен веществ и даёт мощный антивоспалительный эффект" },
-      { emoji: "💡", name: "LED-терапия", desc: "Световые панели стимулируют выработку коллагена, улучшают микроциркуляцию и омолаживают кожу" },
-      { emoji: "🌊", name: "Гидромассаж", desc: "Родниковая вода с морской солью, травяными настоями и лечебными грязями — детокс и восстановление" },
-      { emoji: "🌿", name: "Водорослевые обёртывания", desc: "Бандажные обёртывания питают кожу, выводят токсины и моделируют силуэт" },
-      { emoji: "🤲", name: "Авторский массаж", desc: "Глубокая работа с телом — снятие зажимов, восстановление лимфотока, расслабление нервной системы" },
-      { emoji: "✨", name: "Альгинатные маски", desc: "Мгновенный лифтинг и увлажнение — кожа сияет уже после первой процедуры" },
-      { emoji: "💧", name: "Капельницы", desc: "Персональные коктейли витаминов и микроэлементов для восстановления изнутри" },
-      { emoji: "🔥", name: "SPA-баня", desc: "Берёзовый веник, кесе, медово-травяной пилинг и ароматерапия — обновление с головы до пят" },
-    ],
-  },
   {
     id: "prp",
     icon: "◈",
@@ -46,12 +47,13 @@ const programs = [
       { emoji: "👁️", name: "Мезоай", desc: "Специальный препарат для зоны глаз — убирает тёмные круги, отёки и мелкие морщины" },
       { emoji: "☀️", name: "Мезоксантин", desc: "Антиоксидантная мезотерапия защищает клетки от свободных радикалов и восстанавливает сияние" },
       { emoji: "🔬", name: "Субцизия от рубцов", desc: "Рассечение фиброзных тяжей + инъекции PRP или собственного жира — видимый результат с первого сеанса" },
+      { emoji: "🌬️", name: "Озонотерапия и ВЛОК", desc: "Озон насыщает кровь кислородом и уничтожает патогены, ВЛОК (лазерное облучение крови) восстанавливает иммунитет и омолаживает клетки" },
     ],
   },
   {
     id: "hardware",
     icon: "⬡",
-    title: "Аппаратная косметология",
+    title: "Аппаратная и лазерная косметология",
     tagline: "Технологии, которые меняют тело",
     effect: "Коррекция, омоложение, лазерные технологии",
     color: "#7aab9e",
@@ -70,7 +72,7 @@ const programs = [
   {
     id: "yoga",
     icon: "❋",
-    title: "Хот-Йога & Движение",
+    title: "Хот-Йога, Движение & Медитация",
     tagline: "Тело в потоке — разум в покое",
     effect: "Гибкость, сила, внутренний баланс",
     color: "#d4622a",
@@ -80,14 +82,17 @@ const programs = [
       { emoji: "🚴", name: "Хот-сайкл", desc: "Кардио в тепле сжигает в 2 раза больше калорий и прокачивает выносливость на новый уровень" },
       { emoji: "🌿", name: "Растяжка", desc: "Восстановление гибкости и подвижности суставов — профилактика травм и хронических болей" },
       { emoji: "🧘", name: "Хот-пилатес", desc: "Глубокая работа с мышечным корсетом в тёплом пространстве — тело становится стройнее и сильнее" },
+      { emoji: "🌙", name: "Медитация осознанности", desc: "Практика наблюдения за умом — снимает тревогу, восстанавливает внутренний ресурс и учит быть в настоящем моменте" },
+      { emoji: "🎵", name: "Звуковые медитации", desc: "Тибетские поющие чаши и частоты 432 Гц — глубокое расслабление нервной системы через звуковые вибрации" },
+      { emoji: "🌬️", name: "Дыхательные практики", desc: "Пранаяма и техники осознанного дыхания — активация парасимпатической системы, антистресс и ясность ума" },
     ],
   },
   {
-    id: "spa",
-    icon: "◇",
-    title: "SPA & Уход за лицом",
-    tagline: "Ритуалы красоты высшего уровня",
-    effect: "Сияние, молодость, совершенство кожи",
+    id: "spa-beauty",
+    icon: "✿",
+    title: "SPA, Лицо & Красота",
+    tagline: "Ритуалы красоты — от лица до кончиков пальцев",
+    effect: "Сияние, молодость, красота в каждой детали",
     color: "#9b7fb5",
     gradient: "linear-gradient(135deg, rgba(155,127,181,0.15), rgba(155,127,181,0.04))",
     items: [
@@ -95,17 +100,6 @@ const programs = [
       { emoji: "🤲", name: "Скульптурный массаж лица", desc: "Японская техника работы с мышцами — естественный лифтинг без инъекций" },
       { emoji: "👄", name: "Буккальный массаж", desc: "Работа изнутри и снаружи — убирает зажимы, меняет овал лица" },
       { emoji: "❄️", name: "Крио-массаж", desc: "Холодовая терапия сужает поры, снимает воспаления и моментально освежает цвет лица" },
-    ],
-  },
-  {
-    id: "beauty",
-    icon: "✿",
-    title: "Маникюр & Волосы",
-    tagline: "Детали, которые завершают образ",
-    effect: "Красота в каждой детали",
-    color: "#e8b86d",
-    gradient: "linear-gradient(135deg, rgba(232,184,109,0.15), rgba(232,184,109,0.04))",
-    items: [
       { emoji: "💅", name: "Кислотный педикюр", desc: "Растворяет огрубевшую кожу без механического воздействия — стопы как у ребёнка" },
       { emoji: "✨", name: "Восстановление ногтей", desc: "Маникюр с реконструкцией — даже повреждённые ногти становятся крепкими и красивыми" },
       { emoji: "🌿", name: "Пилинг головы", desc: "Глубокое очищение кожи головы — активирует рост волос и устраняет перхоть" },
@@ -129,7 +123,7 @@ const MaxIcon = () => (
 
 // ─── Carousel ────────────────────────────────────────────────────────────────
 
-function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"]; color: string }) {
+function ProcedureCarousel({ items, color }: { items: { emoji: string; name: string; desc: string }[]; color: string }) {
   const [active, setActive] = useState(0);
   const total = items.length;
 
@@ -182,6 +176,89 @@ function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"
   );
 }
 
+// ─── BioHack Card (особый стиль) ──────────────────────────────────────────────
+
+function BioHackCard() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.08 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="mb-12"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(50px)",
+        transition: "opacity 0.9s ease, transform 0.9s ease",
+      }}>
+      <div className="relative rounded-3xl overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #1a0f02 0%, #120a01 50%, #1a0f02 100%)",
+          border: "1px solid rgba(200,146,58,0.35)",
+          boxShadow: "0 0 80px rgba(200,146,58,0.1), inset 0 0 80px rgba(200,146,58,0.03)",
+        }}>
+        {/* Декоративный фон */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(200,146,58,0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(200,100,20,0.06) 0%, transparent 60%)" }} />
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="absolute rounded-full"
+              style={{
+                width: `${60 + i * 40}px`, height: `${60 + i * 40}px`,
+                border: `1px solid rgba(200,146,58,${0.06 - i * 0.01})`,
+                top: "50%", right: "-30px",
+                transform: "translateY(-50%)",
+                animation: `regen-spin ${12 + i * 5}s linear infinite ${i % 2 ? "reverse" : ""}`,
+              }} />
+          ))}
+        </div>
+
+        {/* Header */}
+        <div className="relative px-8 pt-8 pb-6 flex flex-col md:flex-row md:items-start gap-6"
+          style={{ borderBottom: "1px solid rgba(200,146,58,0.15)" }}>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-4xl" style={{ color: "#e8b86d", textShadow: "0 0 20px rgba(200,146,58,0.6)" }}>✦</span>
+              <span className="text-xs px-3 py-1 rounded-full tracking-wider uppercase"
+                style={{ background: "rgba(200,146,58,0.15)", color: "#c8923a", border: "1px solid rgba(200,146,58,0.3)" }}>
+                {biohack.items.length} процедур · флагман
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-light mb-2"
+              style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d", textShadow: "0 0 40px rgba(200,146,58,0.3)" }}>
+              {biohack.title}
+            </h2>
+            <p className="text-base italic mb-3" style={{ color: "#8a7a65" }}>{biohack.tagline}</p>
+            <p className="text-sm flex items-center gap-2" style={{ color: "#c8923a" }}>
+              <span style={{ fontSize: "0.6rem" }}>◆</span>{biohack.effect}
+            </p>
+          </div>
+          {/* Иконки процедур */}
+          <div className="flex flex-wrap gap-2 md:max-w-[160px] justify-start md:justify-end">
+            {biohack.items.map((item, i) => (
+              <span key={i} className="text-xl" title={item.name}
+                style={{ filter: "drop-shadow(0 0 4px rgba(200,146,58,0.3))", animation: `pulse-item ${2 + i * 0.3}s ease-in-out ${i * 0.2}s infinite` }}>
+                {item.emoji}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Carousel */}
+        <div className="p-6 md:p-8">
+          <ProcedureCarousel items={biohack.items} color="#c8923a" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Program Card ─────────────────────────────────────────────────────────────
 
 function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number }) {
@@ -196,8 +273,6 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
-
-  const msg = encodeURIComponent(`Здравствуйте! Хочу узнать подробнее о программе «${prog.title}»`);
 
   return (
     <div ref={ref} className="rounded-3xl overflow-hidden"
@@ -218,7 +293,7 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
             {prog.items.length} процедур
           </span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-light mb-1"
+        <h2 className="text-2xl md:text-3xl font-light mb-1"
           style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{prog.title}</h2>
         <p className="text-sm italic mb-3" style={{ color: "#8a7a65" }}>{prog.tagline}</p>
         <p className="text-sm font-medium flex items-center gap-2" style={{ color: prog.color }}>
@@ -228,7 +303,6 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
       <div className="p-6">
         <ProcedureCarousel items={prog.items} color={prog.color} />
       </div>
-
     </div>
   );
 }
@@ -270,6 +344,23 @@ function DogNursery() {
     { emoji: "📹", name: "Видео-трансляция", desc: "Наблюдайте за питомцем онлайн в любой момент — полный покой и прозрачность" },
   ];
 
+  const floaters = [
+    { el: "🐾", x: "8%",  y: "12%", size: "1.8rem", dur: "6s",  delay: "0s",   rot: "-20deg" },
+    { el: "🐾", x: "88%", y: "6%",  size: "1.4rem", dur: "8s",  delay: "1.2s", rot: "30deg"  },
+    { el: "🐾", x: "72%", y: "78%", size: "2rem",   dur: "7s",  delay: "0.5s", rot: "15deg"  },
+    { el: "🐾", x: "15%", y: "70%", size: "1.2rem", dur: "9s",  delay: "2s",   rot: "-35deg" },
+    { el: "🌿", x: "5%",  y: "40%", size: "1.6rem", dur: "10s", delay: "0.3s", rot: "10deg"  },
+    { el: "🍃", x: "92%", y: "35%", size: "1.5rem", dur: "8s",  delay: "1.8s", rot: "-15deg" },
+    { el: "🍃", x: "50%", y: "5%",  size: "1.1rem", dur: "12s", delay: "0.8s", rot: "25deg"  },
+    { el: "🌿", x: "78%", y: "55%", size: "1.3rem", dur: "9s",  delay: "3s",   rot: "-25deg" },
+    { el: "🐾", x: "35%", y: "88%", size: "1rem",   dur: "11s", delay: "1.5s", rot: "40deg"  },
+    { el: "🍃", x: "60%", y: "90%", size: "1.4rem", dur: "7s",  delay: "0.2s", rot: "-10deg" },
+    { el: "🍀", x: "25%", y: "30%", size: "1.2rem", dur: "13s", delay: "2.5s", rot: "20deg"  },
+    { el: "🐾", x: "55%", y: "50%", size: "0.9rem", dur: "10s", delay: "4s",   rot: "-45deg" },
+    { el: "🍃", x: "3%",  y: "80%", size: "1.3rem", dur: "9s",  delay: "1s",   rot: "35deg"  },
+    { el: "🌿", x: "95%", y: "65%", size: "1.1rem", dur: "11s", delay: "0.6s", rot: "-30deg" },
+  ];
+
   return (
     <section className="py-20 px-6">
       <div className="max-w-4xl mx-auto">
@@ -284,18 +375,7 @@ function DogNursery() {
           }}>
           {/* Animated paws & leaves */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-            {[
-              { el: "🐾", x: "8%",  y: "12%", size: "1.8rem", dur: "6s",  delay: "0s",   rot: "-20deg" },
-              { el: "🐾", x: "88%", y: "6%",  size: "1.4rem", dur: "8s",  delay: "1.2s", rot: "30deg"  },
-              { el: "🐾", x: "72%", y: "78%", size: "2rem",   dur: "7s",  delay: "0.5s", rot: "15deg"  },
-              { el: "🐾", x: "15%", y: "70%", size: "1.2rem", dur: "9s",  delay: "2s",   rot: "-35deg" },
-              { el: "🌿", x: "5%",  y: "40%", size: "1.6rem", dur: "10s", delay: "0.3s", rot: "10deg"  },
-              { el: "🍃", x: "92%", y: "35%", size: "1.5rem", dur: "8s",  delay: "1.8s", rot: "-15deg" },
-              { el: "🍃", x: "50%", y: "5%",  size: "1.1rem", dur: "12s", delay: "0.8s", rot: "25deg"  },
-              { el: "🌿", x: "78%", y: "55%", size: "1.3rem", dur: "9s",  delay: "3s",   rot: "-25deg" },
-              { el: "🐾", x: "35%", y: "88%", size: "1rem",   dur: "11s", delay: "1.5s", rot: "40deg"  },
-              { el: "🍃", x: "60%", y: "90%", size: "1.4rem", dur: "7s",  delay: "0.2s", rot: "-10deg" },
-            ].map((item, i) => (
+            {floaters.map((item, i) => (
               <span key={i} style={{
                 position: "absolute", left: item.x, top: item.y, fontSize: item.size,
                 transform: `rotate(${item.rot})`,
@@ -335,7 +415,6 @@ function DogNursery() {
               </div>
             ))}
           </div>
-
           <div className="pb-6" />
         </div>
       </div>
@@ -473,6 +552,18 @@ export default function Regeneration() {
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Все направления</p>
             <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Программы</h2>
           </div>
+
+          {/* БиоХакинг — флагман, на всю ширину */}
+          <BioHackCard />
+
+          {/* Разделитель */}
+          <div className="flex items-center gap-4 mb-12">
+            <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.25))" }} />
+            <span className="text-xs uppercase tracking-[0.4em] px-4" style={{ color: "#8a7a65" }}>Другие направления</span>
+            <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.25), transparent)" }} />
+          </div>
+
+          {/* Остальные — двухколоночная сетка с разделителем */}
           <div className="relative grid md:grid-cols-2 gap-8">
             {/* vertical divider */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 pointer-events-none"
@@ -517,10 +608,10 @@ export default function Regeneration() {
         <div className="max-w-2xl mx-auto relative">
           <span className="block text-5xl mb-6" style={{ color: "#c8923a" }}>◇</span>
           <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Ваше обновление<br /><em style={{ color: "#c8923a" }}>уже ждёт вас.</em>
+            Пар зовёт.<br /><em style={{ color: "#c8923a" }}>Тело помнит путь.</em>
           </h2>
           <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
-            Ждите сообщения от вашего обновления —<br />оно уже на пути к вам.
+            Огонь и лёд уже ждут встречи с вами —<br />позвольте магме и инею сделать своё дело.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => navigate("/strategy")}
@@ -534,7 +625,7 @@ export default function Regeneration() {
               <MaxIcon /> Написать Марии
             </a>
           </div>
-          <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Ваше обновление уже ждёт · Без менеджеров</p>
+          <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Магма встречает иней · Ваш ритуал начинается</p>
         </div>
       </section>
 
@@ -551,11 +642,15 @@ export default function Regeneration() {
           to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         @keyframes dogFloat {
-          0%   { opacity: 0;    transform: translateY(0px)   rotate(var(--rot, 0deg)) scale(0.8); }
-          20%  { opacity: 0.12; }
-          50%  { opacity: 0.18; transform: translateY(-12px) rotate(var(--rot, 0deg)) scale(1); }
+          0%   { opacity: 0;    transform: translateY(0px) scale(0.8); }
+          20%  { opacity: 0.14; }
+          50%  { opacity: 0.2;  transform: translateY(-14px) scale(1); }
           80%  { opacity: 0.1; }
-          100% { opacity: 0;    transform: translateY(0px)   rotate(var(--rot, 0deg)) scale(0.8); }
+          100% { opacity: 0;    transform: translateY(0px) scale(0.8); }
+        }
+        @keyframes pulse-item {
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.15); }
         }
       `}</style>
     </div>
