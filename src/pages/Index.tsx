@@ -465,8 +465,7 @@ export default function Index() {
     { label: "Программы", id: "programs" },
     { label: "Таро", id: "tarot-nav" },
     { label: "🌿 Лавка", id: "shop-nav" },
-    { label: "✦ Традиция", id: "tradition-nav" },
-    { label: "ᚦ Регенерация", id: "regen-nav" },
+    { label: "✦ Традиция · Old & New", id: "tradition-nav" },
     { label: "Контакты", id: "contacts" },
   ];
 
@@ -474,7 +473,6 @@ export default function Index() {
     if (id === "tarot-nav") { navigate("/tarot"); setNavOpen(false); return; }
     if (id === "shop-nav") { navigate("/shop"); setNavOpen(false); return; }
     if (id === "tradition-nav") { navigate("/tradition"); setNavOpen(false); return; }
-    if (id === "regen-nav") { navigate("/regeneration"); setNavOpen(false); return; }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setNavOpen(false);
   }

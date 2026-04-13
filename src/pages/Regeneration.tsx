@@ -7,7 +7,7 @@ import Icon from "@/components/ui/icon";
 const HERO_STATS = [
   { value: "7+", label: "направлений" },
   { value: "40+", label: "процедур" },
-  { value: "1", label: "персональная стратегия" },
+  { value: "1", label: "ваша уникальная стратегия" },
 ];
 
 const programs = [
@@ -228,21 +228,7 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
       <div className="p-6">
         <ProcedureCarousel items={prog.items} color={prog.color} />
       </div>
-      <div className="px-6 pb-7">
-        <a href={`https://max.ru/+79186860650?text=${msg}`} target="_blank" rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.02] hover:shadow-xl active:scale-95"
-          style={{
-            background: `linear-gradient(135deg, ${prog.color}, ${prog.color}bb)`,
-            color: "#0f0c08",
-            textDecoration: "none",
-            fontWeight: 700,
-            letterSpacing: "0.1em",
-            boxShadow: `0 4px 20px ${prog.color}30`,
-          }}>
-          <MaxIcon />
-          Записаться на {prog.title}
-        </a>
-      </div>
+
     </div>
   );
 }
@@ -296,8 +282,28 @@ function DogNursery() {
             border: "1px solid rgba(106,170,128,0.25)",
             boxShadow: "0 0 80px rgba(106,170,128,0.06)",
           }}>
-          <div className="absolute top-4 right-6 text-4xl opacity-10 select-none pointer-events-none" style={{ transform: "rotate(15deg)" }}>🐾</div>
-          <div className="absolute bottom-20 left-4 text-6xl opacity-5 select-none pointer-events-none" style={{ transform: "rotate(-10deg)" }}>🐾</div>
+          {/* Animated paws & leaves */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            {[
+              { el: "🐾", x: "8%",  y: "12%", size: "1.8rem", dur: "6s",  delay: "0s",   rot: "-20deg" },
+              { el: "🐾", x: "88%", y: "6%",  size: "1.4rem", dur: "8s",  delay: "1.2s", rot: "30deg"  },
+              { el: "🐾", x: "72%", y: "78%", size: "2rem",   dur: "7s",  delay: "0.5s", rot: "15deg"  },
+              { el: "🐾", x: "15%", y: "70%", size: "1.2rem", dur: "9s",  delay: "2s",   rot: "-35deg" },
+              { el: "🌿", x: "5%",  y: "40%", size: "1.6rem", dur: "10s", delay: "0.3s", rot: "10deg"  },
+              { el: "🍃", x: "92%", y: "35%", size: "1.5rem", dur: "8s",  delay: "1.8s", rot: "-15deg" },
+              { el: "🍃", x: "50%", y: "5%",  size: "1.1rem", dur: "12s", delay: "0.8s", rot: "25deg"  },
+              { el: "🌿", x: "78%", y: "55%", size: "1.3rem", dur: "9s",  delay: "3s",   rot: "-25deg" },
+              { el: "🐾", x: "35%", y: "88%", size: "1rem",   dur: "11s", delay: "1.5s", rot: "40deg"  },
+              { el: "🍃", x: "60%", y: "90%", size: "1.4rem", dur: "7s",  delay: "0.2s", rot: "-10deg" },
+            ].map((item, i) => (
+              <span key={i} style={{
+                position: "absolute", left: item.x, top: item.y, fontSize: item.size,
+                transform: `rotate(${item.rot})`,
+                opacity: 0,
+                animation: `dogFloat ${item.dur} ease-in-out ${item.delay} infinite`,
+              }}>{item.el}</span>
+            ))}
+          </div>
 
           <div className="px-8 pt-8 pb-6 flex flex-col md:flex-row md:items-center gap-4"
             style={{ borderBottom: "1px solid rgba(106,170,128,0.12)", background: "linear-gradient(90deg, rgba(106,170,128,0.1), transparent)" }}>
@@ -330,15 +336,7 @@ function DogNursery() {
             ))}
           </div>
 
-          <div className="px-6 pb-7">
-            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу узнать про Ясли для собак")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.02] hover:shadow-xl"
-              style={{ background: "linear-gradient(135deg, #3d8a58, #2d6b44)", color: "white", textDecoration: "none", fontWeight: 700 }}>
-              <MaxIcon />
-              Записать питомца
-            </a>
-          </div>
+          <div className="pb-6" />
         </div>
       </div>
     </section>
@@ -441,7 +439,7 @@ export default function Regeneration() {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "#8a7a65" }}>Почему это работает</p>
           <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Не просто процедуры.<br /><em style={{ color: "#c8923a" }}>Система трансформации.</em>
+            Не просто процедуры.<br /><em style={{ color: "#c8923a" }}>Система обновления.</em>
           </h2>
           <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12"
             style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>
@@ -475,7 +473,15 @@ export default function Regeneration() {
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Все направления</p>
             <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Программы</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="relative grid md:grid-cols-2 gap-8">
+            {/* vertical divider */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 pointer-events-none"
+              style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(200,146,58,0.2) 15%, rgba(200,146,58,0.35) 50%, rgba(200,146,58,0.2) 85%, transparent 100%)" }}>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center"
+                style={{ background: "#0d0a07", border: "1px solid rgba(200,146,58,0.35)", color: "#c8923a", fontSize: "0.75rem" }}>
+                ◆
+              </div>
+            </div>
             {programs.map((prog, i) => <ProgramCard key={prog.id} prog={prog} index={i} />)}
           </div>
         </div>
@@ -489,7 +495,7 @@ export default function Regeneration() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Результаты клиентов</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Они уже трансформировались</h2>
+            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Они уже обновились</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {testimonials.map((t, i) => (
@@ -511,10 +517,10 @@ export default function Regeneration() {
         <div className="max-w-2xl mx-auto relative">
           <span className="block text-5xl mb-6" style={{ color: "#c8923a" }}>◇</span>
           <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Готовы начать<br /><em style={{ color: "#c8923a" }}>свою трансформацию?</em>
+            Ваше обновление<br /><em style={{ color: "#c8923a" }}>уже ждёт вас.</em>
           </h2>
           <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
-            Мария лично составит план под ваш запрос.<br />Ответит быстро и подберёт лучший старт.
+            Ждите сообщения от вашего обновления —<br />оно уже на пути к вам.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => navigate("/strategy")}
@@ -528,7 +534,7 @@ export default function Regeneration() {
               <MaxIcon /> Написать Марии
             </a>
           </div>
-          <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Отвечает лично · Без менеджеров</p>
+          <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Ваше обновление уже ждёт · Без менеджеров</p>
         </div>
       </section>
 
@@ -543,6 +549,13 @@ export default function Regeneration() {
         @keyframes regen-spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes dogFloat {
+          0%   { opacity: 0;    transform: translateY(0px)   rotate(var(--rot, 0deg)) scale(0.8); }
+          20%  { opacity: 0.12; }
+          50%  { opacity: 0.18; transform: translateY(-12px) rotate(var(--rot, 0deg)) scale(1); }
+          80%  { opacity: 0.1; }
+          100% { opacity: 0;    transform: translateY(0px)   rotate(var(--rot, 0deg)) scale(0.8); }
         }
       `}</style>
     </div>
