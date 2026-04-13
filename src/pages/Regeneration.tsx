@@ -1,200 +1,566 @@
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const services = [
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const HERO_STATS = [
+  { value: "7+", label: "направлений" },
+  { value: "40+", label: "процедур" },
+  { value: "1", label: "персональная стратегия" },
+];
+
+const programs = [
   {
-    category: "БиоХакинг & Персонализированные стратегии",
-    color: "#c8923a",
+    id: "biohack",
     rune: "ᚦ",
+    title: "БиоХакинг",
+    tagline: "Персонализированная стратегия регенерации",
+    effect: "Запускает глубокое обновление на клеточном уровне",
+    color: "#c8923a",
+    dim: "rgba(200,146,58,0.08)",
+    gradient: "linear-gradient(135deg, rgba(200,146,58,0.15), rgba(200,146,58,0.04))",
     items: [
-      "Создание персонализированных стратегий биохакинга",
-      "Авторские программы регенеративной практики",
-      "Криокапсула",
-      "LED-панели для терапии светом",
-      "Гидромассажная ванна (с родниковой водой, морской солью, травяными настоями, грязью: сапропелевая / иловая / торфяная)",
-      "Бандажные обёртывания водорослевые",
-      "Массаж",
-      "Альгинатные маски",
-      "Маски для волос",
-      "Баня со SPA-процедурами: мойка берёзовым веником, перчаткой кесе, медово-травяной пилинг, ароматерапия",
-      "Капельницы",
+      { emoji: "❄️", name: "Криокапсула", desc: "Криотерапия запускает регенерацию тканей, ускоряет обмен веществ и даёт мощный антивоспалительный эффект" },
+      { emoji: "💡", name: "LED-терапия", desc: "Световые панели стимулируют выработку коллагена, улучшают микроциркуляцию и омолаживают кожу" },
+      { emoji: "🌊", name: "Гидромассаж", desc: "Родниковая вода с морской солью, травяными настоями и лечебными грязями — детокс и восстановление" },
+      { emoji: "🌿", name: "Водорослевые обёртывания", desc: "Бандажные обёртывания питают кожу, выводят токсины и моделируют силуэт" },
+      { emoji: "🤲", name: "Авторский массаж", desc: "Глубокая работа с телом — снятие зажимов, восстановление лимфотока, расслабление нервной системы" },
+      { emoji: "✨", name: "Альгинатные маски", desc: "Мгновенный лифтинг и увлажнение — кожа сияет уже после первой процедуры" },
+      { emoji: "💧", name: "Капельницы", desc: "Персональные коктейли витаминов и микроэлементов для восстановления изнутри" },
+      { emoji: "🔥", name: "SPA-баня", desc: "Берёзовый веник, кесе, медово-травяной пилинг и ароматерапия — обновление с головы до пят" },
     ],
   },
   {
-    category: "PRP / Инъекционные практики",
-    color: "#b87a6a",
+    id: "prp",
     rune: "ᚢ",
+    title: "PRP & Инъекции",
+    tagline: "Молодость из ресурсов вашего тела",
+    effect: "Омоложение, восстановление, сияние кожи",
+    color: "#b87a6a",
+    dim: "rgba(184,122,106,0.08)",
+    gradient: "linear-gradient(135deg, rgba(184,122,106,0.15), rgba(184,122,106,0.04))",
     items: [
-      "PRP-терапия",
-      "NCTF",
-      "PDRN",
-      "Инъекции микроколост",
-      "Мезоай",
-      "Мезоксантин",
-      "Субцизия от рубцов в сочетании с инъекциями варёной PRP-терапии или собственного жира",
+      { emoji: "🩸", name: "PRP-терапия", desc: "Плазма собственной крови насыщена факторами роста — запускает регенерацию тканей на уровне клеток" },
+      { emoji: "✦", name: "NCTF", desc: "Коктейль из 53 компонентов глубоко увлажняет, разглаживает кожу и восстанавливает её матрикс" },
+      { emoji: "🧬", name: "PDRN", desc: "Полинуклеотиды из лосося восстанавливают ДНК клеток, оказывают мощный регенерирующий эффект" },
+      { emoji: "💉", name: "Микроколост", desc: "Тончайшие инъекции коктейлей омоложения — равномерное питание и увлажнение всей поверхности кожи" },
+      { emoji: "👁️", name: "Мезоай", desc: "Специальный препарат для зоны глаз — убирает тёмные круги, отёки и мелкие морщины" },
+      { emoji: "☀️", name: "Мезоксантин", desc: "Антиоксидантная мезотерапия защищает клетки от свободных радикалов и восстанавливает сияние" },
+      { emoji: "🔬", name: "Субцизия от рубцов", desc: "Рассечение фиброзных тяжей + инъекции PRP или собственного жира — видимый результат с первого сеанса" },
     ],
   },
   {
-    category: "Аппаратная косметология",
-    color: "#7aab9e",
+    id: "hardware",
     rune: "ᛚ",
+    title: "Аппаратная косметология",
+    tagline: "Технологии, которые меняют тело",
+    effect: "Коррекция, омоложение, лазерные технологии",
+    color: "#7aab9e",
+    dim: "rgba(122,171,158,0.08)",
+    gradient: "linear-gradient(135deg, rgba(122,171,158,0.15), rgba(122,171,158,0.04))",
     items: [
-      "Шлифовки лица Fotona, Halo",
-      "Лазерная эпиляция",
-      "Удаление сосудистых звёздочек, гемангиом, новообразований, винных пятен",
-      "Интимное отбеливание",
-      "Перманент бровей и губ",
-      "Эндосфера",
-      "Icoon",
-      "Onda",
-      "BTL X-Wave",
-      "ИзоДжей",
-      "Процедура тунелизации от целлюлита и растяжек",
+      { emoji: "⚡", name: "Fotona & Halo", desc: "Шлифовка лазером — убирает пигментацию, рубцы, расширенные поры. Кожа как после 10 лет назад" },
+      { emoji: "🌸", name: "Лазерная эпиляция", desc: "Навсегда избавит от нежелательных волос — безболезненно, быстро, на любом типе кожи" },
+      { emoji: "💎", name: "Удаление сосудов и пятен", desc: "Сосудистые звёздочки, гемангиомы, винные пятна, новообразования — исчезают без следа" },
+      { emoji: "✨", name: "Эндосфера", desc: "Антицеллюлитная терапия с доказанным результатом — уменьшение объёмов и подтяжка тканей" },
+      { emoji: "🔥", name: "Onda & Icoon", desc: "Неинвазивное жиросжигание и ремоделирование тела — видимый результат без операции" },
+      { emoji: "💪", name: "BTL X-Wave", desc: "Радиальные ударные волны разрушают фиброзные тяжи целлюлита и запускают лимфодренаж" },
+      { emoji: "🌊", name: "ИзоДжей & тунелизация", desc: "Аппаратная коррекция целлюлита и растяжек — глубокое воздействие на проблемные зоны" },
+      { emoji: "🌟", name: "Перманент бровей и губ", desc: "Авторская техника перманентного макияжа — естественный результат на годы" },
     ],
   },
   {
-    category: "Хот-Йога & Движение",
-    color: "#d4622a",
+    id: "yoga",
     rune: "ᚹ",
+    title: "Хот-Йога & Движение",
+    tagline: "Тело в потоке — разум в покое",
+    effect: "Гибкость, сила, внутренний баланс",
+    color: "#d4622a",
+    dim: "rgba(212,98,42,0.08)",
+    gradient: "linear-gradient(135deg, rgba(212,98,42,0.15), rgba(212,98,42,0.04))",
     items: [
-      "Хот-йога",
-      "Хот-сайкл",
-      "Растяжка",
-      "Хот-пилатес",
+      { emoji: "🔥", name: "Хот-йога", desc: "Практика в тёплом зале — тело раскрывается глубже, детоксикация через пот, ум успокаивается" },
+      { emoji: "🚴", name: "Хот-сайкл", desc: "Кардио в тепле сжигает в 2 раза больше калорий и прокачивает выносливость на новый уровень" },
+      { emoji: "🌿", name: "Растяжка", desc: "Восстановление гибкости и подвижности суставов — профилактика травм и хронических болей" },
+      { emoji: "🧘", name: "Хот-пилатес", desc: "Глубокая работа с мышечным корсетом в тёплом пространстве — тело становится стройнее и сильнее" },
     ],
   },
   {
-    category: "SPA & Уход за лицом",
-    color: "#9b7fb5",
+    id: "spa",
     rune: "ᛟ",
+    title: "SPA & Уход за лицом",
+    tagline: "Ритуалы красоты высшего уровня",
+    effect: "Сияние, молодость, совершенство кожи",
+    color: "#9b7fb5",
+    dim: "rgba(155,127,181,0.08)",
+    gradient: "linear-gradient(135deg, rgba(155,127,181,0.15), rgba(155,127,181,0.04))",
     items: [
-      "HydraFacial + локальная чистка + пилинг + маска",
-      "Массаж лица (скульптурный, буккальный) + маска",
-      "Крио-массаж",
-      "Крио-капсула",
+      { emoji: "💦", name: "HydraFacial", desc: "Глубокая чистка + пилинг + маска за один сеанс — кожа сияет как после курса процедур" },
+      { emoji: "🤲", name: "Скульптурный массаж лица", desc: "Японская техника работы с мышцами — естественный лифтинг без инъекций" },
+      { emoji: "👄", name: "Буккальный массаж", desc: "Работа изнутри и снаружи — убирает зажимы, убирает морщины, меняет овал лица" },
+      { emoji: "❄️", name: "Крио-массаж", desc: "Холодовая терапия сужает поры, снимает воспаления и моментально освежает цвет лица" },
     ],
   },
   {
-    category: "Маникюр & Педикюр & Волосы",
-    color: "#e8b86d",
+    id: "beauty",
     rune: "ᚠ",
+    title: "Маникюр & Волосы",
+    tagline: "Детали, которые завершают образ",
+    effect: "Красота в каждой детали",
+    color: "#e8b86d",
+    dim: "rgba(232,184,109,0.08)",
+    gradient: "linear-gradient(135deg, rgba(232,184,109,0.15), rgba(232,184,109,0.04))",
     items: [
-      "Кислотный педикюр",
-      "Маникюр с восстановлением ногтей",
-      "Пилинг головы",
-      "Стрижка",
-      "Укладка",
+      { emoji: "💅", name: "Кислотный педикюр", desc: "Растворяет огрубевшую кожу без механического воздействия — стопы как у ребёнка" },
+      { emoji: "✨", name: "Восстановление ногтей", desc: "Маникюр с реконструкцией — даже повреждённые ногти становятся крепкими и красивыми" },
+      { emoji: "🌿", name: "Пилинг головы", desc: "Глубокое очищение кожи головы — активирует рост волос и устраняет перхоть" },
+      { emoji: "✂️", name: "Стрижка & укладка", desc: "Авторская стрижка с учётом типа волос и образа жизни — волосы, которыми вы гордитесь" },
     ],
   },
   {
-    category: "Ясли для собак",
-    color: "#6aaa80",
+    id: "pets",
     rune: "ᛃ",
+    title: "Ясли для собак",
+    tagline: "Забота о любимце пока вы отдыхаете",
+    effect: "Счастливый питомец — спокойный хозяин",
+    color: "#6aaa80",
+    dim: "rgba(106,170,128,0.08)",
+    gradient: "linear-gradient(135deg, rgba(106,170,128,0.15), rgba(106,170,128,0.04))",
     items: [
-      "Груминг",
-      "SPA для питомца",
-      "Массаж",
-      "Игры",
-      "Видео-обзор (онлайн-трансляция)",
+      { emoji: "✂️", name: "Груминг", desc: "Профессиональная стрижка, расчёсывание и уход — питомец выглядит великолепно" },
+      { emoji: "🛁", name: "SPA для питомца", desc: "Купание с премиальными средствами, маски и ароматерапия — роскошный уход для вашего любимца" },
+      { emoji: "🤲", name: "Массаж", desc: "Расслабляющий массаж снимает стресс, улучшает кровообращение и настроение питомца" },
+      { emoji: "📹", name: "Видео-трансляция", desc: "Наблюдайте за питомцем онлайн в любой момент — полный покой и прозрачность" },
     ],
   },
 ];
 
-export default function Regeneration() {
-  const navigate = useNavigate();
+const testimonials = [
+  { name: "Анастасия К.", text: "После криокапсулы и PRP-терапии кожа стала выглядеть на 10 лет моложе. Мария — настоящий профессионал.", stars: 5 },
+  { name: "Елена М.", text: "Хот-йога изменила моё тело и внутреннее состояние. Уже 3 месяца хожу и не могу остановиться!", stars: 5 },
+  { name: "Ольга Т.", text: "Персональная стратегия биохакинга — это именно то, что мне было нужно. Результат виден уже после первого курса.", stars: 5 },
+  { name: "Наталья В.", text: "SPA-баня с авторскими программами — это что-то невероятное. Ушла вся усталость, кожа светится.", stars: 5 },
+];
+
+// ─── Carousel ────────────────────────────────────────────────────────────────
+
+function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"]; color: string }) {
+  const [active, setActive] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const total = items.length;
+
+  function prev() { setActive(a => (a - 1 + total) % total); }
+  function next() { setActive(a => (a + 1) % total); }
+
+  useEffect(() => {
+    const t = setInterval(() => setActive(a => (a + 1) % total), 4000);
+    return () => clearInterval(t);
+  }, [total]);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--eth-bg1, #0f0c08)", color: "var(--eth-cream, #f5ede0)" }}>
+    <div className="relative">
+      {/* Cards strip */}
+      <div className="overflow-hidden rounded-2xl">
+        <div
+          ref={trackRef}
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${active * 100}%)` }}
+        >
+          {items.map((item, i) => (
+            <div key={i} className="flex-shrink-0 w-full p-6 md:p-8"
+              style={{ background: `linear-gradient(135deg, ${color}14, ${color}06)`, border: `1px solid ${color}20` }}>
+              <div className="text-5xl mb-4">{item.emoji}</div>
+              <h4 className="text-xl md:text-2xl font-light mb-3"
+                style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+                {item.name}
+              </h4>
+              <p className="text-base leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
 
-      {/* Hero */}
-      <section className="relative pt-24 pb-16 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(200,146,58,0.08) 0%, transparent 65%)" }} />
-        <button onClick={() => navigate("/tradition")}
-          className="inline-flex items-center gap-2 mb-10 text-xs uppercase tracking-widest opacity-50 hover:opacity-80 transition-opacity"
-          style={{ color: "var(--eth-stone, #a89070)" }}>
-          <Icon name="ArrowLeft" size={12} />
-          Традиции
+      {/* Controls */}
+      <div className="flex items-center justify-between mt-4 px-1">
+        <button onClick={prev}
+          className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+          style={{ background: `${color}18`, border: `1px solid ${color}30`, color }}>
+          <Icon name="ChevronLeft" size={16} />
         </button>
-        <div className="mb-6">
-          <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone, #a89070)" }}>
-            Иней & Магма corp.
-          </p>
-          <h1 className="text-5xl md:text-7xl font-light leading-none mb-4"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2, #e8b86d)" }}>
-            Регенерация
-          </h1>
-          <div style={{ width: "60px", height: "1px", background: "var(--eth-gold, #c8923a)", margin: "0 auto 1.5rem" }} />
-          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke, #c8b89a)", fontStyle: "italic" }}>
-            Создание персонализированных стратегий биохакинга<br />
-            и авторские программы регенеративной практики
+
+        {/* Dots */}
+        <div className="flex gap-1.5">
+          {items.map((_, i) => (
+            <button key={i} onClick={() => setActive(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === active ? "20px" : "6px",
+                height: "6px",
+                background: i === active ? color : `${color}35`,
+              }} />
+          ))}
+        </div>
+
+        <button onClick={next}
+          className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+          style={{ background: `${color}18`, border: `1px solid ${color}30`, color }}>
+          <Icon name="ChevronRight" size={16} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Program Card ─────────────────────────────────────────────────────────────
+
+function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}
+      className="rounded-3xl overflow-hidden"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(40px)",
+        transition: `opacity 0.7s ease ${index * 0.1}s, transform 0.7s ease ${index * 0.1}s`,
+        background: "#16120e",
+        border: `1px solid ${prog.color}20`,
+        boxShadow: `0 0 60px ${prog.color}08`,
+      }}>
+
+      {/* Header */}
+      <div className="px-7 pt-7 pb-5"
+        style={{ background: prog.gradient, borderBottom: `1px solid ${prog.color}15` }}>
+        <div className="flex items-start justify-between mb-3">
+          <span className="text-4xl font-light" style={{ color: prog.color, fontFamily: "'Cormorant', serif" }}>
+            {prog.rune}
+          </span>
+          <span className="text-xs px-3 py-1 rounded-full tracking-wider uppercase"
+            style={{ background: `${prog.color}15`, color: prog.color, border: `1px solid ${prog.color}30` }}>
+            {prog.items.length} процедур
+          </span>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-light mb-1"
+          style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+          {prog.title}
+        </h2>
+        <p className="text-sm italic mb-3" style={{ color: "#8a7a65" }}>
+          {prog.tagline}
+        </p>
+        <div className="flex items-center gap-2">
+          <span style={{ color: prog.color, fontSize: "0.7rem" }}>◆</span>
+          <p className="text-sm font-medium" style={{ color: prog.color }}>
+            {prog.effect}
           </p>
         </div>
-        <p className="text-2xl md:text-3xl font-light tracking-[0.3em] uppercase mt-8"
-          style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold, #c8923a)", letterSpacing: "0.35em", textShadow: "0 0 30px rgba(200,146,58,0.4)" }}>
-          БиоХакинг
+      </div>
+
+      {/* Carousel */}
+      <div className="p-6">
+        <ProcedureCarousel items={prog.items} color={prog.color} />
+      </div>
+
+      {/* CTA */}
+      <div className="px-6 pb-7">
+        <a
+          href={`https://max.ru/+79186860650?text=${encodeURIComponent(`Здравствуйте! Хочу узнать подробнее о программе «${prog.title}»`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 w-full py-3.5 rounded-2xl text-sm tracking-wider uppercase transition-all hover:scale-[1.02] hover:shadow-xl"
+          style={{
+            background: `linear-gradient(135deg, ${prog.color}cc, ${prog.color}88)`,
+            color: "#0f0c08",
+            textDecoration: "none",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+          }}>
+          Записаться на {prog.title}
+          <Icon name="ArrowRight" size={15} />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Animated counter ─────────────────────────────────────────────────────────
+
+function AnimatedStat({ value, label }: { value: string; label: string }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold: 0.5 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="text-center"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "scale(1)" : "scale(0.8)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+      }}>
+      <p className="text-4xl md:text-5xl font-light mb-1"
+        style={{ fontFamily: "'Cormorant', serif", color: "#c8923a" }}>
+        {value}
+      </p>
+      <p className="text-xs uppercase tracking-widest" style={{ color: "#8a7a65" }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+export default function Regeneration() {
+  const navigate = useNavigate();
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div className="min-h-screen" style={{ background: "#0f0c08", color: "#f0e6d0" }}>
+
+      {/* ── Nav ── */}
+      <nav className="fixed top-0 left-0 right-0 z-30 px-6 py-4 flex items-center justify-between"
+        style={{ background: "rgba(15,12,8,0.95)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,146,58,0.1)" }}>
+        <button onClick={() => navigate("/")}
+          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
+          style={{ color: "#c8923a" }}>
+          <Icon name="ArrowLeft" size={18} />
+          <span style={{ fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>Иней & Магма</span>
+        </button>
+        <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "rgba(200,146,58,0.5)" }}>
+          Регенерация
         </p>
+        <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs tracking-wider uppercase transition-all hover:scale-105"
+          style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
+          </svg>
+          Записаться
+        </a>
+      </nav>
+
+      {/* ── Hero ── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center overflow-hidden">
+        {/* Animated bg */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(200,146,58,0.06) 0%, transparent 60%)" }} />
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="absolute rounded-full"
+              style={{
+                width: `${120 + i * 80}px`,
+                height: `${120 + i * 80}px`,
+                border: `1px solid rgba(200,146,58,${0.04 - i * 0.005})`,
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                animation: `spin ${20 + i * 8}s linear infinite ${i % 2 === 0 ? "" : "reverse"}`,
+              }} />
+          ))}
+        </div>
+
+        <div
+          style={{
+            opacity: heroVisible ? 1 : 0,
+            transform: heroVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "opacity 1s ease, transform 1s ease",
+          }}>
+          <p className="text-xs uppercase tracking-[0.6em] mb-6" style={{ color: "#8a7a65" }}>
+            Иней & Магма corp.
+          </p>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, transparent, #c8923a)" }} />
+            <span className="text-3xl" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>ᚦ</span>
+            <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, #c8923a, transparent)" }} />
+          </div>
+          <h1 className="text-6xl md:text-8xl font-light leading-none mb-4"
+            style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+            Регенерация
+          </h1>
+          <p className="text-3xl md:text-4xl font-light tracking-[0.3em] uppercase mb-8"
+            style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", textShadow: "0 0 40px rgba(200,146,58,0.5)" }}>
+            БиоХакинг
+          </p>
+          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-12"
+            style={{ fontFamily: "'Cormorant', serif", color: "#c8bca8", fontStyle: "italic" }}>
+            Персонализированные стратегии восстановления,<br />
+            где древние традиции встречаются с новейшими технологиями
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm tracking-wider uppercase transition-all hover:scale-[1.03] hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", textDecoration: "none", fontWeight: 700, letterSpacing: "0.12em" }}>
+              Создать мою стратегию
+              <Icon name="ArrowRight" size={16} />
+            </a>
+            <button
+              onClick={() => document.getElementById("programs-section")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm tracking-wider uppercase transition-all hover:opacity-80"
+              style={{ border: "1px solid rgba(200,146,58,0.3)", color: "#c8923a", letterSpacing: "0.12em" }}>
+              Смотреть программы
+              <Icon name="ChevronDown" size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+          style={{ color: "rgba(200,146,58,0.3)" }}>
+          <Icon name="ChevronDown" size={20} />
+        </div>
       </section>
 
-      {/* Services */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto space-y-8">
-          {services.map((s, si) => (
-            <div key={si} className="rounded-2xl overflow-hidden"
-              style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${s.color}20` }}>
-              <div className="px-7 py-5 flex items-center gap-4"
-                style={{ background: `linear-gradient(90deg, ${s.color}12, transparent)`, borderBottom: `1px solid ${s.color}15` }}>
-                <span className="text-2xl font-light" style={{ color: s.color, fontFamily: "'Cormorant', serif" }}>{s.rune}</span>
-                <h2 className="text-xl md:text-2xl font-light"
-                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2, #e8b86d)" }}>
-                  {s.category}
-                </h2>
-              </div>
-              <div className="px-7 py-6">
-                <ul className="space-y-2.5">
-                  {s.items.map((item, ii) => (
-                    <li key={ii} className="flex items-start gap-3 text-sm leading-relaxed"
-                      style={{ color: "var(--eth-smoke, #c8b89a)" }}>
-                      <span className="mt-0.5 flex-shrink-0 text-xs" style={{ color: s.color, opacity: 0.7 }}>◆</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+      {/* ── Stats ── */}
+      <section className="py-16 px-6" style={{ background: "#13100c", borderTop: "1px solid rgba(200,146,58,0.08)", borderBottom: "1px solid rgba(200,146,58,0.08)" }}>
+        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-8">
+          {HERO_STATS.map((s, i) => (
+            <AnimatedStat key={i} value={s.value} label={s.label} />
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6 text-center">
-        <div className="max-w-xl mx-auto">
-          <div className="mb-8" style={{ width: "40px", height: "1px", background: "var(--eth-gold, #c8923a)", margin: "0 auto 2rem" }} />
-          <p className="text-2xl md:text-3xl font-light mb-8 italic"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2, #e8b86d)" }}>
-            Начните свой путь к регенерации
+      {/* ── Value proposition ── */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "#8a7a65" }}>Почему это работает</p>
+          <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+            Не просто процедуры.<br />
+            <em style={{ color: "#c8923a" }}>Система трансформации.</em>
+          </h2>
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>
+            Каждая программа строится вокруг вашего тела, ритма жизни и целей. Мария изучает ваш запрос и собирает персональный маршрут — где каждая процедура усиливает следующую.
           </p>
-          <a
-            href="https://max.ru/+79186860650"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl transition-all hover:scale-[1.03] hover:shadow-xl"
-            style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { rune: "ᚦ", title: "Диагностика", text: "Мария изучает ваше состояние и формирует персональный план" },
+              { rune: "ᚢ", title: "Курс процедур", text: "Каждая процедура подобрана так, чтобы усилить эффект предыдущей" },
+              { rune: "ᛟ", title: "Результат", text: "Видимые изменения уже через 2–3 сеанса, долгосрочный эффект" },
+            ].map((step, i) => (
+              <div key={i} className="rounded-2xl p-6 text-center"
+                style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <span className="block text-4xl mb-3 font-light" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>{step.rune}</span>
+                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{step.title}</h3>
+                <p className="text-sm" style={{ color: "#8a7a65" }}>{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Programs ── */}
+      <section id="programs-section" className="py-20 px-6" style={{ background: "#0d0a07" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div style={{ width: "30px", height: "1px", background: "#c8923a" }} />
+              <span style={{ color: "#c8923a", fontSize: "1.2rem", fontFamily: "'Cormorant', serif" }}>◆</span>
+              <div style={{ width: "30px", height: "1px", background: "#c8923a" }} />
+            </div>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Все направления</p>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+              Программы
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {programs.map((prog, i) => (
+              <ProgramCard key={prog.id} prog={prog} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials ── */}
+      <section className="py-20 px-6" style={{ background: "#13100c" }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Результаты клиентов</p>
+            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+              Они уже трансформировались
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {testimonials.map((t, i) => (
+              <div key={i} className="rounded-2xl p-6"
+                style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <div className="flex gap-0.5 mb-3">
+                  {[...Array(t.stars)].map((_, s) => (
+                    <span key={s} style={{ color: "#c8923a", fontSize: "0.85rem" }}>★</span>
+                  ))}
+                </div>
+                <p className="text-base leading-relaxed mb-4 italic" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.05rem" }}>
+                  «{t.text}»
+                </p>
+                <p className="text-xs" style={{ color: "#8a7a65" }}>— {t.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ── */}
+      <section className="py-24 px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(200,146,58,0.06) 0%, transparent 65%)" }} />
+        <div className="max-w-2xl mx-auto relative">
+          <span className="block text-5xl mb-6 font-light" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>ᛟ</span>
+          <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+            Готовы начать<br />
+            <em style={{ color: "#c8923a" }}>свою трансформацию?</em>
+          </h2>
+          <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
+            Мария лично составит план под ваш запрос.<br />Ответит быстро и подберёт лучший старт.
+          </p>
+          <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-base tracking-wider uppercase transition-all hover:scale-[1.04] hover:shadow-2xl"
+            style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", textDecoration: "none", fontWeight: 700, letterSpacing: "0.15em", boxShadow: "0 0 60px rgba(200,146,58,0.25)" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0f0c08">
               <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
             </svg>
-            Написать в Max
+            Написать Марии в Max
           </a>
+          <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Отвечает лично · Без менеджеров</p>
         </div>
       </section>
 
       <footer className="py-8 px-6 text-center" style={{ borderTop: "1px solid rgba(200,146,58,0.08)" }}>
-        <p className="text-xs" style={{ color: "rgba(200,146,58,0.3)", fontFamily: "'Cormorant', serif" }}>
+        <button onClick={() => navigate("/")} className="text-xs hover:opacity-60 transition-opacity"
+          style={{ color: "rgba(200,146,58,0.4)", fontFamily: "'Cormorant', serif" }}>
           Иней & Магма corp. · Мария · Пармастер
-        </p>
+        </button>
       </footer>
+
+      <style>{`
+        @keyframes spin {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
