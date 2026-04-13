@@ -475,7 +475,7 @@ export default function Regeneration() {
             <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, #c8923a, transparent)" }} />
           </div>
           <h1 className="text-6xl md:text-8xl font-light leading-none mb-4"
-            style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Биохакинг</h1>
+            style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>БиоХакинг</h1>
           <p className="text-3xl md:text-4xl font-light tracking-[0.3em] uppercase mb-8"
             style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", textShadow: "0 0 40px rgba(200,146,58,0.5)" }}>Регенерация</p>
           <p className="text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-12"
