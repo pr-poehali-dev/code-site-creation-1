@@ -1013,9 +1013,7 @@ export default function Index() {
             <h2 className="text-5xl md:text-6xl font-light leading-tight"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Ждём Вас 
 у огня</h2>
-            <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Осталось всего несколько мест на ближайшие даты
-            </p>
+            <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Секретные чит-коды и древние ритуалы в </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
