@@ -463,12 +463,21 @@ export default function Tradition() {
             Иней & Магма corp.
           </span>
         </button>
-        <p
-          className="text-xs uppercase tracking-[0.4em]"
-          style={{ color: "rgba(200,146,58,0.4)" }}
-        >
-          Традиция
-        </p>
+        <div className="flex items-center gap-4">
+          <p
+            className="text-xs uppercase tracking-[0.4em]"
+            style={{ color: "rgba(200,146,58,0.4)" }}
+          >
+            Традиция
+          </p>
+          <button
+            onClick={() => navigate("/regeneration")}
+            className="text-xs uppercase tracking-widest hover:opacity-80 transition-opacity"
+            style={{ color: "var(--eth-gold)", fontFamily: "'Golos Text', sans-serif", letterSpacing: "0.1em" }}
+          >
+            ᚦ Регенерация
+          </button>
+        </div>
       </nav>
 
       {/* ── Hero ── */}
