@@ -833,9 +833,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Авторские ритуалы</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Программы
-            </h2>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Банные Программы</h2>
             <div className="eth-divider mt-6 max-w-xs mx-auto"><span>◇</span></div>
           </div>
 
