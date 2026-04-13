@@ -294,20 +294,20 @@ const productsData: Record<string, {
     { emoji: "🌿", name: "Веник сухой с полынью", description: "Полынь + лаванда + ромашка. Тонкий целебный аромат. Для нежного парения и успокоения.", price: "360 ₽", tags: ["полынь", "лаванда"] },
   ],
   fans: [
-    { emoji: "🪭", name: "Веер «Птица леса»", description: "Войлок, кожаная рукоять. Этнический орнамент. 40×30 см. Создаёт мощный направленный поток пара.", price: "1 800 ₽", tags: ["войлок", "кожа", "40×30"], badge: "Авторский" },
-    { emoji: "🪭", name: "Веер из бересты «Старый лес»", description: "Берёста, деревянная рукоять. Лёгкий и прочный. Традиционная техника плетения.", price: "1 200 ₽", tags: ["берёста", "дерево", "традиционный"] },
-    { emoji: "🪭", name: "Веер «Магма» (двусторонний)", description: "Тёмная кожа + красное сукно. Двустороннее использование. Фирменный логотип тиснением. 45×35 см.", price: "2 400 ₽", tags: ["кожа", "двусторонний", "45×35"] },
-    { emoji: "🪭", name: "Веер хвойный«Тайга»", description: "Основа из пихтовых веток, обшитых льном. Дарит дополнительный хвойный аромат при взмахе.", price: "980 ₽", tags: ["пихта", "лён", "аромат"] },
-    { emoji: "🪭", name: "Мини-веер «Иней»", description: "Белый войлок, серебристые нити. 25×20 см. Для деликатного парения, детей и новичков.", price: "800 ₽", tags: ["войлок", "25×20", "мини"] },
-    { emoji: "🪭", name: "Набор «Пармастер» (веник + веер)", description: "Дубовый веник + авторский войлочный веер в подарочной упаковке. Комплект для настоящего парения.", price: "2 600 ₽", tags: ["набор", "подарок", "комплект"], badge: "Подарок" },
+    { emoji: "🪭", accent: "#d4622a", name: "Веер «Птица леса»", description: "Войлок, кожаная рукоять. Этнический орнамент. 40×30 см. Создаёт мощный направленный поток пара.", price: "1 800 ₽", tags: ["войлок", "кожа", "40×30"], badge: "Авторский" },
+    { emoji: "🌿", accent: "#5a9a40", name: "Веер из бересты «Старый лес»", description: "Берёста, деревянная рукоять. Лёгкий и прочный. Традиционная техника плетения.", price: "1 200 ₽", tags: ["берёста", "дерево", "традиционный"] },
+    { emoji: "🔥", accent: "#c0401a", name: "Веер «Магма» (двусторонний)", description: "Тёмная кожа + красное сукно. Двустороннее использование. Фирменный логотип тиснением. 45×35 см.", price: "2 400 ₽", tags: ["кожа", "двусторонний", "45×35"] },
+    { emoji: "🌲", accent: "#3d7a2a", name: "Веер хвойный «Тайга»", description: "Основа из пихтовых веток, обшитых льном. Дарит дополнительный хвойный аромат при взмахе.", price: "980 ₽", tags: ["пихта", "лён", "аромат"] },
+    { emoji: "❄️", accent: "#6aaad0", name: "Мини-веер «Иней»", description: "Белый войлок, серебристые нити. 25×20 см. Для деликатного парения, детей и новичков.", price: "800 ₽", tags: ["войлок", "25×20", "мини"] },
+    { emoji: "🎁", accent: "#c8923a", name: "Набор «Пармастер» (веник + веер)", description: "Дубовый веник + авторский войлочный веер в подарочной упаковке. Комплект для настоящего парения.", price: "2 600 ₽", tags: ["набор", "подарок", "комплект"], badge: "Подарок" },
   ],
   zaparka: [
-    { emoji: "🫖", name: "Запарка «Дыхание тайги»", description: "Пихта, кедровая хвоя, можжевельник. Насыщает пар смолистым ароматом, очищает дыхательные пути. 50г.", price: "320 ₽", tags: ["50г", "пихта", "хвоя"], badge: "Хит" },
-    { emoji: "🫖", name: "Запарка «Луговые травы»", description: "Душица, чабрец, мята, зверобой. Мягкий цветочно-травяной аромат. Успокаивает и расслабляет. 50г.", price: "280 ₽", tags: ["50г", "чабрец", "мята"] },
-    { emoji: "🫖", name: "Запарка «Эвкалиптовая»", description: "Эвкалипт + мята + лемонграсс. Антибактериальная, освежающая. Незаменима при простуде. 40г.", price: "350 ₽", tags: ["40г", "эвкалипт", "антибакт."] },
-    { emoji: "🫖", name: "Запарка «Медовый сбор»", description: "Ромашка, лаванда, мелисса, липовый цвет. Нежный медово-цветочный аромат. Снимает стресс. 50г.", price: "300 ₽", tags: ["50г", "ромашка", "лаванда"] },
-    { emoji: "🫖", name: "Запарка «Огонь и лёд»", description: "Красный перец, имбирь — для жара, плюс мята и эвкалипт — для прохлады. Контрастный аромат. 45г.", price: "380 ₽", tags: ["45г", "контраст", "тонус"], badge: "Авторская" },
-    { emoji: "🫖", name: "Набор запарок «Четыре стихии»", description: "Огонь (перец+гвоздика), Вода (мята+мелисса), Земля (чабрец+душица), Воздух (эвкалипт+пихта). 4×40г.", price: "1 100 ₽", tags: ["набор", "4×40г", "подарок"], badge: "Подарок" },
+    { emoji: "🌲", accent: "#3d7a2a", name: "Запарка «Дыхание тайги»", description: "Пихта, кедровая хвоя, можжевельник. Насыщает пар смолистым ароматом, очищает дыхательные пути. 50г.", price: "320 ₽", tags: ["50г", "пихта", "хвоя"], badge: "Хит" },
+    { emoji: "🌿", accent: "#5a9a40", name: "Запарка «Луговые травы»", description: "Душица, чабрец, мята, зверобой. Мягкий цветочно-травяной аромат. Успокаивает и расслабляет. 50г.", price: "280 ₽", tags: ["50г", "чабрец", "мята"] },
+    { emoji: "💨", accent: "#4a9898", name: "Запарка «Эвкалиптовая»", description: "Эвкалипт + мята + лемонграсс. Антибактериальная, освежающая. Незаменима при простуде. 40г.", price: "350 ₽", tags: ["40г", "эвкалипт", "антибакт."] },
+    { emoji: "🍯", accent: "#d4922a", name: "Запарка «Медовый сбор»", description: "Ромашка, лаванда, мелисса, липовый цвет. Нежный медово-цветочный аромат. Снимает стресс. 50г.", price: "300 ₽", tags: ["50г", "ромашка", "лаванда"] },
+    { emoji: "🌋", accent: "#b83a1a", name: "Запарка «Огонь и лёд»", description: "Красный перец, имбирь — для жара, плюс мята и эвкалипт — для прохлады. Контрастный аромат. 45г.", price: "380 ₽", tags: ["45г", "контраст", "тонус"], badge: "Авторская" },
+    { emoji: "🎁", accent: "#c8923a", name: "Набор запарок «Четыре стихии»", description: "Огонь (перец+гвоздика), Вода (мята+мелисса), Земля (чабрец+душица), Воздух (эвкалипт+пихта). 4×40г.", price: "1 100 ₽", tags: ["набор", "4×40г", "подарок"], badge: "Подарок" },
   ],
 };
 
@@ -339,6 +339,16 @@ function ToastNotif({ msg, onClose }: { msg: string; onClose: () => void }) {
 
 // ─── Product Card ─────────────────────────────────────────────────────────────
 
+function accentAlpha(accent: string, alpha: number): string {
+  if (accent.startsWith("#")) {
+    const r = parseInt(accent.slice(1, 3), 16);
+    const g = parseInt(accent.slice(3, 5), 16);
+    const b = parseInt(accent.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+  return accent.replace("0.5", String(alpha));
+}
+
 function ProductCard({
   product,
   accent,
@@ -361,9 +371,9 @@ function ProductCard({
         <span
           className="absolute top-4 right-4 text-xs px-2.5 py-1 rounded-full tracking-wider"
           style={{
-            background: `${accent.replace("0.5", "0.15")}`,
-            color: accent.replace("0.5", "0.9"),
-            border: `1px solid ${accent.replace("0.5", "0.3")}`,
+            background: accentAlpha(accent, 0.15),
+            color: accentAlpha(accent, 0.95),
+            border: `1px solid ${accentAlpha(accent, 0.35)}`,
             fontFamily: "'Golos Text', sans-serif",
           }}
         >
@@ -398,9 +408,9 @@ function ProductCard({
             key={t}
             className="text-xs px-2 py-0.5 rounded-full"
             style={{
-              background: `${accent.replace("0.5", "0.08")}`,
-              color: accent.replace("0.5", "0.7"),
-              border: `1px solid ${accent.replace("0.5", "0.15")}`,
+              background: accentAlpha(accent, 0.1),
+              color: accentAlpha(accent, 0.8),
+              border: `1px solid ${accentAlpha(accent, 0.2)}`,
             }}
           >
             {t}
@@ -411,7 +421,7 @@ function ProductCard({
       <div className="flex items-center justify-between">
         <span
           className="text-xl font-light"
-          style={{ fontFamily: "'Cormorant', serif", color: accent.replace("0.5", "0.9") }}
+          style={{ fontFamily: "'Cormorant', serif", color: accentAlpha(accent, 0.95) }}
         >
           {product.price}
         </span>
@@ -419,9 +429,9 @@ function ProductCard({
           onClick={() => onAdd(product.name)}
           className="px-4 py-2 rounded-xl text-xs tracking-wider uppercase transition-all hover:scale-105 active:scale-95"
           style={{
-            background: `linear-gradient(135deg, ${accent.replace("0.5", "0.2")}, ${accent.replace("0.5", "0.1")})`,
-            border: `1px solid ${accent.replace("0.5", "0.3")}`,
-            color: accent.replace("0.5", "0.85"),
+            background: `linear-gradient(135deg, ${accentAlpha(accent, 0.22)}, ${accentAlpha(accent, 0.1)})`,
+            border: `1px solid ${accentAlpha(accent, 0.35)}`,
+            color: accentAlpha(accent, 0.9),
           }}
         >
           Заказать через Max
@@ -635,7 +645,7 @@ export default function ShopCategory() {
               >
                 <ProductCard
                   product={product}
-                  accent={accentRaw}
+                  accent={"accent" in product && product.accent ? product.accent : accentRaw}
                   onAdd={handleAdd}
                 />
               </div>

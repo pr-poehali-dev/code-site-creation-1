@@ -462,7 +462,7 @@ export default function Index() {
 
   const navItems = [
     { label: "Обо мне", id: "about" },
-    { label: "Программы", id: "programs" },
+    { label: "🔥 Баня", id: "programs" },
     { label: "Таро", id: "tarot-nav" },
     { label: "🌿 Лавка", id: "shop-nav" },
     { label: "✦ Традиция · Old & New", id: "tradition-nav" },
@@ -892,39 +892,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── Regenerative Practice ────────────────────────── */}
-      <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="eth-divider mb-6"><span>◈</span></div>
-            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
-            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Регулярная регенеративная практика в бане</h2>
-            <p className="leading-relaxed max-w-xl mx-auto text-lg" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.05rem", fontStyle: "italic" }}>запускает каскад позитивных изменений:</p>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {[
-              { symbol: "❧", title: "Кожа", text: "Очищается, улучшается эластичность, ускоряется обновление клеток." },
-              { symbol: "⟡", title: "Мышцы", text: "Снимается напряжение, ускоряется восстановление после нагрузок." },
-              { symbol: "✦", title: "Суставы", text: "Уменьшается воспаление, повышается подвижность." },
-              { symbol: "☽", title: "Нервная система", text: "Снижается уровень стресса, нормализуется сон." },
-              { symbol: "⊕", title: "Иммунитет", text: "Активируются защитные механизмы." },
-              { symbol: "◉", title: "Метаболизм", text: "Ускоряются обменные процессы, выводятся токсины." },
-            ].map((item, i) => (
-              <div key={i} className="rounded-2xl p-6 eth-card" style={{ background: "var(--eth-bg3)" }}>
-                <span className="block text-2xl mb-3 font-light" style={{ color: "var(--eth-gold)", fontFamily: "'Cormorant', serif" }}>{item.symbol}</span>
-                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{item.title}</h3>
-                <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <p className="text-2xl md:text-3xl font-light tracking-[0.3em] uppercase"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.35em", textShadow: "0 0 30px rgba(200,146,58,0.4)" }}>
-              БиоХакинг
-            </p>
-          </div>
-        </div>
-      </section>
+
 
       {/* ── Tarot Banner ────────────────────────────────── */}
       <section className="py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e1530 0%, #0f0c08 80%)" }}>
