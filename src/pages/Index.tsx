@@ -733,8 +733,8 @@ export default function Index() {
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь. Ваш Ритм. </em><br /><span style={{ fontSize: "0.55em", opacity: 0.7, fontStyle: "normal", letterSpacing: "0.05em" }}>Каждая программа выстраивается под вас.</span>
               </h2>
-              <p className="text-base leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. </p>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
+              <p className="leading-relaxed mb-4 text-xl" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. </p>
+              <p className="leading-relaxed mb-4 text-sm" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
               <p className="leading-relaxed mb-6 text-sm" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Мёд — тёплый, обволакивающий, или с ледяными припарками, дарующими свежесть. 
 
 Каждый момент — ваш, каждый жест — в лад с вашим ритмом.</p>
