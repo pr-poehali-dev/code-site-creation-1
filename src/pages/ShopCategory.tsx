@@ -424,7 +424,7 @@ function ProductCard({
             color: accent.replace("0.5", "0.85"),
           }}
         >
-          Написать
+          Заказать через Max
         </button>
       </div>
     </div>
@@ -474,7 +474,8 @@ export default function ShopCategory() {
   const flyColor = cat.leafColor.replace("0.6", "0.9");
 
   function handleAdd(name: string) {
-    setToast(`«${name}» — напишите Марии для заказа`);
+    const text = encodeURIComponent(`Здравствуйте! Хочу заказать из лавки: «${name}»`);
+    window.open(`https://max.ru/+79186860650?text=${text}`, "_blank");
   }
 
   return (

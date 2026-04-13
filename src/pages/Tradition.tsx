@@ -672,11 +672,11 @@ export default function Tradition() {
           >
             Всё — с мастерством веков<br />
             <span style={{ fontSize: "0.75em", opacity: 0.7, color: "var(--eth-smoke)" }}>
-              и заботой о вас
+              и новейшими технологиями
             </span>
           </p>
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/regeneration")}
             className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105"
             style={{
               background: "linear-gradient(135deg, rgba(60,30,10,0.9), rgba(80,40,12,0.8))",
@@ -685,7 +685,7 @@ export default function Tradition() {
               letterSpacing: "0.15em",
             }}
           >
-            Записаться
+            БиоХакинг
             <Icon name="ArrowRight" size={14} />
           </button>
         </div>

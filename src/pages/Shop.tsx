@@ -332,7 +332,7 @@ export const shopCategories = [
   },
   {
     id: "fans",
-    emoji: "🪭",
+    emoji: "ᚠ",
     title: "Банные веера",
     subtitle: "Ручная работа",
     tagline: "Ветер слушается умелых рук",
@@ -345,7 +345,7 @@ export const shopCategories = [
   },
   {
     id: "zaparka",
-    emoji: "🫖",
+    emoji: "ᚹ",
     title: "Банные запарки",
     subtitle: "Авторские сборы",
     tagline: "Лес, настоянный на пару",

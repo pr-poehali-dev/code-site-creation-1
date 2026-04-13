@@ -10,6 +10,7 @@ import Certificate from "./pages/Certificate";
 import Shop from "./pages/Shop";
 import ShopCategory from "./pages/ShopCategory";
 import Tradition from "./pages/Tradition";
+import Regeneration from "./pages/Regeneration";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:category" element={<ShopCategory />} />
           <Route path="/tradition" element={<Tradition />} />
+          <Route path="/regeneration" element={<Regeneration />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

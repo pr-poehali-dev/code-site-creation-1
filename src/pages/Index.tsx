@@ -103,10 +103,10 @@ const programs = [
 ];
 
 const benefits = [
-  { icon: "⚶", title: "Парение с вениками", text: "Берёза для очищения, дуб для силы, эвкалипт для дыхания. Мягкие техники, которые расслабляют без стресса для тела." },
-  { icon: "🌿", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
-  { icon: "⌁", title: "Водные практики", text: "Контрастные обливания и купель для пробуждения жизненной силы и укрепления сосудов." },
-  { icon: "⟐", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление изнутри." },
+  { icon: "ᚦ", title: "Парение с вениками", text: "Берёза для очищения, дуб для силы, эвкалипт для дыхания. Мягкие техники, которые расслабляют без стресса для тела." },
+  { icon: "ᚢ", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
+  { icon: "ᛚ", title: "Водные практики", text: "Контрастные обливания и купель для пробуждения жизненной силы и укрепления сосудов." },
+  { icon: "ᚹ", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление изнутри." },
   { icon: "ᛟ", title: "Звуковая медитация", text: "Гармонизация внутреннего состояния через вибрации звука — перезагрузка нервной системы и глубокий покой." },
 ];
 
@@ -917,6 +917,12 @@ export default function Index() {
               </div>
             ))}
           </div>
+          <div className="text-center mt-10">
+            <p className="text-2xl md:text-3xl font-light tracking-[0.3em] uppercase"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.35em", textShadow: "0 0 30px rgba(200,146,58,0.4)" }}>
+              БиоХакинг
+            </p>
+          </div>
         </div>
       </section>
 
@@ -1036,22 +1042,37 @@ export default function Index() {
                 ))}
               </div>
 
-              <a
-                href="https://max.ru/+79186860650"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 w-full px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl"
-                style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
-                </svg>
-                <div>
-                  <p className="text-sm font-medium tracking-wide">Написать в Max</p>
-                  <p className="text-xs opacity-70">Мария · ответит быстро</p>
+              <div className="flex items-center gap-4 mb-5">
+                <div className="relative flex-shrink-0" style={{ width: "64px", height: "64px" }}>
+                  <img
+                    src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/e7a10d9f-0e81-4def-9095-1e643088df49.jpg"
+                    alt="Иней и Магма corp."
+                    style={{
+                      width: "64px",
+                      height: "64px",
+                      objectFit: "contain",
+                      mixBlendMode: "screen",
+                      filter: "contrast(1.15) saturate(1.2) brightness(1.05) drop-shadow(0 0 12px rgba(200,146,58,0.4))",
+                      animation: "pulseGold 4s ease-in-out infinite",
+                    }}
+                  />
                 </div>
-              </a>
-
+                <a
+                  href="https://max.ru/+79186860650"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 flex-1 px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl"
+                  style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium tracking-wide">Написать в Max</p>
+                    <p className="text-xs opacity-70">Мария · ответит быстро</p>
+                  </div>
+                </a>
+              </div>
 
             </div>
 
@@ -1063,24 +1084,6 @@ export default function Index() {
 
       {/* ── Footer ──────────────────────────────────────── */}
       <footer className="py-10 px-6 text-center" style={{ background: "#0f0c08", borderTop: "1px solid rgba(200,146,58,0.1)" }}>
-        {/* Лейбл */}
-        <div className="flex justify-center mb-6">
-          <div className="relative" style={{ width: "140px", height: "140px" }}>
-            {/* Mix-blend-mode для удаления белого фона */}
-            <img
-              src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/e7a10d9f-0e81-4def-9095-1e643088df49.jpg"
-              alt="Иней и Магма corp."
-              style={{
-                width: "140px",
-                height: "140px",
-                objectFit: "contain",
-                mixBlendMode: "screen",
-                filter: "contrast(1.15) saturate(1.2) brightness(1.05) drop-shadow(0 0 20px rgba(200,146,58,0.3))",
-                animation: "pulseGold 4s ease-in-out infinite",
-              }}
-            />
-          </div>
-        </div>
         <div className="eth-divider max-w-xs mx-auto mb-5"><span>◆</span></div>
         <p className="text-xl mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.8 }}>Мария · Пармастер</p>
         <p className="text-xs tracking-widest" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>© 2024 · Краснодар · Авторские банные программы</p>
