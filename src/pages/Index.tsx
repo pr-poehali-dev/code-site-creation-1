@@ -1044,36 +1044,33 @@ export default function Index() {
                 ))}
               </div>
 
-              <div className="flex items-center gap-4 mb-5">
-                <div className="relative flex-shrink-0" style={{ width: "64px", height: "64px" }}>
-                  <img
-                    src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/e7a10d9f-0e81-4def-9095-1e643088df49.jpg"
-                    alt="Иней и Магма corp."
-                    style={{
-                      width: "64px",
-                      height: "64px",
-                      objectFit: "contain",
-                      mixBlendMode: "screen",
-                      filter: "contrast(1.15) saturate(1.2) brightness(1.05) drop-shadow(0 0 12px rgba(200,146,58,0.4))",
-                      animation: "pulseGold 4s ease-in-out infinite",
-                    }}
-                  />
+              <a
+                href="https://max.ru/+79186860650"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 w-full px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl mb-5"
+                style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
+                </svg>
+                <div>
+                  <p className="text-sm font-medium tracking-wide">Написать в Max</p>
+                  <p className="text-xs opacity-70">Мария · ответит быстро</p>
                 </div>
-                <a
-                  href="https://max.ru/+79186860650"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 flex-1 px-5 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl"
-                  style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
-                  </svg>
-                  <div>
-                    <p className="text-sm font-medium tracking-wide">Написать в Max</p>
-                    <p className="text-xs opacity-70">Мария · ответит быстро</p>
-                  </div>
-                </a>
+              </a>
+              <div className="flex justify-center mt-4">
+                <img
+                  src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/857bca83-d97b-47ea-9a5c-781078db15e4.png"
+                  alt="Иней и Магма corp."
+                  style={{
+                    width: "220px",
+                    height: "220px",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 0 24px rgba(200,146,58,0.25))",
+                    animation: "pulseGold 4s ease-in-out infinite",
+                  }}
+                />
               </div>
 
             </div>

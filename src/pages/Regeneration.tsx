@@ -13,12 +13,11 @@ const HERO_STATS = [
 const programs = [
   {
     id: "biohack",
-    rune: "ᚦ",
+    icon: "✦",
     title: "БиоХакинг",
     tagline: "Персонализированная стратегия регенерации",
     effect: "Запускает глубокое обновление на клеточном уровне",
     color: "#c8923a",
-    dim: "rgba(200,146,58,0.08)",
     gradient: "linear-gradient(135deg, rgba(200,146,58,0.15), rgba(200,146,58,0.04))",
     items: [
       { emoji: "❄️", name: "Криокапсула", desc: "Криотерапия запускает регенерацию тканей, ускоряет обмен веществ и даёт мощный антивоспалительный эффект" },
@@ -33,12 +32,11 @@ const programs = [
   },
   {
     id: "prp",
-    rune: "ᚢ",
+    icon: "◈",
     title: "PRP & Инъекции",
     tagline: "Молодость из ресурсов вашего тела",
     effect: "Омоложение, восстановление, сияние кожи",
     color: "#b87a6a",
-    dim: "rgba(184,122,106,0.08)",
     gradient: "linear-gradient(135deg, rgba(184,122,106,0.15), rgba(184,122,106,0.04))",
     items: [
       { emoji: "🩸", name: "PRP-терапия", desc: "Плазма собственной крови насыщена факторами роста — запускает регенерацию тканей на уровне клеток" },
@@ -52,12 +50,11 @@ const programs = [
   },
   {
     id: "hardware",
-    rune: "ᛚ",
+    icon: "⬡",
     title: "Аппаратная косметология",
     tagline: "Технологии, которые меняют тело",
     effect: "Коррекция, омоложение, лазерные технологии",
     color: "#7aab9e",
-    dim: "rgba(122,171,158,0.08)",
     gradient: "linear-gradient(135deg, rgba(122,171,158,0.15), rgba(122,171,158,0.04))",
     items: [
       { emoji: "⚡", name: "Fotona & Halo", desc: "Шлифовка лазером — убирает пигментацию, рубцы, расширенные поры. Кожа как после 10 лет назад" },
@@ -72,12 +69,11 @@ const programs = [
   },
   {
     id: "yoga",
-    rune: "ᚹ",
+    icon: "❋",
     title: "Хот-Йога & Движение",
     tagline: "Тело в потоке — разум в покое",
     effect: "Гибкость, сила, внутренний баланс",
     color: "#d4622a",
-    dim: "rgba(212,98,42,0.08)",
     gradient: "linear-gradient(135deg, rgba(212,98,42,0.15), rgba(212,98,42,0.04))",
     items: [
       { emoji: "🔥", name: "Хот-йога", desc: "Практика в тёплом зале — тело раскрывается глубже, детоксикация через пот, ум успокаивается" },
@@ -88,50 +84,32 @@ const programs = [
   },
   {
     id: "spa",
-    rune: "ᛟ",
+    icon: "◇",
     title: "SPA & Уход за лицом",
     tagline: "Ритуалы красоты высшего уровня",
     effect: "Сияние, молодость, совершенство кожи",
     color: "#9b7fb5",
-    dim: "rgba(155,127,181,0.08)",
     gradient: "linear-gradient(135deg, rgba(155,127,181,0.15), rgba(155,127,181,0.04))",
     items: [
       { emoji: "💦", name: "HydraFacial", desc: "Глубокая чистка + пилинг + маска за один сеанс — кожа сияет как после курса процедур" },
       { emoji: "🤲", name: "Скульптурный массаж лица", desc: "Японская техника работы с мышцами — естественный лифтинг без инъекций" },
-      { emoji: "👄", name: "Буккальный массаж", desc: "Работа изнутри и снаружи — убирает зажимы, убирает морщины, меняет овал лица" },
+      { emoji: "👄", name: "Буккальный массаж", desc: "Работа изнутри и снаружи — убирает зажимы, меняет овал лица" },
       { emoji: "❄️", name: "Крио-массаж", desc: "Холодовая терапия сужает поры, снимает воспаления и моментально освежает цвет лица" },
     ],
   },
   {
     id: "beauty",
-    rune: "ᚠ",
+    icon: "✿",
     title: "Маникюр & Волосы",
     tagline: "Детали, которые завершают образ",
     effect: "Красота в каждой детали",
     color: "#e8b86d",
-    dim: "rgba(232,184,109,0.08)",
     gradient: "linear-gradient(135deg, rgba(232,184,109,0.15), rgba(232,184,109,0.04))",
     items: [
       { emoji: "💅", name: "Кислотный педикюр", desc: "Растворяет огрубевшую кожу без механического воздействия — стопы как у ребёнка" },
       { emoji: "✨", name: "Восстановление ногтей", desc: "Маникюр с реконструкцией — даже повреждённые ногти становятся крепкими и красивыми" },
       { emoji: "🌿", name: "Пилинг головы", desc: "Глубокое очищение кожи головы — активирует рост волос и устраняет перхоть" },
       { emoji: "✂️", name: "Стрижка & укладка", desc: "Авторская стрижка с учётом типа волос и образа жизни — волосы, которыми вы гордитесь" },
-    ],
-  },
-  {
-    id: "pets",
-    rune: "ᛃ",
-    title: "Ясли для собак",
-    tagline: "Забота о любимце пока вы отдыхаете",
-    effect: "Счастливый питомец — спокойный хозяин",
-    color: "#6aaa80",
-    dim: "rgba(106,170,128,0.08)",
-    gradient: "linear-gradient(135deg, rgba(106,170,128,0.15), rgba(106,170,128,0.04))",
-    items: [
-      { emoji: "✂️", name: "Груминг", desc: "Профессиональная стрижка, расчёсывание и уход — питомец выглядит великолепно" },
-      { emoji: "🛁", name: "SPA для питомца", desc: "Купание с премиальными средствами, маски и ароматерапия — роскошный уход для вашего любимца" },
-      { emoji: "🤲", name: "Массаж", desc: "Расслабляющий массаж снимает стресс, улучшает кровообращение и настроение питомца" },
-      { emoji: "📹", name: "Видео-трансляция", desc: "Наблюдайте за питомцем онлайн в любой момент — полный покой и прозрачность" },
     ],
   },
 ];
@@ -143,15 +121,17 @@ const testimonials = [
   { name: "Наталья В.", text: "SPA-баня с авторскими программами — это что-то невероятное. Ушла вся усталость, кожа светится.", stars: 5 },
 ];
 
+const MaxIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
+  </svg>
+);
+
 // ─── Carousel ────────────────────────────────────────────────────────────────
 
 function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"]; color: string }) {
   const [active, setActive] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
   const total = items.length;
-
-  function prev() { setActive(a => (a - 1 + total) % total); }
-  function next() { setActive(a => (a + 1) % total); }
 
   useEffect(() => {
     const t = setInterval(() => setActive(a => (a + 1) % total), 4000);
@@ -160,13 +140,9 @@ function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"
 
   return (
     <div className="relative">
-      {/* Cards strip */}
       <div className="overflow-hidden rounded-2xl">
-        <div
-          ref={trackRef}
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${active * 100}%)` }}
-        >
+        <div className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${active * 100}%)` }}>
           {items.map((item, i) => (
             <div key={i} className="flex-shrink-0 w-full p-6 md:p-8"
               style={{ background: `linear-gradient(135deg, ${color}14, ${color}06)`, border: `1px solid ${color}20` }}>
@@ -175,36 +151,28 @@ function ProcedureCarousel({ items, color }: { items: typeof programs[0]["items"
                 style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
                 {item.name}
               </h4>
-              <p className="text-base leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+              <p className="text-base leading-relaxed"
+                style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
                 {item.desc}
               </p>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Controls */}
       <div className="flex items-center justify-between mt-4 px-1">
-        <button onClick={prev}
+        <button onClick={() => setActive(a => (a - 1 + total) % total)}
           className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
           style={{ background: `${color}18`, border: `1px solid ${color}30`, color }}>
           <Icon name="ChevronLeft" size={16} />
         </button>
-
-        {/* Dots */}
         <div className="flex gap-1.5">
           {items.map((_, i) => (
             <button key={i} onClick={() => setActive(i)}
               className="rounded-full transition-all duration-300"
-              style={{
-                width: i === active ? "20px" : "6px",
-                height: "6px",
-                background: i === active ? color : `${color}35`,
-              }} />
+              style={{ width: i === active ? "20px" : "6px", height: "6px", background: i === active ? color : `${color}35` }} />
           ))}
         </div>
-
-        <button onClick={next}
+        <button onClick={() => setActive(a => (a + 1) % total)}
           className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
           style={{ background: `${color}18`, border: `1px solid ${color}30`, color }}>
           <Icon name="ChevronRight" size={16} />
@@ -229,9 +197,10 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
     return () => obs.disconnect();
   }, []);
 
+  const msg = encodeURIComponent(`Здравствуйте! Хочу узнать подробнее о программе «${prog.title}»`);
+
   return (
-    <div ref={ref}
-      className="rounded-3xl overflow-hidden"
+    <div ref={ref} className="rounded-3xl overflow-hidden"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(40px)",
@@ -240,91 +209,139 @@ function ProgramCard({ prog, index }: { prog: typeof programs[0]; index: number 
         border: `1px solid ${prog.color}20`,
         boxShadow: `0 0 60px ${prog.color}08`,
       }}>
-
-      {/* Header */}
       <div className="px-7 pt-7 pb-5"
         style={{ background: prog.gradient, borderBottom: `1px solid ${prog.color}15` }}>
         <div className="flex items-start justify-between mb-3">
-          <span className="text-4xl font-light" style={{ color: prog.color, fontFamily: "'Cormorant', serif" }}>
-            {prog.rune}
-          </span>
+          <span className="text-4xl" style={{ color: prog.color }}>{prog.icon}</span>
           <span className="text-xs px-3 py-1 rounded-full tracking-wider uppercase"
             style={{ background: `${prog.color}15`, color: prog.color, border: `1px solid ${prog.color}30` }}>
             {prog.items.length} процедур
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-light mb-1"
-          style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-          {prog.title}
-        </h2>
-        <p className="text-sm italic mb-3" style={{ color: "#8a7a65" }}>
-          {prog.tagline}
+          style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{prog.title}</h2>
+        <p className="text-sm italic mb-3" style={{ color: "#8a7a65" }}>{prog.tagline}</p>
+        <p className="text-sm font-medium flex items-center gap-2" style={{ color: prog.color }}>
+          <span style={{ fontSize: "0.6rem" }}>◆</span>{prog.effect}
         </p>
-        <div className="flex items-center gap-2">
-          <span style={{ color: prog.color, fontSize: "0.7rem" }}>◆</span>
-          <p className="text-sm font-medium" style={{ color: prog.color }}>
-            {prog.effect}
-          </p>
-        </div>
       </div>
-
-      {/* Carousel */}
       <div className="p-6">
         <ProcedureCarousel items={prog.items} color={prog.color} />
       </div>
-
-      {/* CTA */}
       <div className="px-6 pb-7">
-        <a
-          href={`https://max.ru/+79186860650?text=${encodeURIComponent(`Здравствуйте! Хочу узнать подробнее о программе «${prog.title}»`)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-3 w-full py-3.5 rounded-2xl text-sm tracking-wider uppercase transition-all hover:scale-[1.02] hover:shadow-xl"
+        <a href={`https://max.ru/+79186860650?text=${msg}`} target="_blank" rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.02] hover:shadow-xl active:scale-95"
           style={{
-            background: `linear-gradient(135deg, ${prog.color}cc, ${prog.color}88)`,
+            background: `linear-gradient(135deg, ${prog.color}, ${prog.color}bb)`,
             color: "#0f0c08",
             textDecoration: "none",
-            fontWeight: 600,
+            fontWeight: 700,
             letterSpacing: "0.1em",
+            boxShadow: `0 4px 20px ${prog.color}30`,
           }}>
+          <MaxIcon />
           Записаться на {prog.title}
-          <Icon name="ArrowRight" size={15} />
         </a>
       </div>
     </div>
   );
 }
 
-// ─── Animated counter ─────────────────────────────────────────────────────────
+// ─── Animated stat ────────────────────────────────────────────────────────────
 
 function AnimatedStat({ value, label }: { value: string; label: string }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.5 }
-    );
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.5 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className="text-center"
+      style={{ opacity: visible ? 1 : 0, transform: visible ? "scale(1)" : "scale(0.8)", transition: "opacity 0.6s ease, transform 0.6s ease" }}>
+      <p className="text-4xl md:text-5xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "#c8923a" }}>{value}</p>
+      <p className="text-xs uppercase tracking-widest" style={{ color: "#8a7a65" }}>{label}</p>
+    </div>
+  );
+}
+
+// ─── Dog Nursery ──────────────────────────────────────────────────────────────
+
+function DogNursery() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
 
+  const dogServices = [
+    { emoji: "✂️", name: "Груминг", desc: "Профессиональная стрижка, расчёсывание и уход — питомец выглядит великолепно" },
+    { emoji: "🛁", name: "SPA для питомца", desc: "Купание с премиальными средствами, маски и ароматерапия — роскошный уход для вашего любимца" },
+    { emoji: "🤲", name: "Массаж", desc: "Расслабляющий массаж снимает стресс, улучшает кровообращение и настроение питомца" },
+    { emoji: "📹", name: "Видео-трансляция", desc: "Наблюдайте за питомцем онлайн в любой момент — полный покой и прозрачность" },
+  ];
+
   return (
-    <div ref={ref} className="text-center"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "scale(1)" : "scale(0.8)",
-        transition: "opacity 0.6s ease, transform 0.6s ease",
-      }}>
-      <p className="text-4xl md:text-5xl font-light mb-1"
-        style={{ fontFamily: "'Cormorant', serif", color: "#c8923a" }}>
-        {value}
-      </p>
-      <p className="text-xs uppercase tracking-widest" style={{ color: "#8a7a65" }}>
-        {label}
-      </p>
-    </div>
+    <section className="py-20 px-6">
+      <div className="max-w-4xl mx-auto">
+        <div ref={ref} className="rounded-3xl overflow-hidden relative"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(40px)",
+            transition: "opacity 0.8s ease, transform 0.8s ease",
+            background: "linear-gradient(135deg, #0a1a10 0%, #0d1a0d 50%, #0a120a 100%)",
+            border: "1px solid rgba(106,170,128,0.25)",
+            boxShadow: "0 0 80px rgba(106,170,128,0.06)",
+          }}>
+          <div className="absolute top-4 right-6 text-4xl opacity-10 select-none pointer-events-none" style={{ transform: "rotate(15deg)" }}>🐾</div>
+          <div className="absolute bottom-20 left-4 text-6xl opacity-5 select-none pointer-events-none" style={{ transform: "rotate(-10deg)" }}>🐾</div>
+
+          <div className="px-8 pt-8 pb-6 flex flex-col md:flex-row md:items-center gap-4"
+            style={{ borderBottom: "1px solid rgba(106,170,128,0.12)", background: "linear-gradient(90deg, rgba(106,170,128,0.1), transparent)" }}>
+            <div className="flex items-center gap-4 flex-1">
+              <span className="text-5xl">🐕</span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] mb-1" style={{ color: "rgba(106,170,128,0.6)" }}>для любимых питомцев</p>
+                <h2 className="text-3xl md:text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#a8d8b0" }}>
+                  Ясли для собак
+                </h2>
+                <p className="text-sm italic mt-1" style={{ color: "rgba(106,170,128,0.6)" }}>Забота о любимце, пока вы отдыхаете</p>
+              </div>
+            </div>
+            <span className="self-start md:self-center text-xs px-3 py-1.5 rounded-full"
+              style={{ background: "rgba(106,170,128,0.1)", color: "#6aaa80", border: "1px solid rgba(106,170,128,0.2)" }}>
+              🌿 Счастливый питомец — спокойный хозяин
+            </span>
+          </div>
+
+          <div className="p-6 grid sm:grid-cols-2 gap-4">
+            {dogServices.map((s, i) => (
+              <div key={i} className="rounded-2xl p-5 flex gap-4 items-start"
+                style={{ background: "rgba(106,170,128,0.05)", border: "1px solid rgba(106,170,128,0.1)" }}>
+                <span className="text-3xl flex-shrink-0">{s.emoji}</span>
+                <div>
+                  <h4 className="text-lg font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "#a8d8b0" }}>{s.name}</h4>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(168,216,176,0.55)" }}>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="px-6 pb-7">
+            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу узнать про Ясли для собак")}`}
+              target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.02] hover:shadow-xl"
+              style={{ background: "linear-gradient(135deg, #3d8a58, #2d6b44)", color: "white", textDecoration: "none", fontWeight: 700 }}>
+              <MaxIcon />
+              Записать питомца
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -346,56 +363,38 @@ export default function Regeneration() {
       <nav className="fixed top-0 left-0 right-0 z-30 px-6 py-4 flex items-center justify-between"
         style={{ background: "rgba(15,12,8,0.95)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(200,146,58,0.1)" }}>
         <button onClick={() => navigate("/")}
-          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
-          style={{ color: "#c8923a" }}>
+          className="flex items-center gap-2 hover:opacity-70 transition-opacity" style={{ color: "#c8923a" }}>
           <Icon name="ArrowLeft" size={18} />
           <span style={{ fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>Иней & Магма</span>
         </button>
-        <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "rgba(200,146,58,0.5)" }}>
-          Регенерация
-        </p>
+        <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "rgba(200,146,58,0.5)" }}>Регенерация</p>
         <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs tracking-wider uppercase transition-all hover:scale-105"
-          style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none" }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
-          </svg>
-          Записаться
+          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all hover:scale-105"
+          style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none", fontWeight: 600 }}>
+          <MaxIcon /> Записаться
         </a>
       </nav>
 
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center overflow-hidden">
-        {/* Animated bg */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute inset-0"
-            style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(200,146,58,0.06) 0%, transparent 60%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(200,146,58,0.06) 0%, transparent 60%)" }} />
           {[...Array(6)].map((_, i) => (
             <div key={i} className="absolute rounded-full"
               style={{
-                width: `${120 + i * 80}px`,
-                height: `${120 + i * 80}px`,
+                width: `${120 + i * 80}px`, height: `${120 + i * 80}px`,
                 border: `1px solid rgba(200,146,58,${0.04 - i * 0.005})`,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                animation: `spin ${20 + i * 8}s linear infinite ${i % 2 === 0 ? "" : "reverse"}`,
+                top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+                animation: `regen-spin ${20 + i * 8}s linear infinite ${i % 2 === 0 ? "" : "reverse"}`,
               }} />
           ))}
         </div>
 
-        <div
-          style={{
-            opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 1s ease, transform 1s ease",
-          }}>
-          <p className="text-xs uppercase tracking-[0.6em] mb-6" style={{ color: "#8a7a65" }}>
-            Иней & Магма corp.
-          </p>
+        <div style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(30px)", transition: "opacity 1s ease, transform 1s ease" }}>
+          <p className="text-xs uppercase tracking-[0.6em] mb-6" style={{ color: "#8a7a65" }}>Иней & Магма corp.</p>
           <div className="flex items-center justify-center gap-4 mb-4">
             <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, transparent, #c8923a)" }} />
-            <span className="text-3xl" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>ᚦ</span>
+            <span className="text-3xl" style={{ color: "#c8923a" }}>✦</span>
             <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, #c8923a, transparent)" }} />
           </div>
           <h1 className="text-6xl md:text-8xl font-light leading-none mb-4"
@@ -412,25 +411,20 @@ export default function Regeneration() {
             где древние традиции встречаются с новейшими технологиями
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm tracking-wider uppercase transition-all hover:scale-[1.03] hover:shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", textDecoration: "none", fontWeight: 700, letterSpacing: "0.12em" }}>
-              Создать мою стратегию
+            <button onClick={() => navigate("/strategy")}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", fontWeight: 700, letterSpacing: "0.12em", boxShadow: "0 0 40px rgba(200,146,58,0.3)" }}>
+              ✦ Создать мою стратегию
               <Icon name="ArrowRight" size={16} />
-            </a>
-            <button
-              onClick={() => document.getElementById("programs-section")?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm tracking-wider uppercase transition-all hover:opacity-80"
+            </button>
+            <button onClick={() => document.getElementById("programs-section")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:opacity-80"
               style={{ border: "1px solid rgba(200,146,58,0.3)", color: "#c8923a", letterSpacing: "0.12em" }}>
-              Смотреть программы
-              <Icon name="ChevronDown" size={16} />
+              Смотреть программы <Icon name="ChevronDown" size={16} />
             </button>
           </div>
         </div>
-
-        {/* Scroll hint */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-          style={{ color: "rgba(200,146,58,0.3)" }}>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" style={{ color: "rgba(200,146,58,0.3)" }}>
           <Icon name="ChevronDown" size={20} />
         </div>
       </section>
@@ -438,32 +432,29 @@ export default function Regeneration() {
       {/* ── Stats ── */}
       <section className="py-16 px-6" style={{ background: "#13100c", borderTop: "1px solid rgba(200,146,58,0.08)", borderBottom: "1px solid rgba(200,146,58,0.08)" }}>
         <div className="max-w-3xl mx-auto grid grid-cols-3 gap-8">
-          {HERO_STATS.map((s, i) => (
-            <AnimatedStat key={i} value={s.value} label={s.label} />
-          ))}
+          {HERO_STATS.map((s, i) => <AnimatedStat key={i} value={s.value} label={s.label} />)}
         </div>
       </section>
 
-      {/* ── Value proposition ── */}
+      {/* ── Value prop ── */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "#8a7a65" }}>Почему это работает</p>
           <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Не просто процедуры.<br />
-            <em style={{ color: "#c8923a" }}>Система трансформации.</em>
+            Не просто процедуры.<br /><em style={{ color: "#c8923a" }}>Система трансформации.</em>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12"
+            style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>
             Каждая программа строится вокруг вашего тела, ритма жизни и целей. Мария изучает ваш запрос и собирает персональный маршрут — где каждая процедура усиливает следующую.
           </p>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { rune: "ᚦ", title: "Диагностика", text: "Мария изучает ваше состояние и формирует персональный план" },
-              { rune: "ᚢ", title: "Курс процедур", text: "Каждая процедура подобрана так, чтобы усилить эффект предыдущей" },
-              { rune: "ᛟ", title: "Результат", text: "Видимые изменения уже через 2–3 сеанса, долгосрочный эффект" },
+              { icon: "✦", title: "Диагностика", text: "Мария изучает ваше состояние и формирует персональный план" },
+              { icon: "◈", title: "Курс процедур", text: "Каждая процедура подобрана так, чтобы усилить эффект предыдущей" },
+              { icon: "◇", title: "Результат", text: "Видимые изменения уже через 2–3 сеанса, долгосрочный эффект" },
             ].map((step, i) => (
-              <div key={i} className="rounded-2xl p-6 text-center"
-                style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
-                <span className="block text-4xl mb-3 font-light" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>{step.rune}</span>
+              <div key={i} className="rounded-2xl p-6 text-center" style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <span className="block text-4xl mb-3" style={{ color: "#c8923a" }}>{step.icon}</span>
                 <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{step.title}</h3>
                 <p className="text-sm" style={{ color: "#8a7a65" }}>{step.text}</p>
               </div>
@@ -478,44 +469,35 @@ export default function Regeneration() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div style={{ width: "30px", height: "1px", background: "#c8923a" }} />
-              <span style={{ color: "#c8923a", fontSize: "1.2rem", fontFamily: "'Cormorant', serif" }}>◆</span>
+              <span style={{ color: "#c8923a", fontSize: "1.2rem" }}>◆</span>
               <div style={{ width: "30px", height: "1px", background: "#c8923a" }} />
             </div>
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Все направления</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-              Программы
-            </h2>
+            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Программы</h2>
           </div>
-
           <div className="grid md:grid-cols-2 gap-8">
-            {programs.map((prog, i) => (
-              <ProgramCard key={prog.id} prog={prog} index={i} />
-            ))}
+            {programs.map((prog, i) => <ProgramCard key={prog.id} prog={prog} index={i} />)}
           </div>
         </div>
       </section>
+
+      {/* ── Dog Nursery ── */}
+      <DogNursery />
 
       {/* ── Testimonials ── */}
       <section className="py-20 px-6" style={{ background: "#13100c" }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Результаты клиентов</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-              Они уже трансформировались
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Они уже трансформировались</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {testimonials.map((t, i) => (
-              <div key={i} className="rounded-2xl p-6"
-                style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
+              <div key={i} className="rounded-2xl p-6" style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
                 <div className="flex gap-0.5 mb-3">
-                  {[...Array(t.stars)].map((_, s) => (
-                    <span key={s} style={{ color: "#c8923a", fontSize: "0.85rem" }}>★</span>
-                  ))}
+                  {[...Array(t.stars)].map((_, s) => <span key={s} style={{ color: "#c8923a", fontSize: "0.85rem" }}>★</span>)}
                 </div>
-                <p className="text-base leading-relaxed mb-4 italic" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.05rem" }}>
-                  «{t.text}»
-                </p>
+                <p className="text-base leading-relaxed mb-4 italic" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.05rem" }}>«{t.text}»</p>
                 <p className="text-xs" style={{ color: "#8a7a65" }}>— {t.name}</p>
               </div>
             ))}
@@ -525,25 +507,27 @@ export default function Regeneration() {
 
       {/* ── Final CTA ── */}
       <section className="py-24 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(200,146,58,0.06) 0%, transparent 65%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(200,146,58,0.06) 0%, transparent 65%)" }} />
         <div className="max-w-2xl mx-auto relative">
-          <span className="block text-5xl mb-6 font-light" style={{ color: "#c8923a", fontFamily: "'Cormorant', serif" }}>ᛟ</span>
+          <span className="block text-5xl mb-6" style={{ color: "#c8923a" }}>◇</span>
           <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Готовы начать<br />
-            <em style={{ color: "#c8923a" }}>свою трансформацию?</em>
+            Готовы начать<br /><em style={{ color: "#c8923a" }}>свою трансформацию?</em>
           </h2>
           <p className="text-lg mb-10 leading-relaxed" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
             Мария лично составит план под ваш запрос.<br />Ответит быстро и подберёт лучший старт.
           </p>
-          <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-base tracking-wider uppercase transition-all hover:scale-[1.04] hover:shadow-2xl"
-            style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", textDecoration: "none", fontWeight: 700, letterSpacing: "0.15em", boxShadow: "0 0 60px rgba(200,146,58,0.25)" }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0f0c08">
-              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 6.5l-1.75 8.25c-.125.575-.475.725-.95.45l-2.625-1.925-1.275 1.225c-.138.138-.263.263-.538.263l.188-2.663 4.875-4.413c.213-.188-.05-.288-.325-.1l-6.025 3.8-2.588-.8c-.563-.175-.575-.563.125-.838L16 8.05c.463-.163.875.113.5.45z"/>
-            </svg>
-            Написать Марии в Max
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button onClick={() => navigate("/strategy")}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #c8923a, #e8b86d)", color: "#0f0c08", fontWeight: 700, letterSpacing: "0.12em", boxShadow: "0 0 60px rgba(200,146,58,0.25)" }}>
+              ✦ Составить стратегию
+            </button>
+            <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.03]"
+              style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none", fontWeight: 600 }}>
+              <MaxIcon /> Написать Марии
+            </a>
+          </div>
           <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Отвечает лично · Без менеджеров</p>
         </div>
       </section>
@@ -556,7 +540,7 @@ export default function Regeneration() {
       </footer>
 
       <style>{`
-        @keyframes spin {
+        @keyframes regen-spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(360deg); }
         }

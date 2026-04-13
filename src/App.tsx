@@ -11,6 +11,7 @@ import Shop from "./pages/Shop";
 import ShopCategory from "./pages/ShopCategory";
 import Tradition from "./pages/Tradition";
 import Regeneration from "./pages/Regeneration";
+import Strategy from "./pages/Strategy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/shop/:category" element={<ShopCategory />} />
           <Route path="/tradition" element={<Tradition />} />
           <Route path="/regeneration" element={<Regeneration />} />
+          <Route path="/strategy" element={<Strategy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
