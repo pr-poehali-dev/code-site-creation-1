@@ -1310,9 +1310,7 @@ export default function Regeneration() {
             Не просто процедуры.<br /><em style={{ color: "#c8923a" }}>Система обновления.</em>
           </h2>
           <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12"
-            style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>
-            Каждая программа строится вокруг вашего тела, ритма жизни и целей. Мария изучает ваш запрос и собирает персональный маршрут — где каждая процедура усиливает следующую.
-          </p>
+            style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>Каждая программа строится вокруг вашего тела, ритма жизни и целей. Изучаем ваш запрос и собираем персональный маршрут — где каждая процедура усиливает следующую.</p>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
               { icon: "✦", title: "Диагностика", text: "Мария изучает ваше состояние и формирует персональный план" },
