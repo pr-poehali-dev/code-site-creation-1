@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import TerritoryWalk from "@/components/TerritoryWalk";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -429,6 +430,9 @@ export default function Perspektiva() {
           </FadeIn>
         </div>
       </section>
+
+      {/* ── Territory Walk ── */}
+      <TerritoryWalk />
 
       {/* ── CTA ── */}
       <section className="py-24 px-6 text-center relative overflow-hidden">

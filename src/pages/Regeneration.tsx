@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import TerritoryWalk from "@/components/TerritoryWalk";
+
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -574,9 +574,6 @@ export default function Regeneration() {
           </div>
         </div>
       </section>
-
-      {/* ── Territory Walk ── */}
-      <TerritoryWalk />
 
       {/* ── Dog Nursery ── */}
       <DogNursery />
