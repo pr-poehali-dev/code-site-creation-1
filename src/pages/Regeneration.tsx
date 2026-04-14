@@ -423,6 +423,499 @@ function DogNursery() {
   );
 }
 
+// ─── Biohacking Stages ───────────────────────────────────────────────────────
+
+const STAGES = [
+  {
+    id: 1,
+    icon: "🌊",
+    title: "Очищение",
+    color: "#6aaad0",
+    dim: "rgba(106,170,208,0.1)",
+    border: "rgba(106,170,208,0.22)",
+    tagline: "Начало Пути — Заход на территорию центра",
+    days: [
+      {
+        label: "День 1",
+        sub: "Утро / День / Вечер",
+        blocks: [
+          {
+            time: "Утро",
+            icon: "🌅",
+            items: [
+              "Контрастный душ · одежда центра",
+              "Чек-ап Full Body Scan (анализы крови, гормоны, ЭКГ, УЗИ, биоимпедансометрия, микробиота, генетика)",
+              "Составление индивидуального плана очищения",
+              "Снятие всего искусственного — ногти, ресницы, волосы, пирсинг · 0 телефона · 0 зеркал",
+              "Прогулка по территории центра",
+            ],
+          },
+          {
+            time: "Вечер",
+            icon: "🌙",
+            items: [
+              "Питьевое питание: бульоны и семечки у костра",
+              "Знакомство с участниками / время с питомцем",
+              "Фитобочка · восстановление ногтей, волос, кожи",
+              "Ингаляция + Красный свет + Медитация",
+              "Сон на специальной кровати с датчиками",
+            ],
+          },
+        ],
+      },
+      {
+        label: "День 2",
+        sub: "Полный день очищения",
+        blocks: [
+          {
+            time: "Утро",
+            icon: "☀️",
+            items: [
+              "Контрастный душ",
+              "Зарядка + бег / шаг по лесу или вдоль реки",
+              "Бассейн с морской водой / гидромассажная ванна с минеральной водой",
+              "Детокс-массаж внутренних органов · лимфодренажный · буккальный лица",
+              "ПП + капельница: NAD+, глутатион, витамины B, магний, аминокислоты, антиоксиданты",
+            ],
+          },
+          {
+            time: "День / Вечер",
+            icon: "🌿",
+            items: [
+              "Свободное время: растяжка, фитнес, йога, цигун, тайцзы",
+              "Скрабирование · фитобочка · обёртывание · массаж",
+              "Чтение / медитация на природе / прогулки",
+              "ПП (персональная диета + пробиотики, омега) / травяной настой у костра",
+              "Энергопрактика с погружением или без · Ингаляция + Красный свет + Медитация",
+            ],
+          },
+        ],
+      },
+      {
+        label: "День 3",
+        sub: "Углубление очищения",
+        blocks: [
+          {
+            time: "Весь день",
+            icon: "🔥",
+            items: [
+              "Контрастный душ · зарядка · бег / шаг по лесу",
+              "Растяжка, фитнес, пилатес, йога, цигун",
+              "Баня / криокапсула + бассейн",
+              "Ингаляция + Красный свет + Медитация",
+              "Энергопрактики с погружением или без",
+              "ПП + капельница: NAD+, глутатион, витамины B, магний, аминокислоты / травяной настой",
+            ],
+          },
+        ],
+      },
+      {
+        label: "День 14",
+        sub: "Итоговая диагностика и выход",
+        blocks: [
+          {
+            time: "Диагностика",
+            icon: "🔬",
+            items: [
+              "Повторный Full Body Scan · углублённая диагностика",
+              "Генетика · микробиота · гормональный профиль · витамины и микроэлементы",
+              "Сравнение показателей с началом программы",
+            ],
+          },
+          {
+            time: "Поддержка на выходе",
+            icon: "🌱",
+            items: [
+              "Онлайн-консультации с врачом и нутрициологом",
+              "Мобильное приложение: отслеживание сна, активности, питания",
+              "Индивидуальный курс витаминов и БАДов",
+              "Семинары по питанию · мастер-классы по дыханию и самомассажу",
+              "Корректировка долгосрочного плана здоровья",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    icon: "🌿",
+    title: "Исцеление",
+    color: "#7ab870",
+    dim: "rgba(122,184,112,0.1)",
+    border: "rgba(122,184,112,0.22)",
+    tagline: "Тело помнит путь к здоровью — мы помогаем ему вспомнить",
+    days: [
+      {
+        label: "Тело",
+        sub: "Физическое восстановление",
+        blocks: [
+          {
+            time: "Процедуры",
+            icon: "💆",
+            items: [
+              "Голодание / ПП + детокс-коктейли",
+              "Баня + глубокотканный массаж и буккальный (при зажимах) / спортивный / лимфодренажный",
+              "Бег / прогулки в лесу · велосипед · лонгборд",
+              "Бассейн или озеро: плавание с ускорением · яхта",
+              "Массаж лимфодренажный · скульптурный лица и тела · аппаратный",
+              "Удаление пигмента и звёздочек · капельницы",
+              "Аппаратная и ручная работа с целлюлитом · тунелизация",
+              "Чистка зубов",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Разум",
+        sub: "Освобождение от стресса",
+        blocks: [
+          {
+            time: "Практики",
+            icon: "🧠",
+            items: [
+              "Очищение от стресса и негативных мыслей (крик-практики, телесная работа)",
+              "Групповые танцы у костра · тантрические ретриты для отключения ментального потока",
+              "Медитация на земле / флоатинг с медитацией",
+              "Проработка трансформации с погружением или частично",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Навыки",
+        sub: "Обучение новому",
+        blocks: [
+          {
+            time: "Занятия",
+            icon: "✨",
+            items: [
+              "Танцы · гончарное · рисование · постановка голоса",
+              "Выживание в природе · конный спорт",
+              "Выращивание трав и еды",
+              "Вертолётная экскурсия",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    icon: "✦",
+    title: "Обновление",
+    color: "#c8923a",
+    dim: "rgba(200,146,58,0.1)",
+    border: "rgba(200,146,58,0.22)",
+    tagline: "Это не маска — это настоящее изменение изнутри",
+    days: [
+      {
+        label: "Лицо и тело",
+        sub: "Эстетическая медицина",
+        blocks: [
+          {
+            time: "Кожа лица",
+            icon: "💎",
+            items: [
+              "Гидра + чистка · пилинг · маска",
+              "Массаж скульптурный · буккальный · крио-массаж · LED-свет",
+              "Микроколостр · НСТФ · ПДРН · полимолочная кислота",
+              "Шлифовка Halo · Фотона · микролазерпилинг",
+              "Субцизия и коллостимуляция · мезотерапия · ревитализация",
+              "Плазма · жир · ксеомин",
+              "Криокапсула",
+            ],
+          },
+          {
+            time: "Перманент и лазер",
+            icon: "💄",
+            items: [
+              "Перманентный макияж бровей · перманент губ",
+              "Лазерная эпиляция · интимное отбеливание",
+              "Удаление новообразований, родинок",
+              "Удаление звёздочек, гемангиом, винных пятен",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Волосы и тело",
+        sub: "Комплексный уход",
+        blocks: [
+          {
+            time: "Волосы",
+            icon: "💇",
+            items: [
+              "Пилинг головы · PRP · уходы · массаж головы · стрижка",
+              "Подбор стрижки и окрашивания по цветотипу",
+            ],
+          },
+          {
+            time: "Аппаратное тело",
+            icon: "⚡",
+            items: [
+              "Онда · Бьютилазер · Эндосфера · BTL X-Wave · Икун + Изоджей",
+              "Тунелизация · ИГ РФ + коллагеназа по растяжкам",
+              "Лимфодренажный / спортивный массаж",
+              "Обёртывания · ванны-источники · грязевые + гидромассаж",
+              "Виниры",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Стиль и дух",
+        sub: "Образ и личность",
+        blocks: [
+          {
+            time: "Самовыражение",
+            icon: "🌺",
+            items: [
+              "Подбор духов по цветотипу и характеру",
+              "Работа над стилем",
+              "Тату",
+              "Создание личных амулетов",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    icon: "🔥",
+    title: "Наполнение",
+    color: "#a078c8",
+    dim: "rgba(160,120,200,0.1)",
+    border: "rgba(160,120,200,0.22)",
+    tagline: "Тропинка целебного леса привела вас к полной регенерации",
+    days: [
+      {
+        label: "Навыки",
+        sub: "Знания на всю жизнь",
+        blocks: [
+          {
+            time: "Мастерские",
+            icon: "🌱",
+            items: [
+              "Выращивание еды, трав, растений · выпечка · натуральная косметика",
+              "Шитьё · пошив обуви",
+              "Самоисцеление · самоуход · медитация",
+              "Выживание: ориентирование · стрельба",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Привычки",
+        sub: "Фундамент новой жизни",
+        blocks: [
+          {
+            time: "Каждый день",
+            icon: "⚡",
+            items: [
+              "Спорт · гигиена · чтение · путешествия",
+              "Уход за планетой · отсутствие лишних покупок",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Поддержка",
+        sub: "Центр всегда рядом",
+        blocks: [
+          {
+            time: "После программы",
+            icon: "🌐",
+            items: [
+              "Посещение центра 10 дней с доступом к общим зонам без оплаты (проживание в деревянной палатке)",
+              "Доставка еды / семян центра под личную диету",
+              "Доставка инъекций, капельниц, БАДов, натуральной одежды",
+              "Групповые выезды по улучшению планеты: очищение, исцеление, обновление, наполнение",
+            ],
+          },
+        ],
+      },
+      {
+        label: "Финал",
+        sub: "Чем займётесь теперь?",
+        blocks: [
+          {
+            time: "Новая версия",
+            icon: "✨",
+            items: [
+              "Тропинка целебного леса привела вас к полной регенерации",
+              "Рады приветствовать вашу новую версию",
+              "Мир открыт — чем займётесь теперь?",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+function BiohackingStages() {
+  const [activeStage, setActiveStage] = useState(0);
+  const [activeDay, setActiveDay] = useState(0);
+  const stage = STAGES[activeStage];
+  const day = stage.days[activeDay];
+
+  const handleStage = (i: number) => {
+    setActiveStage(i);
+    setActiveDay(0);
+  };
+
+  return (
+    <section className="py-20 px-4 md:px-6" style={{ background: "rgba(6,8,4,0.97)" }}>
+      <div className="max-w-5xl mx-auto">
+
+        {/* Заголовок */}
+        <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(122,184,138,0.4))" }} />
+            <span style={{ color: "rgba(122,184,138,0.7)", fontSize: "1.1rem" }}>🌿</span>
+            <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, rgba(122,184,138,0.4), transparent)" }} />
+          </div>
+          <p className="text-xs uppercase tracking-[0.5em] mb-3" style={{ color: "rgba(122,184,138,0.5)" }}>4-этапный биохакинг</p>
+          <h2 className="text-4xl md:text-5xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "#c8d89e" }}>
+            Путь трансформации
+          </h2>
+          <p className="text-lg italic font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(168,184,144,0.6)" }}>
+            Очищение · Исцеление · Обновление · Наполнение
+          </p>
+        </div>
+
+        {/* Этапы-табы */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          {STAGES.map((s, i) => (
+            <button key={s.id} onClick={() => handleStage(i)}
+              className="rounded-2xl p-4 text-left transition-all hover:scale-[1.02]"
+              style={{
+                background: i === activeStage ? s.dim : "rgba(255,255,255,0.03)",
+                border: `1.5px solid ${i === activeStage ? s.border : "rgba(255,255,255,0.07)"}`,
+                boxShadow: i === activeStage ? `0 0 30px ${s.dim}` : "none",
+              }}>
+              <span className="text-2xl block mb-2">{s.icon}</span>
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="text-xs font-medium" style={{ color: "rgba(160,140,200,0.5)" }}>{s.id}</span>
+                <div className="h-px flex-1" style={{ background: i === activeStage ? s.color : "rgba(255,255,255,0.1)" }} />
+              </div>
+              <p className="text-base font-light" style={{ fontFamily: "'Cormorant', serif", color: i === activeStage ? s.color : "rgba(200,190,220,0.6)", fontSize: "1.05rem" }}>
+                {s.title}
+              </p>
+            </button>
+          ))}
+        </div>
+
+        {/* Контент этапа */}
+        <div className="rounded-3xl overflow-hidden" style={{ border: `1px solid ${stage.border}`, background: "rgba(8,10,6,0.8)" }}>
+
+          {/* Шапка этапа */}
+          <div className="px-6 py-5 flex items-center gap-4"
+            style={{ borderBottom: `1px solid ${stage.border}`, background: stage.dim }}>
+            <span className="text-4xl">{stage.icon}</span>
+            <div>
+              <p className="text-xs uppercase tracking-[0.4em] mb-0.5" style={{ color: stage.color, opacity: 0.7 }}>Этап {stage.id}</p>
+              <h3 className="text-2xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8f0d8" }}>{stage.title}</h3>
+              <p className="text-sm italic mt-0.5" style={{ color: "rgba(180,170,210,0.5)" }}>{stage.tagline}</p>
+            </div>
+          </div>
+
+          {/* Табы дней */}
+          <div className="flex gap-2 px-6 pt-5 flex-wrap">
+            {stage.days.map((d, i) => (
+              <button key={i} onClick={() => setActiveDay(i)}
+                className="px-4 py-2 rounded-xl text-sm transition-all"
+                style={{
+                  background: i === activeDay ? stage.dim : "rgba(255,255,255,0.03)",
+                  border: `1px solid ${i === activeDay ? stage.border : "rgba(255,255,255,0.07)"}`,
+                  color: i === activeDay ? stage.color : "rgba(180,170,210,0.45)",
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "0.95rem",
+                }}>
+                {d.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Подзаголовок дня */}
+          <div className="px-6 pt-3 pb-1">
+            <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "rgba(160,140,200,0.4)" }}>{day.sub}</p>
+          </div>
+
+          {/* Блоки времени */}
+          <div className="px-6 pb-6 pt-4 grid md:grid-cols-2 gap-4">
+            {day.blocks.map((block, bi) => (
+              <div key={bi} className="rounded-2xl overflow-hidden"
+                style={{ border: `1px solid ${stage.border.replace("0.22", "0.12")}`, background: "rgba(255,255,255,0.02)" }}>
+                {/* Шапка блока */}
+                <div className="px-4 py-3 flex items-center gap-3"
+                  style={{ borderBottom: `1px solid ${stage.border.replace("0.22", "0.08")}`, background: stage.dim.replace("0.1", "0.07") }}>
+                  <span className="text-lg">{block.icon}</span>
+                  <p className="text-sm font-medium tracking-wide" style={{ color: stage.color }}>{block.time}</p>
+                </div>
+                {/* Список */}
+                <ul className="px-4 py-3 space-y-2">
+                  {block.items.map((item, ii) => (
+                    <li key={ii} className="flex items-start gap-2.5 text-sm" style={{ color: "rgba(200,190,220,0.72)", lineHeight: 1.5 }}>
+                      <span className="flex-shrink-0 mt-1.5" style={{ color: stage.color, fontSize: "0.45rem" }}>◆</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Навигация между этапами */}
+        <div className="flex items-center justify-between mt-6 px-1">
+          <button onClick={() => handleStage(Math.max(0, activeStage - 1))}
+            disabled={activeStage === 0}
+            className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm transition-all hover:scale-[1.02] disabled:opacity-25"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(200,190,220,0.6)" }}>
+            ← Предыдущий этап
+          </button>
+
+          <div className="flex gap-2">
+            {STAGES.map((s, i) => (
+              <button key={i} onClick={() => handleStage(i)}
+                className="w-2.5 h-2.5 rounded-full transition-all"
+                style={{ background: i === activeStage ? stage.color : "rgba(255,255,255,0.12)", transform: i === activeStage ? "scale(1.4)" : "scale(1)" }} />
+            ))}
+          </div>
+
+          <button onClick={() => handleStage(Math.min(STAGES.length - 1, activeStage + 1))}
+            disabled={activeStage === STAGES.length - 1}
+            className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm transition-all hover:scale-[1.02] disabled:opacity-25"
+            style={{ background: stage.dim, border: `1px solid ${stage.border}`, color: stage.color }}>
+            Следующий этап →
+          </button>
+        </div>
+
+        {/* Финальный призыв */}
+        {activeStage === 3 && activeDay === 3 && (
+          <div className="mt-8 text-center rounded-3xl py-10 px-6"
+            style={{ background: "linear-gradient(135deg, rgba(160,120,200,0.12), rgba(122,184,112,0.08))", border: "1px solid rgba(160,120,200,0.2)" }}>
+            <p className="text-3xl mb-3" style={{ fontFamily: "'Cormorant', serif", color: "#c8d89e", fontSize: "2rem" }}>
+              Тропинка целебного леса<br />привела вас к полной регенерации
+            </p>
+            <p className="text-base italic mb-6" style={{ color: "rgba(168,184,144,0.6)", fontFamily: "'Cormorant', serif" }}>
+              Рады приветствовать вашу новую версию. Чем займётесь теперь?
+            </p>
+            <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm uppercase tracking-widest transition-all hover:scale-[1.03]"
+              style={{ background: "linear-gradient(135deg, rgba(122,184,112,0.2), rgba(160,120,200,0.15))", border: "1px solid rgba(122,184,112,0.3)", color: "#7ab870", textDecoration: "none", fontWeight: 600 }}>
+              🌿 Начать своё путешествие
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function Regeneration() {
@@ -577,6 +1070,9 @@ export default function Regeneration() {
 
       {/* ── Dog Nursery ── */}
       <DogNursery />
+
+      {/* ── Biohacking Stages ── */}
+      <BiohackingStages />
 
       {/* ── Testimonials ── */}
       <section className="py-20 px-6" style={{ background: "#13100c" }}>
