@@ -244,6 +244,8 @@ const productsData: Record<string, {
   tags: string[];
   emoji: string;
   badge?: string;
+  accent?: string;
+  image?: string;
 }[]> = {
   tarot: [
     { emoji: "🃏", name: "Авторская колода «Лес»", description: "78 карт. Иллюстрации от руки — тушь, акварель. Каждая карта — существо леса. В комплекте: мешочек из льна и инструкция-сказка.", price: "4 800 ₽", tags: ["78 карт", "авторская", "ручная работа"], badge: "Бестселлер" },
@@ -278,12 +280,12 @@ const productsData: Record<string, {
     { emoji: "💎", name: "Набор «Четыре стихии»", description: "Огненный опал, аквамарин, малахит, дымчатый кварц. В деревянной шкатулке.", price: "4 800 ₽", tags: ["набор", "шкатулка", "подарок"] },
   ],
   salt: [
-    { emoji: "✦", name: "Соль «Сибирская тайга»", description: "Каменная соль + кедровая хвоя + пихтовое масло. 500г. Для бани и ванн. Восстанавливает и тонизирует.", price: "480 ₽", tags: ["500г", "хвоя", "тонус"], badge: "Основа" },
-    { emoji: "✦", name: "Соль «Медовая баня»", description: "Морская соль + мёд + ромашка. 500г. Питает и смягчает кожу. Нежный медовый аромат.", price: "520 ₽", tags: ["500г", "мёд", "ромашка"] },
-    { emoji: "✦", name: "Соль «Горные травы»", description: "Гималайская розовая + тимьян + лаванда + мята. 500г. Очищение и гармония.", price: "560 ₽", tags: ["гималайская", "500г"] },
-    { emoji: "✦", name: "Соль «Чёрный лес»", description: "Чёрная гавайская соль + активированный уголь + можжевельник. 300г. Детокс и глубокое очищение.", price: "640 ₽", tags: ["300г", "детокс", "уголь"] },
-    { emoji: "✦", name: "Набор «Все сезоны»", description: "4 вида соли в стеклянных банках: весна, лето, осень, зима. Подарочная деревянная корзинка.", price: "1 900 ₽", tags: ["набор", "4 вида", "подарок"], badge: "Подарок" },
-    { emoji: "✦", name: "Соль скраб «Магма»", description: "Крупная морская соль + масло ши + красный перец + апельсин. 400г. Пробуждает и согревает.", price: "680 ₽", tags: ["скраб", "400г", "масло ши"] },
+    { emoji: "✦", name: "Соль «Сибирская тайга»", description: "Каменная соль + кедровая хвоя + пихтовое масло. 500г. Для бани и ванн. Восстанавливает и тонизирует.", price: "480 ₽", tags: ["500г", "хвоя", "тонус"], badge: "Основа", image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/4a5dfff7-1362-4162-afcc-c66f551ee53b.jpg" },
+    { emoji: "✦", name: "Соль «Медовая баня»", description: "Морская соль + мёд + ромашка. 500г. Питает и смягчает кожу. Нежный медовый аромат.", price: "520 ₽", tags: ["500г", "мёд", "ромашка"], image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/dcf39cbe-cd64-4665-b204-63a7c75b9a13.jpg" },
+    { emoji: "✦", name: "Соль «Горные травы»", description: "Гималайская розовая + тимьян + лаванда + мята. 500г. Очищение и гармония.", price: "560 ₽", tags: ["гималайская", "500г"], image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/30274289-3cc5-4bf8-aa74-9feee968b857.jpg" },
+    { emoji: "✦", name: "Соль «Чёрный лес»", description: "Чёрная гавайская соль + активированный уголь + можжевельник. 300г. Детокс и глубокое очищение.", price: "640 ₽", tags: ["300г", "детокс", "уголь"], image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/c99ddb53-6e8f-4d57-bac1-27a0736cf41e.jpg" },
+    { emoji: "✦", name: "Набор «Все сезоны»", description: "4 вида соли в стеклянных банках: весна, лето, осень, зима. Подарочная деревянная корзинка.", price: "1 900 ₽", tags: ["набор", "4 вида", "подарок"], badge: "Подарок", image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/842a7db6-76ad-4809-81dd-d0ac718fa38e.jpg" },
+    { emoji: "✦", name: "Соль скраб «Магма»", description: "Крупная морская соль + масло ши + красный перец + апельсин. 400г. Пробуждает и согревает.", price: "680 ₽", tags: ["скраб", "400г", "масло ши"], image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/9d634c6f-0589-4ff9-8ec1-081adca45c6d.jpg" },
   ],
   brooms: [
     { emoji: "🌿", name: "Веник берёзовый авторский", description: "Собран в экологической зоне, высушен при правильной температуре. Мягкий, душистый. Берёза, мята, зверобой.", price: "380 ₽", tags: ["берёза", "мята"], badge: "Классика" },
@@ -354,7 +356,7 @@ function ProductCard({
   accent,
   onAdd,
 }: {
-  product: { name: string; description: string; price: string; tags: string[]; emoji: string; badge?: string };
+  product: { name: string; description: string; price: string; tags: string[]; emoji: string; badge?: string; image?: string };
   accent: string;
   onAdd: (name: string) => void;
 }) {
@@ -362,31 +364,51 @@ function ProductCard({
 
   return (
     <div
-      className="forest-card mushroom-glow rounded-2xl p-6 relative flex flex-col"
+      className="forest-card mushroom-glow rounded-2xl relative flex flex-col overflow-hidden"
       style={{ background: "rgba(10,14,8,0.9)" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {product.badge && (
-        <span
-          className="absolute top-4 right-4 text-xs px-2.5 py-1 rounded-full tracking-wider"
-          style={{
-            background: accentAlpha(accent, 0.15),
-            color: accentAlpha(accent, 0.95),
-            border: `1px solid ${accentAlpha(accent, 0.35)}`,
-            fontFamily: "'Golos Text', sans-serif",
-          }}
-        >
-          {product.badge}
-        </span>
-      )}
-
-      <div
-        className="text-4xl mb-4 transition-transform duration-500 inline-block"
-        style={{ transform: hovered ? "scale(1.2) rotate(-8deg)" : "scale(1) rotate(0)" }}
-      >
-        {product.emoji}
+      {/* Фото товара */}
+      <div className="relative overflow-hidden" style={{ height: "220px", flexShrink: 0 }}>
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700"
+            style={{ transform: hovered ? "scale(1.07)" : "scale(1)" }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center"
+            style={{ background: `linear-gradient(135deg, ${accentAlpha(accent, 0.12)}, ${accentAlpha(accent, 0.05)})` }}>
+            <span
+              className="text-6xl transition-transform duration-500"
+              style={{ transform: hovered ? "scale(1.2) rotate(-8deg)" : "scale(1) rotate(0)" }}>
+              {product.emoji}
+            </span>
+          </div>
+        )}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,14,8,0.85) 0%, rgba(10,14,8,0.1) 50%, transparent 100%)" }} />
+        {product.image && (
+          <span className="absolute bottom-3 left-3 text-2xl">{product.emoji}</span>
+        )}
+        {product.badge && (
+          <span
+            className="absolute top-3 left-3 text-xs px-2.5 py-1 rounded-full tracking-wider"
+            style={{
+              background: "rgba(10,14,8,0.82)",
+              color: accentAlpha(accent, 0.95),
+              border: `1px solid ${accentAlpha(accent, 0.4)}`,
+              fontFamily: "'Golos Text', sans-serif",
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            {product.badge}
+          </span>
+        )}
       </div>
+
+      <div className="p-5 flex flex-col flex-1">
 
       <h3
         className="text-xl font-light mb-2 leading-snug"
@@ -437,6 +459,7 @@ function ProductCard({
           Заказать через Max
         </button>
       </div>
+      </div>{/* /p-5 */}
     </div>
   );
 }
