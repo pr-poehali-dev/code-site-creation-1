@@ -6,6 +6,7 @@ const zones = [
     title: "Целительский центр",
     subtitle: "Апартаменты для гостей",
     emoji: "🏛️",
+    mapLabel: "Центр",
     desc: "Сердце нашего пространства. Деревянный особняк с тёплыми апартаментами, где каждая деталь создана для восстановления. Резные потолки, живые растения, запах кедра и трав.",
     details: ["Апартаменты с панорамными окнами", "Авторский интерьер из натурального дерева", "Открытые террасы с видом на лес", "Персональный консьерж и программа пребывания"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/88732ba1-9af1-4411-a6dc-d60fb1b1a1c2.jpg",
@@ -19,6 +20,7 @@ const zones = [
     title: "MedTech зона",
     subtitle: "Диагностика и высокие технологии",
     emoji: "🔬",
+    mapLabel: "MedTech",
     desc: "Современное оборудование в обрамлении натуральных материалов. Криокапсулы, LED-терапия, гипербарическая оксигенация — технологии долголетия в деревянном пространстве.",
     details: ["Криокапсула и LED-панели", "Гипербарическая оксигенация", "Аппаратная диагностика тела", "PRP и инъекционные кабинеты"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/360e91a8-d769-4770-850a-b1537c72b2c0.jpg",
@@ -32,6 +34,7 @@ const zones = [
     title: "Зона Longevity",
     subtitle: "Протоколы долголетия",
     emoji: "✨",
+    mapLabel: "Longevity",
     desc: "Персонализированные программы биохакинга и антиэйджинга. Здесь наука встречается с природой — каждый протокол разработан индивидуально по результатам диагностики.",
     details: ["Индивидуальные программы омоложения", "Капельницы с витаминными коктейлями", "Озонотерапия и ВЛОК", "Полный чекап организма"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/e6adfd17-af96-46fd-8a2f-0195ba659c74.jpg",
@@ -45,6 +48,7 @@ const zones = [
     title: "Бассейн и движение",
     subtitle: "Беговые и велодорожки",
     emoji: "🏊",
+    mapLabel: "Бассейн",
     desc: "Природный бассейн с ключевой водой окружён живыми камнями и соснами. Вдоль леса проложены беговые и велодорожки — дышите полной грудью.",
     details: ["Природный бассейн с очисткой без хлора", "5 км беговых дорожек через лес", "Велодорожки с прокатом велосипедов", "Тренажёры на открытом воздухе"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/f21d798d-86b2-4b28-8faf-ea53e3a589cc.jpeg",
@@ -58,8 +62,9 @@ const zones = [
     title: "Баня",
     subtitle: "Русская банная традиция",
     emoji: "🔥",
-    desc: "Бревенчатая баня с этническими узорами, выход прямо в купель у лесного ручья. Берёзовый веник, медово-травяной пилинг, ароматерапия — ритуал очищения тела и духа.",
-    details: ["Классическая русская баня на дровах", "Купель с ключевой водой", "Авторские банные ритуалы с мастером", "Этнические церемонии с травами"],
+    mapLabel: "Баня",
+    desc: "Бревенчатая баня с этническими узорами, деревянный чан с горячими травяными настоями и лесная купель с ледяной ключевой водой. Берёзовый веник, медово-травяной пилинг, ароматерапия — ритуал очищения тела и духа.",
+    details: ["Классическая русская баня на дровах", "Чан с травяными настоями и купель", "Авторские банные ритуалы с мастером", "Этнические церемонии с травами"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/1e2e1715-1107-47f6-ae90-53b9387fc14c.jpg",
     color: "#d4622a",
     accent: "rgba(212,98,42,0.18)",
@@ -71,6 +76,7 @@ const zones = [
     title: "VIP домики",
     subtitle: "Индивидуальные деревянные резиденции",
     emoji: "🏡",
+    mapLabel: "VIP дом",
     desc: "Отдельные деревянные домики среди вековых сосен. Каждый — маленькое произведение искусства с резными наличниками, камином, верандой и полной приватностью.",
     details: ["Индивидуальный деревянный домик в лесу", "Камин, сауна и джакузи на террасе", "Персональная программа и шеф-повар", "Полная приватность и тишина"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a856d357-54c9-48c9-b0cc-731291f0342d.jpg",
@@ -84,6 +90,7 @@ const zones = [
     title: "Костровая зона",
     subtitle: "Ужины у огня под звёздами",
     emoji: "🪵",
+    mapLabel: "Костёр",
     desc: "Большое кострище из природного камня, окружённое деревянными столами с резьбой. Вечерние ужины с фермерской едой, живой музыкой и историями у огня.",
     details: ["Авторские ужины от шеф-повара", "Фермерские продукты и травяные чаи", "Живая музыка и этнические инструменты", "Ночные церемонии и ритуалы"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/75c9649e-22d9-4bfc-bf4d-56ea36522f16.jpg",
@@ -97,6 +104,7 @@ const zones = [
     title: "Лесные прогулки",
     subtitle: "Ручейки и беседки в лесу",
     emoji: "🌲",
+    mapLabel: "Лес",
     desc: "Извилистые тропы через старый лес, деревянные мостики над ручьями, укромные беседки с резными узорами. Здесь время замедляется — и вы слышите себя.",
     details: ["Маркированные тропы разной сложности", "Деревянные беседки над ручьями", "Лесные ванны (шинрин-йоку)", "Гид-натуралист по запросу"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/26e2719a-58a5-4686-8542-278ee0018437.jpg",
@@ -110,6 +118,7 @@ const zones = [
     title: "Медитативная поляна",
     subtitle: "Пространство тишины и практик",
     emoji: "🧘",
+    mapLabel: "Поляна",
     desc: "Открытая поляна в окружении деревьев — солнечный круг для утренних медитаций, звуковых чаш и дыхательных практик. Деревянный помост с этническими узорами.",
     details: ["Утренние медитации на рассвете", "Звуковые ванны с тибетскими чашами", "Групповые и индивидуальные практики", "Церемония встречи солнца"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/e8a973eb-f25f-42c5-bcc3-0dab13ca1686.jpg",
@@ -123,6 +132,7 @@ const zones = [
     title: "Зона творчества",
     subtitle: "Мастерские среди живых растений",
     emoji: "🎨",
+    mapLabel: "Творчество",
     desc: "Просторная мастерская, утопающая в тропических растениях. Гончарный круг, ткацкий станок, живопись, плетение — творческие практики как путь к себе.",
     details: ["Гончарная мастерская и живопись", "Ткачество и плетение из природных материалов", "Мастер-классы по этническим ремёслам", "Свободное творчество без расписания"],
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/554d67fb-1525-4cf0-8c9f-7d7dbcb1cb7c.jpg",
@@ -133,143 +143,266 @@ const zones = [
   },
 ];
 
-// Тропинки между зонами (SVG paths)
-const TRAIL_PATHS = [
-  // Внешнее кольцо — главная тропа
-  "M 460 310 Q 390 290 320 265",
-  "M 320 265 Q 290 225 460 185",
-  "M 460 185 Q 530 165 600 265",
-  "M 600 265 Q 665 287 730 310",
-  "M 730 310 Q 750 370 730 435",
-  "M 730 435 Q 665 467 600 500",
-  "M 600 500 Q 530 518 460 310",
-  "M 460 310 Q 390 355 320 500",
-  "M 320 500 Q 250 467 185 435",
-  "M 185 435 Q 167 370 185 265",
-  "M 185 265 Q 250 243 320 265",
-  // Внутренние тропинки
-  "M 320 265 Q 390 225 460 185",
-  "M 460 310 Q 530 380 600 500",
-  "M 185 435 Q 250 467 320 500",
+// Рукописные тропинки — кривые, неровные как настоящие тропы
+const TRAILS = [
+  "M 460 310 C 420 295 370 278 320 265",
+  "M 320 265 C 305 240 340 205 460 185",
+  "M 460 185 C 520 168 562 235 600 265",
+  "M 600 265 C 648 278 695 292 730 310",
+  "M 730 310 C 748 355 745 400 730 435",
+  "M 730 435 C 672 462 638 482 600 500",
+  "M 600 500 C 545 515 500 460 460 310",
+  "M 460 310 C 405 345 360 435 320 500",
+  "M 320 500 C 270 468 220 450 185 435",
+  "M 185 435 C 168 385 172 320 185 265",
+  "M 185 265 C 240 248 285 258 320 265",
 ];
+
+// Рукописные текстовые метки на карте
+const MAP_LABELS = [
+  { x: 80, y: 200, text: "~ река ~", rotate: -25, opacity: 0.55, color: "#8ab8d8" },
+  { x: 55, y: 320, text: "ручей", rotate: -70, opacity: 0.5, color: "#8ab8d8" },
+  { x: 370, y: 145, text: "купальня", rotate: -8, opacity: 0.45, color: "#a0b8e8" },
+  { x: 760, y: 240, text: "баня", rotate: 12, opacity: 0.55, color: "#d48060" },
+  { x: 760, y: 490, text: "VIP", rotate: 5, opacity: 0.45, color: "#c8923a" },
+  { x: 250, y: 555, text: "лес", rotate: -5, opacity: 0.4, color: "#6aaa70" },
+  { x: 500, y: 565, text: "поляна", rotate: 3, opacity: 0.4, color: "#a0c070" },
+  { x: 140, y: 185, text: "чаща", rotate: -15, opacity: 0.35, color: "#5a8050" },
+  { x: 820, y: 160, text: "сосны", rotate: 10, opacity: 0.35, color: "#5a8050" },
+];
+
+// Рунические символы — рассыпаны по карте
+const RUNES = [
+  { x: 45, y: 100, r: "ᚱ" }, { x: 875, y: 95, r: "ᚠ" },
+  { x: 50, y: 550, r: "ᚾ" }, { x: 860, y: 570, r: "ᛏ" },
+  { x: 460, y: 58, r: "ᛚ" }, { x: 460, y: 590, r: "ᛖ" },
+  { x: 240, y: 80, r: "ᚢ" }, { x: 680, y: 75, r: "ᛗ" },
+  { x: 180, y: 590, r: "ᚹ" }, { x: 720, y: 585, r: "ᛁ" },
+];
+
+// Этнические узоры — маленькие орнаменты
+const ORNAMENTS = [
+  { x: 460, y: 350 }, // центр
+  { x: 150, y: 340 },
+  { x: 770, y: 350 },
+  { x: 460, y: 130 },
+  { x: 460, y: 570 },
+];
+
+function HandDrawnTree({ x, y, size, opacity }: { x: number; y: number; size: number; opacity: number }) {
+  const s = size;
+  return (
+    <g transform={`translate(${x},${y})`} opacity={opacity}>
+      {/* Ствол — кривая линия */}
+      <path d={`M 0 ${s * 0.6} C ${s * 0.05} ${s * 0.3} ${-s * 0.05} ${s * 0.1} 0 0`}
+        stroke={`hsl(30, 40%, ${18 + Math.round(size) % 5}%)`} strokeWidth={s * 0.12} fill="none" strokeLinecap="round" />
+      {/* Крона — неровный круг/треугольник */}
+      <path d={`M 0 ${-s * 0.2} C ${s * 0.5} 0 ${s * 0.4} ${-s * 0.8} 0 ${-s} C ${-s * 0.4} ${-s * 0.8} ${-s * 0.5} 0 0 ${-s * 0.2}`}
+        fill={`hsl(${115 + Math.round(size * 3) % 20}, ${28 + Math.round(size) % 8}%, ${10 + Math.round(size * 2) % 6}%)`}
+        stroke={`hsl(${118 + Math.round(size) % 15}, 22%, ${16 + Math.round(size * 1.5) % 5}%)`}
+        strokeWidth="0.8" />
+    </g>
+  );
+}
+
+function EthnicOrnament({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x},${y})`} opacity={0.08}>
+      {[0, 45, 90, 135].map((a, i) => {
+        const r = (a * Math.PI) / 180;
+        return (
+          <g key={i}>
+            <line x1={0} y1={0} x2={Math.cos(r) * 18} y2={Math.sin(r) * 18} stroke="#c8923a" strokeWidth="1" />
+            <line x1={0} y1={0} x2={-Math.cos(r) * 18} y2={-Math.sin(r) * 18} stroke="#c8923a" strokeWidth="1" />
+            <circle cx={Math.cos(r) * 18} cy={Math.sin(r) * 18} r={2} fill="#c8923a" />
+            <circle cx={-Math.cos(r) * 18} cy={-Math.sin(r) * 18} r={2} fill="#c8923a" />
+          </g>
+        );
+      })}
+      <circle cx={0} cy={0} r={6} fill="none" stroke="#c8923a" strokeWidth="1" />
+      <circle cx={0} cy={0} r={2.5} fill="#c8923a" />
+    </g>
+  );
+}
 
 function TerritoryMap({ activeZone, onSelect }: { activeZone: number; onSelect: (i: number) => void }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const W = 920, H = 620;
 
+  // Позиции деревьев
+  const trees = [
+    [62,72,14,0.5],[130,48,11,0.45],[198,88,13,0.5],[268,58,10,0.4],[338,38,12,0.45],
+    [438,52,10,0.4],[548,38,11,0.4],[648,52,12,0.45],[738,68,13,0.5],[818,48,11,0.45],[876,82,14,0.5],
+    [42,158,12,0.45],[98,198,10,0.4],[58,298,11,0.42],[78,398,10,0.4],[42,478,12,0.45],
+    [88,538,11,0.4],[148,568,13,0.48],[42,558,10,0.38],[72,488,9,0.35],
+    [868,158,12,0.45],[898,218,10,0.4],[868,318,11,0.42],[898,418,10,0.4],
+    [858,508,12,0.45],[878,558,11,0.4],[818,568,13,0.48],[848,488,9,0.35],
+    [198,578,11,0.4],[318,588,10,0.38],[428,588,11,0.4],[538,578,12,0.42],
+    [658,588,11,0.4],[748,572,12,0.42],[118,142,10,0.38],[278,118,11,0.42],
+    [368,108,10,0.4],[458,98,11,0.38],[548,108,10,0.4],[638,118,11,0.42],
+    [718,128,12,0.45],[798,138,11,0.42],[168,108,9,0.35],[688,42,9,0.35],
+  ];
+
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl" style={{ background: "radial-gradient(ellipse at 50% 50%, #0e1a0c 0%, #060d05 100%)", border: "1px solid rgba(106,170,112,0.15)" }}>
+    <div className="relative w-full overflow-hidden rounded-2xl"
+      style={{ background: "radial-gradient(ellipse at 48% 52%, #0d1a0b 0%, #060d05 100%)", border: "1px solid rgba(160,140,80,0.18)" }}>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" style={{ display: "block" }}>
-        {/* Лесной фон — деревья */}
-        {[
-          [60,80],[130,50],[200,90],[270,60],[340,40],[440,55],[550,40],[650,55],[740,70],[820,50],[880,85],
-          [40,160],[100,200],[60,300],[80,400],[40,480],[90,540],[150,570],[40,560],
-          [870,160],[900,220],[870,320],[900,420],[860,510],[880,560],[820,570],
-          [200,580],[320,590],[430,590],[540,580],[660,590],[750,575],
-          [200,140],[280,120],[370,110],[460,100],[550,110],[640,120],[720,130],[800,140],
-        ].map(([x, y], i) => (
-          <g key={i} transform={`translate(${x},${y})`} opacity={0.35 + (i % 3) * 0.1}>
-            <ellipse cx={0} cy={0} rx={10 + (i % 4) * 4} ry={14 + (i % 3) * 5} fill={`hsl(${115 + (i % 20)}, ${30 + (i%10)*2}%, ${12 + (i%4)*3}%)`} />
+        <defs>
+          {/* Фильтр «бумага» */}
+          <filter id="paper">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+            <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
+            <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend" />
+            <feComponentTransfer in="blend">
+              <feFuncR type="linear" slope="0.95" />
+              <feFuncG type="linear" slope="0.95" />
+              <feFuncB type="linear" slope="0.95" />
+            </feComponentTransfer>
+          </filter>
+          {/* Фильтр «чернила» для линий */}
+          <filter id="ink">
+            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          {/* Рукописный шрифт — подключаем через стиль */}
+        </defs>
+
+        {/* Бумажный фон */}
+        <rect x={0} y={0} width={W} height={H} fill="transparent" filter="url(#paper)" />
+
+        {/* Граница карты — рукописная рамка с этническими углами */}
+        <rect x={18} y={15} width={W - 36} height={H - 30} rx={4}
+          fill="none" stroke="rgba(160,130,60,0.25)" strokeWidth="1.5"
+          strokeDasharray="8 3 2 3" filter="url(#ink)" />
+        {/* Угловые орнаменты рамки */}
+        {[[22,19],[W-22,19],[22,H-19],[W-22,H-19]].map(([cx,cy],i) => (
+          <g key={i} transform={`translate(${cx},${cy})`} opacity={0.35}>
+            <circle r={5} fill="none" stroke="#c8923a" strokeWidth="1" />
+            <line x1={-8} y1={0} x2={8} y2={0} stroke="#c8923a" strokeWidth="0.8" />
+            <line x1={0} y1={-8} x2={0} y2={8} stroke="#c8923a" strokeWidth="0.8" />
           </g>
         ))}
 
-        {/* Ручей / вода — извилистая линия */}
-        <path d="M 100 180 Q 130 220 110 280 Q 90 340 120 390 Q 150 440 130 490 Q 115 530 140 560"
-          fill="none" stroke="rgba(90,158,200,0.3)" strokeWidth="6" strokeLinecap="round" />
-        <path d="M 100 180 Q 130 220 110 280 Q 90 340 120 390 Q 150 440 130 490 Q 115 530 140 560"
-          fill="none" stroke="rgba(90,158,200,0.15)" strokeWidth="12" strokeLinecap="round" />
-
-        {/* Тропы */}
-        {TRAIL_PATHS.map((d, i) => (
-          <path key={i} d={d} fill="none"
-            stroke="rgba(180,150,100,0.18)" strokeWidth="3"
-            strokeDasharray="6 5" strokeLinecap="round" />
+        {/* Деревья — рукописные */}
+        {trees.map(([x, y, s, op], i) => (
+          <HandDrawnTree key={i} x={x} y={y} size={s} opacity={op} />
         ))}
 
-        {/* Главное кольцо тропы */}
-        <ellipse cx={460} cy={350} rx={285} ry={195}
-          fill="none" stroke="rgba(180,150,100,0.12)" strokeWidth="24" />
-        <ellipse cx={460} cy={350} rx={285} ry={195}
-          fill="none" stroke="rgba(180,150,100,0.22)" strokeWidth="2"
-          strokeDasharray="10 8" />
+        {/* Этнические орнаменты */}
+        {ORNAMENTS.map((o, i) => <EthnicOrnament key={i} x={o.x} y={o.y} />)}
 
-        {/* Центральный элемент — этнический узор */}
-        <g transform="translate(460,350)" opacity={0.12}>
-          {[0,60,120,180,240,300].map((angle, i) => (
-            <line key={i} x1={0} y1={0}
-              x2={Math.cos((angle * Math.PI) / 180) * 40}
-              y2={Math.sin((angle * Math.PI) / 180) * 40}
-              stroke="#c8923a" strokeWidth="1.5" />
-          ))}
-          <circle cx={0} cy={0} r={12} fill="none" stroke="#c8923a" strokeWidth="1.5" />
-          <circle cx={0} cy={0} r={4} fill="#c8923a" opacity={0.6} />
-        </g>
+        {/* Руны по углам */}
+        {RUNES.map((r, i) => (
+          <text key={i} x={r.x} y={r.y} textAnchor="middle" dominantBaseline="central"
+            fill="rgba(180,150,70,0.28)"
+            style={{ fontSize: "13px", fontFamily: "serif", userSelect: "none" }}>
+            {r.r}
+          </text>
+        ))}
 
-        {/* Зоны — точки на карте */}
+        {/* Ручей — синяя кривая, рукописная */}
+        <path d="M 96 170 C 118 210 105 250 112 290 C 118 330 95 370 118 410 C 138 445 128 488 112 530 C 100 558 130 572 148 568"
+          fill="none" stroke="rgba(90,150,200,0.22)" strokeWidth="8" strokeLinecap="round" filter="url(#ink)" />
+        <path d="M 96 170 C 118 210 105 250 112 290 C 118 330 95 370 118 410 C 138 445 128 488 112 530 C 100 558 130 572 148 568"
+          fill="none" stroke="rgba(110,170,220,0.35)" strokeWidth="2.5" strokeLinecap="round"
+          strokeDasharray="12 4" filter="url(#ink)" />
+
+        {/* Тропы — рукописные пунктиры */}
+        {TRAILS.map((d, i) => (
+          <g key={i}>
+            <path d={d} fill="none" stroke="rgba(160,130,70,0.12)" strokeWidth="5" strokeLinecap="round" filter="url(#ink)" />
+            <path d={d} fill="none" stroke="rgba(180,150,80,0.3)" strokeWidth="1.8"
+              strokeDasharray="7 6" strokeLinecap="round" filter="url(#ink)" />
+          </g>
+        ))}
+
+        {/* Главная дорога вокруг центра */}
+        <ellipse cx={460} cy={350} rx={288} ry={198}
+          fill="none" stroke="rgba(160,130,70,0.08)" strokeWidth="18" filter="url(#ink)" />
+        <ellipse cx={460} cy={350} rx={288} ry={198}
+          fill="none" stroke="rgba(180,150,80,0.18)" strokeWidth="2"
+          strokeDasharray="14 7 3 7" filter="url(#ink)" />
+
+        {/* Рукописные подписи мест */}
+        {MAP_LABELS.map((lbl, i) => (
+          <text key={i} x={lbl.x} y={lbl.y}
+            textAnchor="middle"
+            fill={lbl.color}
+            opacity={lbl.opacity}
+            transform={`rotate(${lbl.rotate}, ${lbl.x}, ${lbl.y})`}
+            filter="url(#ink)"
+            style={{ fontSize: "9px", fontFamily: "'Georgia', serif", fontStyle: "italic", userSelect: "none", letterSpacing: "0.05em" }}>
+            {lbl.text}
+          </text>
+        ))}
+
+        {/* Зоны — интерактивные точки */}
         {zones.map((zone, i) => {
           const isActive = i === activeZone;
           const isHov = hovered === i;
-          const scale = isActive ? 1.35 : isHov ? 1.15 : 1;
+          // Увеличение при наведении через transform на <g>
+          const scale = isActive ? 1.4 : isHov ? 1.25 : 1;
           return (
             <g key={zone.id}
-              transform={`translate(${zone.mapX},${zone.mapY})`}
-              style={{ cursor: "pointer", transition: "transform 0.2s ease" }}
+              transform={`translate(${zone.mapX},${zone.mapY}) scale(${scale})`}
+              style={{ cursor: "pointer", transformOrigin: `${zone.mapX}px ${zone.mapY}px`, transformBox: "fill-box", transition: "transform 0.18s cubic-bezier(0.34,1.56,0.64,1)" }}
               onClick={() => onSelect(i)}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}>
 
-              {/* Пульс-кольцо для активной зоны */}
+              {/* Пульс */}
               {isActive && (
                 <>
-                  <circle cx={0} cy={0} r={28} fill="none"
-                    stroke={zone.color} strokeWidth="1.5" opacity={0.3}
-                    style={{ animation: "mapPulse 2s ease-out infinite" }} />
-                  <circle cx={0} cy={0} r={38} fill="none"
-                    stroke={zone.color} strokeWidth="1" opacity={0.15}
-                    style={{ animation: "mapPulse 2s ease-out infinite 0.4s" }} />
+                  <circle cx={0} cy={0} r={30} fill="none"
+                    stroke={zone.color} strokeWidth="1.5" opacity={0.28}
+                    style={{ animation: "mapPulse 2.2s ease-out infinite" }} />
+                  <circle cx={0} cy={0} r={40} fill="none"
+                    stroke={zone.color} strokeWidth="1" opacity={0.12}
+                    style={{ animation: "mapPulse 2.2s ease-out infinite 0.5s" }} />
                 </>
               )}
 
-              {/* Тень */}
-              <circle cx={2} cy={3} r={20 * scale} fill="rgba(0,0,0,0.5)" />
+              {/* Тень земли */}
+              <ellipse cx={2} cy={24} rx={16} ry={4} fill="rgba(0,0,0,0.35)" />
 
-              {/* Основной кружок */}
-              <circle cx={0} cy={0} r={20 * scale}
-                fill={isActive ? zone.color : isHov ? `${zone.color}cc` : "#1a2518"}
+              {/* Иконка зоны — «нарисованный» домик/метка */}
+              {/* Основа — деревянный кружок с текстурой */}
+              <circle cx={0} cy={0} r={21}
+                fill={isActive ? `${zone.color}22` : "rgba(10,18,9,0.82)"}
                 stroke={zone.color}
-                strokeWidth={isActive ? 2.5 : 1.5}
-                style={{ transition: "all 0.2s ease" }} />
-
-              {/* Этнический ободок */}
-              {isActive && (
-                <circle cx={0} cy={0} r={24}
-                  fill="none" stroke={zone.color} strokeWidth="1"
-                  strokeDasharray="4 3" opacity={0.5} />
-              )}
-
+                strokeWidth={isActive ? 2.5 : isHov ? 2 : 1.5}
+                filter="url(#ink)"
+              />
+              {/* Этнические штрихи вокруг */}
+              {[0, 60, 120, 180, 240, 300].map((a, idx) => {
+                const rad = (a * Math.PI) / 180;
+                return (
+                  <line key={idx}
+                    x1={Math.cos(rad) * 23} y1={Math.sin(rad) * 23}
+                    x2={Math.cos(rad) * 28} y2={Math.sin(rad) * 28}
+                    stroke={zone.color} strokeWidth="1" opacity={isActive ? 0.7 : 0.3} />
+                );
+              })}
               {/* Эмодзи */}
-              <text x={0} y={0} textAnchor="middle" dominantBaseline="central"
-                style={{ fontSize: `${(isActive ? 14 : 12) * scale}px`, userSelect: "none", pointerEvents: "none" }}>
+              <text x={0} y={1} textAnchor="middle" dominantBaseline="central"
+                style={{ fontSize: "13px", userSelect: "none", pointerEvents: "none" }}>
                 {zone.emoji}
               </text>
 
-              {/* Подпись */}
+              {/* Подпись — рукописная */}
               {(isActive || isHov) && (
                 <g>
-                  <rect
-                    x={-52} y={24 * scale}
-                    width={104} height={22}
-                    rx={5}
-                    fill="rgba(8,12,7,0.88)"
-                    stroke={zone.color}
-                    strokeWidth="0.8"
-                    opacity={0.95}
-                  />
-                  <text x={0} y={24 * scale + 14}
+                  {/* Фон бирки */}
+                  <rect x={-45} y={27} width={90} height={20} rx={3}
+                    fill="rgba(6,11,5,0.9)"
+                    stroke={zone.color} strokeWidth="0.8"
+                    filter="url(#ink)" />
+                  <text x={0} y={40}
                     textAnchor="middle"
                     fill={zone.color}
-                    style={{ fontSize: "9px", fontWeight: 600, letterSpacing: "0.04em", userSelect: "none", pointerEvents: "none" }}>
-                    {zone.title}
+                    filter="url(#ink)"
+                    style={{ fontSize: "8.5px", fontFamily: "'Georgia', serif", fontStyle: "italic", userSelect: "none", pointerEvents: "none", letterSpacing: "0.03em" }}>
+                    {zone.mapLabel}
                   </text>
                 </g>
               )}
@@ -277,51 +410,65 @@ function TerritoryMap({ activeZone, onSelect }: { activeZone: number; onSelect: 
           );
         })}
 
-        {/* Компас — этнический */}
-        <g transform="translate(848,68)" opacity={0.55}>
-          <circle cx={0} cy={0} r={22} fill="rgba(10,16,9,0.8)" stroke="rgba(200,146,58,0.4)" strokeWidth="1" />
-          <circle cx={0} cy={0} r={16} fill="none" stroke="rgba(200,146,58,0.25)" strokeWidth="0.8" strokeDasharray="3 2" />
-          {["С","В","Ю","З"].map((dir, i) => {
-            const angle = i * 90 - 90;
-            const rad = (angle * Math.PI) / 180;
-            return (
-              <text key={dir} x={Math.cos(rad) * 10} y={Math.sin(rad) * 10 + 4}
-                textAnchor="middle" fill="rgba(200,146,58,0.7)"
-                style={{ fontSize: "7px", fontWeight: 700, userSelect: "none" }}>
-                {dir}
-              </text>
-            );
-          })}
-          <path d="M 0 -13 L 3 0 L 0 4 L -3 0 Z" fill="#c8923a" opacity={0.8} />
-          <path d="M 0 13 L 3 0 L 0 -4 L -3 0 Z" fill="rgba(200,146,58,0.3)" />
+        {/* Компас — этнический рукописный */}
+        <g transform="translate(856,64)" opacity={0.6}>
+          {/* Фон */}
+          <circle cx={0} cy={0} r={24} fill="rgba(8,13,7,0.85)"
+            stroke="rgba(180,140,60,0.5)" strokeWidth="1" filter="url(#ink)" />
+          <circle cx={0} cy={0} r={18} fill="none"
+            stroke="rgba(180,140,60,0.25)" strokeWidth="0.8" strokeDasharray="3 2" />
+          {/* Стрелки */}
+          <path d="M 0 -19 L 4 0 L 0 5 L -4 0 Z" fill="#c8923a" opacity={0.9} filter="url(#ink)" />
+          <path d="M 0 19 L 4 0 L 0 -5 L -4 0 Z" fill="rgba(200,146,58,0.28)" />
+          <path d="M -19 0 L 0 4 L 5 0 L 0 -4 Z" fill="rgba(200,146,58,0.28)" />
+          <path d="M 19 0 L 0 4 L -5 0 L 0 -4 Z" fill="rgba(200,146,58,0.28)" />
+          {/* Буквы сторон */}
+          {[["С",-13],["Ю",13]].map(([t, dy]) => (
+            <text key={t as string} x={0} y={(dy as number) + 3.5} textAnchor="middle"
+              fill="rgba(200,160,70,0.8)"
+              style={{ fontSize: "7px", fontFamily: "'Georgia', serif", fontWeight: 700, userSelect: "none" }}>
+              {t}
+            </text>
+          ))}
+          <circle cx={0} cy={0} r={3} fill="rgba(180,140,60,0.6)" />
         </g>
 
-        {/* Легенда */}
-        <g transform="translate(20, 430)">
-          <rect x={0} y={0} width={88} height={60} rx={8}
-            fill="rgba(8,12,7,0.75)" stroke="rgba(200,146,58,0.2)" strokeWidth="0.8" />
-          <text x={9} y={15} fill="rgba(200,146,58,0.6)"
-            style={{ fontSize: "7px", letterSpacing: "0.05em", userSelect: "none" }}>ЛЕГЕНДА</text>
-          <line x1={9} y1={24} x2={19} y2={24} stroke="rgba(180,150,100,0.5)" strokeWidth="2" strokeDasharray="4 3" />
-          <text x={23} y={28} fill="rgba(200,200,180,0.6)" style={{ fontSize: "7px", userSelect: "none" }}>тропа</text>
-          <line x1={9} y1={36} x2={19} y2={36} stroke="rgba(90,158,200,0.5)" strokeWidth="3" strokeLinecap="round" />
-          <text x={23} y={40} fill="rgba(200,200,180,0.6)" style={{ fontSize: "7px", userSelect: "none" }}>ручей</text>
-          <circle cx={14} cy={51} r={5} fill="#1a2518" stroke="rgba(200,146,58,0.6)" strokeWidth="1" />
-          <text x={23} y={55} fill="rgba(200,200,180,0.6)" style={{ fontSize: "7px", userSelect: "none" }}>зона</text>
+        {/* Легенда — рукописная бирка */}
+        <g transform="translate(22, 425)">
+          <rect x={0} y={0} width={92} height={72} rx={4}
+            fill="rgba(6,11,5,0.82)" stroke="rgba(180,140,60,0.3)" strokeWidth="1"
+            filter="url(#ink)" />
+          <text x={8} y={14} fill="rgba(180,140,60,0.7)"
+            style={{ fontSize: "7.5px", fontFamily: "'Georgia', serif", fontStyle: "italic", letterSpacing: "0.06em", userSelect: "none" }}>легенда</text>
+          <line x1={8} y1={25} x2={20} y2={25} stroke="rgba(180,150,80,0.6)" strokeWidth="1.8" strokeDasharray="5 3" />
+          <text x={25} y={29} fill="rgba(200,190,160,0.65)" style={{ fontSize: "7px", fontFamily: "serif", fontStyle: "italic", userSelect: "none" }}>тропа</text>
+          <line x1={8} y1={40} x2={20} y2={40} stroke="rgba(90,158,200,0.6)" strokeWidth="3" strokeLinecap="round" />
+          <text x={25} y={44} fill="rgba(200,190,160,0.65)" style={{ fontSize: "7px", fontFamily: "serif", fontStyle: "italic", userSelect: "none" }}>ручей</text>
+          <circle cx={14} cy={58} r={6} fill="rgba(10,18,9,0.82)" stroke="rgba(200,146,58,0.6)" strokeWidth="1" />
+          <text x={14} y={59} textAnchor="middle" dominantBaseline="central" style={{ fontSize: "8px", userSelect: "none" }}>🏛️</text>
+          <text x={25} y={62} fill="rgba(200,190,160,0.65)" style={{ fontSize: "7px", fontFamily: "serif", fontStyle: "italic", userSelect: "none" }}>зона</text>
         </g>
+
+        {/* Заголовок карты — рукописный */}
+        <text x={460} y={32} textAnchor="middle" fill="rgba(180,150,70,0.4)"
+          filter="url(#ink)"
+          style={{ fontSize: "10px", fontFamily: "'Georgia', serif", fontStyle: "italic", letterSpacing: "0.15em", userSelect: "none" }}>
+          ✦ карта территории целительского центра ✦
+        </text>
 
         <style>{`
           @keyframes mapPulse {
-            0% { r: 28; opacity: 0.35; }
-            100% { r: 52; opacity: 0; }
+            0% { opacity: 0.3; }
+            100% { r: 55; opacity: 0; }
           }
         `}</style>
       </svg>
 
       {/* Подсказка */}
       <div className="absolute bottom-3 left-0 right-0 text-center pointer-events-none">
-        <span className="text-xs px-3 py-1 rounded-full" style={{ background: "rgba(8,12,7,0.7)", color: "rgba(160,192,112,0.7)", backdropFilter: "blur(8px)" }}>
-          Нажмите на зону чтобы узнать подробности
+        <span className="text-xs px-3 py-1 rounded-full"
+          style={{ background: "rgba(6,11,5,0.75)", color: "rgba(160,140,80,0.75)", backdropFilter: "blur(8px)", fontFamily: "'Georgia', serif", fontStyle: "italic" }}>
+          нажмите на зону чтобы узнать подробности
         </span>
       </div>
     </div>
@@ -336,28 +483,14 @@ export default function TerritoryWalk() {
   const detailRef = useRef<HTMLDivElement>(null);
 
   const goToZone = (index: number) => {
-    if (index === activeZone && view === "detail") return;
     setIsAnimating(true);
-    setTimeout(() => {
-      setActiveZone(index);
-      setIsAnimating(false);
-    }, 250);
+    setTimeout(() => { setActiveZone(index); setIsAnimating(false); }, 250);
     setView("detail");
-    setTimeout(() => {
-      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    setTimeout(() => { detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }, 100);
   };
 
-  const next = () => {
-    const next = (activeZone + 1) % zones.length;
-    setIsAnimating(true);
-    setTimeout(() => { setActiveZone(next); setIsAnimating(false); }, 250);
-  };
-  const prev = () => {
-    const p = (activeZone - 1 + zones.length) % zones.length;
-    setIsAnimating(true);
-    setTimeout(() => { setActiveZone(p); setIsAnimating(false); }, 250);
-  };
+  const next = () => { const n = (activeZone + 1) % zones.length; setIsAnimating(true); setTimeout(() => { setActiveZone(n); setIsAnimating(false); }, 250); };
+  const prev = () => { const p = (activeZone - 1 + zones.length) % zones.length; setIsAnimating(true); setTimeout(() => { setActiveZone(p); setIsAnimating(false); }, 250); };
 
   const zone = zones[activeZone];
 
@@ -377,7 +510,7 @@ export default function TerritoryWalk() {
             <em style={{ color: "#6aaa70" }}>живому пространству</em>
           </h2>
           <p className="text-base mb-10 leading-relaxed" style={{ color: "#8a9a78", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-            10 уникальных зон на территории — лес, ручьи, баня, медитативные поляны, VIP-домики и творческие мастерские
+            10 уникальных зон на территории — лес, ручьи, баня с чаном, медитативные поляны, VIP-домики и творческие мастерские
           </p>
           <div className="flex gap-2 justify-center mb-10 overflow-hidden">
             {zones.slice(0, 5).map((z, i) => (
@@ -394,7 +527,7 @@ export default function TerritoryWalk() {
             Начать прогулку
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
-          <p className="mt-4 text-xs" style={{ color: "#6a7a60" }}>10 зон · карта территории · этнический стиль</p>
+          <p className="mt-4 text-xs" style={{ color: "#6a7a60" }}>10 зон · карта с рунами · этнический стиль</p>
         </div>
       </section>
     );
@@ -430,23 +563,18 @@ export default function TerritoryWalk() {
 
       <div className="max-w-4xl mx-auto px-4 pb-24 pt-4">
 
-        {/* ── MAP VIEW ── */}
+        {/* MAP VIEW */}
         {view === "map" && (
           <div>
             <div className="text-center mb-4">
-              <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "#5a7a55" }}>Нажмите на зону на карте</p>
+              <p className="text-xs" style={{ color: "#5a7a55", fontFamily: "'Georgia', serif", fontStyle: "italic" }}>нажмите на любую зону</p>
             </div>
             <TerritoryMap activeZone={activeZone} onSelect={goToZone} />
-
-            {/* Zone chips under map */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-4">
               {zones.map((z, i) => (
                 <button key={z.id} onClick={() => goToZone(i)}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-left transition-all hover:scale-[1.03]"
-                  style={{
-                    background: i === activeZone ? z.accent : "rgba(255,255,255,0.03)",
-                    border: `1px solid ${i === activeZone ? z.color + "60" : "rgba(255,255,255,0.06)"}`,
-                  }}>
+                  style={{ background: i === activeZone ? z.accent : "rgba(255,255,255,0.03)", border: `1px solid ${i === activeZone ? z.color + "60" : "rgba(255,255,255,0.06)"}` }}>
                   <span style={{ fontSize: "1rem" }}>{z.emoji}</span>
                   <span className="text-xs leading-tight" style={{ color: i === activeZone ? z.color : "#7a8a70" }}>{z.title}</span>
                 </button>
@@ -455,13 +583,13 @@ export default function TerritoryWalk() {
           </div>
         )}
 
-        {/* ── DETAIL VIEW ── */}
+        {/* DETAIL VIEW */}
         {view === "detail" && (
           <div ref={detailRef}>
-            {/* Dots nav */}
             <div className="flex gap-2 justify-center py-3 overflow-x-auto">
               {zones.map((z, i) => (
-                <button key={z.id} onClick={() => { setIsAnimating(true); setTimeout(() => { setActiveZone(i); setIsAnimating(false); }, 250); }}
+                <button key={z.id}
+                  onClick={() => { setIsAnimating(true); setTimeout(() => { setActiveZone(i); setIsAnimating(false); }, 250); }}
                   className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all"
                   style={{ background: i === activeZone ? z.color : "rgba(255,255,255,0.05)", border: `1px solid ${i === activeZone ? z.color : "rgba(255,255,255,0.1)"}`, transform: i === activeZone ? "scale(1.2)" : "scale(1)" }}>
                   {z.emoji}
@@ -469,7 +597,6 @@ export default function TerritoryWalk() {
               ))}
             </div>
 
-            {/* Image */}
             <div className="relative rounded-3xl overflow-hidden my-4" style={{ height: "55vw", maxHeight: "360px", minHeight: "200px" }}>
               <img src={zone.image} alt={zone.title} className="w-full h-full object-cover"
                 style={{ opacity: isAnimating ? 0 : 1, transform: isAnimating ? "scale(1.05)" : "scale(1)", transition: "opacity 0.25s ease, transform 0.25s ease" }} />
@@ -486,22 +613,20 @@ export default function TerritoryWalk() {
               </div>
             </div>
 
-            {/* Description */}
             <div className="rounded-2xl p-5 mb-4" style={{ background: zone.accent, border: `1px solid ${zone.color}25`, opacity: isAnimating ? 0 : 1, transition: "opacity 0.25s ease 0.1s" }}>
               <p className="leading-relaxed" style={{ color: "#c8d8b8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>{zone.desc}</p>
             </div>
 
-            {/* Details */}
             <div className="grid grid-cols-2 gap-3 mb-6" style={{ opacity: isAnimating ? 0 : 1, transition: "opacity 0.25s ease 0.12s" }}>
               {zone.details.map((detail, i) => (
-                <div key={i} className="flex items-start gap-2 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={i} className="flex items-start gap-2 rounded-xl p-3"
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                   <span style={{ color: zone.color, flexShrink: 0, marginTop: "1px" }}>{zone.icon}</span>
                   <span className="text-xs leading-relaxed" style={{ color: "#8a9a78" }}>{detail}</span>
                 </div>
               ))}
             </div>
 
-            {/* Navigation */}
             <div className="flex gap-3 mb-6">
               <button onClick={prev} className="flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl text-sm transition-all hover:scale-[1.02]"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(106,170,112,0.15)", color: "#6aaa70" }}>
