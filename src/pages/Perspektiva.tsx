@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import TerritoryWalk from "@/components/TerritoryWalk";
+import TerritoryWalk, { DaySchedule } from "@/components/TerritoryWalk";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -480,6 +480,9 @@ export default function Perspektiva() {
           </FadeIn>
         </div>
       </section>
+
+      {/* ── Day Schedule ── */}
+      <DaySchedule />
 
       {/* ── Territory Walk ── */}
       <TerritoryWalk />

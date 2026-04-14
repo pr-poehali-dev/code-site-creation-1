@@ -454,6 +454,59 @@ function BookingForm({ tarotCard }: { tarotCard?: string }) {
   );
 }
 
+const CORP_LANGS = [
+  { text: "Иней и Магма corp", lang: "рус" },
+  { text: "Iney & Magma corp", lang: "eng" },
+  { text: "إيني وماغما كورب", lang: "عربي" },
+  { text: "이네이 앤 마그마 코프", lang: "한국어" },
+  { text: "雪霜与熔岩公司", lang: "中文" },
+  { text: "アイスとマグマコープ", lang: "日本語" },
+  { text: "Iney e Magma corp", lang: "italiano" },
+  { text: "Iney et Magma corp", lang: "français" },
+  { text: "इनेय और मैग्मा कॉर्प", lang: "हिन्दी" },
+  { text: "Иней і Магма corp", lang: "укр" },
+  { text: "Iney und Magma corp", lang: "deutsch" },
+  { text: "Iney y Magma corp", lang: "español" },
+];
+
+function CorpLanguageRotator() {
+  const [idx, setIdx] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % CORP_LANGS.length);
+        setFade(true);
+      }, 350);
+    }, 2600);
+    return () => clearInterval(t);
+  }, []);
+
+  const item = CORP_LANGS[idx];
+  return (
+    <div className="mb-10 animate-fade-up delay-400 flex flex-col items-center gap-1">
+      <p
+        style={{
+          color: "var(--eth-gold)",
+          letterSpacing: "0.05em",
+          fontSize: "1.15rem",
+          fontWeight: 300,
+          opacity: fade ? 1 : 0,
+          transform: fade ? "translateY(0)" : "translateY(6px)",
+          transition: "opacity 0.35s ease, transform 0.35s ease",
+          fontFamily: idx >= 2 && idx <= 4 ? "sans-serif" : "inherit",
+        }}>
+        {item.text}
+      </p>
+      <span style={{ fontSize: "0.65rem", letterSpacing: "0.15em", color: "var(--eth-stone)", opacity: fade ? 0.6 : 0, transition: "opacity 0.35s ease", textTransform: "uppercase" }}>
+        {item.lang}
+      </span>
+    </div>
+  );
+}
+
 export default function Index() {
   const navigate = useNavigate();
   const [activeProgram, setActiveProgram] = useState<typeof programs[0] | null>(null);
@@ -563,10 +616,8 @@ export default function Index() {
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)" }}>
             Мудрость предков в каждой капле пара
           </p>
-          <p className="text-lg md:text-xl font-light mb-10 animate-fade-up delay-400"
-            style={{ color: "var(--eth-gold)", letterSpacing: "0.05em" }}>
-            Иней и Магма corp
-          </p>
+          <CorpLanguageRotator />
+
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-500">
             <button onClick={() => scrollTo("programs")}
