@@ -264,6 +264,7 @@ export const shopCategories = [
     leafColor: "rgba(140,80,200,0.6)",
     path: "/shop/tarot",
     featured: "78 карт · авторские иллюстрации · полотняный мешочек",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/6c355651-fe2a-4e52-a62e-9bb7b9ae512a.jpg",
   },
   {
     id: "candles",
@@ -277,6 +278,7 @@ export const shopCategories = [
     leafColor: "rgba(200,146,58,0.6)",
     path: "/shop/candles",
     featured: "пихта · полынь · мелисса · можжевельник",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/98b1cbd3-8930-4e1b-90bb-0eb3cb7a854d.jpg",
   },
   {
     id: "amulets",
@@ -290,6 +292,7 @@ export const shopCategories = [
     leafColor: "rgba(80,180,120,0.6)",
     path: "/shop/amulets",
     featured: "кожа · кость · травы · природные камни",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/05ffad28-6ccc-45e7-a324-934ecbbbd839.jpg",
   },
   {
     id: "crystals",
@@ -303,6 +306,7 @@ export const shopCategories = [
     leafColor: "rgba(80,160,200,0.6)",
     path: "/shop/crystals",
     featured: "аметист · горный хрусталь · обсидиан · лабрадор",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/cd0a6513-4f2d-4158-8c4b-bb7fee9e6917.jpg",
   },
   {
     id: "salt",
@@ -316,6 +320,7 @@ export const shopCategories = [
     leafColor: "rgba(160,200,220,0.6)",
     path: "/shop/salt",
     featured: "гималайская · морская · с хвоей · с мёдом",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/5c92fbb6-982e-4f9e-b23a-5a931dd15a0f.jpg",
   },
   {
     id: "brooms",
@@ -329,6 +334,7 @@ export const shopCategories = [
     leafColor: "rgba(120,180,60,0.6)",
     path: "/shop/brooms",
     featured: "берёза · дуб · пихта · эвкалипт",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a4e36eff-4a1f-4abf-9628-55465ec5ae09.jpg",
   },
   {
     id: "fans",
@@ -342,6 +348,7 @@ export const shopCategories = [
     leafColor: "rgba(200,80,40,0.6)",
     path: "/shop/fans",
     featured: "войлок · кожа · дерево · этнический орнамент",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/2ba7e7ff-265c-4c4f-bc6a-9849a6a54472.jpg",
   },
   {
     id: "zaparka",
@@ -355,6 +362,7 @@ export const shopCategories = [
     leafColor: "rgba(80,160,100,0.6)",
     path: "/shop/zaparka",
     featured: "душица · чабрец · пихта · эвкалипт · мята",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/5c47b605-df9a-4182-aa60-f05c8c76cc18.jpg",
   },
 ];
 
@@ -580,7 +588,7 @@ export default function Shop() {
                 onClick={() => navigate(cat.path)}
                 onMouseEnter={() => setHoveredId(cat.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="forest-card rounded-2xl p-7 text-left w-full group"
+                className="forest-card rounded-2xl text-left w-full group overflow-hidden"
                 style={{
                   background:
                     hoveredId === cat.id
@@ -590,13 +598,23 @@ export default function Shop() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                {/* Depth label */}
-                <p
-                  className="text-xs tracking-[0.35em] mb-4 uppercase"
-                  style={{ color: cat.leafColor, opacity: 0.7 }}
-                >
-                  {cat.depth}
-                </p>
+                {/* Photo */}
+                {"image" in cat && cat.image && (
+                  <div className="relative overflow-hidden" style={{ height: "180px" }}>
+                    <img
+                      src={cat.image}
+                      alt={cat.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,14,8,0.85) 0%, rgba(10,14,8,0.1) 60%, transparent 100%)" }} />
+                    <p className="absolute bottom-3 left-4 text-xs tracking-[0.35em] uppercase" style={{ color: cat.leafColor, opacity: 0.9 }}>{cat.depth}</p>
+                  </div>
+                )}
+
+                <div className="p-6">
+                {!("image" in cat) && (
+                  <p className="text-xs tracking-[0.35em] mb-4 uppercase" style={{ color: cat.leafColor, opacity: 0.7 }}>{cat.depth}</p>
+                )}
 
                 {/* Emoji */}
                 <div
@@ -650,6 +668,7 @@ export default function Shop() {
                   <span>Войти</span>
                   <Icon name="ArrowRight" size={14} />
                 </div>
+                </div>{/* /p-6 */}
               </button>
             ))}
           </div>

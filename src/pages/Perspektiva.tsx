@@ -217,6 +217,325 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+// ─── Program Table ────────────────────────────────────────────────────────────
+
+const DURATIONS = [3, 7, 14, 21, 28] as const;
+type Dur = typeof DURATIONS[number];
+
+const fastingProgram: Record<Dur, {
+  procedures: string[];
+  sessions: { label: string; count: number }[];
+  price: number;
+  priceEarly: number;
+}> = {
+  3: {
+    procedures: ["Первичная диагностика организма", "Ступенчатый вход в очищение", "Травяные отвары и детокс-напитки", "Банный ритуал с веником", "Вечерняя медитация"],
+    sessions: [
+      { label: "Консультации врача", count: 2 },
+      { label: "Банных ритуалов", count: 3 },
+      { label: "Детокс-процедур", count: 4 },
+      { label: "Медитаций", count: 3 },
+    ],
+    price: 148000,
+    priceEarly: 118000,
+  },
+  7: {
+    procedures: ["Диагностика и составление протокола", "Ступенчатый переход к голоданию", "Травяные отвары, минеральная вода", "Капельницы с электролитами", "Ежедневная баня с травами", "Звуковые медитации", "Лесные прогулки шинрин-йоку", "Аюрведический массаж"],
+    sessions: [
+      { label: "Консультации врача", count: 5 },
+      { label: "Банных ритуалов", count: 7 },
+      { label: "Детокс-процедур", count: 9 },
+      { label: "Массажей", count: 3 },
+      { label: "Медитаций", count: 7 },
+    ],
+    price: 320000,
+    priceEarly: 258000,
+  },
+  14: {
+    procedures: ["Полный медицинский чекап", "Двухнедельный протокол голодания", "LED-терапия и гипербарика", "Капельницы с витаминами и аминокислотами", "Ежедневная баня, чан и купель", "Аюрведический и стоун-массаж", "Звуковые ванны и пранаяма", "Лесные медитации на рассвете", "Остеопатия", "Консультации нутрициолога"],
+    sessions: [
+      { label: "Консультации врача", count: 10 },
+      { label: "Банных ритуалов", count: 14 },
+      { label: "Детокс-процедур", count: 18 },
+      { label: "Массажей", count: 7 },
+      { label: "Медитаций", count: 14 },
+      { label: "LED / гипербарика", count: 6 },
+    ],
+    price: 590000,
+    priceEarly: 472000,
+  },
+  21: {
+    procedures: ["Глубокая диагностика (МРТ, анализы, ДНК)", "Трёхнедельный голодательный протокол", "PRP-терапия и ВЛОК", "Гипербарическая оксигенация", "Криотерапия", "Ежедневная баня и чан", "Аюрведа, массаж, остеопатия", "Звуковые ванны и дыхательные сессии", "Индивидуальный нутрициолог", "Психолог / коуч сессии", "Выход на поддерживающее питание"],
+    sessions: [
+      { label: "Консультации врача", count: 16 },
+      { label: "Банных ритуалов", count: 21 },
+      { label: "Детокс-процедур", count: 28 },
+      { label: "Массажей / остеопатии", count: 12 },
+      { label: "Медитаций", count: 21 },
+      { label: "Аппаратных процедур", count: 12 },
+    ],
+    price: 890000,
+    priceEarly: 712000,
+  },
+  28: {
+    procedures: ["Полный геномный анализ", "28-дневный трансформационный протокол", "PRP, ВЛОК, озонотерапия", "Серия криопроцедур", "Гипербарика — полный курс", "Ежедневная баня, чан, купель", "Аюрведа и тибетская медицина", "Звуковые ванны, дыхание, медитации", "Индивидуальный ассистент", "Персональный шеф-повар на выходе", "Психолог и лайф-коуч"],
+    sessions: [
+      { label: "Консультации врача", count: 22 },
+      { label: "Банных ритуалов", count: 28 },
+      { label: "Детокс-процедур", count: 38 },
+      { label: "Массажей / остеопатии", count: 18 },
+      { label: "Медитаций", count: 28 },
+      { label: "Аппаратных процедур", count: 20 },
+      { label: "Коуч-сессий", count: 8 },
+    ],
+    price: 1250000,
+    priceEarly: 980000,
+  },
+};
+
+const brothsProgram: Record<Dur, {
+  procedures: string[];
+  sessions: { label: string; count: number }[];
+  price: number;
+  priceEarly: number;
+}> = {
+  3: {
+    procedures: ["Диагностика и протокол питания", "Костные бульоны и целебные супы", "Банный ритуал с мёдом", "Вечерние чайные церемонии", "Медитация и телесная практика"],
+    sessions: [
+      { label: "Консультации нутрициолога", count: 2 },
+      { label: "Банных ритуалов", count: 3 },
+      { label: "Питательных процедур", count: 4 },
+      { label: "Практик", count: 3 },
+    ],
+    price: 138000,
+    priceEarly: 108000,
+  },
+  7: {
+    procedures: ["Протокол восстановительного питания", "Костные бульоны, ферменты, суперфуды", "Банные ритуалы с ароматерапией", "Фитотерапия и травяные обёртывания", "Аюрведический массаж", "Звуковые медитации", "Лесные прогулки"],
+    sessions: [
+      { label: "Консультации нутрициолога", count: 4 },
+      { label: "Банных ритуалов", count: 7 },
+      { label: "Процедур питания", count: 7 },
+      { label: "Массажей", count: 4 },
+      { label: "Медитаций", count: 7 },
+    ],
+    price: 298000,
+    priceEarly: 238000,
+  },
+  14: {
+    procedures: ["Полный нутригенетический анализ", "14-дневный протокол бульонов и суперфудов", "Капельницы витамины + аминокислоты", "LED-фотобиомодуляция", "Ежедневная баня с чаном", "Массаж, рефлексология, стоун-терапия", "Фитобарель и обёртывания", "Звуковые ванны, медитации"],
+    sessions: [
+      { label: "Консультации нутрициолога", count: 8 },
+      { label: "Банных ритуалов", count: 14 },
+      { label: "Процедур питания и капельниц", count: 16 },
+      { label: "Массажей", count: 8 },
+      { label: "Медитаций", count: 14 },
+      { label: "LED / фотобиомодуляция", count: 5 },
+    ],
+    price: 545000,
+    priceEarly: 436000,
+  },
+  21: {
+    procedures: ["Расширенный метаболический анализ", "21-дневный протокол: бульоны, суперфуды, ферменты", "Озонотерапия и ВЛОК", "Капельницы и аминокислоты", "Фитобарель и обёртывания", "Ежедневная баня и чан", "Аюрведа и тибетские практики", "Психосоматическая работа", "Коуч по питанию"],
+    sessions: [
+      { label: "Консультации нутрициолога", count: 14 },
+      { label: "Банных ритуалов", count: 21 },
+      { label: "Процедур питания", count: 26 },
+      { label: "Массажей", count: 12 },
+      { label: "Медитаций", count: 21 },
+      { label: "Аппаратных процедур", count: 10 },
+    ],
+    price: 820000,
+    priceEarly: 656000,
+  },
+  28: {
+    procedures: ["Полный анализ микробиома", "28-дневная трансформация через питание", "PRP, ВЛОК, озонотерапия", "Персональный шеф-повар на протоколе", "Ежедневная баня, чан, купель", "Аюрведа, остеопатия, рефлексология", "Звуковые ванны, дыхание, йога", "Психолог и нутри-коуч", "Финальный чекап и план на год"],
+    sessions: [
+      { label: "Консультации нутрициолога", count: 20 },
+      { label: "Банных ритуалов", count: 28 },
+      { label: "Процедур питания", count: 36 },
+      { label: "Массажей / остеопатии", count: 18 },
+      { label: "Медитаций", count: 28 },
+      { label: "Аппаратных процедур", count: 16 },
+      { label: "Коуч-сессий", count: 6 },
+    ],
+    price: 1150000,
+    priceEarly: 895000,
+  },
+};
+
+function fmt(n: number) {
+  return n.toLocaleString("ru-RU") + " ₽";
+}
+
+function ProgramTable() {
+  const [dur, setDur] = useState<Dur>(7);
+  const fData = fastingProgram[dur];
+  const bData = brothsProgram[dur];
+
+  return (
+    <section className="py-20 px-4 md:px-6" style={{ background: "rgba(6,4,18,0.95)" }}>
+      <div className="max-w-6xl mx-auto">
+
+        {/* Заголовок */}
+        <div className="mb-12">
+          <p className="text-xs uppercase tracking-[0.5em] mb-3" style={{ color: "rgba(120,100,200,0.6)" }}>Интенсивность и продолжительность</p>
+          <h2 className="text-4xl md:text-5xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,180,255,0.92)" }}>
+            Программы
+          </h2>
+          <p className="text-2xl md:text-3xl font-light italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(180,140,80,0.85)" }}>
+            выберите продолжительность
+          </p>
+        </div>
+
+        {/* Переключатель дней */}
+        <div className="flex items-center gap-2 mb-10 flex-wrap">
+          <span className="text-xs uppercase tracking-widest mr-2" style={{ color: "rgba(160,140,220,0.5)" }}>Дней:</span>
+          {DURATIONS.map(d => (
+            <button key={d} onClick={() => setDur(d)}
+              className="w-12 h-12 rounded-xl text-sm font-light transition-all"
+              style={{
+                background: d === dur ? "rgba(140,100,220,0.25)" : "rgba(255,255,255,0.04)",
+                border: d === dur ? "1.5px solid rgba(140,100,220,0.6)" : "1px solid rgba(255,255,255,0.08)",
+                color: d === dur ? "rgba(200,180,255,0.95)" : "rgba(180,160,240,0.4)",
+                fontFamily: "'Cormorant', serif",
+                fontSize: "1.1rem",
+                boxShadow: d === dur ? "0 0 20px rgba(140,100,220,0.2)" : "none",
+              }}>
+              {d}
+            </button>
+          ))}
+        </div>
+
+        {/* Шапка таблицы с фото */}
+        <div className="grid grid-cols-[220px_1fr_1fr] gap-4 mb-2">
+          <div />
+          {[
+            { title: "Голодание", sub: "Путь инея — чистота", color: "#6aaad0", img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/842a7db6-76ad-4809-81dd-d0ac718fa38e.jpg" },
+            { title: "Бульоны", sub: "Путь магмы — тепло", color: "#d4922a", img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/30274289-3cc5-4bf8-aa74-9feee968b857.jpg" },
+          ].map(col => (
+            <div key={col.title} className="rounded-2xl overflow-hidden relative" style={{ height: "120px" }}>
+              <img src={col.img} alt={col.title} className="w-full h-full object-cover" style={{ opacity: 0.75 }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(6,4,18,0.6) 0%, rgba(6,4,18,0.2) 100%)" }} />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-lg font-light" style={{ fontFamily: "'Cormorant', serif", color: "#fff" }}>{col.title}</p>
+                <p className="text-xs italic" style={{ color: col.color }}>{col.sub}</p>
+              </div>
+              <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs"
+                style={{ background: `${col.color}20`, border: `1px solid ${col.color}60`, color: col.color }}>
+                {dur} дней
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Процедуры */}
+        <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(140,100,220,0.12)" }}>
+
+          {/* Строка: что входит каждый день */}
+          <div className="grid grid-cols-[220px_1fr_1fr]" style={{ borderBottom: "1px solid rgba(140,100,220,0.08)" }}>
+            <div className="px-5 py-4" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(160,140,220,0.5)" }}>Процедуры</p>
+            </div>
+            {[fData, bData].map((data, ci) => (
+              <div key={ci} className="px-5 py-4" style={{ background: ci === 0 ? "rgba(106,170,208,0.04)" : "rgba(212,146,42,0.04)" }}>
+                <ul className="space-y-1.5">
+                  {data.procedures.map((p, pi) => (
+                    <li key={pi} className="flex items-start gap-2 text-xs" style={{ color: "rgba(200,190,230,0.7)" }}>
+                      <span style={{ color: ci === 0 ? "#6aaad0" : "#d4922a", fontSize: "0.5rem", marginTop: "4px", flexShrink: 0 }}>◆</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Строки сессий */}
+          {(() => {
+            const allLabels = Array.from(new Set([
+              ...fData.sessions.map(s => s.label),
+              ...bData.sessions.map(s => s.label),
+            ]));
+            return allLabels.map((label, ri) => (
+              <div key={label} className="grid grid-cols-[220px_1fr_1fr]"
+                style={{ borderBottom: "1px solid rgba(140,100,220,0.06)", background: ri % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent" }}>
+                <div className="px-5 py-3.5 flex items-center" style={{ background: "rgba(255,255,255,0.02)" }}>
+                  <p className="text-xs leading-snug" style={{ color: "rgba(180,160,240,0.65)" }}>{label}</p>
+                </div>
+                {[fData, bData].map((data, ci) => {
+                  const s = data.sessions.find(x => x.label === label);
+                  return (
+                    <div key={ci} className="px-5 py-3.5 flex items-center justify-center"
+                      style={{ background: ci === 0 ? "rgba(106,170,208,0.03)" : "rgba(212,146,42,0.03)" }}>
+                      {s ? (
+                        <span className="text-xl font-light" style={{
+                          fontFamily: "'Cormorant', serif",
+                          color: ci === 0 ? "rgba(106,170,208,0.9)" : "rgba(212,146,42,0.9)",
+                        }}>{s.count}</span>
+                      ) : (
+                        <span style={{ color: "rgba(180,160,240,0.2)", fontSize: "1.2rem" }}>—</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ));
+          })()}
+
+          {/* Строка цен */}
+          <div className="grid grid-cols-[220px_1fr_1fr]" style={{ borderTop: "1px solid rgba(140,100,220,0.15)" }}>
+            <div className="px-5 py-6 flex items-center" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div>
+                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(160,140,220,0.5)" }}>Стоимость</p>
+                <p className="text-xs leading-snug" style={{ color: "rgba(160,140,220,0.35)" }}>при предбронировании</p>
+              </div>
+            </div>
+            {[
+              { data: fData, color: "#6aaad0", dimColor: "rgba(106,170,208,0.08)", borderColor: "rgba(106,170,208,0.2)" },
+              { data: bData, color: "#d4922a", dimColor: "rgba(212,146,42,0.08)", borderColor: "rgba(212,146,42,0.2)" },
+            ].map(({ data, color, dimColor, borderColor }, ci) => (
+              <div key={ci} className="px-5 py-6" style={{ background: dimColor }}>
+                <p className="text-xs line-through mb-1" style={{ color: "rgba(180,160,240,0.3)" }}>{fmt(data.price)}</p>
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <p className="text-2xl md:text-3xl font-light" style={{ fontFamily: "'Cormorant', serif", color }}>
+                    {fmt(data.priceEarly)}
+                  </p>
+                  <span className="text-xs px-2 py-0.5 rounded-full whitespace-nowrap"
+                    style={{ background: `${color}15`, border: `1px solid ${borderColor}`, color }}>
+                    −{Math.round((1 - data.priceEarly / data.price) * 100)}%
+                  </span>
+                </div>
+                <p className="text-xs mt-1.5 italic" style={{ color: "rgba(180,160,240,0.4)" }}>
+                  при предбронировании от 14 дней
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+          <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm uppercase tracking-widest font-semibold transition-all hover:scale-[1.03]"
+            style={{ background: "linear-gradient(135deg, rgba(106,170,208,0.25), rgba(106,170,208,0.12))", border: "1px solid rgba(106,170,208,0.35)", color: "#6aaad0", textDecoration: "none", letterSpacing: "0.1em" }}>
+            💧 Забронировать место
+          </a>
+          <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-sm uppercase tracking-widest font-semibold transition-all hover:scale-[1.03]"
+            style={{ background: "linear-gradient(135deg, rgba(212,146,42,0.25), rgba(212,146,42,0.12))", border: "1px solid rgba(212,146,42,0.35)", color: "#d4922a", textDecoration: "none", letterSpacing: "0.1em" }}>
+            🍵 Получить консультацию
+          </a>
+        </div>
+
+        <p className="text-center text-xs mt-6 italic" style={{ color: "rgba(160,140,220,0.35)" }}>
+          * Скидка при предбронировании действует до заполнения квоты на сезон. Стоимость указана за 1 человека, включает проживание и питание по протоколу.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function Perspektiva() {
@@ -395,6 +714,9 @@ export default function Perspektiva() {
           </div>
         </div>
       </section>
+
+      {/* ── Таблица программ ── */}
+      <ProgramTable />
 
       {/* ── Что включено ── */}
       <section className="py-20 px-6">
