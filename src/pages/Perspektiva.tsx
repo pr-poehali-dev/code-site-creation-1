@@ -722,7 +722,7 @@ export default function Perspektiva() {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(120,100,200,0.6)" }}>Каждый день программы</p>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(120,100,200,0.6)" }}>от древних ритуалов до чит-кодов биохакинга</p>
             <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,180,255,0.9)" }}>
               Всё включено
             </h2>
