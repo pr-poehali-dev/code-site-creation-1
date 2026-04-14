@@ -898,9 +898,8 @@ function BiohackingStages() {
         {activeStage === 3 && activeDay === 3 && (
           <div className="mt-8 text-center rounded-3xl py-10 px-6"
             style={{ background: "linear-gradient(135deg, rgba(160,120,200,0.12), rgba(122,184,112,0.08))", border: "1px solid rgba(160,120,200,0.2)" }}>
-            <p className="text-3xl mb-3" style={{ fontFamily: "'Cormorant', serif", color: "#c8d89e", fontSize: "2rem" }}>
-              Тропинка целебного леса<br />привела вас к полной регенерации
-            </p>
+            <p className="text-3xl mb-3" style={{ fontFamily: "'Cormorant', serif", color: "#c8d89e", fontSize: "2rem" }}>Тропинки целебного леса
+приведут вас к полной регенерации</p>
             <p className="text-base italic mb-6" style={{ color: "rgba(168,184,144,0.6)", fontFamily: "'Cormorant', serif" }}>
               Рады приветствовать вашу новую версию. Чем займётесь теперь?
             </p>
