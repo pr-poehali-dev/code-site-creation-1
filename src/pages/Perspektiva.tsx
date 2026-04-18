@@ -71,6 +71,7 @@ const included = [
   { emoji: "🔥", label: "Баня с чаном и купелью" },
   { emoji: "🤲", label: "Аюрведические массажи с маслами" },
   { emoji: "🌿", label: "Травяные мешочки и обливания" },
+  { emoji: "🚿", label: "Душ впечатлений (аудио + аромат + свет)" },
   { emoji: "💦", label: "SPA и бальнеотерапия" },
   { emoji: "💧", label: "Капельницы и нутрицевтики" },
   { emoji: "🧬", label: "Полная диагностика организма" },
@@ -185,6 +186,16 @@ const bioSections = [
       { name: "Дыхательные практики (пранаяма, метод Вима Хофа)", desc: "Осознанное дыхание управляет вегетативной нервной системой. Стресс, тревога, боль — становятся управляемыми без таблеток." },
       { name: "Цифровой детокс и нормализация сна", desc: "Без экранов, без уведомлений — только лес, тишина и ритуалы вечера. За 7–10 дней сон восстанавливается, мозг перезапускается." },
       { name: "Нейрографика и арт-терапия", desc: "Творчество как метод работы с глубинными паттернами. Рисунок, глина, плетение — правое полушарие берёт слово и растворяет блоки, к которым ум не подобраться." },
+    ],
+  },
+  {
+    title: "Anti-age, пептиды и биологическое омоложение",
+    color: "#c8923a",
+    items: [
+      { name: "Anti-age медицина", desc: "Комплексный подход к замедлению старения: NAD+, сенолитики, телескопирование теломер. Не косметика — глубинная работа с биологическим возрастом клетки." },
+      { name: "Пептидные протоколы", desc: "Биоактивные пептиды — короткие цепочки аминокислот, которые «включают» нужные гены. Тимоген, эпиталон, карталакс восстанавливают иммунитет, сон, гормональный фон и кожу." },
+      { name: "Натуропатия и биопитание", desc: "Лечение силами природы: адаптогены, фитотерапия, экстракты лесных растений, живые масла. Пища — первое лекарство. Протоколы питания строятся по принципу нутригеномики." },
+      { name: "Биопитание и функциональные продукты", desc: "Дикоросы, ферментированные продукты, пророщенные злаки, живые масла холодного отжима — питание как персональная медицина, откалиброванная под ваш генетический профиль." },
     ],
   },
   {
@@ -808,6 +819,148 @@ export default function Perspektiva() {
 
       {/* ── Territory Walk ── */}
       <TerritoryWalk />
+
+      {/* ── Интерактивные часы ── */}
+      <section className="py-20 px-6" style={{ background: "rgba(8,5,20,0.98)" }}>
+        <div className="max-w-5xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(120,100,200,0.6)" }}>Новаторский подход Иней & Магма</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,180,255,0.95)" }}>
+              Интерактивные часы для гостей
+            </h2>
+            <p className="text-lg italic" style={{ color: "rgba(180,160,240,0.5)", fontFamily: "'Cormorant', serif" }}>
+              Каждому гостю при заселении — компактное устройство, которое делает программу максимально комфортной
+            </p>
+          </FadeIn>
+
+          {/* Анимированный центральный элемент */}
+          <FadeIn className="flex justify-center mb-16">
+            <div className="relative" style={{ width: "220px", height: "220px" }}>
+              {/* Пульсирующие кольца */}
+              <div className="absolute inset-0 rounded-full" style={{
+                border: "1px solid rgba(120,100,200,0.2)",
+                animation: "watch-ring1 3s ease-in-out infinite",
+              }} />
+              <div className="absolute" style={{
+                inset: "-20px",
+                borderRadius: "50%",
+                border: "1px solid rgba(120,100,200,0.12)",
+                animation: "watch-ring1 3s ease-in-out infinite 0.5s",
+              }} />
+              <div className="absolute" style={{
+                inset: "-40px",
+                borderRadius: "50%",
+                border: "1px solid rgba(120,100,200,0.07)",
+                animation: "watch-ring1 3s ease-in-out infinite 1s",
+              }} />
+              {/* Корпус часов */}
+              <div className="absolute inset-0 rounded-full flex flex-col items-center justify-center" style={{
+                background: "linear-gradient(145deg, rgba(25,18,50,0.98), rgba(15,10,35,0.98))",
+                border: "2px solid rgba(120,100,200,0.35)",
+                boxShadow: "0 0 60px rgba(100,80,200,0.2), inset 0 0 30px rgba(100,80,200,0.05)",
+              }}>
+                <span style={{ fontSize: "2.5rem" }}>⌚</span>
+                <p className="text-xs mt-2 tracking-[0.3em] uppercase" style={{ color: "rgba(140,120,220,0.7)" }}>Иней</p>
+                <div className="flex gap-1 mt-2">
+                  {[0,1,2,3,4].map(i => (
+                    <div key={i} className="w-0.5 rounded-full" style={{
+                      height: `${8 + i * 3}px`,
+                      background: "rgba(120,100,200,0.6)",
+                      animation: `watch-bar ${0.6 + i * 0.15}s ease-in-out infinite alternate`,
+                    }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* 4 функции */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: "🔔",
+                title: "Напоминания о мероприятиях",
+                color: "rgba(120,100,200,0.8)",
+                colorDim: "rgba(120,100,200,0.08)",
+                border: "rgba(120,100,200,0.18)",
+                items: [
+                  "Уведомление за 10–15 минут до начала — название, время, продолжительность",
+                  "Повторное напоминание за 5 минут, если первое пропущено",
+                  "Вибросигнал настраивается под ваш режим сна",
+                ],
+              },
+              {
+                icon: "🗺️",
+                title: "Интерактивная карта территории",
+                color: "rgba(106,170,208,0.8)",
+                colorDim: "rgba(106,170,208,0.08)",
+                border: "rgba(106,170,208,0.18)",
+                items: [
+                  "Детальная карта с отмеченными зонами: баня, бассейн, фитобар, медитативная поляна",
+                  "При напоминании — автомаршрут от вашей точки до назначения",
+                  "Подсказки на экране: «Поверните у фонтана», «Пройдите мимо бассейна»",
+                ],
+              },
+              {
+                icon: "🚨",
+                title: "Кнопка экстренного вызова",
+                color: "rgba(200,100,80,0.8)",
+                colorDim: "rgba(200,100,80,0.08)",
+                border: "rgba(200,100,80,0.18)",
+                items: [
+                  "Крупная тактильная кнопка на корпусе — невозможно не найти",
+                  "Сигнал поступает дежурному куратору или медику мгновенно",
+                  "Автоматическая передача координат + чат для текстового общения",
+                ],
+              },
+              {
+                icon: "📋",
+                title: "Персонализированная программа",
+                color: "rgba(122,184,112,0.8)",
+                colorDim: "rgba(122,184,112,0.08)",
+                border: "rgba(122,184,112,0.18)",
+                items: [
+                  "Индивидуальный график на день: активности, процедуры, свободное время",
+                  "Просмотр программы на несколько дней вперёд",
+                  "Изменения в расписании — обновляются автоматически в реальном времени",
+                ],
+              },
+            ].map((f, i) => (
+              <FadeIn key={i} delay={i * 0.1}
+                className="rounded-2xl p-6"
+                style={{ background: f.colorDim, border: `1px solid ${f.border}` }}>
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl flex-shrink-0 mt-0.5">{f.icon}</span>
+                  <div>
+                    <h3 className="text-xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: f.color }}>
+                      {f.title}
+                    </h3>
+                    <ul className="space-y-2">
+                      {f.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm" style={{ color: "rgba(200,185,255,0.55)" }}>
+                          <span style={{ color: f.color, opacity: 0.6, flexShrink: 0, marginTop: "2px" }}>·</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn className="text-center mt-10">
+            <p className="text-sm italic" style={{ color: "rgba(140,120,220,0.4)", fontFamily: "'Cormorant', serif" }}>
+              Это не гаджет — это ваш проводник в мире центра Иней & Магма
+            </p>
+          </FadeIn>
+        </div>
+
+        <style>{`
+          @keyframes watch-ring1 { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:1; transform:scale(1.03); } }
+          @keyframes watch-bar { from { transform:scaleY(0.5); opacity:0.4; } to { transform:scaleY(1); opacity:0.9; } }
+        `}</style>
+      </section>
 
       {/* ── CTA ── */}
       <section className="py-24 px-6 text-center relative overflow-hidden">

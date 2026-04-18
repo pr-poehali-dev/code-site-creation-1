@@ -253,7 +253,7 @@ function AboutAudio() {
       className="fixed bottom-24 left-6 z-50 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-2xl animate-slide-up"
       style={{ background: "rgba(20,15,10,0.95)", border: "1px solid rgba(200,146,58,0.22)", backdropFilter: "blur(12px)" }}
     >
-      <audio ref={audioRef} loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8cb749b4b4.mp3?filename=ethnic-meditation-9818.mp3" />
+      <audio ref={audioRef} loop src="https://cdn1.suno.ai/wb5Ch8U1Tx5OzCKY.mp3" />
       <button onClick={toggle}
         className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
         style={{ background: playing ? "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.12)", color: playing ? "white" : "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.25)" }}>

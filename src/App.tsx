@@ -13,6 +13,7 @@ import Tradition from "./pages/Tradition";
 import Regeneration from "./pages/Regeneration";
 import Strategy from "./pages/Strategy";
 import Perspektiva from "./pages/Perspektiva";
+import Banya from "./pages/Banya";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/regeneration" element={<Regeneration />} />
           <Route path="/strategy" element={<Strategy />} />
           <Route path="/perspektiva" element={<Perspektiva />} />
+          <Route path="/banya" element={<Banya />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
