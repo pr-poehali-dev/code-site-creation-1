@@ -890,7 +890,7 @@ export default function Index() {
               Путь к обновлению на всех уровнях
             </h2>
 
-            <blockquote className="eth-quote mx-auto max-w-2xl mb-4 text-xl" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Баня — это храм регенерации, где стихии помогают человеку обрести баланс. Каждая моя  программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. Тело регенерирует, нервная система успокаивается, кожа обновляется.</blockquote>
+            <blockquote className="eth-quote mx-auto max-w-2xl mb-4 text-xl" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Баня — это храм регенерации, где стихии помогают человеку обрести баланс. Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. </blockquote>
             <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}></p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
