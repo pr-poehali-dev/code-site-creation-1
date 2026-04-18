@@ -663,12 +663,9 @@ export default function Tradition() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.5em] mb-3" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
-            <h2 className="text-4xl md:text-5xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Баня запускает
-            </h2>
-            <p className="text-2xl font-light italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.6)" }}>
-              каскад позитивных изменений
-            </p>
+            <h2 className="text-4xl md:text-5xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Регулярная регенеративная
+ практика в бане</h2>
+            <p className="text-2xl font-light italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.6)" }}>запускает каскад позитивных изменений</p>
           </div>
 
           {/* Шестиугольная сетка эффектов */}
