@@ -568,7 +568,7 @@ export default function Index() {
     { label: "Таро", id: "tarot-nav" },
     { label: "🌿 Лавка", id: "shop-nav" },
     { label: "✦ Традиция · Old & New", id: "tradition-nav" },
-    { label: "🫧 Рябина & Дым", id: "banya-nav" },
+    { label: "🔥 Рябина & Дым", id: "banya-nav" },
     { label: "Контакты", id: "contacts" },
   ];
 
