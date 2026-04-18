@@ -136,10 +136,8 @@ export default function Banya() {
             <em style={{ color: "rgba(200,146,58,0.9)", fontStyle: "italic" }}>& Дым</em><br />
             <span className="text-5xl md:text-6xl" style={{ color: "rgba(220,200,255,0.7)" }}>Lounge</span>
           </h1>
-          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed mb-8" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.65)", fontStyle: "italic" }}>
-            Бесконтактная баня нового формата.<br />
-            Гидромассаж · Баня · Душ впечатлений · Стеклянный потолок
-          </p>
+          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed mb-8" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.65)", fontStyle: "italic" }}>Приватная баня нового формата.
+· Парная · Душ впечатлений · Led-панель · Roll-shaper · Гидромассаж  · </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {["Только по предзаписи", "Кодовый вход", "Полная приватность", "До 6 человек"].map((t, i) => (
