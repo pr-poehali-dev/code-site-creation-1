@@ -132,11 +132,12 @@ export default function Banya() {
             Иней & Магма · Новаторский формат
           </p>
           <h1 className="text-6xl md:text-8xl font-light mb-6 leading-none" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.97)", textShadow: "0 0 80px rgba(200,146,58,0.2)" }}>
-            Бесконтактная<br />
-            <em style={{ color: "rgba(200,146,58,0.9)", fontStyle: "italic" }}>баня</em>
+            Рябина<br />
+            <em style={{ color: "rgba(200,146,58,0.9)", fontStyle: "italic" }}>& Дым</em><br />
+            <span className="text-5xl md:text-6xl" style={{ color: "rgba(220,200,255,0.7)" }}>Lounge</span>
           </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed mb-8" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.65)", fontStyle: "italic" }}>
-            Приватное пространство для вашей компании.<br />
+            Бесконтактная баня нового формата.<br />
             Гидромассаж · Баня · Душ впечатлений · Стеклянный потолок
           </p>
 
@@ -149,7 +150,7 @@ export default function Banya() {
             ))}
           </div>
 
-          <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу забронировать бесконтактную баню в центре Иней и Магма")}`}
+          <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу забронировать Рябина & Дым Lounge в центре Иней и Магма")}`}
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04]"
             style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.35), rgba(180,100,40,0.25))", color: "rgba(240,200,140,0.95)", textDecoration: "none", border: "1px solid rgba(200,146,58,0.4)", boxShadow: "0 0 40px rgba(200,146,58,0.15)", fontWeight: 600 }}>
@@ -357,7 +358,7 @@ export default function Banya() {
               Бесконтактная баня открыта для гостей центра и внешних посетителей.<br />
               Слоты ограничены — один сеанс, одна компания.
             </p>
-            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу забронировать бесконтактную баню в центре Иней и Магма")}`}
+            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу забронировать Рябина & Дым Lounge в центре Иней и Магма")}`}
               target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
               style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.45), rgba(180,100,40,0.35))", color: "rgba(240,200,140,0.97)", textDecoration: "none", fontWeight: 700, letterSpacing: "0.12em", border: "1px solid rgba(200,146,58,0.45)", boxShadow: "0 0 50px rgba(200,146,58,0.2)" }}>
@@ -367,7 +368,7 @@ export default function Banya() {
               Записаться в Telegram
             </a>
             <p className="mt-4 text-xs" style={{ color: "rgba(200,146,58,0.35)" }}>
-              Приватность · Уют · Новаторский формат
+              Рябина & Дым Lounge · Новаторский формат
             </p>
           </FadeIn>
         </div>
@@ -376,7 +377,7 @@ export default function Banya() {
       <footer className="py-8 px-6 text-center" style={{ borderTop: "1px solid rgba(200,146,58,0.08)" }}>
         <button onClick={() => navigate("/")} className="text-xs hover:opacity-60 transition-opacity"
           style={{ color: "rgba(200,146,58,0.35)", fontFamily: "'Cormorant', serif" }}>
-          Иней & Магма corp. · Бесконтактная баня
+          Иней & Магма corp. · Рябина & Дым Lounge
         </button>
       </footer>
 
