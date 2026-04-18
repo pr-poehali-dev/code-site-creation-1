@@ -1069,7 +1069,7 @@ function BiohackingStages() {
           {/* Табы дней */}
           <div className="flex gap-2 px-6 pt-5 flex-wrap">
             {stage.days.map((d, i) => (
-              <button key={i} onClick={() => setActiveDay(i)}
+              <button key={`${stage.id}-day-${i}`} onClick={() => setActiveDay(i)}
                 className="px-4 py-2 rounded-xl text-sm transition-all"
                 style={{
                   background: i === activeDay ? stage.dim : "rgba(255,255,255,0.03)",
@@ -1091,7 +1091,7 @@ function BiohackingStages() {
           {/* Блоки времени */}
           <div className="px-6 pb-6 pt-4 grid md:grid-cols-2 gap-4">
             {day.blocks.map((block, bi) => (
-              <div key={bi} className="rounded-2xl overflow-hidden"
+              <div key={`${stage.id}-${activeDay}-block-${bi}`} className="rounded-2xl overflow-hidden"
                 style={{ border: `1px solid ${stage.border.replace("0.22", "0.12")}`, background: "rgba(255,255,255,0.02)" }}>
                 {/* Шапка блока */}
                 <div className="px-4 py-3 flex items-center gap-3"
@@ -1102,7 +1102,7 @@ function BiohackingStages() {
                 {/* Список */}
                 <ul className="px-4 py-3 space-y-2">
                   {block.items.map((item, ii) => (
-                    <li key={ii} className="flex items-start gap-2.5 text-sm" style={{ color: "rgba(200,190,220,0.72)", lineHeight: 1.5 }}>
+                    <li key={`item-${bi}-${ii}`} className="flex items-start gap-2.5 text-sm" style={{ color: "rgba(200,190,220,0.72)", lineHeight: 1.5 }}>
                       <span className="flex-shrink-0 mt-1.5" style={{ color: stage.color, fontSize: "0.45rem" }}>◆</span>
                       {item}
                     </li>

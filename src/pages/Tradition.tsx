@@ -573,74 +573,29 @@ export default function Tradition() {
       {/* ── Four elements / verses ── */}
       <section className="relative py-16 px-6 z-10">
         <div className="max-w-4xl mx-auto">
-          <p
-            className="text-center text-xs uppercase tracking-[0.5em] mb-16"
-            style={{ color: "rgba(200,146,58,0.4)" }}
-          >
+          <p className="text-center text-xs uppercase tracking-[0.5em] mb-12" style={{ color: "rgba(200,146,58,0.4)" }}>
             Из чего соткана программа
           </p>
-
-          <div className="space-y-8">
+          <div className="grid sm:grid-cols-2 gap-4">
             {VERSES.map((v, i) => (
               <div
                 key={i}
                 ref={(el) => { verseRefs.current[i] = el; }}
                 data-idx={i}
-                className="flex gap-6 items-start group"
+                className="rounded-2xl p-6"
                 style={{
+                  background: v.color.replace(/[\d.]+\)$/, "0.05)"),
+                  border: `1px solid ${v.color.replace(/[\d.]+\)$/, "0.18)")}`,
                   opacity: activeVerse !== null && activeVerse >= i ? 1 : 0,
-                  transform:
-                    activeVerse !== null && activeVerse >= i
-                      ? "translateX(0)"
-                      : i % 2 === 0
-                      ? "translateX(-30px)"
-                      : "translateX(30px)",
-                  transition: `all 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s`,
+                  transform: activeVerse !== null && activeVerse >= i ? "translateY(0) scale(1)" : "translateY(24px) scale(0.97)",
+                  transition: `all 0.65s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s`,
                 }}
               >
-                {/* Ornament line */}
-                <div className="flex flex-col items-center pt-2 flex-shrink-0">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-lg border"
-                    style={{
-                      background: `${v.color.replace("0.7", "0.08").replace("0.8", "0.1")}`,
-                      borderColor: v.color.replace("0.7", "0.3").replace("0.8", "0.35"),
-                      boxShadow: `0 0 16px ${v.color.replace("0.7", "0.15").replace("0.8", "0.2")}`,
-                    }}
-                  >
-                    <span style={{ fontSize: "1rem" }}>{v.icon}</span>
-                  </div>
-                  {i < VERSES.length - 1 && (
-                    <div
-                      className="w-px mt-2 flex-1"
-                      style={{
-                        height: "60px",
-                        background: `linear-gradient(to bottom, ${v.color.replace("0.7", "0.3").replace("0.8", "0.3")}, transparent)`,
-                      }}
-                    />
-                  )}
-                </div>
-
-                {/* Text */}
-                <div className="pb-6">
-                  <p
-                    className="text-xs uppercase tracking-[0.4em] mb-2"
-                    style={{ color: v.color }}
-                  >
-                    {v.title}
-                  </p>
-                  <p
-                    className="text-lg md:text-xl font-light leading-relaxed"
-                    style={{
-                      fontFamily: "'Cormorant', serif",
-                      color: "rgba(220,200,165,0.85)",
-                      fontStyle: "italic",
-                      fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
-                    }}
-                  >
-                    {v.text}
-                  </p>
-                </div>
+                <span className="block text-3xl mb-3">{v.icon}</span>
+                <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: v.color }}>{v.title}</p>
+                <p className="text-base font-light leading-relaxed" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,165,0.8)", fontStyle: "italic" }}>
+                  {v.text}
+                </p>
               </div>
             ))}
           </div>
@@ -704,35 +659,48 @@ export default function Tradition() {
       </section>
 
       {/* ── Регенеративная практика в бане ── */}
-      <section className="relative py-20 px-6 z-10" style={{ background: "rgba(8,5,3,0.85)" }}>
+      <section className="relative py-20 px-6 z-10" style={{ background: "rgba(8,5,3,0.92)" }}>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="eth-divider mb-6"><span>◈</span></div>
-            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
-            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Регулярная регенеративная<br />практика в бане</h2>
-            <p className="leading-relaxed max-w-xl mx-auto text-lg" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.05rem", fontStyle: "italic" }}>запускает каскад позитивных изменений:</p>
+          <div className="text-center mb-14">
+            <p className="text-xs uppercase tracking-[0.5em] mb-3" style={{ color: "var(--eth-stone)" }}>Наука и природа</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Баня запускает
+            </h2>
+            <p className="text-2xl font-light italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.6)" }}>
+              каскад позитивных изменений
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+          {/* Шестиугольная сетка эффектов */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { symbol: "🌿", title: "Кожа", text: "Очищается, улучшается эластичность, ускоряется обновление клеток." },
-              { symbol: "💪", title: "Мышцы", text: "Снимается напряжение, ускоряется восстановление после нагрузок." },
-              { symbol: "✦",  title: "Суставы", text: "Уменьшается воспаление, повышается подвижность." },
-              { symbol: "🌙", title: "Нервная система", text: "Снижается уровень стресса, нормализуется сон." },
-              { symbol: "🛡️", title: "Иммунитет", text: "Активируются защитные механизмы." },
-              { symbol: "🔥", title: "Метаболизм", text: "Ускоряются обменные процессы, выводятся токсины." },
+              { symbol: "🌿", title: "Кожа", text: "Очищение · эластичность · обновление клеток", color: "rgba(120,180,80,0.7)" },
+              { symbol: "💪", title: "Мышцы", text: "Снятие напряжения · восстановление после нагрузок", color: "rgba(200,100,60,0.7)" },
+              { symbol: "✦",  title: "Суставы", text: "Меньше воспаления · больше подвижности", color: "rgba(200,146,58,0.8)" },
+              { symbol: "🌙", title: "Сон & нервы", text: "Стресс уходит · сон восстанавливается", color: "rgba(120,100,200,0.7)" },
+              { symbol: "🛡️", title: "Иммунитет", text: "Защитные механизмы активируются", color: "rgba(80,180,140,0.7)" },
+              { symbol: "🔥", title: "Метаболизм", text: "Обмен ускоряется · токсины выходят", color: "rgba(220,80,20,0.7)" },
             ].map((item, i) => (
-              <div key={i} className="rounded-2xl p-6 eth-card" style={{ background: "var(--eth-bg3)" }}>
-                <span className="block text-2xl mb-3">{item.symbol}</span>
-                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{item.title}</h3>
-                <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{item.text}</p>
+              <div key={i} className="rounded-2xl p-5 text-center group transition-all hover:scale-[1.03]"
+                style={{
+                  background: item.color.replace(/[\d.]+\)$/, "0.06)"),
+                  border: `1px solid ${item.color.replace(/[\d.]+\)$/, "0.2)")}`,
+                  animation: `spirit-float ${4 + i * 0.5}s ease-in-out ${i * 0.3}s infinite`,
+                }}>
+                <span className="block text-3xl mb-2">{item.symbol}</span>
+                <h3 className="text-base font-light mb-1.5" style={{ fontFamily: "'Cormorant', serif", color: item.color }}>{item.title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: "rgba(200,180,150,0.55)" }}>{item.text}</p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <p className="text-2xl md:text-3xl font-light tracking-[0.3em] uppercase"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.35em", textShadow: "0 0 30px rgba(200,146,58,0.4)" }}>
-              БиоХакинг
-            </p>
+
+          <div className="text-center mt-12">
+            <button onClick={() => navigate("/regeneration")}
+              className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-sm uppercase tracking-widest transition-all hover:scale-105"
+              style={{ background: "linear-gradient(135deg, rgba(60,30,10,0.9), rgba(80,40,12,0.8))", border: "1px solid rgba(200,146,58,0.35)", color: "var(--eth-gold2)", letterSpacing: "0.15em" }}>
+              БиоХакинг & программы
+              <Icon name="ArrowRight" size={14} />
+            </button>
           </div>
         </div>
       </section>

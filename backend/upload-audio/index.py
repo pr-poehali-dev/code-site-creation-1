@@ -67,23 +67,34 @@ def _upload_s3(data: bytes, key: str, content_type: str) -> str:
 
 
 def handler(event: dict, context) -> dict:
-    """Скачивает аудио с Suno и сохраняет в S3, возвращает CDN URL."""
+    """Принимает base64-аудио из браузера и сохраняет в S3, возвращает CDN URL."""
 
     if event.get("httpMethod") == "OPTIONS":
-        return {"statusCode": 200, "headers": {"Access-Control-Allow-Origin": "*"}, "body": ""}
+        return {
+            "statusCode": 200,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
+            },
+            "body": "",
+        }
 
-    suno_url = "https://cdn1.suno.ai/wb5Ch8U1Tx5OzCKY.mp3"
+    import base64
+    body = event.get("body") or ""
+    if event.get("isBase64Encoded"):
+        body = base64.b64decode(body).decode("utf-8")
 
-    req = urllib.request.Request(
-        suno_url,
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://suno.com/",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=25) as resp:
-        audio_data = resp.read()
+    payload = json.loads(body)
+    audio_b64 = payload.get("audio", "")
+    if not audio_b64:
+        return {
+            "statusCode": 400,
+            "headers": {"Access-Control-Allow-Origin": "*"},
+            "body": json.dumps({"error": "No audio data provided"}),
+        }
 
+    audio_data = base64.b64decode(audio_b64)
     cdn_url = _upload_s3(audio_data, "audio/ethnic-sound.mp3", "audio/mpeg")
 
     return {

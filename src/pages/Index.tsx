@@ -237,39 +237,88 @@ function Chatbot() {
 
 // ─── About Audio ─────────────────────────────────────────────────────────────
 
+const AUDIO_CACHE_KEY = "eth_audio_cdn_url";
+const UPLOAD_URL = "https://functions.poehali.dev/4dfb7fcc-c7cc-4459-ae3a-0e307c2a0fcc";
+// Прямая ссылка на открытый этнический трек (Pixabay CDN, CORS разрешён для браузеров)
+const ETHNIC_SRC = "https://cdn.pixabay.com/audio/2022/03/15/audio_8cb749b4b4.mp3";
+
 function AboutAudio() {
   const [playing, setPlaying] = useState(false);
-  const [bars] = useState(() => [1,2,3,4,5].map(() => Math.random() * 12 + 6));
+  const [loading, setLoading] = useState(false);
+  const [src, setSrc] = useState<string>(() => localStorage.getItem(AUDIO_CACHE_KEY) || ETHNIC_SRC);
+  const [bars] = useState(() => [8,12,6,14,10,7,13].map((h, i) => ({ h, d: 0.35 + i * 0.1 })));
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  function toggle() {
-    if (!audioRef.current) return;
-    if (playing) { audioRef.current.pause(); } else { audioRef.current.play().catch(() => {}); }
-    setPlaying(!playing);
+  // При старте — пробуем сохранить файл в S3, чтобы в будущем он был на нашем CDN
+  useEffect(() => {
+    if (localStorage.getItem(AUDIO_CACHE_KEY)) return;
+    fetch(ETHNIC_SRC)
+      .then(r => r.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const b64 = (reader.result as string).split(",")[1];
+          try {
+            const res = await fetch(UPLOAD_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ audio: b64 }),
+            });
+            const data = await res.json();
+            if (data.url) {
+              localStorage.setItem(AUDIO_CACHE_KEY, data.url);
+              setSrc(data.url);
+            }
+          } catch (_e) { /* silent */ }
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(() => { /* silent */ });
+  }, []);
+
+  async function toggle() {
+    const el = audioRef.current;
+    if (!el) return;
+    if (playing) {
+      el.pause();
+      setPlaying(false);
+    } else {
+      setLoading(true);
+      try {
+        await el.play();
+        setPlaying(true);
+      } catch (_e) {
+        // autoplay blocked — пользователь сам нажал кнопку, ничего не делаем
+      }
+      setLoading(false);
+    }
   }
 
   return (
     <div
-      className="fixed bottom-24 left-6 z-50 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-2xl animate-slide-up"
-      style={{ background: "rgba(20,15,10,0.95)", border: "1px solid rgba(200,146,58,0.22)", backdropFilter: "blur(12px)" }}
+      className="fixed bottom-24 left-6 z-50 flex items-center gap-3 px-4 py-2.5 rounded-2xl shadow-2xl"
+      style={{ background: "rgba(20,15,10,0.95)", border: "1px solid rgba(200,146,58,0.22)", backdropFilter: "blur(12px)", animation: "slide-up 0.5s ease both" }}
     >
-      <audio ref={audioRef} loop src="https://cdn.pixabay.com/audio/2024/02/14/audio_5aa74b3b8c.mp3" />
+      <audio ref={audioRef} loop preload="auto" src={src} />
       <button onClick={toggle}
         className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
         style={{ background: playing ? "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.12)", color: playing ? "white" : "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.25)" }}>
-        {playing ? <Icon name="Pause" size={14} /> : <Icon name="Play" size={14} />}
+        {loading ? <Icon name="Loader" size={14} /> : playing ? <Icon name="Pause" size={14} /> : <Icon name="Play" size={14} />}
       </button>
       <div>
         <p className="text-xs font-medium leading-tight" style={{ color: "var(--eth-gold2)" }}>Этнический звук</p>
-        <p className="text-xs opacity-50 leading-tight" style={{ color: "var(--eth-stone)" }}>{playing ? "Играет..." : "Воспроизвести"}</p>
+        <p className="text-xs opacity-50 leading-tight" style={{ color: "var(--eth-stone)" }}>{playing ? "Играет..." : "Слушать"}</p>
       </div>
-      {playing && (
-        <div className="flex items-end gap-0.5 h-4">
-          {bars.map((h, i) => (
-            <div key={i} className="w-0.5 rounded-full" style={{ height: `${h}px`, background: "var(--eth-gold)", opacity: 0.7, animation: `flicker ${0.4 + i * 0.12}s ease-in-out infinite alternate` }} />
-          ))}
-        </div>
-      )}
+      <div className="flex items-end gap-0.5 h-4">
+        {bars.map((b, i) => (
+          <div key={i} className="w-0.5 rounded-full transition-all" style={{
+            height: playing ? `${b.h}px` : "3px",
+            background: "var(--eth-gold)",
+            opacity: playing ? 0.75 : 0.25,
+            animation: playing ? `flicker ${b.d}s ease-in-out infinite alternate` : "none",
+          }} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -519,6 +568,7 @@ export default function Index() {
     { label: "Таро", id: "tarot-nav" },
     { label: "🌿 Лавка", id: "shop-nav" },
     { label: "✦ Традиция · Old & New", id: "tradition-nav" },
+    { label: "🫧 Рябина & Дым", id: "banya-nav" },
     { label: "Контакты", id: "contacts" },
   ];
 
@@ -526,6 +576,7 @@ export default function Index() {
     if (id === "tarot-nav") { navigate("/tarot"); setNavOpen(false); return; }
     if (id === "shop-nav") { navigate("/shop"); setNavOpen(false); return; }
     if (id === "tradition-nav") { navigate("/tradition"); setNavOpen(false); return; }
+    if (id === "banya-nav") { navigate("/banya"); setNavOpen(false); return; }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setNavOpen(false);
   }
