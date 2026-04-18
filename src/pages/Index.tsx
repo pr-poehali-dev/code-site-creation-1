@@ -712,7 +712,7 @@ export default function Index() {
         <div className="relative max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
           <div>
             <div className="mt-8">
-              <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
+              <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>О проекте:</p>
               <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}></em>
