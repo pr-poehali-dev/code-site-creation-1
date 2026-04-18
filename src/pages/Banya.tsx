@@ -78,7 +78,7 @@ const zones = [
 ];
 
 const automats = [
-  { emoji: "🌺", name: "Фломат с цветами и фруктовыми напитками", desc: "Живые цветочные напитки, фруктовые смузи и воды. Оплата по QR-коду." },
+  { emoji: "🌺", name: "Фломат с цветами и фруктовыми напитками", desc: "Соки, фруктовые воды, лимонады — всё свежее, оплата по QR-коду." },
   { emoji: "💣", name: "Бомбочки и травяные наборы для ванны", desc: "Авторские составы центра: хвоя, лаванда, роза, магма." },
   { emoji: "🧴", name: "Средства по уходу за телом и лицом", desc: "Натуральные масла, скрабы, маски и сыворотки." },
   { emoji: "🍊", name: "Свежие фрукты и снеки", desc: "Сезонные фрукты, орехи, суперфуды — для восстановления." },
@@ -179,32 +179,40 @@ export default function Banya() {
       <section className="py-20 px-6 relative overflow-hidden" style={{ background: "rgba(8,5,18,0.98)" }}>
 
         {/* Анимированные берёзовые брёвна — фон */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ opacity: 0.07 }}>
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { left: "2%",  width: 48, delay: 0 },
-            { left: "10%", width: 36, delay: 0.8 },
-            { left: "18%", width: 52, delay: 1.5 },
-            { left: "80%", width: 44, delay: 0.3 },
-            { left: "88%", width: 38, delay: 1.1 },
-            { left: "94%", width: 50, delay: 2.0 },
+            { left: "1%",  width: 52, delay: 0,   opacity: 0.22 },
+            { left: "8%",  width: 38, delay: 0.9,  opacity: 0.15 },
+            { left: "15%", width: 58, delay: 1.6,  opacity: 0.18 },
+            { left: "77%", width: 46, delay: 0.4,  opacity: 0.20 },
+            { left: "86%", width: 40, delay: 1.2,  opacity: 0.16 },
+            { left: "93%", width: 54, delay: 2.1,  opacity: 0.19 },
           ].map((b, i) => (
-            <div key={i} className="absolute top-0 bottom-0 rounded-full"
+            <div key={i} className="absolute top-0 bottom-0"
               style={{
                 left: b.left,
                 width: `${b.width}px`,
-                background: "linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.4) 30%, rgba(200,180,160,0.5) 50%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.05) 100%)",
-                animation: `birch-sway ${5 + i * 0.7}s ease-in-out ${b.delay}s infinite alternate`,
+                opacity: b.opacity,
+                background: `linear-gradient(90deg,
+                  rgba(30,22,14,0) 0%,
+                  rgba(220,205,185,0.85) 18%,
+                  rgba(245,235,215,1) 42%,
+                  rgba(210,195,175,0.9) 58%,
+                  rgba(180,165,145,0.7) 78%,
+                  rgba(30,22,14,0) 100%)`,
+                borderRadius: "50%",
+                animation: `birch-sway ${5.5 + i * 0.6}s ease-in-out ${b.delay}s infinite alternate`,
               }}>
-              {/* Берёзовые метки (чёрные пятна) */}
-              {[15, 32, 50, 68, 82].map((top, j) => (
-                <div key={j} className="absolute rounded-sm"
+              {[12, 26, 41, 57, 72, 86].map((top, j) => (
+                <div key={j} className="absolute"
                   style={{
                     top: `${top}%`,
-                    left: "15%",
-                    width: "70%",
-                    height: `${6 + (j % 3) * 3}px`,
-                    background: "rgba(20,15,10,0.6)",
-                    borderRadius: "2px",
+                    left: j % 2 === 0 ? "8%" : "20%",
+                    width: j % 2 === 0 ? "65%" : "55%",
+                    height: `${5 + (j % 3) * 2}px`,
+                    background: "rgba(15,10,6,0.75)",
+                    borderRadius: "40%",
+                    transform: `rotate(${j % 2 === 0 ? -3 : 4}deg)`,
                   }} />
               ))}
             </div>
@@ -279,7 +287,7 @@ export default function Banya() {
             {[
               { emoji: "✦", title: "Зеркало с неоновой подсветкой", desc: "Арт-объект в раздевалке. Мягкое свечение, уникальный дизайн — идеально для фото и создания атмосферы." },
               { emoji: "🌿", title: "Живые растения повсюду", desc: "Тропические листья, папоротники, мхи. Живой воздух, живой интерьер — природа заходит внутрь пространства." },
-              { emoji: "🐻", title: "Ковры с медвежьей лапой", desc: "Авторские ковры с символикой леса и тотемов. Тепло под ногами — и характер в каждом узоре." },
+              { emoji: "🪡", title: "Этнические ковры", desc: "Узоры народных орнаментов, натуральная шерсть, ручная работа. Тепло под ногами — и история в каждом узоре." },
               { emoji: "🎬", title: "Видео-картины в парной", desc: "На стенах бани — живые видео: как правильно париться, дышать, использовать веник. Красота и польза одновременно." },
               { emoji: "💡", title: "Умное освещение", desc: "Тёплый янтарь в ванной, холодный лёд в душе, мягкий рассвет в раздевалке. Свет настраивает настроение." },
               { emoji: "🎵", title: "Пространственный звук", desc: "Колонки встроены в потолок и стены. Терапевтические частоты, живая природа, этнические звуки — выбирайте." },
