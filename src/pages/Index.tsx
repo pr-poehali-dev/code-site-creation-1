@@ -717,8 +717,8 @@ export default function Index() {
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}>corp.</em>
               </h2>
-              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Проект объединяющий противоположности: обжигающей магмы, рвущейся из глубин земли, и хрустального инея, сотканного из дыхания зимы,  создавая Целебный Пар..
-Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…  </p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Проект объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.. 
+Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…</p>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}></p>
 
               <div className="space-y-5">
