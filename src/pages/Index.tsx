@@ -715,10 +715,9 @@ export default function Index() {
               <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>Обо мне</p>
               <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}>corp.</em>
+                Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}></em>
               </h2>
-              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Проект объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.. 
-Благодаря этому проекту каждый сможет ощутить то, чего так не хватало…</p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Проект объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.. Благодаря которому мы запускаем процесс регенерации:</p>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}></p>
 
               <div className="space-y-5">
