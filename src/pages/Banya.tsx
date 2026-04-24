@@ -48,40 +48,39 @@ const zones = [
   },
   {
     icon: "🧖",
-    title: "Раздевалка с уборной",
+    title: "LED-панель",
     color: "#7ab870",
     colorDim: "rgba(122,184,112,0.1)",
     border: "rgba(122,184,112,0.2)",
-    desc: "Всё необходимое уже здесь — ничего не нужно брать с собой. Просторная зона с живыми растениями, тёплыми полами и уникальными коврами.",
+    desc: "Профессиональная LED-панель светотерапии. Красный и инфракрасный свет стимулирует выработку коллагена, улучшает микроциркуляцию и омолаживает кожу. Идеально после парной — поры открыты, воздействие максимально.",
     features: [
-      "Халаты · полотенца · тапочки — для каждого гостя",
-      "Фен + диффузор для кудрей",
-      "Автомат с уходовыми средствами — масла, скрабы, маски",
-      "Зеркало с неоновой надписью — для впечатлений и фото",
-      "Уборная полностью оснащена",
+      "Красный + инфракрасный спектр",
+      "Стимуляция выработки коллагена",
+      "Улучшение микроциркуляции кожи",
+      "Антивозрастной эффект после первого сеанса",
     ],
   },
   {
     icon: "📹",
-    title: "Прихожая",
+    title: "Roll-shaper",
     color: "#8B5E3C",
     colorDim: "rgba(139,94,60,0.1)",
     border: "rgba(139,94,60,0.2)",
-    desc: "Единственное место в пространстве с видеокамерой — фиксирует время прихода гостей. Здесь же можно поделиться впечатлениями и оставить свои предложения.",
+    desc: "Роликовый тренажёр для коррекции фигуры, лимфодренажа и борьбы с целлюлитом. Сочетает механическое воздействие роликов с инфракрасным прогреванием — разбивает жировые отложения, активирует лимфоток, разглаживает кожу.",
     features: [
-      "Кодовый замок — доступ только вашей компании",
-      "Видеокамера для фиксации времени входа",
-      "Форма для впечатлений и предложений",
-      "Крючки и полки для верхней одежды",
+      "Роликовый массаж + инфракрасное прогревание",
+      "Коррекция фигуры и борьба с целлюлитом",
+      "Лимфодренаж и улучшение кровообращения",
+      "Видимый результат уже после первого курса",
     ],
   },
 ];
 
 const automats = [
-  { emoji: "🌺", name: "Фломат с цветами и фруктовыми напитками", desc: "Соки, фруктовые воды, лимонады — всё свежее, оплата по QR-коду." },
-  { emoji: "💣", name: "Бомбочки и травяные наборы для ванны", desc: "Авторские составы центра: хвоя, лаванда, роза, магма." },
-  { emoji: "🧴", name: "Средства по уходу за телом и лицом", desc: "Натуральные масла, скрабы, маски и сыворотки." },
-  { emoji: "🍊", name: "Свежие фрукты и снеки", desc: "Сезонные фрукты, орехи, суперфуды — для восстановления." },
+  { emoji: "🌿", name: "Банные запарки, травы и скрабы", desc: "Авторские запарки, лекарственные травы, натуральные скрабы и уходовая косметика — выбирайте прямо перед парной." },
+  { emoji: "🌸", name: "Свежие цветы и напитки", desc: "Фруктовые и овощные соки, салаты и заправки к ним — всё свежее, без консервантов, оплата по QR-коду." },
+  { emoji: "🌾", name: "Безглютеновая выпечка и суперфуды", desc: "Безглютеновая выпечка, проростки, семечки и лечебные бады — питание для восстановления после бани." },
+  { emoji: "🔬", name: "Новинки биохакинга", desc: "Селанк, семакс и прочие нейропептиды и добавки — передовые решения для тех, кто заботится о ресурсе тела и ума." },
 ];
 
 const services = [
@@ -151,7 +150,7 @@ export default function Banya() {
 · Парная · Душ впечатлений · Led-панель · Roll-shaper · Гидромассаж  · </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {["Только по предзаписи", "Кодовый вход", "Полная приватность", "До 6 человек"].map((t, i) => (
+            {["Только по предзаписи", "Кодовый вход", "Полная приватность", "До 4 человек"].map((t, i) => (
               <span key={i} className="px-4 py-1.5 rounded-full text-xs uppercase tracking-wider"
                 style={{ background: "rgba(200,146,58,0.08)", border: "1px solid rgba(200,146,58,0.2)", color: "rgba(200,146,58,0.7)" }}>
                 {t}
@@ -338,8 +337,125 @@ export default function Banya() {
         </div>
       </section>
 
-      {/* Услуги */}
+      {/* Банные программы */}
+      <section className="py-20 px-6" style={{ background: "rgba(14,8,22,0.99)" }}>
+        <div className="max-w-5xl mx-auto">
+          <FadeIn className="text-center mb-14">
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(200,146,58,0.5)" }}>банные ритуалы</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
+              Программы и путь к обновлению
+            </h2>
+            <p className="text-base italic mb-4" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
+              Пригласите пармастера — и каждый ритуал станет персональным. Или приходите соло, или со своей компанией — пространство полностью ваше.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mt-4">
+              {["Пармастер по запросу", "Соло или компания", "До 4 человек"].map((t, i) => (
+                <span key={i} className="px-4 py-1.5 rounded-full text-xs uppercase tracking-wider"
+                  style={{ background: "rgba(200,146,58,0.08)", border: "1px solid rgba(200,146,58,0.2)", color: "rgba(200,146,58,0.7)" }}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          </FadeIn>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {[
+              {
+                symbol: "♛", title: "Зазеркалье", tagline: "Авторский уход в SPA-бане", price: "8 500 ₽",
+                desc: "Глубокое восстановление через цветочный пар, уход за волосами и кожей. Тело регенерирует, каждая клетка дышит. Ритуал для полного отпускания напряжения — от корней волос до кончиков пальцев.",
+                effect: "Регенерация кожи · Восстановление волос · Расслабление",
+                color: "#c8923a",
+              },
+              {
+                symbol: "≋", title: "Ракушка", tagline: "Нежный пар с ароматами летних трав", price: "6 500 ₽",
+                desc: "Лёгкий пар с ароматами луга восстанавливает дыхание и снимает усталость с мышц. Пилинг с мёдом и травами запускает обновление кожи. Парафинотерапия возвращает мягкость и эластичность.",
+                effect: "Обновление кожи · Дренаж мышц · Снятие усталости",
+                color: "#7aab9e",
+              },
+              {
+                symbol: "❋", title: "Сакура", tagline: "Древняя философия очищения", price: "7 500 ₽",
+                desc: "Церемония глубокого пара под медитативные звуки пробуждает тело. Японские техники очищения через контраст температур запускают мощный процесс регенерации.",
+                effect: "Детокс · Укрепление сосудов · Глубокое очищение",
+                color: "#b87a6a",
+              },
+              {
+                symbol: "✦", title: "Сдобная Баня", tagline: "Авторская программа — всё на выбор", price: "36 000 ₽",
+                desc: "Самая полная программа восстановления. Вы выбираете каждый элемент под свои потребности. Звуковая медитация завершает цикл — тело и психика перезагружаются полностью.",
+                effect: "Иммунитет · Полная перезагрузка · Глубокий релакс",
+                color: "#c8923a",
+              },
+            ].map((p, i) => (
+              <FadeIn key={i} delay={i * 0.08} className="rounded-2xl p-7"
+                style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${p.color}20` }}>
+                <div className="flex items-start justify-between mb-4">
+                  <span className="text-3xl font-light" style={{ color: p.color, fontFamily: "'Cormorant', serif" }}>{p.symbol}</span>
+                  <span className="text-2xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.9)" }}>{p.price}</span>
+                </div>
+                <h3 className="text-2xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>{p.title}</h3>
+                <p className="text-xs italic mb-3" style={{ color: "rgba(220,200,255,0.4)" }}>{p.tagline}</p>
+                <p className="text-xs mb-3 font-medium" style={{ color: p.color }}>◆ {p.effect}</p>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(220,210,255,0.55)" }}>{p.desc}</p>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn className="mt-10 text-center">
+            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу узнать подробнее о банных программах в Рябина & Дым Lounge")}`}
+              target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04]"
+              style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.3), rgba(180,100,40,0.2))", color: "rgba(240,200,140,0.95)", textDecoration: "none", border: "1px solid rgba(200,146,58,0.35)", fontWeight: 600 }}>
+              Узнать про программы
+            </a>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Путь к обновлению — регенеративная практика */}
       <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn className="text-center mb-14">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "16px" }}>
+              <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.4))" }} />
+              <span style={{ color: "rgba(200,146,58,0.7)", fontSize: "1.1rem" }}>◆ ◇ ◆</span>
+              <div style={{ width: "40px", height: "1px", background: "linear-gradient(90deg, rgba(200,146,58,0.4), transparent)" }} />
+            </div>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(200,146,58,0.5)" }}>Регулярная практика</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
+              Регенеративная баня
+            </h2>
+            <p className="text-lg italic max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.5)", fontSize: "1.1rem" }}>
+              Баня — это не разовое удовольствие. Это регулярная практика восстановления, где каждый визит чуть глубже раскрывает возможности вашего тела.
+            </p>
+          </FadeIn>
+
+          <div className="grid sm:grid-cols-3 gap-6 mb-10">
+            {[
+              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться.", color: "#d4622a" },
+              { sym: "🜃", title: "Земля", sub: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи — очищение и восстановление.", color: "#7aaa50" },
+              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт приятные воспоминания и ощущение свободы.", color: "#8ac8b8" },
+            ].map((p, i) => (
+              <FadeIn key={i} delay={i * 0.1} className="rounded-2xl p-6 text-center"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <p className="text-4xl mb-3" style={{ color: p.color }}>{p.sym}</p>
+                <h3 className="text-xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.9)" }}>{p.title}</h3>
+                <p className="text-xs uppercase tracking-widest mb-3" style={{ color: p.color, opacity: 0.7 }}>{p.sub}</p>
+                <p className="text-xs leading-relaxed" style={{ color: "rgba(220,210,255,0.55)" }}>{p.text}</p>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn className="rounded-2xl px-8 py-8 text-center"
+            style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.15)" }}>
+            <p className="text-xs uppercase tracking-[0.4em] mb-3" style={{ color: "rgba(200,146,58,0.5)" }}>ᛚ · ᚹ · ᛟ</p>
+            <p className="text-xl font-light leading-relaxed italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.8)", fontSize: "1.15rem" }}>
+              Регулярная баня — это биохакинг через традицию. Термоконтраст, травы, дыхание и тишина работают как единая система обновления организма.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Услуги */}
+      <section className="py-20 px-6" style={{ background: "rgba(8,5,18,0.98)" }}>
         <div className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(120,100,200,0.6)" }}>Дополнительно</p>

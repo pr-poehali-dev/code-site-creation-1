@@ -1257,7 +1257,7 @@ export default function Regeneration() {
             style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>Иней и Магма corp: Холистический центр интегративного здоровья. Собираем для вас персональный маршрут — где каждая процедура усиливает следующую. синтез передовых технологий и традиционных практик для целостного оздоровления.</p>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { icon: "✦", title: "Диагностика", text: "Мария изучает ваше состояние и формирует персональный план" },
+              { icon: "✦", title: "Диагностика", text: "Изучаем ваше состояние и формируем персональный план" },
               { icon: "◈", title: "Курс процедур", text: "Каждая процедура подобрана так, чтобы усилить эффект предыдущей" },
               { icon: "◇", title: "Результат", text: "Видимые изменения уже через 2–3 сеанса, долгосрочный эффект" },
             ].map((step, i) => (
@@ -1315,21 +1315,31 @@ export default function Regeneration() {
       {/* ── Biohacking Stages ── */}
       <BiohackingStages />
 
-      {/* ── Testimonials ── */}
+      {/* ── Privacy block ── */}
       <section className="py-20 px-6" style={{ background: "#13100c" }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Результаты клиентов</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Они уже обновились</h2>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Конфиденциальность</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Полная приватность</h2>
+            <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-8 italic"
+              style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+              Пройденный курс процедур уникален и подобран персонально под каждого гостя.
+              Мы знаем о ваших результатах — как знаете и вы. Остальное сохраним в секрете.
+            </p>
+            <p className="text-base" style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", fontStyle: "italic" }}>
+              Лес хранит тайны.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {testimonials.map((t, i) => (
-              <div key={i} className="rounded-2xl p-6" style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(t.stars)].map((_, s) => <span key={s} style={{ color: "#c8923a", fontSize: "0.85rem" }}>★</span>)}
-                </div>
-                <p className="text-base leading-relaxed mb-4 italic" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.05rem" }}>«{t.text}»</p>
-                <p className="text-xs" style={{ color: "#8a7a65" }}>— {t.name}</p>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              { icon: "🌲", title: "Персональный протокол", text: "Каждая программа составляется индивидуально — с учётом вашего состояния, целей и особенностей организма." },
+              { icon: "🔒", title: "Тайна вашего пути", text: "Никакой огласки. Ваши данные, ваши результаты и ваш прогресс — между вами и центром." },
+              { icon: "✦", title: "Только ваши результаты", text: "Мы не публикуем отзывы и фотографии без согласия. Ваша трансформация принадлежит только вам." },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl p-6 text-center" style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <span className="block text-4xl mb-3">{item.icon}</span>
+                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#8a7a65" }}>{item.text}</p>
               </div>
             ))}
           </div>

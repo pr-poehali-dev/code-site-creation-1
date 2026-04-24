@@ -106,15 +106,15 @@ const benefits = [
   { icon: "ᚦ", title: "Парение с вениками", text: "Берёза для очищения, дуб для силы, эвкалипт для дыхания. Мягкие техники, которые расслабляют без стресса для тела." },
   { icon: "ᚢ", title: "Фитотерапия", text: "Натуральные травы и масла для поддержки иммунитета, снятия напряжения и глубокого релакса." },
   { icon: "ᛚ", title: "Водные практики", text: "Контрастные обливания и купель для пробуждения жизненной силы и укрепления сосудов." },
-  { icon: "ᚹ", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление изнутри." },
-  { icon: "ᛟ", title: "Звуковая медитация", text: "Гармонизация внутреннего состояния через вибрации звука — перезагрузка нервной системы и глубокий покой." },
+  { icon: "ᚹ", title: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление." },
+  { icon: "ᛟ", title: "Пройти таро-расклад", text: "Карты помогут раскрыть ваши текущие потребности и подобрать программу, которая резонирует именно с вами." },
 ];
 
 const faqData = [
-  { q: "Как записаться на программу?", a: "Заполните форму на сайте или напишите мне в мессенджер. Я отвечу и подберём удобное время вместе." },
-  { q: "Сколько человек в группе?", a: "Групповые программы рассчитаны на 5–8 гостей. «Сдобная Баня» — только для двоих, особый формат." },
-  { q: "Что нужно взять с собой?", a: "Только хорошее настроение! Халаты, тапочки, шапки и полотенца предоставляются." },
-  { q: "Можно ли купить в подарок?", a: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
+  { q: "Что нужно взять с собой?", a: "Только хорошее настроение и раздельный купальник. Халаты, тапочки, шапки и полотенца предоставляются." },
+  { q: "Соло или группой?", a: "Посещение доступно как соло, так и группой до 4 человек. Пространство полностью ваше — никто не входит без вашего разрешения." },
+  { q: "Что есть в вендинговых автоматах?", a: "В Рябина и Дым Lounge в вендинговых автоматах доступны: банные запарки, травы, скрабы и косметика, свежие цветы, фруктовые и овощные соки, салаты, безглютеновая выпечка, проростки, семечки и лечебные бады, селанк, семакс и другие новинки биохакинга." },
+  { q: "Можно ли купить в подарок?", a: "Да! Оформляем красивые сертификаты на любую программу или сумму. Выберите стиль оформления и номинал прямо на сайте.", link: "/certificate", linkLabel: "Оформить сертификат" },
   { q: "Кому подойдёт?", a: "• Тем, кто чувствует эмоциональное выгорание и усталость\n• Желающим проработать внутренние блоки и страхи\n• Ищущим глубокий релакс с осознанным эффектом\n• Практикующим йогу, медитацию или эзотерические техники\n• Ценящим традиции русской бани с современным подходом" },
 ];
 
@@ -131,11 +131,11 @@ const SYSTEM_PROMPT = `Ты — Мария, пармастер и создате
 Запись: форма на сайте или Telegram. Халаты, тапочки, шапки — предоставляются. Отвечай только на вопросы о бане и программах.`;
 
 const FAQ_QUICK = [
-  { label: "Как записаться?", answer: "Заполните форму на сайте или напишите мне в Telegram. Подберём удобное время вместе 🌿" },
   { label: "Цены?", answer: "Зазеркалье — 8 500 ₽, Ракушка — 6 500 ₽, Сакура — 7 500 ₽, Сдобная Баня — 36 000 ₽ (2 гостя). Доп. процедуры — 3 500 ₽." },
-  { label: "Что взять с собой?", answer: "Только хорошее настроение 🔥 Халаты, тапочки, шапки и полотенца — всё предоставляю я." },
-  { label: "Сколько человек?", answer: "Группы: 5–8 гостей. Сдобная Баня — только для двоих, особый формат." },
-  { label: "Подарочный сертификат?", answer: "Да! Оформляю красивые сертификаты на любую программу или сумму. Выберите на странице «Сертификат» 🎁" },
+  { label: "Что взять с собой?", answer: "Раздельный купальник и хорошее настроение 🔥 Халаты, тапочки, шапки и полотенца — предоставляются." },
+  { label: "Соло или группой?", answer: "Посещение доступно соло или группой до 4 человек. Пространство полностью ваше." },
+  { label: "Подарочный сертификат?", answer: "Да! Оформляем красивые сертификаты на любую программу или сумму. Выберите на странице «Сертификат» 🎁" },
+  { label: "Как записаться?", answer: "Заполните форму на сайте или напишите в мессенджер. Подберём удобное время вместе 🌿" },
 ];
 
 function Chatbot() {
@@ -563,20 +563,21 @@ export default function Index() {
   const [navOpen, setNavOpen] = useState(false);
 
   const navItems = [
-    { label: "Обо мне", id: "about" },
-    { label: "🔥 Баня", id: "programs" },
-    { label: "Таро", id: "tarot-nav" },
-    { label: "🌿 Лавка", id: "shop-nav" },
-    { label: "✦ Традиция · Old & New", id: "tradition-nav" },
-    { label: "🔥 Рябина & Дым", id: "banya-nav" },
+    { label: "Проект", id: "about" },
+    { label: "Рябина и Дым Lounge", id: "banya-nav" },
+    { label: "Ваша Карта", id: "tarot-nav" },
+    { label: "Перспектива", id: "perspektiva-nav" },
+    { label: "БиоХакинг", id: "biohacking-nav" },
+    { label: "Лавка", id: "shop-nav" },
     { label: "Контакты", id: "contacts" },
   ];
 
   function scrollTo(id: string) {
     if (id === "tarot-nav") { navigate("/tarot"); setNavOpen(false); return; }
     if (id === "shop-nav") { navigate("/shop"); setNavOpen(false); return; }
-    if (id === "tradition-nav") { navigate("/tradition"); setNavOpen(false); return; }
     if (id === "banya-nav") { navigate("/banya"); setNavOpen(false); return; }
+    if (id === "perspektiva-nav") { navigate("/perspektiva"); setNavOpen(false); return; }
+    if (id === "biohacking-nav") { navigate("/regeneration"); setNavOpen(false); return; }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setNavOpen(false);
   }
@@ -727,7 +728,7 @@ export default function Index() {
               <div className="space-y-5">
                 {[
                   { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Обновление", text: "Раскалённый жар пробуждает то, что дремало годами. Тело вспоминает силу, а душа — смелость меняться. Первый шаг к новому — здесь." },
-                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Холодный воздух смывает всё наносное. Остаётся только суть — тихая, настоящая. Вы снова слышите себя." },
+                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Холодный поток смывает всё наносное. Остаётся только суть — тихая, настоящая. Вы снова слышите себя." },
                   { color: "rgba(200,146,58,0.6)", label: "ПАР", title: "Расслабление", text: "Пар обволакивает, как объятие. Мышцы отпускают, мысли растворяются. Остаётся только тепло и покой." },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 group">
@@ -859,10 +860,10 @@ export default function Index() {
           {/* 3 pillars */}
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
             {[
-              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться. Здесь рождается новое.", color: "#d4622a", glow: "rgba(212,98,42,0.35)", anim: "flicker" },
+              { sym: "🜂", title: "Огонь", sub: "Начало трансформации", text: "Жар открывает поры, выводит накопленное, даёт телу разрешение меняться.", color: "#d4622a", glow: "rgba(212,98,42,0.35)", anim: "flicker" },
               { sym: "🜄", title: "Вода", sub: "Очищение и обновление", text: "Контраст температур запускает жизненные процессы. Каждое погружение — это возвращение к себе.", color: "#4a9ec8", glow: "rgba(74,158,200,0.35)", anim: "mist-drift" },
-              { sym: "🜃", title: "Земля", sub: "Укоренение и покой", text: "Соль, глина, травы, мёд — дары земли. Они питают, успокаивают и возвращают природный баланс.", color: "#7aaa50", glow: "rgba(122,170,80,0.35)", anim: "spirit-float" },
-              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт лёгкость и ощущение свободы.", color: "#8ac8b8", glow: "rgba(138,200,184,0.35)", anim: "mist-drift" },
+              { sym: "🜃", title: "Земля", sub: "Мёд, соль и травы", text: "Натуральный источник энергии и питания для кожи в SPA-практиках — очищение и восстановление.", color: "#7aaa50", glow: "rgba(122,170,80,0.35)", anim: "spirit-float" },
+              { sym: "🜁", title: "Воздух", sub: "Дыхание и свобода", text: "Пар, наполненный ароматами трав и смол, открывает дыхание, несёт приятные воспоминания и ощущение свободы.", color: "#8ac8b8", glow: "rgba(138,200,184,0.35)", anim: "mist-drift" },
             ].map((p, i) => (
               <div key={i} className="rounded-2xl p-7 eth-card relative overflow-hidden" style={{ background: "var(--eth-bg2)" }}>
                 <div className="absolute top-0 right-0 text-6xl font-light opacity-5 pointer-events-none select-none"
@@ -879,6 +880,87 @@ export default function Index() {
                 <p className="text-xs leading-relaxed" style={{ color: "var(--eth-smoke)", opacity: 0.8 }}>{p.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── По старинному обычаю ─────────────────────────── */}
+      <section className="py-24 px-6 relative overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #0f0c08 0%, #130e08 50%, #0f0c08 100%)" }}>
+
+        {/* Декоративный фон */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(200,146,58,0.05) 0%, transparent 60%)" }} />
+          {["top-8 left-8", "top-16 right-16", "bottom-16 left-16", "bottom-8 right-8", "top-1/2 left-4", "top-1/2 right-4"].map((pos, i) => (
+            <span key={i} className={`absolute ${pos} animate-pulse-gold`}
+              style={{ color: "rgba(200,146,58,0.18)", fontSize: i % 2 === 0 ? "10px" : "6px", animationDelay: `${i * 0.4}s` }}>◆</span>
+          ))}
+        </div>
+
+        <div className="max-w-3xl mx-auto text-center relative">
+          <div className="eth-divider mb-8"><span style={{ color: "var(--eth-ember)" }}>◆ ◇ ◆</span></div>
+
+          <p className="text-xs uppercase tracking-[0.6em] mb-8" style={{ color: "var(--eth-stone)" }}>
+            По старинному обычаю
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-light leading-tight mb-6"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+            Мудрость<br /><em style={{ color: "var(--eth-gold)", fontStyle: "italic" }}>веков</em>
+          </h2>
+
+          <p className="text-lg leading-relaxed mb-8 italic"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.15rem" }}>
+            По старинному обычаю, да с мастерством веков,<br />
+            создавали каждую программу.
+          </p>
+
+          <button onClick={() => document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-sm tracking-widest uppercase transition-all hover:opacity-60 mb-10 inline-block"
+            style={{ color: "var(--eth-gold)", letterSpacing: "0.2em" }}>
+            читать далее
+          </button>
+
+          <div className="eth-divider my-8"><span>◆ ◇ ◆</span></div>
+
+          <p className="text-xl leading-loose italic mb-8"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.1rem" }}>
+            Всё для того, чтобы в бане вы телом окрепли,<br />
+            душой отдохнули, да здоровьем прибавили.
+          </p>
+
+          <div className="eth-divider mb-12"><span>◆ ◇ ◆</span></div>
+
+          <p className="text-xs uppercase tracking-[0.4em] mb-8" style={{ color: "var(--eth-stone)" }}>
+            Из чего соткана программа
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-5 text-left">
+            {[
+              { sym: "🌿", title: "Травы", text: "Травы выбирали — чтоб аромат был чистый, сила — живая." },
+              { sym: "✦", title: "Соль", text: "Соль брали — не простую, а ту, что солнцем согрета, морем взлелеяна." },
+              { sym: "🍯", title: "Мёд", text: "Мёд клали — светлый, душистый, от пчёл, что на лугах вольных летали." },
+              { sym: "🌿", title: "Веники", text: "Веники вязали — берёзовые да дубовые, в срок положенный, когда дерево силу набирает." },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl p-5 flex gap-4"
+                style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.1)" }}>
+                <span className="text-2xl flex-shrink-0">{item.sym}</span>
+                <div>
+                  <h4 className="text-base font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{item.title}</h4>
+                  <p className="text-xs leading-relaxed italic" style={{ color: "var(--eth-stone)" }}>{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-2xl px-6 py-5"
+            style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.15)" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>
+              ✦ Всё — с мастерством веков и новейшими технологиями
+            </p>
+            <p className="text-xs mt-2 tracking-[0.2em] uppercase" style={{ color: "rgba(200,146,58,0.5)" }}>
+              БиоХакинг ✦ Перспектива<span style={{ fontSize: "0.6rem", verticalAlign: "super" }}>NEW</span>
+            </p>
           </div>
         </div>
       </section>
