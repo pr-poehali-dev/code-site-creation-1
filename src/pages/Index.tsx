@@ -967,13 +967,13 @@ export default function Index() {
       <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, #0f0c08 0%, #100d0a 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <div className="eth-divider mb-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
-          <p className="leading-loose mb-6 text-xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.25rem", color: "var(--eth-smoke)", fontStyle: "italic" }}>
+          <p className="leading-loose mb-6 text-2xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.25rem", color: "var(--eth-smoke)", fontStyle: "italic" }}>
             Огонь печи внемлет древним заклинаниям.<br />
             Пар из дубового веника окутывает тело.<br />
             Соль земли растворяется на коже.<br />
             Ароматы трав зовут вспомнить то, что забыто.
           </p>
-          <p className="leading-relaxed text-xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-gold2)" }}>
+          <p className="leading-relaxed text-2xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-gold2)" }}>
             Доверьтесь процессу. Ваше тело уже знает путь.
           </p>
           <div className="eth-divider mt-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
