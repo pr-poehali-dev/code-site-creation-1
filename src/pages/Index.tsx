@@ -690,142 +690,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── About Slide 1 ───────────────────────────────── */}
-      <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-        style={{ background: "radial-gradient(ellipse at 30% 60%, #2a0e08 0%, #1a1410 50%, #0f0c08 100%)" }}>
-
-        {/* Ambient particles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            { cls: "top-1/4 left-1/4 w-72 h-72", c: "#c8923a" },
-            { cls: "bottom-1/3 right-1/4 w-64 h-64", c: "#3a6080" },
-            { cls: "top-1/2 left-1/2 w-48 h-48", c: "#8a4020" },
-          ].map((g, i) => (
-            <div key={i} className={`absolute ${g.cls} rounded-full opacity-10 animate-float`}
-              style={{ background: `radial-gradient(circle, ${g.c}, transparent 70%)`, filter: "blur(50px)", animationDelay: `${i * 1.2}s` }} />
-          ))}
-          {["top-10 left-12", "top-20 right-20", "bottom-32 left-20", "bottom-10 right-10", "top-1/3 right-8"].map((pos, i) => (
-            <span key={i} className={`absolute ${pos} animate-pulse-gold`}
-              style={{ color: "rgba(200,146,58,0.25)", fontSize: i % 2 === 0 ? "10px" : "7px", animationDelay: `${i * 0.5}s` }}>✦</span>
-          ))}
-        </div>
-
-        <div className="relative max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
-          <div>
-            <div className="mt-8">
-              <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>О проекте:</p>
-              <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
-                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}></em>
-              </h2>
-              <p className="text-base leading-relaxed my-3 text-justify" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Синтез древних традиций и инноваций.
-Мы создаём решения в области регенеративной медицины, опираясь на два столпа:
-Проверенные веками практики оздоровления и восстановления., и Современные «чит‑коды» биохакинга. 
-
-Проект в основе которого лежит Алхимия. 
-Процесс объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.. 
-Благодаря которому мы запускаем процесс регенерации:</p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}></p>
-
-              <div className="space-y-5">
-                {[
-                  { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Обновление", text: "Раскалённый жар пробуждает то, что дремало годами. Тело вспоминает силу, а душа — смелость меняться. Первый шаг к новому — здесь." },
-                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Холодный поток смывает всё наносное. Остаётся только суть — тихая, настоящая. Вы снова слышите себя." },
-                  { color: "rgba(200,146,58,0.6)", label: "ПАР", title: "Расслабление", text: "Пар обволакивает, как объятие. Мышцы отпускают, мысли растворяются. Остаётся только тепло и покой." },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4 group">
-                    <div className="flex flex-col items-center mt-1">
-                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: item.color }} />
-                      <div className="w-px flex-1 mt-2 opacity-30" style={{ background: item.color }} />
-                    </div>
-                    <div>
-                      <p className="text-xs tracking-[0.3em] mb-1" style={{ color: item.color.replace("0.6)", "1)") }}>{item.label}</p>
-                      <p className="text-sm font-medium mb-1" style={{ color: "var(--eth-cream)" }}>{item.title}</p>
-                      <p className="text-xs leading-relaxed italic" style={{ color: "var(--eth-smoke)", opacity: 0.75 }}>{item.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Visual — ковш со звёздной водой */}
-          <div className="relative flex items-center justify-center group/ladle">
-            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full opacity-20 animate-float"
-              style={{ background: "radial-gradient(circle, #3a6080, transparent 70%)", filter: "blur(30px)" }} />
-
-            <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-end justify-center">
-              {["top-2 left-8", "top-6 right-10", "top-0 left-1/2", "top-10 left-4", "top-4 right-4"].map((pos, i) => (
-                <span key={i} className={`absolute ${pos} animate-pulse-gold text-xs`}
-                  style={{ color: "rgba(200,220,255,0.6)", animationDelay: `${i * 0.4}s` }}>★</span>
-              ))}
-
-              <svg viewBox="0 0 200 220" className="w-full h-full drop-shadow-2xl" style={{ filter: "drop-shadow(0 0 20px rgba(100,160,220,0.3))" }}>
-                <defs>
-                  <radialGradient id="starwater" cx="50%" cy="40%">
-                    <stop offset="0%" stopColor="#6aa8d8" stopOpacity="0.9"/>
-                    <stop offset="40%" stopColor="#1a3a6a" stopOpacity="0.8"/>
-                    <stop offset="100%" stopColor="#0a1a30" stopOpacity="1"/>
-                  </radialGradient>
-                </defs>
-
-                {/* Пар над ковшом */}
-                <path d="M70 135 Q68 120 72 108 Q76 96 73 84" stroke="rgba(200,220,255,0.2)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-1"/>
-                <path d="M90 132 Q88 117 92 105 Q96 93 93 78" stroke="rgba(200,220,255,0.15)" strokeWidth="1.5" fill="none" strokeLinecap="round" className="steam-2"/>
-                <path d="M108 135 Q106 120 110 108 Q114 96 111 82" stroke="rgba(200,220,255,0.18)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-3"/>
-
-                {/* Ковш — чаша */}
-                <ellipse cx="90" cy="145" rx="60" ry="18" fill="rgba(40,60,80,0.9)" stroke="rgba(200,146,58,0.6)" strokeWidth="1.5"/>
-                <path d="M30 145 Q28 185 90 188 Q152 185 150 145 Z" fill="rgba(25,45,65,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
-
-                {/* Звёздная вода */}
-                <ellipse cx="90" cy="148" rx="52" ry="12" fill="rgba(20,40,80,0.9)"/>
-                <ellipse cx="90" cy="148" rx="50" ry="10" fill="url(#starwater)" opacity="0.9"/>
-                <ellipse cx="75" cy="146" rx="12" ry="3" fill="rgba(180,220,255,0.25)" transform="rotate(-15 75 146)"/>
-                <ellipse cx="105" cy="150" rx="8" ry="2" fill="rgba(180,220,255,0.15)" transform="rotate(10 105 150)"/>
-                <text x="78" y="150" fontSize="7" fill="rgba(200,230,255,0.7)">★</text>
-                <text x="96" y="153" fontSize="5" fill="rgba(200,230,255,0.5)">✦</text>
-                <text x="65" y="153" fontSize="4" fill="rgba(200,230,255,0.4)">★</text>
-
-                {/* Ручка */}
-                <rect x="148" y="135" width="45" height="8" rx="4" fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
-                <rect x="185" y="131" width="8" height="16" rx="4" fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.4)" strokeWidth="1"/>
-
-                {/* Орнамент */}
-                <path d="M50 165 Q90 170 130 165" stroke="rgba(200,146,58,0.3)" strokeWidth="1" fill="none"/>
-              </svg>
-            </div>
-
-            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ color: "var(--eth-gold)", opacity: 0.5 }}>Алхимия стихий</p>
-            <div className="absolute top-4 right-0 text-2xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◆</div>
-            <div className="absolute bottom-8 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
-
-            {/* Hover overlay */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/ladle:opacity-100 transition-all duration-700 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(10,6,2,0.92) 0%, rgba(10,6,2,0.7) 100%)", borderRadius: "50%", backdropFilter: "blur(2px)" }}>
-              <div className="text-center px-4">
-                <p className="text-xs uppercase tracking-[0.35em] mb-3" style={{ color: "var(--eth-gold)", opacity: 0.7 }}>◈</p>
-                <p className="font-light leading-snug mb-3" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.05rem", color: "var(--eth-gold2)" }}>
-                  Бронируйте с пометкой<br />
-                  <em style={{ color: "var(--eth-gold)" }}>«Алхимия Стихий»</em>.
-                </p>
-                <p className="text-xs leading-relaxed mb-3" style={{ color: "var(--eth-smoke)", opacity: 0.85, fontFamily: "'Cormorant', serif", fontSize: "0.9rem", fontStyle: "italic" }}>
-                  Тогда программа будет создана Специально для вас — каждое действие, каждый элемент, каждая пауза..
-                </p>
-                <p className="text-xs leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "0.9rem", fontStyle: "italic" }}>
-                  Словно вы наконец нашли то, что искали всю жизнь..
-                </p>
-                <p className="text-sm font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.1em" }}>
-                  Выдох. Новое начало
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── About Slide 2 ───────────────────────────────── */}
+      {/* ── Философия — первой после Hero ── */}
       <section className="relative py-24 px-6 overflow-hidden"
         style={{ background: "linear-gradient(135deg, #0f0c08 0%, #1a1008 50%, #0f0a06 100%)" }}>
         <div className="absolute inset-0 pointer-events-none">
@@ -850,7 +715,7 @@ export default function Index() {
               </p>
             </div>
             <div className="flex flex-col justify-center gap-6">
-              {[["4", "авторские\nпрограммы"], ["5–8", "гостей\nв группе"], ["4 ч", "до полного\nрасслабления"]].map(([num, label]) => (
+              {[["6", "авторских\nпрограммы"], ["2–6", "гостей\nв группе"], ["3–4 ч", "погружения\nв ритуал"]].map(([num, label]) => (
                 <div key={num} className="rounded-2xl p-5 text-center eth-card" style={{ background: "var(--eth-bg3)" }}>
                   <p className="text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", lineHeight: 1 }}>{num}</p>
                   <p className="text-xs uppercase tracking-wider mt-2 opacity-50 whitespace-pre-line leading-relaxed" style={{ color: "var(--eth-stone)" }}>{label}</p>
@@ -886,7 +751,33 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── Benefits ────────────────────────────────────── */}
+      {/* ── Tarot Banner (Ваша Карта) ────────────────────── */}
+      <section className="py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e1530 0%, #0f0c08 80%)" }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-2xl px-8 py-12 text-center relative overflow-hidden"
+            style={{ border: "1px solid rgba(155,127,181,0.25)", background: "radial-gradient(ellipse at 50% 0%, rgba(155,127,181,0.08), transparent 70%)" }}>
+            <div className="absolute top-0 left-0 right-0 h-px"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(155,127,181,0.4), transparent)" }} />
+            <span className="text-5xl block mb-5 opacity-60" style={{ color: "#9b7fb5" }}>◆</span>
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>
+              Индивидуальный подход
+            </p>
+            <h2 className="text-4xl md:text-5xl font-light leading-tight mb-4"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+              Шелест карт<br /><em>и ваша программа</em>
+            </h2>
+            <p className="leading-relaxed mb-8 max-w-xl mx-auto text-xl"
+              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Карты помогут раскрыть ваши текущие потребности и подобрать программу, которая резонирует именно с вами.</p>
+            <button onClick={() => navigate("/tarot")}
+              className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.12em" }}>
+              Пройти таро-расклад
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Benefits (Путь к обновлению) ─────────────────── */}
       <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
@@ -935,48 +826,165 @@ export default function Index() {
         </div>
       </section>
 
-
-
-      {/* ── Tarot Banner ────────────────────────────────── */}
-      <section className="py-20 px-6" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e1530 0%, #0f0c08 80%)" }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl px-8 py-12 text-center relative overflow-hidden"
-            style={{ border: "1px solid rgba(155,127,181,0.25)", background: "radial-gradient(ellipse at 50% 0%, rgba(155,127,181,0.08), transparent 70%)" }}>
-            <div className="absolute top-0 left-0 right-0 h-px"
-              style={{ background: "linear-gradient(90deg, transparent, rgba(155,127,181,0.4), transparent)" }} />
-            <span className="text-5xl block mb-5 opacity-60" style={{ color: "#9b7fb5" }}>◆</span>
-            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>
-              Индивидуальный подход
-            </p>
-            <h2 className="text-4xl md:text-5xl font-light leading-tight mb-4"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Шелест карт<br /><em>и ваша программа</em>
-            </h2>
-            <p className="leading-relaxed mb-8 max-w-xl mx-auto text-xl"
-              style={{ color: "var(--eth-smoke)", opacity: 0.8, fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Карты помогут раскрыть ваши текущие потребности и подобрать программу, которая резонирует именно с вами.</p>
-            <button onClick={() => navigate("/tarot")}
-              className="px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #6b4080, #9b7fb5)", color: "white", letterSpacing: "0.12em" }}>
-              Пройти таро-расклад
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Poetic Interlude ─────────────────────────────── */}
+      {/* ── Poetic Interlude — с анимацией ───────────────── */}
       <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, #0f0c08 0%, #100d0a 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <div className="eth-divider mb-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
-          <p className="leading-loose mb-6 text-2xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.25rem", color: "var(--eth-smoke)", fontStyle: "italic" }}>
-            Огонь печи внемлет древним заклинаниям.<br />
-            Пар из дубового веника окутывает тело.<br />
-            Соль земли растворяется на коже.<br />
-            Ароматы трав зовут вспомнить то, что забыто.
-          </p>
-          <p className="leading-relaxed text-2xl" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.1rem", color: "var(--eth-gold2)" }}>
+          <div className="space-y-3 mb-8">
+            {[
+              { text: "Огонь печи внемлет древним заклинаниям.", delay: "0s", icon: "🔥" },
+              { text: "Пар из дубового веника окутывает тело.", delay: "0.6s", icon: "💨" },
+              { text: "Соль земли растворяется на коже.", delay: "1.2s", icon: "✦" },
+              { text: "Ароматы трав зовут вспомнить то, что забыто.", delay: "1.8s", icon: "🌿" },
+            ].map((line, i) => (
+              <p key={i} className="leading-loose text-xl italic"
+                style={{
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "1.2rem",
+                  color: "var(--eth-smoke)",
+                  animation: `fadeSlideUp 0.9s ease both`,
+                  animationDelay: line.delay,
+                  opacity: 0,
+                  animationFillMode: "forwards",
+                }}>
+                <span style={{ color: "var(--eth-ember)", marginRight: "8px", fontSize: "0.85em" }}>{line.icon}</span>
+                {line.text}
+              </p>
+            ))}
+          </div>
+          <p className="leading-relaxed text-2xl"
+            style={{
+              fontFamily: "'Cormorant', serif",
+              fontSize: "1.1rem",
+              color: "var(--eth-gold2)",
+              animation: "fadeSlideUp 0.9s ease both",
+              animationDelay: "2.4s",
+              opacity: 0,
+              animationFillMode: "forwards",
+            }}>
             Доверьтесь процессу. Ваше тело уже знает путь.
           </p>
           <div className="eth-divider mt-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
+        </div>
+        <style>{`
+          @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+      </section>
+
+      {/* ── О проекте (перед FAQ) ───────────────────────── */}
+      <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 30% 60%, #2a0e08 0%, #1a1410 50%, #0f0c08 100%)" }}>
+
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { cls: "top-1/4 left-1/4 w-72 h-72", c: "#c8923a" },
+            { cls: "bottom-1/3 right-1/4 w-64 h-64", c: "#3a6080" },
+            { cls: "top-1/2 left-1/2 w-48 h-48", c: "#8a4020" },
+          ].map((g, i) => (
+            <div key={i} className={`absolute ${g.cls} rounded-full opacity-10 animate-float`}
+              style={{ background: `radial-gradient(circle, ${g.c}, transparent 70%)`, filter: "blur(50px)", animationDelay: `${i * 1.2}s` }} />
+          ))}
+          {["top-10 left-12", "top-20 right-20", "bottom-32 left-20", "bottom-10 right-10", "top-1/3 right-8"].map((pos, i) => (
+            <span key={i} className={`absolute ${pos} animate-pulse-gold`}
+              style={{ color: "rgba(200,146,58,0.25)", fontSize: i % 2 === 0 ? "10px" : "7px", animationDelay: `${i * 0.5}s` }}>✦</span>
+          ))}
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center w-full">
+          <div>
+            <div className="mt-8">
+              <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "var(--eth-stone)" }}>О проекте:</p>
+              <h2 className="text-5xl md:text-7xl font-light leading-tight mb-6"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}></em>
+              </h2>
+              <p className="text-base leading-relaxed my-3 text-justify" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Синтез древних традиций и инноваций.
+Мы создаём решения в области регенеративной медицины, опираясь на два столпа:
+Проверенные веками практики оздоровления и восстановления., и Современные «чит‑коды» биохакинга.
+
+Проект в основе которого лежит Алхимия.
+Процесс объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.
+Благодаря которому мы запускаем процесс регенерации:</p>
+
+              <div className="space-y-5 mt-6">
+                {[
+                  { color: "rgba(212,98,42,0.6)", label: "МАГМА", title: "Обновление", text: "Раскалённый жар пробуждает то, что дремало годами. Тело вспоминает силу, а душа — смелость меняться. Первый шаг к новому — здесь." },
+                  { color: "rgba(122,171,158,0.6)", label: "ИНЕЙ", title: "Возврат к себе", text: "Холодный поток смывает всё наносное. Остаётся только суть — тихая, настоящая. Вы снова слышите себя." },
+                  { color: "rgba(200,146,58,0.6)", label: "ПАР", title: "Расслабление", text: "Пар обволакивает, как объятие. Мышцы отпускают, мысли растворяются. Остаётся только тепло и покой." },
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="flex flex-col items-center mt-1">
+                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: item.color }} />
+                      <div className="w-px flex-1 mt-2 opacity-30" style={{ background: item.color }} />
+                    </div>
+                    <div>
+                      <p className="text-xs tracking-[0.3em] mb-1" style={{ color: item.color.replace("0.6)", "1)") }}>{item.label}</p>
+                      <p className="text-sm font-medium mb-1" style={{ color: "var(--eth-cream)" }}>{item.title}</p>
+                      <p className="text-xs leading-relaxed italic" style={{ color: "var(--eth-smoke)", opacity: 0.75 }}>{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Visual — ковш со звёздной водой */}
+          <div className="relative flex items-center justify-center group/ladle">
+            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full opacity-20 animate-float"
+              style={{ background: "radial-gradient(circle, #3a6080, transparent 70%)", filter: "blur(30px)" }} />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-end justify-center">
+              {["top-2 left-8", "top-6 right-10", "top-0 left-1/2", "top-10 left-4", "top-4 right-4"].map((pos, i) => (
+                <span key={i} className={`absolute ${pos} animate-pulse-gold text-xs`}
+                  style={{ color: "rgba(200,220,255,0.6)", animationDelay: `${i * 0.4}s` }}>★</span>
+              ))}
+              <svg viewBox="0 0 200 220" className="w-full h-full drop-shadow-2xl" style={{ filter: "drop-shadow(0 0 20px rgba(100,160,220,0.3))" }}>
+                <defs>
+                  <radialGradient id="starwater" cx="50%" cy="40%">
+                    <stop offset="0%" stopColor="#6aa8d8" stopOpacity="0.9"/>
+                    <stop offset="40%" stopColor="#1a3a6a" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#0a1a30" stopOpacity="1"/>
+                  </radialGradient>
+                </defs>
+                <path d="M70 135 Q68 120 72 108 Q76 96 73 84" stroke="rgba(200,220,255,0.2)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-1"/>
+                <path d="M90 132 Q88 117 92 105 Q96 93 93 78" stroke="rgba(200,220,255,0.15)" strokeWidth="1.5" fill="none" strokeLinecap="round" className="steam-2"/>
+                <path d="M108 135 Q106 120 110 108 Q114 96 111 82" stroke="rgba(200,220,255,0.18)" strokeWidth="2" fill="none" strokeLinecap="round" className="steam-3"/>
+                <ellipse cx="90" cy="145" rx="60" ry="18" fill="rgba(40,60,80,0.9)" stroke="rgba(200,146,58,0.6)" strokeWidth="1.5"/>
+                <path d="M30 145 Q28 185 90 188 Q152 185 150 145 Z" fill="rgba(25,45,65,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
+                <ellipse cx="90" cy="148" rx="52" ry="12" fill="rgba(20,40,80,0.9)"/>
+                <ellipse cx="90" cy="148" rx="50" ry="10" fill="url(#starwater)" opacity="0.9"/>
+                <ellipse cx="75" cy="146" rx="12" ry="3" fill="rgba(180,220,255,0.25)" transform="rotate(-15 75 146)"/>
+                <ellipse cx="105" cy="150" rx="8" ry="2" fill="rgba(180,220,255,0.15)" transform="rotate(10 105 150)"/>
+                <text x="78" y="150" fontSize="7" fill="rgba(200,230,255,0.7)">★</text>
+                <text x="96" y="153" fontSize="5" fill="rgba(200,230,255,0.5)">✦</text>
+                <text x="65" y="153" fontSize="4" fill="rgba(200,230,255,0.4)">★</text>
+                <rect x="148" y="135" width="45" height="8" rx="4" fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.5)" strokeWidth="1.5"/>
+                <rect x="185" y="131" width="8" height="16" rx="4" fill="rgba(40,30,20,0.95)" stroke="rgba(200,146,58,0.4)" strokeWidth="1"/>
+                <path d="M50 165 Q90 170 130 165" stroke="rgba(200,146,58,0.3)" strokeWidth="1" fill="none"/>
+              </svg>
+            </div>
+            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ color: "var(--eth-gold)", opacity: 0.5 }}>Алхимия стихий</p>
+            <div className="absolute top-4 right-0 text-2xl animate-float" style={{ color: "var(--eth-gold)", opacity: 0.2 }}>◆</div>
+            <div className="absolute bottom-8 left-0 text-xl animate-float delay-300" style={{ color: "var(--eth-gold)", opacity: 0.15 }}>◇</div>
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/ladle:opacity-100 transition-all duration-700 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(10,6,2,0.92) 0%, rgba(10,6,2,0.7) 100%)", borderRadius: "50%", backdropFilter: "blur(2px)" }}>
+              <div className="text-center px-4">
+                <p className="text-xs uppercase tracking-[0.35em] mb-3" style={{ color: "var(--eth-gold)", opacity: 0.7 }}>◈</p>
+                <p className="font-light leading-snug mb-3" style={{ fontFamily: "'Cormorant', serif", fontSize: "1.05rem", color: "var(--eth-gold2)" }}>
+                  Бронируйте с пометкой<br /><em style={{ color: "var(--eth-gold)" }}>«Алхимия Стихий»</em>.
+                </p>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", opacity: 0.85, fontFamily: "'Cormorant', serif", fontSize: "0.9rem", fontStyle: "italic" }}>
+                  Тогда программа будет создана специально для вас — каждое действие, каждый элемент, каждая пауза.
+                </p>
+                <p className="text-sm font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", letterSpacing: "0.1em" }}>
+                  Выдох. Новое начало
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
