@@ -581,17 +581,17 @@ export default function Tarot() {
       <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-5xl block mb-8 opacity-30" style={{ color: "#9b7fb5" }}>◆</span>
-          <p className="text-2xl md:text-3xl font-light italic leading-relaxed mb-4"
+          <p className="md:text-3xl font-light italic leading-relaxed mb-4 text-3xl"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
             Парная ведунья,<br />
             трав знахарка, огня хранительница.
           </p>
-          <p className="text-lg md:text-xl font-light italic leading-relaxed mb-4"
+          <p className="md:text-xl font-light italic leading-relaxed mb-4 text-3xl"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", opacity: 0.85 }}>
             Веник шепчет, мёд питает, чаша поёт —<br />
             Тело очищается, душа покой обретёт.
           </p>
-          <p className="text-base md:text-lg font-light italic leading-relaxed"
+          <p className="md:text-lg font-light italic leading-relaxed text-3xl"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-stone)" }}>
             Каждому — свой путь, каждому — свой пар,<br />
             По обычаю древнему, по сердцу и в дар.
