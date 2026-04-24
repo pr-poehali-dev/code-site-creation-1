@@ -358,43 +358,139 @@ export default function Banya() {
             </div>
           </FadeIn>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                symbol: "♛", title: "Зазеркалье", tagline: "Авторский уход в SPA-бане", price: "8 500 ₽",
-                desc: "Глубокое восстановление через цветочный пар, уход за волосами и кожей. Тело регенерирует, каждая клетка дышит. Ритуал для полного отпускания напряжения — от корней волос до кончиков пальцев.",
-                effect: "Регенерация кожи · Восстановление волос · Расслабление",
-                color: "#c8923a",
-              },
-              {
-                symbol: "≋", title: "Ракушка", tagline: "Нежный пар с ароматами летних трав", price: "6 500 ₽",
-                desc: "Лёгкий пар с ароматами луга восстанавливает дыхание и снимает усталость с мышц. Пилинг с мёдом и травами запускает обновление кожи. Парафинотерапия возвращает мягкость и эластичность.",
-                effect: "Обновление кожи · Дренаж мышц · Снятие усталости",
+                symbol: "🌿", title: "Свежесть полей", duration: "3 часа", guests: "2 гостя",
                 color: "#7aab9e",
+                procedures: [
+                  "Церемония первого пара с арома-травами",
+                  "Классическое парение дубовыми вениками с переворотом",
+                  "Медово-травяной массаж-скраб",
+                ],
+                note: "При дополнении чаном — 1 час в подарок. Чан: 7 000 ₽ на всё время аренды",
+                prices: [
+                  { label: "Будни до 18:00", value: "21 000 ₽" },
+                  { label: "Вечер / выходные", value: "23 000 ₽" },
+                ],
               },
               {
-                symbol: "❋", title: "Сакура", tagline: "Древняя философия очищения", price: "7 500 ₽",
-                desc: "Церемония глубокого пара под медитативные звуки пробуждает тело. Японские техники очищения через контраст температур запускают мощный процесс регенерации.",
-                effect: "Детокс · Укрепление сосудов · Глубокое очищение",
-                color: "#b87a6a",
+                symbol: "ᛟ", title: "Шёпот предков", duration: "3 часа", guests: "4–6 гостей",
+                color: "#9b7fb5",
+                procedures: [
+                  "Тёплый чан с травами и фруктами",
+                  "Церемония первого пара с арома-травами",
+                  "Звуковая медитация",
+                ],
+                note: null,
+                prices: [
+                  { label: "Будни до 18:00", value: "6 500 ₽ / гость" },
+                  { label: "Вечер / выходные", value: "8 500 ₽ / гость" },
+                ],
               },
               {
-                symbol: "✦", title: "Сдобная Баня", tagline: "Авторская программа — всё на выбор", price: "36 000 ₽",
-                desc: "Самая полная программа восстановления. Вы выбираете каждый элемент под свои потребности. Звуковая медитация завершает цикл — тело и психика перезагружаются полностью.",
-                effect: "Иммунитет · Полная перезагрузка · Глубокий релакс",
+                symbol: "🌲", title: "Вглубь лесных троп", duration: "4 часа", guests: "2 гостя",
                 color: "#c8923a",
+                procedures: [
+                  "Тёплый чан с травами и фруктами",
+                  "Церемония первого пара с арома-травами",
+                  "Солевое выкатывание-скраб",
+                  "Классическое парение на пихтовых вениках",
+                  "Медовый массаж в парной",
+                  "Холодный авторский лимонад",
+                ],
+                note: null,
+                prices: [
+                  { label: "Будни до 18:00", value: "29 000 ₽" },
+                  { label: "Вечер / выходные", value: "32 000 ₽" },
+                ],
+              },
+              {
+                symbol: "🌫", title: "Тайны тумана", duration: "4 часа", guests: "4–6 гостей",
+                color: "#6aaad0",
+                procedures: [
+                  "Тёплый чан с травами и фруктами",
+                  "Церемония первого пара с арома-травами",
+                  "Одна услуга на выбор: лёгкое парение / медовая ладка / омовение мылом и рукавицей / солевое выкатывание с контрастами",
+                ],
+                note: null,
+                prices: [
+                  { label: "Будни до 18:00", value: "9 000 ₽ / гость" },
+                  { label: "Вечер / выходные", value: "11 000 ₽ / гость" },
+                ],
+              },
+              {
+                symbol: "🥛", title: "Молочные берега", duration: "3 часа", guests: "2 гостя",
+                color: "#e8d5c0",
+                procedures: [
+                  "Прогрев в парной",
+                  "Парение классическое с холодной пихтой под голову",
+                  "Очищение тела рукавицей кесе",
+                  "Молочко для тела",
+                ],
+                note: null,
+                prices: [
+                  { label: "Будни до 18:00", value: "12 000 ₽" },
+                  { label: "Вечер / выходные", value: "14 500 ₽" },
+                ],
+              },
+              {
+                symbol: "🍊", title: "Терпкий родник", duration: "3 часа", guests: "2 гостя",
+                color: "#d4622a",
+                procedures: [
+                  "Прогрев в парной",
+                  "Парение классическое контрастно-минеральное с грейпфрутом",
+                  "Мыльный spa-уход по телу берёзовыми вениками",
+                ],
+                note: null,
+                prices: [
+                  { label: "Будни до 18:00", value: "8 500 ₽" },
+                  { label: "Вечер / выходные", value: "10 500 ₽" },
+                ],
               },
             ].map((p, i) => (
-              <FadeIn key={i} delay={i * 0.08} className="rounded-2xl p-7"
-                style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${p.color}20` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-3xl font-light" style={{ color: p.color, fontFamily: "'Cormorant', serif" }}>{p.symbol}</span>
-                  <span className="text-2xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.9)" }}>{p.price}</span>
+              <FadeIn key={i} delay={i * 0.07} className="rounded-2xl flex flex-col"
+                style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${p.color}28` }}>
+                {/* Header */}
+                <div className="px-6 pt-6 pb-4" style={{ borderBottom: `1px solid ${p.color}18` }}>
+                  <div className="flex items-start justify-between mb-3">
+                    <span className="text-2xl" style={{ color: p.color }}>{p.symbol}</span>
+                    <span className="text-xs px-2.5 py-1 rounded-full uppercase tracking-wider"
+                      style={{ background: `${p.color}12`, color: p.color, border: `1px solid ${p.color}25` }}>
+                      {p.guests}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>{p.title}</h3>
+                  <p className="text-xs" style={{ color: "rgba(200,180,255,0.4)" }}>{p.duration}</p>
                 </div>
-                <h3 className="text-2xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>{p.title}</h3>
-                <p className="text-xs italic mb-3" style={{ color: "rgba(220,200,255,0.4)" }}>{p.tagline}</p>
-                <p className="text-xs mb-3 font-medium" style={{ color: p.color }}>◆ {p.effect}</p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(220,210,255,0.55)" }}>{p.desc}</p>
+
+                {/* Procedures */}
+                <div className="px-6 py-4 flex-1">
+                  <ul className="space-y-2 mb-3">
+                    {p.procedures.map((proc, j) => (
+                      <li key={j} className="flex items-start gap-2 text-xs leading-relaxed" style={{ color: "rgba(220,210,255,0.6)" }}>
+                        <span className="flex-shrink-0 mt-1" style={{ color: p.color, fontSize: "0.4rem" }}>◆</span>
+                        {proc}
+                      </li>
+                    ))}
+                  </ul>
+                  {p.note && (
+                    <p className="text-xs italic leading-relaxed mt-3 px-3 py-2 rounded-xl"
+                      style={{ color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.06)", border: "1px solid rgba(200,146,58,0.12)" }}>
+                      * {p.note}
+                    </p>
+                  )}
+                </div>
+
+                {/* Prices */}
+                <div className="px-6 pb-6 space-y-2">
+                  {p.prices.map((pr, j) => (
+                    <div key={j} className="flex items-center justify-between">
+                      <span className="text-xs" style={{ color: "rgba(200,180,255,0.4)" }}>{pr.label}</span>
+                      <span className="text-base font-light" style={{ fontFamily: "'Cormorant', serif", color: p.color }}>{pr.value}</span>
+                    </div>
+                  ))}
+                </div>
               </FadeIn>
             ))}
           </div>
