@@ -849,7 +849,7 @@ export default function Index() {
               </p>
             ))}
           </div>
-          <p className="poem-line leading-relaxed text-2xl"
+          <p className="poem-line leading-relaxed text-xl"
             style={{
               fontFamily: "'Cormorant', serif",
               fontSize: "1.1rem",
