@@ -14,6 +14,7 @@ import Regeneration from "./pages/Regeneration";
 import Strategy from "./pages/Strategy";
 import Perspektiva from "./pages/Perspektiva";
 import Banya from "./pages/Banya";
+import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/strategy" element={<Strategy />} />
           <Route path="/perspektiva" element={<Perspektiva />} />
           <Route path="/banya" element={<Banya />} />
+          <Route path="/booking" element={<Booking />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

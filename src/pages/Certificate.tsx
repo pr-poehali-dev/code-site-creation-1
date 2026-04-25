@@ -17,48 +17,70 @@ async function sendToTelegram(data: Record<string, string>) {
 
 const programCerts = [
   {
-    id: "tsaritsa",
-    symbol: "♛",
-    name: "Кабы я была... Царица",
-    tagline: "Роскошный уход от волос до ножек",
-    price: "8 500 ₽",
-    guests: "5–8 гостей",
-    color: "#c8923a",
-    glow: "rgba(200,146,58,0.2)",
-    bg: "linear-gradient(135deg, #211a0e, #1a1410)",
-  },
-  {
-    id: "briz",
-    symbol: "≋",
-    name: "Летний Бриз",
-    tagline: "Лёгкость, обновление, свежесть",
-    price: "6 500 ₽",
-    guests: "5–8 гостей",
+    id: "svezhest",
+    symbol: "🌿",
+    name: "Свежесть полей",
+    tagline: "3 часа · 2 гостя",
+    price: "от 21 000 ₽",
+    guests: "2 гостя",
     color: "#7aab9e",
     glow: "rgba(122,171,158,0.2)",
     bg: "linear-gradient(135deg, #0e1a18, #1a1410)",
   },
   {
-    id: "japan",
-    symbol: "❋",
-    name: "Сладкая Япония",
-    tagline: "Японские ритуалы очищения · 4 часа",
-    price: "7 500 ₽",
-    guests: "5–8 гостей",
-    color: "#b87a6a",
-    glow: "rgba(184,122,106,0.2)",
-    bg: "linear-gradient(135deg, #1c1210, #1a1410)",
+    id: "shepot",
+    symbol: "ᛟ",
+    name: "Шёпот предков",
+    tagline: "3 часа · 4–6 гостей",
+    price: "от 6 500 ₽/гость",
+    guests: "4–6 гостей",
+    color: "#9b7fb5",
+    glow: "rgba(155,127,181,0.2)",
+    bg: "linear-gradient(135deg, #12101e, #1a1410)",
   },
   {
-    id: "sdobnaya",
-    symbol: "✦",
-    name: "Сдобная Баня",
-    tagline: "Авторская программа для двоих · 4 часа",
-    price: "36 000 ₽",
+    id: "les",
+    symbol: "🌲",
+    name: "Вглубь лесных троп",
+    tagline: "4 часа · 2 гостя",
+    price: "от 29 000 ₽",
     guests: "2 гостя",
     color: "#c8923a",
     glow: "rgba(200,146,58,0.2)",
     bg: "linear-gradient(135deg, #1c1608, #1a1410)",
+  },
+  {
+    id: "tuman",
+    symbol: "🌫",
+    name: "Тайны тумана",
+    tagline: "4 часа · 4–6 гостей",
+    price: "от 9 000 ₽/гость",
+    guests: "4–6 гостей",
+    color: "#6aaad0",
+    glow: "rgba(106,170,208,0.2)",
+    bg: "linear-gradient(135deg, #0e1620, #1a1410)",
+  },
+  {
+    id: "moloko",
+    symbol: "🥛",
+    name: "Молочные берега",
+    tagline: "3 часа · 2 гостя",
+    price: "от 12 000 ₽",
+    guests: "2 гостя",
+    color: "#e8d5c0",
+    glow: "rgba(232,213,192,0.2)",
+    bg: "linear-gradient(135deg, #1e1a16, #1a1410)",
+  },
+  {
+    id: "rodnik",
+    symbol: "🍊",
+    name: "Терпкий родник",
+    tagline: "3 часа · 2 гостя",
+    price: "от 8 500 ₽",
+    guests: "2 гостя",
+    color: "#d4622a",
+    glow: "rgba(212,98,42,0.2)",
+    bg: "linear-gradient(135deg, #1e1008, #1a1410)",
   },
 ];
 
@@ -201,11 +223,8 @@ function CertPreview({ certStyle, value, recipientName }: {
       <div className="absolute inset-3 rounded-xl pointer-events-none" style={{ border: `1px solid ${p.accent}20` }} />
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] mb-1" style={{ color: p.accent, opacity: 0.7 }}>
+        <p className="text-xs uppercase tracking-[0.3em] mb-3" style={{ color: p.accent, opacity: 0.7 }}>
           Solutions "Иней и Магма corp"
-        </p>
-        <p className="text-xs uppercase tracking-[0.3em] mb-3" style={{ color: p.accent, opacity: 0.5 }}>
-          & "ВаняБаня"
         </p>
         <p className="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: subColor }}>
           Подарочный сертификат

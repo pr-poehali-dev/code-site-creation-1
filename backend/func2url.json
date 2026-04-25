@@ -1,4 +1,5 @@
 {
+  "booking": "https://functions.poehali.dev/4dd43fc7-c646-4678-982b-a88d1a76f014",
   "upload-audio": "https://functions.poehali.dev/4dfb7fcc-c7cc-4459-ae3a-0e307c2a0fcc",
   "chatgpt-polza-chatgpt": "https://functions.poehali.dev/093394c0-7807-4add-8ac3-ec0daee3deb3",
   "send-telegram": "https://functions.poehali.dev/b19212c6-df7b-49bb-9d3d-e1121d88dacb"

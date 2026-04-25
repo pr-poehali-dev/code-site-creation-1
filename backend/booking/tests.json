@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Booking submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест Гость",
+        "phone": "+7 999 000 00 00",
+        "email": "test@example.com",
+        "program": "Свежесть полей",
+        "date": "2026-05-10",
+        "time": "14:00",
+        "comment": "Тест"
+      },
+      "expectedStatus": 200,
+      "expectedBody": { "success": true },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

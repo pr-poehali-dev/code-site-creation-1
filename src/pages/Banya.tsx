@@ -269,44 +269,6 @@ export default function Banya() {
         </div>
       </section>
 
-      {/* Интерьер */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(200,146,58,0.5)" }}>Атмосфера</p>
-            <h2 className="text-4xl md:text-5xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
-              Уникальный интерьер
-            </h2>
-            <p className="text-lg italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
-              Красота — это часть восстановления
-            </p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { emoji: "✦", title: "Зеркало с неоновой подсветкой", desc: "Арт-объект в раздевалке. Мягкое свечение, уникальный дизайн — идеально для фото и создания атмосферы." },
-              { emoji: "🌿", title: "Живые растения повсюду", desc: "Тропические листья, папоротники, мхи. Живой воздух, живой интерьер — природа заходит внутрь пространства." },
-              { emoji: "🪡", title: "Этнические ковры", desc: "Узоры народных орнаментов, натуральная шерсть, ручная работа. Тепло под ногами — и история в каждом узоре." },
-              { emoji: "🎬", title: "Видео-картины в парной", desc: "На стенах бани — живые видео: как правильно париться, дышать, использовать веник. Красота и польза одновременно." },
-              { emoji: "💡", title: "Умное освещение", desc: "Тёплый янтарь в ванной, холодный лёд в душе, мягкий рассвет в раздевалке. Свет настраивает настроение." },
-              { emoji: "🎵", title: "Пространственный звук", desc: "Колонки встроены в потолок и стены. Терапевтические частоты, живая природа, этнические звуки — выбирайте." },
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.08}
-                className="rounded-2xl p-6"
-                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(200,146,58,0.1)" }}>
-                <span className="block text-4xl mb-3">{item.emoji}</span>
-                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.9)" }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(220,210,255,0.45)" }}>
-                  {item.desc}
-                </p>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Автоматы */}
       <section className="py-20 px-6" style={{ background: "rgba(8,5,18,0.98)" }}>
         <div className="max-w-4xl mx-auto">
@@ -315,8 +277,11 @@ export default function Banya() {
             <h2 className="text-4xl md:text-5xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
               Всё необходимое — по QR-коду
             </h2>
-            <p className="text-base italic" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
+            <p className="text-base italic mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
               Четыре автомата прямо в пространстве бани. Без кассы, без очередей
+            </p>
+            <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: "rgba(220,200,255,0.35)", fontFamily: "'Cormorant', serif", fontSize: "1rem", fontStyle: "italic" }}>
+              Этнические орнаменты предков соседствуют с сенсорными панелями и стильными вендинговыми машинами.
             </p>
           </FadeIn>
           <div className="grid sm:grid-cols-2 gap-5">
@@ -483,13 +448,29 @@ export default function Banya() {
                 </div>
 
                 {/* Prices */}
-                <div className="px-6 pb-6 space-y-2">
+                <div className="px-6 pt-0 pb-4 space-y-2">
                   {p.prices.map((pr, j) => (
                     <div key={j} className="flex items-center justify-between">
                       <span className="text-xs" style={{ color: "rgba(200,180,255,0.4)" }}>{pr.label}</span>
                       <span className="text-base font-light" style={{ fontFamily: "'Cormorant', serif", color: p.color }}>{pr.value}</span>
                     </div>
                   ))}
+                </div>
+
+                {/* Book button */}
+                <div className="px-6 pb-6">
+                  <button
+                    onClick={() => navigate(`/booking?program=${encodeURIComponent(p.title)}`)}
+                    className="w-full py-3 rounded-xl text-xs uppercase tracking-widest transition-all hover:scale-[1.03] hover:opacity-90"
+                    style={{
+                      background: `linear-gradient(135deg, ${p.color}22, ${p.color}12)`,
+                      border: `1px solid ${p.color}40`,
+                      color: p.color,
+                      fontWeight: 600,
+                      letterSpacing: "0.12em",
+                    }}>
+                    Записаться
+                  </button>
                 </div>
               </FadeIn>
             ))}
@@ -517,7 +498,7 @@ export default function Banya() {
           </FadeIn>
           <div className="grid md:grid-cols-4 gap-4">
             {[
-              { n: "01", title: "Запись", desc: "Пишете нам в Telegram или по телефону. Выбираете дату и время." },
+              { n: "01", title: "Запись", desc: "Бронируйте самостоятельно онлайн, выбрав дату и время, или пишите в Max." },
               { n: "02", title: "Оплата", desc: "Подтверждаете бронь. Получаете QR-код и кодовый пароль на дверь." },
               { n: "03", title: "Вход", desc: "Приходите в выбранное время. Набираете код — пространство ваше." },
               { n: "04", title: "Отдых", desc: "До 3–4 часов в полной приватности. Никто не входит без вашего разрешения." },
@@ -549,15 +530,24 @@ export default function Banya() {
               Рябина & Дым Lounge открыта для постоянных гостей центра Иней & Магма corp.<br />
               и новых посетителей. Слоты ограничены — один сеанс, одна компания.
             </p>
-            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу записаться в Рябина & Дым Lounge (баня) в центре Иней и Магма")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
-              style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.45), rgba(180,100,40,0.35))", color: "rgba(240,200,140,0.97)", textDecoration: "none", fontWeight: 700, letterSpacing: "0.12em", border: "1px solid rgba(200,146,58,0.45)", boxShadow: "0 0 50px rgba(200,146,58,0.2)" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
-              </svg>
-              Записаться в Max
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => navigate("/booking")}
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04] hover:shadow-2xl"
+                style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.45), rgba(180,100,40,0.35))", color: "rgba(240,200,140,0.97)", fontWeight: 700, letterSpacing: "0.12em", border: "1px solid rgba(200,146,58,0.45)", boxShadow: "0 0 50px rgba(200,146,58,0.2)" }}>
+                <Icon name="CalendarCheck" size={18} />
+                Записаться онлайн
+              </button>
+              <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу записаться в Рябина & Дым Lounge (баня) в центре Иней и Магма")}`}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.03]"
+                style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,180,120,0.7)", textDecoration: "none", border: "1px solid rgba(200,146,58,0.2)", letterSpacing: "0.1em" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
+                </svg>
+                Написать в Max
+              </a>
+            </div>
             <p className="mt-4 text-xs" style={{ color: "rgba(200,146,58,0.35)" }}>
               Рябина & Дым Lounge · Новаторский формат
             </p>
