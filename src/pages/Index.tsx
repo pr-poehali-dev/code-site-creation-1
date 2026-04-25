@@ -830,37 +830,31 @@ export default function Index() {
       <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, #0f0c08 0%, #100d0a 100%)" }}>
         <div className="max-w-2xl mx-auto text-center">
           <div className="eth-divider mb-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
-          <div className="space-y-3 mb-8">
+          <div className="space-y-3 mb-8 poem-lines">
             {[
               { text: "Огонь печи внемлет древним заклинаниям.", delay: "0s", icon: "🔥" },
               { text: "Пар из дубового веника окутывает тело.", delay: "0.6s", icon: "💨" },
               { text: "Соль земли растворяется на коже.", delay: "1.2s", icon: "✦" },
               { text: "Ароматы трав зовут вспомнить то, что забыто.", delay: "1.8s", icon: "🌿" },
             ].map((line, i) => (
-              <p key={i} className="leading-loose text-xl italic"
+              <p key={i} className="poem-line leading-loose text-xl italic"
                 style={{
                   fontFamily: "'Cormorant', serif",
                   fontSize: "1.2rem",
                   color: "var(--eth-smoke)",
-                  animation: `fadeSlideUp 0.9s ease both`,
                   animationDelay: line.delay,
-                  opacity: 0,
-                  animationFillMode: "forwards",
                 }}>
                 <span style={{ color: "var(--eth-ember)", marginRight: "8px", fontSize: "0.85em" }}>{line.icon}</span>
                 {line.text}
               </p>
             ))}
           </div>
-          <p className="leading-relaxed text-2xl"
+          <p className="poem-line leading-relaxed text-2xl"
             style={{
               fontFamily: "'Cormorant', serif",
               fontSize: "1.1rem",
               color: "var(--eth-gold2)",
-              animation: "fadeSlideUp 0.9s ease both",
               animationDelay: "2.4s",
-              opacity: 0,
-              animationFillMode: "forwards",
             }}>
             Доверьтесь процессу. Ваше тело уже знает путь.
           </p>
@@ -870,6 +864,10 @@ export default function Index() {
           @keyframes fadeSlideUp {
             from { opacity: 0; transform: translateY(18px); }
             to   { opacity: 1; transform: translateY(0); }
+          }
+          .poem-line {
+            opacity: 0;
+            animation: fadeSlideUp 0.9s ease forwards;
           }
         `}</style>
       </section>
@@ -901,13 +899,7 @@ export default function Index() {
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Иней<br />&amp; Магма<br /><em style={{ fontSize: "0.65em", opacity: 0.8 }}></em>
               </h2>
-              <p className="text-base leading-relaxed my-3 text-justify" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Синтез древних традиций и инноваций.
-Мы создаём решения в области регенеративной медицины, опираясь на два столпа:
-Проверенные веками практики оздоровления и восстановления., и Современные «чит‑коды» биохакинга.
-
-Проект в основе которого лежит Алхимия.
-Процесс объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы, их синергия создает Целебный Пар.
-Благодаря которому мы запускаем процесс регенерации:</p>
+              <p className="text-base leading-relaxed my-3 text-justify" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Синтез древних традиций и инноваций. Мы создаём решения в области регенеративной медицины, опираясь на два столпа: проверенные веками практики оздоровления и восстановления, и современные «чит‑коды» биохакинга.</p>
 
               <div className="space-y-5 mt-6">
                 {[
@@ -928,6 +920,8 @@ export default function Index() {
                   </div>
                 ))}
               </div>
+
+              <p className="text-base leading-relaxed mt-6 text-justify" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.0rem", opacity: 0.85 }}>Проект в основе которого лежит Алхимия. Процесс, объединяющий противоположности: обжигающую магму, рвущуюся из глубин земли, и хрустальный иней, сотканный из дыхания зимы — их синергия создаёт Целебный Пар, благодаря которому мы запускаем процесс регенерации.</p>
             </div>
           </div>
 
