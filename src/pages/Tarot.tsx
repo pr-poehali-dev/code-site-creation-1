@@ -586,12 +586,12 @@ export default function Tarot() {
             Парная ведунья,<br />
             трав знахарка, огня хранительница.
           </p>
-          <p className="md:text-xl font-light italic leading-relaxed mb-4 text-3xl"
+          <p className="md:text-xl font-light italic leading-relaxed mb-4 text-2xl"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", opacity: 0.85 }}>
             Веник шепчет, мёд питает, чаша поёт —<br />
             Тело очищается, душа покой обретёт.
           </p>
-          <p className="md:text-lg font-light italic leading-relaxed text-3xl"
+          <p className="md:text-lg font-light italic leading-relaxed text-2xl"
             style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-stone)" }}>
             Каждому — свой путь, каждому — свой пар,<br />
             По обычаю древнему, по сердцу и в дар.
