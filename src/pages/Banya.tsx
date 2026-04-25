@@ -280,7 +280,7 @@ export default function Banya() {
             <p className="text-base italic mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
               Четыре автомата прямо в пространстве бани. Без кассы, без очередей
             </p>
-            <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: "rgba(220,200,255,0.35)", fontFamily: "'Cormorant', serif", fontSize: "1rem", fontStyle: "italic" }}>
+            <p className="leading-relaxed max-w-2xl mx-auto text-base" style={{ color: "rgba(220,200,255,0.35)", fontFamily: "'Cormorant', serif", fontSize: "1rem", fontStyle: "italic" }}>
               Этнические орнаменты предков соседствуют с сенсорными панелями и стильными вендинговыми машинами.
             </p>
           </FadeIn>
