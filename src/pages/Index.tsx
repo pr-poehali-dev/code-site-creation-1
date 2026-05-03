@@ -882,7 +882,7 @@ export default function Index() {
         </div>
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.6em] mb-5" style={{ color: "var(--eth-stone)", opacity: 0.6 }}>Программы центра</p>
+            <p className="text-xs uppercase tracking-[0.6em] mb-5" style={{ color: "var(--eth-stone)", opacity: 0.6 }}>Биохакинг & Longevity</p>
             <h2 className="text-4xl md:text-6xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", letterSpacing: "-0.01em" }}>
               Путь к обновлению<br /><em style={{ color: "var(--eth-gold)", fontSize: "0.75em" }}>на всех уровнях</em>
             </h2>
