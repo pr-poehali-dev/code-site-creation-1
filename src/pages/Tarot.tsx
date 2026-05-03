@@ -412,18 +412,27 @@ function TarotBookingForm({ selectedCard }: { selectedCard: typeof tarotCards[0]
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function Tarot() {
   const navigate = useNavigate();
   const [flipped, setFlipped] = useState<string | null>(null);
   const [selected, setSelected] = useState<typeof tarotCards[0] | null>(null);
   const [showBooking, setShowBooking] = useState(false);
+  const [deck, setDeck] = useState(() => shuffle(tarotCards));
 
   function handleCardClick(card: typeof tarotCards[0]) {
-    if (flipped === card.id) return; // already flipped
+    if (flipped === card.id) return;
     setFlipped(card.id);
     setSelected(null);
     setShowBooking(false);
-    // small delay so flip animation plays before panel appears
     setTimeout(() => setSelected(card), 500);
   }
 
@@ -431,6 +440,7 @@ export default function Tarot() {
     setFlipped(null);
     setSelected(null);
     setShowBooking(false);
+    setDeck(shuffle(tarotCards));
   }
 
   function handleBook() {
@@ -548,7 +558,7 @@ export default function Tarot() {
 
           {/* 6 cards grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-            {tarotCards.map(card => (
+            {deck.map(card => (
               <TarotCard
                 key={card.id}
                 card={card}
