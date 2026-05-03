@@ -873,16 +873,33 @@ export default function Index() {
       </section>
 
       {/* ── Benefits (Путь к обновлению) ─────────────────── */}
-      <section id="programs" className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="eth-divider mb-6"><span>◆</span></div>
-            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Путь к обновлению на всех уровнях
+      <section id="programs" className="py-24 px-6 relative overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 50% 0%, #1a1008 0%, #0f0c08 70%)" }}>
+        {/* Фоновые элементы */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3), transparent)" }} />
+          <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.15), transparent)" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(200,146,58,0.04) 0%, transparent 70%)", filter: "blur(40px)" }} />
+        </div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <p className="text-xs uppercase tracking-[0.6em] mb-5" style={{ color: "var(--eth-stone)", opacity: 0.6 }}>Программы центра</p>
+            <h2 className="text-4xl md:text-6xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", letterSpacing: "-0.01em" }}>
+              Путь к обновлению<br /><em style={{ color: "var(--eth-gold)", fontSize: "0.75em" }}>на всех уровнях</em>
             </h2>
-
-            <blockquote className="eth-quote mx-auto max-w-2xl mb-4 text-xl" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Баня — это храм регенерации, где стихии помогают человеку обрести баланс. Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления. </blockquote>
-            <p className="text-sm leading-relaxed max-w-2xl mx-auto opacity-75" style={{ color: "var(--eth-smoke)" }}></p>
+            {/* Цитата — стильная горизонтальная карточка */}
+            <div className="max-w-3xl mx-auto rounded-2xl relative overflow-hidden"
+              style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.15)" }}>
+              <div className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full" style={{ background: "linear-gradient(to bottom, transparent, rgba(200,146,58,0.5), transparent)" }} />
+              <div className="px-8 py-7">
+                <span className="block text-3xl mb-3 opacity-30" style={{ color: "var(--eth-gold)", fontFamily: "Georgia, serif" }}>"</span>
+                <p className="text-lg md:text-xl leading-relaxed font-light italic"
+                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.15rem", opacity: 0.85 }}>
+                  Баня — это храм регенерации, где стихии помогают человеку обрести баланс. Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления.
+                </p>
+              </div>
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {benefits.map((b, i) => {

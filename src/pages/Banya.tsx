@@ -74,6 +74,35 @@ const zones = [
       "Видимый результат уже после первого курса",
     ],
   },
+  {
+    icon: "🧊",
+    title: "Холодная купель",
+    color: "#4ab8d8",
+    colorDim: "rgba(74,184,216,0.1)",
+    border: "rgba(74,184,216,0.2)",
+    desc: "Ледяное погружение после парной — один из мощнейших инструментов восстановления. Контраст температур запускает выброс эндорфинов, закаляет сосуды и буквально обнуляет усталость. Один заход — и тело как после сна.",
+    features: [
+      "Температура воды 8–12°C",
+      "Максимальный контраст с парной",
+      "Выброс эндорфинов после первого захода",
+      "Закалка сосудов и иммунитета",
+      "Видео-инструкция по правильному погружению",
+    ],
+  },
+  {
+    icon: "🌙",
+    title: "Качели в парной",
+    color: "#b99fd8",
+    colorDim: "rgba(185,159,216,0.1)",
+    border: "rgba(185,159,216,0.2)",
+    desc: "Деревянные качели прямо в пространстве бани — для паузы между заходами. Покачивание снижает уровень кортизола, помогает телу остыть в своём ритме и создаёт ощущение невесомости. Здесь не нужно ничего делать — просто быть.",
+    features: [
+      "Натуральное дерево ручной работы",
+      "Идеально между заходами в парную",
+      "Снижение кортизола и нервного напряжения",
+      "Ощущение невесомости и покоя",
+    ],
+  },
 ];
 
 const automats = [
@@ -259,8 +288,8 @@ export default function Banya() {
         <div className="max-w-5xl mx-auto relative">
           <FadeIn className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(200,146,58,0.5)" }}>Что внутри</p>
-            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
-              Пять зон — одно пространство
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
+              Семь зон — одно пространство
             </h2>
           </FadeIn>
 
@@ -318,9 +347,22 @@ export default function Banya() {
             <p className="text-base italic mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.45)" }}>
               Четыре автомата прямо в пространстве бани. Без кассы, без очередей
             </p>
-            <p className="leading-relaxed max-w-2xl mx-auto text-base" style={{ color: "rgba(220,200,255,0.35)", fontFamily: "'Cormorant', serif", fontSize: "1rem", fontStyle: "italic" }}>
-              Этнические орнаменты предков соседствуют с сенсорными панелями и стильными вендинговыми машинами.
-            </p>
+            {/* Выделенная цитата */}
+            <div className="relative max-w-xl mx-auto mt-4">
+              <div className="absolute left-0 top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, transparent, rgba(200,146,58,0.45), transparent)" }} />
+              <div className="absolute right-0 top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, transparent, rgba(200,146,58,0.45), transparent)" }} />
+              <p className="px-7 py-3 text-center leading-relaxed"
+                style={{
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "1.15rem",
+                  fontStyle: "italic",
+                  color: "rgba(232,184,109,0.72)",
+                  letterSpacing: "0.02em",
+                  textShadow: "0 0 30px rgba(200,146,58,0.15)",
+                }}>
+                Этнические орнаменты предков соседствуют с сенсорными панелями и стильными вендинговыми машинами.
+              </p>
+            </div>
           </FadeIn>
           <div className="grid sm:grid-cols-2 gap-5">
             {automats.map((a, i) => (
@@ -337,6 +379,60 @@ export default function Banya() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Аренда */}
+      <section className="py-16 px-6" style={{ background: "rgba(10,6,20,0.98)" }}>
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <div className="rounded-3xl overflow-hidden relative"
+              style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.08) 0%, rgba(180,100,40,0.04) 100%)", border: "1px solid rgba(200,146,58,0.25)", boxShadow: "0 0 60px rgba(200,146,58,0.06)" }}>
+              {/* Декор — горизонтальная линия сверху */}
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.5), transparent)" }} />
+
+              <div className="px-8 py-10 md:px-12">
+                <div className="flex flex-col md:flex-row md:items-center gap-8">
+                  {/* Левая часть — иконка + заголовок */}
+                  <div className="flex items-start gap-5 flex-1">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: "rgba(200,146,58,0.12)", border: "1px solid rgba(200,146,58,0.25)" }}>
+                      <span className="text-2xl">🔑</span>
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: "rgba(200,146,58,0.5)" }}>Аренда пространства</p>
+                      <h3 className="text-2xl md:text-3xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.97)" }}>
+                        Баня без пармастера
+                      </h3>
+                      <p className="text-base leading-relaxed" style={{ color: "rgba(220,200,255,0.55)", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
+                        Приходите своей компанией и парьтесь в своём ритме — без программы, без расписания. Семь зон полностью в вашем распоряжении.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Правая часть — цена */}
+                  <div className="flex flex-col items-center md:items-end gap-3 flex-shrink-0">
+                    <div className="text-center md:text-right">
+                      <p className="text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.9)" }}>4 500 ₽</p>
+                      <p className="text-sm mt-1" style={{ color: "rgba(220,200,255,0.4)" }}>за час аренды</p>
+                    </div>
+                    <div className="px-5 py-2.5 rounded-xl text-center"
+                      style={{ background: "rgba(200,146,58,0.1)", border: "1px solid rgba(200,146,58,0.2)" }}>
+                      <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,146,58,0.75)" }}>Минимум 3 часа</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Нижняя строка — причина минимума */}
+                <div className="mt-8 pt-6" style={{ borderTop: "1px solid rgba(200,146,58,0.12)" }}>
+                  <p className="text-sm leading-relaxed text-center"
+                    style={{ fontFamily: "'Cormorant', serif", fontSize: "1.05rem", color: "rgba(220,200,180,0.5)", fontStyle: "italic" }}>
+                    Три часа — это не ограничение. Это минимум, который нужен, чтобы успеть насладиться каждой из семи зон, не торопясь и не выбирая между парной, купелью и гидромассажем.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
