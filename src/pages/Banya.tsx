@@ -90,6 +90,42 @@ const services = [
   { icon: "🛁", title: "Отдых без услуг", desc: "Просто ваше пространство. Пришли своей компанией — никто не беспокоит. Музыка, ванна, пар — в вашем ритме." },
 ];
 
+const banyaFaqData = [
+  { q: "Что нужно взять с собой?", a: "Только хорошее настроение и раздельный купальник. Халаты, тапочки, шапки и полотенца предоставляются." },
+  { q: "Соло или группой?", a: "Посещение доступно как соло, так и группой до 4 человек. Пространство полностью ваше — никто не входит без вашего разрешения." },
+  { q: "Что есть в вендинговых автоматах?", a: "Банные запарки, травы, скрабы и косметика, свежие соки, салаты, безглютеновая выпечка, проростки, семечки и лечебные бады, селанк, семакс и другие новинки биохакинга." },
+  { q: "Можно ли взять пармастера?", a: "Да! Пригласите пармастера — и каждый ритуал станет персональным. Бронируйте пармастера при записи или уточните заранее в Max." },
+  { q: "Кому подойдёт?", a: "• Тем, кто чувствует эмоциональное выгорание и усталость\n• Желающим глубокий релакс с осознанным эффектом\n• Практикующим йогу, медитацию или эзотерические техники\n• Ценящим традиции русской бани с современным подходом" },
+  { q: "Как оплатить?", a: "Оплата подтверждается после бронирования. Мы свяжемся с вами для уточнения деталей. Возможна оплата переводом." },
+];
+
+function BanyaFaq() {
+  const [active, setActive] = useState<number | null>(null);
+  return (
+    <div className="space-y-2">
+      {banyaFaqData.map((item, i) => (
+        <div key={i} className="rounded-xl overflow-hidden transition-all duration-200"
+          style={{ background: active === i ? "rgba(200,146,58,0.07)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(200,146,58,0.12)" }}>
+          <button className="w-full text-left px-6 py-4 flex items-center justify-between gap-4"
+            onClick={() => setActive(active === i ? null : i)}>
+            <span className="text-base font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.9)", fontSize: "1.05rem" }}>{item.q}</span>
+            <Icon name={active === i ? "ChevronUp" : "ChevronDown"} size={16} color="rgba(200,146,58,0.5)" />
+          </button>
+          {active === i && (
+            <div className="px-6 pb-5">
+              <div className="text-sm leading-relaxed space-y-1.5" style={{ color: "rgba(220,210,255,0.55)" }}>
+                {item.a.split("\n").map((line, j) => (
+                  <p key={j}>{line}</p>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Banya() {
   const navigate = useNavigate();
   const [activeZone, setActiveZone] = useState(0);
@@ -476,14 +512,6 @@ export default function Banya() {
             ))}
           </div>
 
-          <FadeIn className="mt-10 text-center">
-            <a href={`https://max.ru/+79186860650?text=${encodeURIComponent("Здравствуйте! Хочу узнать подробнее о банных программах в Рябина & Дым Lounge")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.04]"
-              style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.3), rgba(180,100,40,0.2))", color: "rgba(240,200,140,0.95)", textDecoration: "none", border: "1px solid rgba(200,146,58,0.35)", fontWeight: 600 }}>
-              Узнать про программы
-            </a>
-          </FadeIn>
         </div>
       </section>
 
@@ -514,6 +542,19 @@ export default function Banya() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 px-6" style={{ background: "rgba(14,8,22,0.99)" }}>
+        <div className="max-w-3xl mx-auto">
+          <FadeIn className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "rgba(200,146,58,0.5)" }}>Вопросы</p>
+            <h2 className="text-4xl md:text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)" }}>
+              Часто спрашивают
+            </h2>
+          </FadeIn>
+          <BanyaFaq />
         </div>
       </section>
 

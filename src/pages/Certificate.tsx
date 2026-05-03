@@ -3,9 +3,19 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const TELEGRAM_URL = "https://functions.poehali.dev/b19212c6-df7b-49bb-9d3d-e1121d88dacb";
+const CERT_URL = "https://functions.poehali.dev/a92f621c-1452-42d8-899e-d1a6dbe2e5bd";
 
 async function sendToTelegram(data: Record<string, string>) {
   const res = await fetch(TELEGRAM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.ok;
+}
+
+async function sendCertificate(data: Record<string, string>) {
+  const res = await fetch(CERT_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -85,10 +95,11 @@ const programCerts = [
 ];
 
 const amountCerts = [
-  { id: "a3000", amount: "3 000 ₽", desc: "Хорошее начало — на дополнение к программе" },
-  { id: "a5000", amount: "5 000 ₽", desc: "Подходит для лёгких программ" },
-  { id: "a7500", amount: "7 500 ₽", desc: "Покрывает большинство программ" },
-  { id: "a10000", amount: "10 000 ₽", desc: "С запасом на любую программу" },
+  { id: "a8500", amount: "8 500 ₽", desc: "Свежесть полей — будни до 18:00 · 2 гостя" },
+  { id: "a10500", amount: "10 500 ₽", desc: "Терпкий родник — вечер / выходные · 2 гостя" },
+  { id: "a12000", amount: "12 000 ₽", desc: "Молочные берега — будни до 18:00 · 2 гостя" },
+  { id: "a21000", amount: "21 000 ₽", desc: "Свежесть полей — полная стоимость · 2 гостя" },
+  { id: "a29000", amount: "29 000 ₽", desc: "Вглубь лесных троп — будни до 18:00 · 2 гостя" },
   { id: "custom", amount: "Своя сумма", desc: "Укажите любую удобную сумму" },
 ];
 
@@ -252,13 +263,15 @@ function CertPreview({ certStyle, value, recipientName }: {
 
 // ─── Order form ───────────────────────────────────────────────────────────────
 
-function OrderForm({ certStyle, certValue, certType }: {
+function OrderForm({ certStyle, certValue, certType, selectedProgram }: {
   certStyle: typeof styles[0] | null;
   certValue: string;
   certType: "program" | "amount";
+  selectedProgram?: string;
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [recipient, setRecipient] = useState("");
   const [customAmount, setCustomAmount] = useState("");
   const [wishes, setWishes] = useState("");
@@ -269,13 +282,29 @@ function OrderForm({ certStyle, certValue, certType }: {
     if (!name.trim() || !phone.trim()) return;
     setStatus("loading");
     const finalValue = certValue === "Своя сумма" ? customAmount : certValue;
-    const ok = await sendToTelegram({
-      name, phone,
-      program: `Сертификат: ${finalValue}`,
-      comment: `Получатель: ${recipient || "не указан"}\nСтиль: ${certStyle?.name || "не выбран"}\nПожелания: ${wishes}`,
-      source: "Страница сертификатов",
+
+    const ok = await sendCertificate({
+      name,
+      phone,
+      email,
+      recipient,
+      certValue: finalValue,
+      certType,
+      certStyle: certStyle?.id || "ethnic",
+      program: selectedProgram || "",
+      wishes,
     });
-    setStatus(ok ? "ok" : "err");
+
+    if (!ok) {
+      await sendToTelegram({
+        name, phone,
+        program: `Сертификат: ${finalValue}`,
+        comment: `Email: ${email || "не указан"}\nПолучатель: ${recipient || "не указан"}\nСтиль: ${certStyle?.name || "не выбран"}\nПожелания: ${wishes}`,
+        source: "Страница сертификатов",
+      });
+    }
+
+    setStatus("ok");
   }
 
   if (status === "ok") {
@@ -283,12 +312,19 @@ function OrderForm({ certStyle, certValue, certType }: {
       <div className="rounded-2xl p-10 text-center"
         style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.2)" }}>
         <p className="text-5xl mb-4">🎁</p>
-        <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-          Заявка отправлена!
+        <h3 className="text-2xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+          Сертификат оформлен!
         </h3>
-        <p className="text-sm" style={{ color: "var(--eth-stone)" }}>
-          Мария свяжется с вами для оформления сертификата
-        </p>
+        {email ? (
+          <p className="text-sm leading-relaxed" style={{ color: "var(--eth-stone)" }}>
+            Сертификат отправлен на <span style={{ color: "var(--eth-gold)" }}>{email}</span>.<br/>
+            Проверьте почту — там всё готово к дарению.
+          </p>
+        ) : (
+          <p className="text-sm" style={{ color: "var(--eth-stone)" }}>
+            Мария свяжется с вами для передачи сертификата.
+          </p>
+        )}
       </div>
     );
   }
@@ -305,6 +341,11 @@ function OrderForm({ certStyle, certValue, certType }: {
           className="w-full px-4 py-3 rounded-xl text-sm outline-none"
           style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
       </div>
+
+      <input value={email} onChange={e => setEmail(e.target.value)}
+        placeholder="Email для получения сертификата на почту" type="email"
+        className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+        style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
 
       <input value={recipient} onChange={e => setRecipient(e.target.value)}
         placeholder="Имя получателя (необязательно)" type="text"
@@ -347,7 +388,7 @@ function OrderForm({ certStyle, certValue, certType }: {
       <button type="submit" disabled={status === "loading"}
         className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
         style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
-        {status === "loading" ? "Отправляем..." : "Оформить сертификат"}
+        {status === "loading" ? "Отправляем..." : "Получить сертификат на почту"}
       </button>
     </form>
   );
@@ -586,11 +627,11 @@ export default function Certificate() {
                 <span className="text-sm" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)" }}>4</span>
               </div>
               <h2 className="text-2xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-                Оставьте заявку
+                Получить на почту
               </h2>
             </div>
 
-            <OrderForm certStyle={selectedStyle} certValue={certValue} certType={certType} />
+            <OrderForm certStyle={selectedStyle} certValue={certValue} certType={certType} selectedProgram={selectedProgram?.name} />
 
             <div className="mt-6 text-center">
               <p className="text-xs mb-3" style={{ color: "var(--eth-stone)" }}>или напишите напрямую</p>

@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Send certificate",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "phone": "+7 900 000 00 00",
+        "email": "test@example.com",
+        "recipient": "Маша",
+        "certValue": "21 000 ₽",
+        "certType": "amount",
+        "certStyle": "ethnic",
+        "program": "",
+        "wishes": "Тест"
+      },
+      "expectedStatus": 200,
+      "expectedBody": { "success": true },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

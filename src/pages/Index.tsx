@@ -827,47 +827,84 @@ export default function Index() {
       </section>
 
       {/* ── Poetic Interlude — с анимацией ───────────────── */}
-      <section className="py-20 px-6" style={{ background: "linear-gradient(180deg, #0f0c08 0%, #100d0a 100%)" }}>
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="eth-divider mb-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
-          <div className="space-y-3 mb-8 poem-lines">
+      <section className="py-28 px-6 relative overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, #1c1008 0%, #0f0c08 80%)" }}>
+
+        {/* Фоновые частицы */}
+        <div className="absolute inset-0 pointer-events-none">
+          {["top-8 left-[15%]","top-16 right-[12%]","bottom-12 left-[20%]","bottom-8 right-[18%]","top-1/2 left-[8%]","top-1/3 right-[6%]","bottom-1/3 left-[5%]"].map((pos, i) => (
+            <span key={i} className={`absolute ${pos}`}
+              style={{ color: "rgba(200,146,58,0.12)", fontSize: i % 3 === 0 ? "8px" : "5px", animation: `pulseGold ${3+i*0.6}s ease-in-out ${i*0.4}s infinite` }}>✦</span>
+          ))}
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(200,100,30,0.04) 0%, transparent 60%)" }} />
+        </div>
+
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+          {/* Декоративная линия сверху */}
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3))" }} />
+            <span className="text-2xl" style={{ color: "rgba(200,146,58,0.4)", animation: "pulseGold 3s ease-in-out infinite" }}>❧</span>
+            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.3), transparent)" }} />
+          </div>
+
+          <div className="space-y-6 mb-10">
             {[
-              { text: "Огонь печи внемлет древним заклинаниям.", delay: "0s", icon: "🔥" },
-              { text: "Пар из дубового веника окутывает тело.", delay: "0.6s", icon: "💨" },
-              { text: "Соль земли растворяется на коже.", delay: "1.2s", icon: "✦" },
-              { text: "Ароматы трав зовут вспомнить то, что забыто.", delay: "1.8s", icon: "🌿" },
+              { text: "Огонь печи внемлет древним заклинаниям.", delay: "0s", icon: "🔥", glow: "rgba(212,98,42,0.5)" },
+              { text: "Пар из дубового веника окутывает тело.", delay: "0.7s", icon: "💨", glow: "rgba(138,200,184,0.4)" },
+              { text: "Соль земли растворяется на коже.", delay: "1.4s", icon: "✦", glow: "rgba(200,146,58,0.5)" },
+              { text: "Ароматы трав зовут вспомнить то, что забыто.", delay: "2.1s", icon: "🌿", glow: "rgba(122,170,80,0.5)" },
             ].map((line, i) => (
-              <p key={i} className="poem-line leading-loose text-xl italic"
-                style={{
-                  fontFamily: "'Cormorant', serif",
-                  fontSize: "1.2rem",
-                  color: "var(--eth-smoke)",
-                  animationDelay: line.delay,
-                }}>
-                <span style={{ color: "var(--eth-ember)", marginRight: "8px", fontSize: "0.85em" }}>{line.icon}</span>
-                {line.text}
-              </p>
+              <div key={i} className="poem-line flex items-center justify-center gap-4 group"
+                style={{ animationDelay: line.delay }}>
+                <span className="text-2xl flex-shrink-0 transition-transform duration-500 group-hover:scale-125"
+                  style={{ filter: `drop-shadow(0 0 10px ${line.glow})` }}>
+                  {line.icon}
+                </span>
+                <p className="leading-relaxed text-xl italic text-left"
+                  style={{
+                    fontFamily: "'Cormorant', serif",
+                    fontSize: "1.3rem",
+                    color: "rgba(240,225,200,0.82)",
+                    textShadow: `0 0 30px ${line.glow}`,
+                  }}>
+                  {line.text}
+                </p>
+              </div>
             ))}
           </div>
-          <p className="poem-line leading-relaxed text-xl"
-            style={{
-              fontFamily: "'Cormorant', serif",
-              fontSize: "1.1rem",
-              color: "var(--eth-gold2)",
-              animationDelay: "2.4s",
-            }}>
-            Доверьтесь процессу. Ваше тело уже знает путь.
-          </p>
-          <div className="eth-divider mt-10"><span style={{ color: "var(--eth-ember)" }}>❧</span></div>
+
+          {/* Финальная фраза */}
+          <div className="poem-line" style={{ animationDelay: "2.9s" }}>
+            <div className="h-px max-w-xs mx-auto mb-7" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.25), transparent)" }} />
+            <p className="leading-relaxed"
+              style={{
+                fontFamily: "'Cormorant', serif",
+                fontSize: "1.35rem",
+                color: "rgba(200,146,58,0.9)",
+                fontStyle: "italic",
+                letterSpacing: "0.03em",
+                textShadow: "0 0 40px rgba(200,146,58,0.3)",
+              }}>
+              Доверьтесь процессу. Ваше тело уже знает путь.
+            </p>
+          </div>
+
+          {/* Декоративная линия снизу */}
+          <div className="flex items-center justify-center gap-4 mt-12">
+            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3))" }} />
+            <span className="text-2xl" style={{ color: "rgba(200,146,58,0.4)", animation: "pulseGold 3s ease-in-out 1.5s infinite" }}>❧</span>
+            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.3), transparent)" }} />
+          </div>
         </div>
+
         <style>{`
           @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(24px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
           }
           .poem-line {
             opacity: 0;
-            animation: fadeSlideUp 0.9s ease forwards;
+            animation: fadeSlideUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
         `}</style>
       </section>
@@ -1053,6 +1090,23 @@ export default function Index() {
                     <p className="text-sm" style={{ color: "var(--eth-smoke)" }}>{text}</p>
                   </div>
                 ))}
+              </div>
+
+              <div className="flex gap-3 mb-5">
+                <button
+                  onClick={() => navigate("/certificate")}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.25), rgba(180,100,40,0.18))", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.35)", fontWeight: 600, letterSpacing: "0.1em" }}>
+                  <Icon name="Gift" size={16} />
+                  Сертификат
+                </button>
+                <button
+                  onClick={() => navigate("/tradition")}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  style={{ background: "linear-gradient(135deg, rgba(155,127,181,0.2), rgba(100,80,140,0.15))", color: "#b99fd8", border: "1px solid rgba(155,127,181,0.3)", fontWeight: 600, letterSpacing: "0.1em" }}>
+                  <Icon name="Sparkles" size={16} />
+                  Традиция
+                </button>
               </div>
 
               <a
