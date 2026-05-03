@@ -235,7 +235,7 @@ function CertPreview({ certStyle, value, recipientName }: {
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
         <p className="text-xs uppercase tracking-[0.3em] mb-3" style={{ color: p.accent, opacity: 0.7 }}>
-          Solutions "Иней и Магма corp"
+          Иней &amp; Магма corp
         </p>
         <p className="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: subColor }}>
           Подарочный сертификат

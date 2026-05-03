@@ -1246,25 +1246,71 @@ export default function Regeneration() {
         </div>
       </section>
 
-      {/* ── Value prop ── */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs uppercase tracking-[0.5em] mb-6" style={{ color: "#8a7a65" }}>Почему это работает</p>
-          <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
-            Не просто процедуры.<br /><em style={{ color: "#c8923a" }}>Система обновления.</em>
-          </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-12"
-            style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.15rem" }}>Иней и Магма corp: Холистический центр интегративного здоровья. Собираем для вас персональный маршрут — где каждая процедура усиливает следующую. синтез передовых технологий и традиционных практик для целостного оздоровления.</p>
-          <div className="grid sm:grid-cols-3 gap-6">
+      {/* ── Четыре шага к себе настоящему ── */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Путь трансформации</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
+              Четыре шага к себе настоящему
+            </h2>
+            <p className="text-lg italic max-w-2xl mx-auto" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
+              Каждый этап — не процедура. Это состояние, которое остаётся с вами навсегда.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: "✦", title: "Диагностика", text: "Изучаем ваше состояние и формируем персональный план" },
-              { icon: "◈", title: "Курс процедур", text: "Каждая процедура подобрана так, чтобы усилить эффект предыдущей" },
-              { icon: "◇", title: "Результат", text: "Видимые изменения уже через 2–3 сеанса, долгосрочный эффект" },
+              {
+                num: "I",
+                icon: "🌊",
+                title: "Очищение",
+                color: "#6aaad0",
+                border: "rgba(106,170,208,0.25)",
+                desc: "Тело отпускает всё накопленное — шлаки, напряжение, усталость. Жар открывает, вода смывает, соль выводит. Вы становитесь легче — буквально и внутренне.",
+                result: "Итог: тело без груза, кожа — как новая, дыхание — глубже"
+              },
+              {
+                num: "II",
+                icon: "🌿",
+                title: "Исцеление",
+                color: "#7aaa50",
+                border: "rgba(122,170,80,0.25)",
+                desc: "Клетки получают то, чего им давно не хватало. Травы, микроэлементы, профессиональные процедуры запускают регенерацию — там, где она нужна.",
+                result: "Итог: воспаление уходит, боли стихают, тело начинает восстанавливаться изнутри"
+              },
+              {
+                num: "III",
+                icon: "✨",
+                title: "Обновление",
+                color: "#c8923a",
+                border: "rgba(200,146,58,0.25)",
+                desc: "Новые клетки, новый облик, новое ощущение себя. Технологии и ритуалы работают как единая система — видимый результат с первого дня.",
+                result: "Итог: сияние кожи, лёгкость в теле, ощущение, что вам на 10 лет меньше"
+              },
+              {
+                num: "IV",
+                icon: "🔥",
+                title: "Наполнение",
+                color: "#e8b86d",
+                border: "rgba(232,184,109,0.25)",
+                desc: "Пространство после трансформации наполняется смыслами. Энергия возвращается, ясность — тоже. Вы выходите отдохнувшим, заряженным и готовым жить по-новому.",
+                result: "Итог: ресурс восстановлен, жизненная сила — на пике, вы знаете, зачем вернётесь"
+              },
             ].map((step, i) => (
-              <div key={i} className="rounded-2xl p-6 text-center" style={{ background: "#16120e", border: "1px solid rgba(200,146,58,0.1)" }}>
-                <span className="block text-4xl mb-3" style={{ color: "#c8923a" }}>{step.icon}</span>
-                <h3 className="text-lg font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>{step.title}</h3>
-                <p className="text-sm" style={{ color: "#8a7a65" }}>{step.text}</p>
+              <div key={i} className="rounded-2xl p-6 flex flex-col"
+                style={{ background: "#16120e", border: `1px solid ${step.border}`, boxShadow: `0 0 30px ${step.border.replace("0.25", "0.06")}` }}>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl" style={{ filter: `drop-shadow(0 0 10px ${step.color}60)` }}>{step.icon}</span>
+                  <span className="text-xs font-light px-2.5 py-1 rounded-full"
+                    style={{ background: `${step.color}15`, color: step.color, border: `1px solid ${step.color}30`, fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>
+                    {step.num}
+                  </span>
+                </div>
+                <h3 className="text-xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: step.color, fontSize: "1.4rem" }}>{step.title}</h3>
+                <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: "#c8bca8", opacity: 0.8 }}>{step.desc}</p>
+                <div className="pt-3 mt-auto" style={{ borderTop: `1px solid ${step.border}` }}>
+                  <p className="text-xs leading-relaxed italic" style={{ color: step.color, opacity: 0.75 }}>{step.result}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -1314,6 +1360,21 @@ export default function Regeneration() {
 
       {/* ── Biohacking Stages ── */}
       <BiohackingStages />
+
+      {/* ── Традиция кнопка ── */}
+      <section className="py-12 px-6 text-center" style={{ background: "#0f0c08" }}>
+        <div className="max-w-xl mx-auto">
+          <p className="text-sm mb-5 italic" style={{ color: "#8a7a65", fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>
+            Хотите познакомиться с нашими традиционными банными программами?
+          </p>
+          <button onClick={() => navigate("/tradition")}
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.03]"
+            style={{ background: "linear-gradient(135deg, rgba(155,127,181,0.25), rgba(100,80,140,0.18))", color: "#b99fd8", border: "1px solid rgba(155,127,181,0.35)", fontWeight: 600, letterSpacing: "0.1em" }}>
+            <Icon name="Sparkles" size={18} />
+            Традиционные программы
+          </button>
+        </div>
+      </section>
 
       {/* ── Privacy block ── */}
       <section className="py-20 px-6" style={{ background: "#13100c" }}>
@@ -1365,7 +1426,7 @@ export default function Regeneration() {
             <a href="https://max.ru/+79186860650" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.03]"
               style={{ background: "linear-gradient(135deg, #5b3bb5, #3d2490)", color: "white", textDecoration: "none", fontWeight: 600 }}>
-              <MaxIcon /> Написать Марии
+              <MaxIcon /> Написать Иней &amp; Магма corp.
             </a>
           </div>
           <p className="mt-4 text-xs" style={{ color: "#8a7a65" }}>Магма встречает иней · Ваш ритуал начинается</p>

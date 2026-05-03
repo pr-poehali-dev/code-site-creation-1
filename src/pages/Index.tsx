@@ -414,6 +414,102 @@ async function sendToTelegram(data: Record<string, string>) {
   return res.ok;
 }
 
+// ─── Poetic Section ───────────────────────────────────────────────────────────
+
+const POEM_LINES = [
+  { text: "Огонь печи внемлет древним заклинаниям.", icon: "🔥", glow: "rgba(212,98,42,0.6)" },
+  { text: "Пар из дубового веника окутывает тело.", icon: "💨", glow: "rgba(138,200,184,0.5)" },
+  { text: "Соль земли растворяется на коже.", icon: "✦", glow: "rgba(200,146,58,0.6)" },
+  { text: "Ароматы трав зовут вспомнить то, что забыто.", icon: "🌿", glow: "rgba(122,170,80,0.6)" },
+];
+
+function PoeticSection() {
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-28 px-6 relative overflow-hidden"
+      style={{ background: "radial-gradient(ellipse at 50% 50%, #1c1008 0%, #0f0c08 80%)" }}>
+
+      <div className="absolute inset-0 pointer-events-none">
+        {["top-8 left-[15%]","top-16 right-[12%]","bottom-12 left-[20%]","bottom-8 right-[18%]","top-1/2 left-[8%]","top-1/3 right-[6%]","bottom-1/3 left-[5%]"].map((pos, i) => (
+          <span key={i} className={`absolute ${pos}`}
+            style={{ color: "rgba(200,146,58,0.12)", fontSize: i % 3 === 0 ? "8px" : "5px", animation: `pulseGold ${3+i*0.6}s ease-in-out ${i*0.4}s infinite` }}>✦</span>
+        ))}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(200,100,30,0.05) 0%, transparent 65%)" }} />
+      </div>
+
+      <div className="max-w-2xl mx-auto text-center relative z-10">
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.35))" }} />
+          <span style={{ color: "rgba(200,146,58,0.5)", fontSize: "1.5rem", animation: "pulseGold 3s ease-in-out infinite" }}>❧</span>
+          <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.35), transparent)" }} />
+        </div>
+
+        <div className="space-y-7 mb-12">
+          {POEM_LINES.map((line, i) => (
+            <div key={i} className="flex items-center justify-center gap-4 group"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.96)",
+                transition: `opacity 1s cubic-bezier(0.16,1,0.3,1) ${0.2 + i * 0.35}s, transform 1s cubic-bezier(0.16,1,0.3,1) ${0.2 + i * 0.35}s`,
+              }}>
+              <span className="text-3xl flex-shrink-0 transition-transform duration-500 group-hover:scale-125"
+                style={{ filter: `drop-shadow(0 0 14px ${line.glow})` }}>
+                {line.icon}
+              </span>
+              <p className="leading-relaxed italic text-left"
+                style={{
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "1.35rem",
+                  color: "rgba(240,225,200,0.88)",
+                  textShadow: `0 0 40px ${line.glow}`,
+                }}>
+                {line.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transition: `opacity 1.1s ease ${0.2 + POEM_LINES.length * 0.35 + 0.2}s, transform 1.1s ease ${0.2 + POEM_LINES.length * 0.35 + 0.2}s`,
+        }}>
+          <div className="h-px max-w-xs mx-auto mb-7" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3), transparent)" }} />
+          <p style={{
+            fontFamily: "'Cormorant', serif",
+            fontSize: "1.4rem",
+            color: "rgba(200,146,58,0.92)",
+            fontStyle: "italic",
+            letterSpacing: "0.03em",
+            textShadow: "0 0 50px rgba(200,146,58,0.35)",
+          }}>
+            Доверьтесь процессу. Ваше тело уже знает путь.
+          </p>
+        </div>
+
+        <div className="flex items-center justify-center gap-4 mt-12">
+          <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.35))" }} />
+          <span style={{ color: "rgba(200,146,58,0.5)", fontSize: "1.5rem", animation: "pulseGold 3s ease-in-out 1.5s infinite" }}>❧</span>
+          <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.35), transparent)" }} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Booking Form ─────────────────────────────────────────────────────────────
 
 function BookingForm({ tarotCard }: { tarotCard?: string }) {
@@ -455,9 +551,10 @@ function BookingForm({ tarotCard }: { tarotCard?: string }) {
   return (
     <form onSubmit={submit} className="rounded-2xl p-8"
       style={{ background: "rgba(200,146,58,0.05)", border: "1px solid rgba(200,146,58,0.15)" }}>
-      <h3 className="text-2xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-        Оставьте заявку
+      <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+        Записаться на сеанс
       </h3>
+      <p className="text-sm mb-6" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>Мы свяжемся с вами для подбора удобного времени</p>
       <div className="space-y-4">
         <input required value={name} onChange={e => setName(e.target.value)}
           placeholder="Ваше имя" type="text"
@@ -705,11 +802,9 @@ export default function Index() {
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
                 Здесь нет<br />чужих рецептов.<br /><em>Только ваш путь. Ваш Ритм. </em><br /><span style={{ fontSize: "0.55em", opacity: 0.7, fontStyle: "normal", letterSpacing: "0.05em" }}>Каждая программа выстраивается под вас.</span>
               </h2>
-              <p className="leading-relaxed mb-4 text-xl" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic" }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу. </p>
-              <p className="leading-relaxed mb-4 text-sm" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
-              <p className="leading-relaxed mb-6 text-sm" style={{ color: "var(--eth-smoke)", opacity: 0.85 }}>Мёд — тёплый, обволакивающий, или с ледяными припарками, дарующими свежесть. 
-
-Каждый момент — ваш, каждый жест — в лад с вашим ритмом.</p>
+              <p className="leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic", opacity: 0.9 }}>Касания веником — едва уловимые, убаюкивающие или глубокие, с пробивками, пробуждающими силу.</p>
+              <p className="leading-relaxed mb-4" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic", opacity: 0.9 }}>Нанесение соли — нежное, словно шёпот волн, или скрабирующее, очищающее тело и дух.</p>
+              <p className="leading-relaxed mb-6" style={{ color: "var(--eth-smoke)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem", fontStyle: "italic", opacity: 0.9 }}>Мёд — тёплый, обволакивающий, или с ледяными припарками, дарующими свежесть. Каждый момент — ваш, каждый жест — в лад с вашим ритмом.</p>
               <p className="text-sm leading-relaxed font-medium pt-5" style={{ color: "var(--eth-gold)", borderTop: "1px solid rgba(200,146,58,0.2)" }}>
                 Только натуральные ингредиенты · Только живые ароматы · Только настоящий банный опыт
               </p>
@@ -778,7 +873,7 @@ export default function Index() {
       </section>
 
       {/* ── Benefits (Путь к обновлению) ─────────────────── */}
-      <section className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
+      <section id="programs" className="py-20 px-6" style={{ background: "var(--eth-bg2)" }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <div className="eth-divider mb-6"><span>◆</span></div>
@@ -827,87 +922,7 @@ export default function Index() {
       </section>
 
       {/* ── Poetic Interlude — с анимацией ───────────────── */}
-      <section className="py-28 px-6 relative overflow-hidden"
-        style={{ background: "radial-gradient(ellipse at 50% 50%, #1c1008 0%, #0f0c08 80%)" }}>
-
-        {/* Фоновые частицы */}
-        <div className="absolute inset-0 pointer-events-none">
-          {["top-8 left-[15%]","top-16 right-[12%]","bottom-12 left-[20%]","bottom-8 right-[18%]","top-1/2 left-[8%]","top-1/3 right-[6%]","bottom-1/3 left-[5%]"].map((pos, i) => (
-            <span key={i} className={`absolute ${pos}`}
-              style={{ color: "rgba(200,146,58,0.12)", fontSize: i % 3 === 0 ? "8px" : "5px", animation: `pulseGold ${3+i*0.6}s ease-in-out ${i*0.4}s infinite` }}>✦</span>
-          ))}
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(200,100,30,0.04) 0%, transparent 60%)" }} />
-        </div>
-
-        <div className="max-w-2xl mx-auto text-center relative z-10">
-          {/* Декоративная линия сверху */}
-          <div className="flex items-center justify-center gap-4 mb-12">
-            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3))" }} />
-            <span className="text-2xl" style={{ color: "rgba(200,146,58,0.4)", animation: "pulseGold 3s ease-in-out infinite" }}>❧</span>
-            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.3), transparent)" }} />
-          </div>
-
-          <div className="space-y-6 mb-10">
-            {[
-              { text: "Огонь печи внемлет древним заклинаниям.", delay: "0s", icon: "🔥", glow: "rgba(212,98,42,0.5)" },
-              { text: "Пар из дубового веника окутывает тело.", delay: "0.7s", icon: "💨", glow: "rgba(138,200,184,0.4)" },
-              { text: "Соль земли растворяется на коже.", delay: "1.4s", icon: "✦", glow: "rgba(200,146,58,0.5)" },
-              { text: "Ароматы трав зовут вспомнить то, что забыто.", delay: "2.1s", icon: "🌿", glow: "rgba(122,170,80,0.5)" },
-            ].map((line, i) => (
-              <div key={i} className="poem-line flex items-center justify-center gap-4 group"
-                style={{ animationDelay: line.delay }}>
-                <span className="text-2xl flex-shrink-0 transition-transform duration-500 group-hover:scale-125"
-                  style={{ filter: `drop-shadow(0 0 10px ${line.glow})` }}>
-                  {line.icon}
-                </span>
-                <p className="leading-relaxed text-xl italic text-left"
-                  style={{
-                    fontFamily: "'Cormorant', serif",
-                    fontSize: "1.3rem",
-                    color: "rgba(240,225,200,0.82)",
-                    textShadow: `0 0 30px ${line.glow}`,
-                  }}>
-                  {line.text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Финальная фраза */}
-          <div className="poem-line" style={{ animationDelay: "2.9s" }}>
-            <div className="h-px max-w-xs mx-auto mb-7" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.25), transparent)" }} />
-            <p className="leading-relaxed"
-              style={{
-                fontFamily: "'Cormorant', serif",
-                fontSize: "1.35rem",
-                color: "rgba(200,146,58,0.9)",
-                fontStyle: "italic",
-                letterSpacing: "0.03em",
-                textShadow: "0 0 40px rgba(200,146,58,0.3)",
-              }}>
-              Доверьтесь процессу. Ваше тело уже знает путь.
-            </p>
-          </div>
-
-          {/* Декоративная линия снизу */}
-          <div className="flex items-center justify-center gap-4 mt-12">
-            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.3))" }} />
-            <span className="text-2xl" style={{ color: "rgba(200,146,58,0.4)", animation: "pulseGold 3s ease-in-out 1.5s infinite" }}>❧</span>
-            <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.3), transparent)" }} />
-          </div>
-        </div>
-
-        <style>{`
-          @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(24px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-          }
-          .poem-line {
-            opacity: 0;
-            animation: fadeSlideUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          }
-        `}</style>
-      </section>
+      <PoeticSection />
 
       {/* ── О проекте (перед FAQ) ───────────────────────── */}
       <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden"
@@ -1067,8 +1082,7 @@ export default function Index() {
           <div className="text-center mb-16">
             <div className="eth-divider mb-6 max-w-sm mx-auto"><span>◆ ◇ ◆</span></div>
             <h2 className="text-5xl md:text-6xl font-light leading-tight"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Ждём Вас 
-у огня</h2>
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Ждём Вас у Огня</h2>
             <p className="mt-4 text-sm italic" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Секретные чит-коды и древние ритуалы в балансе 
 для вашего
 Глубокого Обновления</p>
@@ -1150,11 +1164,10 @@ export default function Index() {
       <footer className="py-10 px-6 text-center" style={{ background: "#0f0c08", borderTop: "1px solid rgba(200,146,58,0.1)" }}>
         <div className="eth-divider max-w-xs mx-auto mb-5"><span>◆</span></div>
         <p className="text-xl mb-1" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.8 }}>Мария · Пармастер</p>
-        <p className="text-xs tracking-widest" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>© 2024 · Краснодар · Авторские банные программы</p>
+        <p className="text-xs tracking-widest" style={{ color: "var(--eth-stone)", opacity: 0.5 }}>Longevity. Регенеративная банная практика.</p>
       </footer>
 
       {activeProgram && <ProgramModal program={activeProgram} onClose={() => setActiveProgram(null)} />}
-      <AboutAudio />
       <Chatbot />
     </div>
   );

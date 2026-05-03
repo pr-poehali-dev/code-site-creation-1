@@ -344,7 +344,7 @@ export default function Strategy() {
                 Куда отправить стратегию?
               </h1>
               <p className="text-base" style={{ color: "#8a7a65", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
-                Мария лично свяжется и составит программу
+                Омоложение · Оздоровление · Долголетие и Relax
               </p>
             </div>
 
