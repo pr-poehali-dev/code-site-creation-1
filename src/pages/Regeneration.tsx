@@ -1370,12 +1370,8 @@ export default function Regeneration() {
             <p className="text-xs uppercase tracking-[0.5em] mb-4" style={{ color: "#8a7a65" }}>Конфиденциальность</p>
             <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Полная приватность</h2>
             <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-8 italic"
-              style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Ваш протокол — только ваш. Мы держим его в тайне так же свято, как лес хранит то, что происходит между деревьями.
-            </p>
-            <p className="text-base" style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", fontStyle: "italic" }}>
-              Лес не говорит. Мы тоже.
-            </p>
+              style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Пройденный курс процедур уникален и подобран персонально под каждого гостя. Мы знаем о ваших результатах — как знаете и вы. Остальное сохраним в секрете.</p>
+            <p className="text-base" style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", fontStyle: "italic" }}>Лес хранит тайны</p>
           </div>
           <div className="grid sm:grid-cols-3 gap-5">
             {[
