@@ -458,6 +458,76 @@ function ProgramModal({ program, onClose }: { program: typeof programs[0]; onClo
   );
 }
 
+// ─── Discount Modal ──────────────────────────────────────────────────────────
+
+function DiscountModal({ onClose }: { onClose: () => void }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok">("idle");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setStatus("loading");
+    await sendToTelegram({ name, phone, program: "Скидка 15% (ковш)", source: "Главная — ковш" });
+    setStatus("ok");
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(6px)" }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="relative w-full max-w-sm rounded-3xl overflow-hidden animate-slide-up"
+        style={{ background: "linear-gradient(160deg, #1e1608, #1a1410)", border: "1px solid rgba(200,146,58,0.3)", boxShadow: "0 0 60px rgba(200,146,58,0.15)" }}>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.6), transparent)" }} />
+        <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full transition hover:opacity-70"
+          style={{ background: "rgba(200,146,58,0.1)", color: "var(--eth-stone)" }}>
+          <Icon name="X" size={16} />
+        </button>
+        <div className="px-8 pt-10 pb-8">
+          {status === "ok" ? (
+            <div className="text-center py-4">
+              <p className="text-4xl mb-4">🔥</p>
+              <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>Скидка ваша!</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--eth-stone)" }}>
+                Мария свяжется с вами и подберёт программу со скидкой 15%.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="text-center mb-7">
+                <span className="inline-block px-4 py-1.5 rounded-full text-sm mb-4"
+                  style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.08em" }}>
+                  скидка 15%
+                </span>
+                <h3 className="text-3xl font-light mb-2" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
+                  Алхимия стихий в ковше
+                </h3>
+                <p className="text-sm" style={{ color: "var(--eth-stone)", fontFamily: "'Cormorant', serif", fontStyle: "italic", fontSize: "1rem" }}>
+                  Оставьте контакт — и программа с особым ценником будет ждать вас
+                </p>
+              </div>
+              <form onSubmit={submit} className="space-y-3">
+                <input value={name} onChange={e => setName(e.target.value)} placeholder="Ваше имя" required
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none transition"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+                <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="Телефон" type="tel" required
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none transition"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text', sans-serif" }} />
+                <button type="submit" disabled={status === "loading"}
+                  className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
+                  style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.12em" }}>
+                  {status === "loading" ? "Отправляем..." : "Получить скидку →"}
+                </button>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 const TELEGRAM_URL = "https://functions.poehali.dev/b19212c6-df7b-49bb-9d3d-e1121d88dacb";
@@ -715,6 +785,7 @@ export default function Index() {
   const [activeProgram, setActiveProgram] = useState<typeof programs[0] | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [navOpen, setNavOpen] = useState(false);
+  const [discountOpen, setDiscountOpen] = useState(false);
 
   const navItems = [
     { label: "Проект", id: "about" },
@@ -736,6 +807,7 @@ export default function Index() {
 
   return (
     <div style={{ background: "var(--eth-bg)", color: "var(--eth-cream)", minHeight: "100vh" }}>
+      {discountOpen && <DiscountModal onClose={() => setDiscountOpen(false)} />}
 
       {/* ── Nav ─────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-30 px-6 py-4 flex items-center justify-between"
@@ -963,8 +1035,8 @@ export default function Index() {
 
           {/* Quote block */}
           <div className="mt-14 text-center">
-            <div className="relative inline-block group">
-              <p className="text-3xl md:text-4xl font-light italic cursor-default"
+            <button onClick={() => setDiscountOpen(true)} className="relative inline-block group bg-transparent border-0 outline-none cursor-pointer">
+              <p className="text-3xl md:text-4xl font-light italic transition-opacity group-hover:opacity-70"
                 style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
                 «Алхимия стихий в ковше»
               </p>
@@ -972,7 +1044,7 @@ export default function Index() {
                 style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.08em", fontFamily: "'Golos Text', sans-serif", fontStyle: "normal", boxShadow: "0 4px 16px rgba(200,146,58,0.4)" }}>
                 скидка 15%
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </section>
