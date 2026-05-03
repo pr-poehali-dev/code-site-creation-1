@@ -892,9 +892,12 @@ export default function Index() {
               <div className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full" style={{ background: "linear-gradient(to bottom, transparent, rgba(200,146,58,0.5), transparent)" }} />
               <div className="px-8 py-7">
                 <span className="block text-3xl mb-3 opacity-30" style={{ color: "var(--eth-gold)", fontFamily: "Georgia, serif" }}>"</span>
-                <p className="text-lg md:text-xl leading-relaxed font-light italic"
-                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-smoke)", fontSize: "1.15rem", opacity: 0.85 }}>
-                  Баня — это храм регенерации, где стихии помогают человеку обрести баланс. Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления.
+                <p className="text-2xl md:text-3xl leading-relaxed font-light"
+                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.5rem", fontStyle: "normal", letterSpacing: "0.01em" }}>
+                  Баня — это храм регенерации, где стихии помогают человеку обрести баланс.{" "}
+                  <em style={{ color: "var(--eth-gold)", opacity: 0.85 }}>
+                    Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления.
+                  </em>
                 </p>
               </div>
             </div>
@@ -1049,46 +1052,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ── FAQ ─────────────────────────────────────────── */}
-      <section className="py-24 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Вопросы</p>
-            <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-              Часто спрашивают
-            </h2>
-          </div>
-          <div className="space-y-2">
-            {faqData.map((item, i) => (
-              <div key={i} className="rounded-xl overflow-hidden transition-all duration-200"
-                style={{ background: activeFaq === i ? "var(--eth-bg3)" : "var(--eth-bg2)", border: "1px solid rgba(200,146,58,0.12)" }}>
-                <button className="w-full text-left px-6 py-4 flex items-center justify-between gap-4"
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}>
-                  <span className="text-base" style={{ color: "var(--eth-cream)" }}>{item.q}</span>
-                  <Icon name={activeFaq === i ? "ChevronUp" : "ChevronDown"} size={16} color="var(--eth-stone)" />
-                </button>
-                {activeFaq === i && (
-                  <div className="px-6 pb-5 animate-slide-up">
-                    <div className="text-sm leading-relaxed mb-3 space-y-1.5" style={{ color: "var(--eth-smoke)" }}>
-                      {item.a.split("\n").map((line, j) => (
-                        <p key={j}>{line}</p>
-                      ))}
-                    </div>
-                    {"link" in item && item.link && (
-                      <button onClick={() => navigate(item.link as string)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-widest uppercase transition-all hover:opacity-90 hover:scale-105"
-                        style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.1em" }}>
-                        <Icon name="Gift" size={14} />
-                        {item.linkLabel as string}
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ── Contacts ────────────────────────────────────── */}
       <section id="contacts" className="py-24 px-6"
