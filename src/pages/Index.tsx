@@ -110,6 +110,63 @@ const benefits = [
   { icon: "ᛟ", title: "Пройти таро-расклад", text: "Карты помогут раскрыть ваши текущие потребности и подобрать программу, которая резонирует именно с вами." },
 ];
 
+const benefitColors = ["#d4622a","#6aaa80","#c8923a","#e8b86d","#8abeaa"];
+const benefitIconBg = ["rgba(212,98,42,0.12)","rgba(106,170,128,0.12)","rgba(200,146,58,0.12)","rgba(232,184,109,0.12)","rgba(138,190,170,0.12)"];
+const benefitIconGlow = ["rgba(212,98,42,0.3)","rgba(106,170,128,0.3)","rgba(200,146,58,0.3)","rgba(232,184,109,0.3)","rgba(138,190,170,0.3)"];
+
+function BenefitsCarousel() {
+  const [active, setActive] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  function startTimer() {
+    timerRef.current = setInterval(() => {
+      setActive(prev => (prev + 1) % benefits.length);
+    }, 3200);
+  }
+
+  useEffect(() => {
+    startTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, []);
+
+  return (
+    <div>
+      <div className="relative overflow-hidden">
+        <div className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${active * 100}%)` }}>
+          {benefits.map((b, i) => (
+            <div key={i} className="w-full flex-shrink-0 rounded-2xl p-8 text-center"
+              style={{ background: "var(--eth-bg3)", border: `1px solid ${benefitColors[i]}25` }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
+                style={{
+                  background: benefitIconBg[i],
+                  border: `1.5px solid ${benefitColors[i]}40`,
+                  boxShadow: `0 0 24px ${benefitIconGlow[i]}, 0 0 48px ${benefitIconGlow[i]}`,
+                  animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${i * 0.2}s infinite`,
+                }}>
+                <span className="text-3xl" style={{ filter: `drop-shadow(0 0 8px ${benefitColors[i]})` }}>{b.icon}</span>
+              </div>
+              <h3 className="text-2xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{b.title}</h3>
+              <p className="text-sm leading-relaxed max-w-md mx-auto" style={{ color: "var(--eth-stone)" }}>{b.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex items-center justify-center gap-3 mt-6">
+        {benefits.map((_, i) => (
+          <button key={i} onClick={() => { setActive(i); if (timerRef.current) clearInterval(timerRef.current); startTimer(); }}
+            className="rounded-full transition-all duration-500"
+            style={{
+              width: active === i ? "28px" : "8px",
+              height: "8px",
+              background: active === i ? benefitColors[i] : "rgba(200,146,58,0.25)",
+            }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const faqData = [
   { q: "Что нужно взять с собой?", a: "Только хорошее настроение и раздельный купальник. Халаты, тапочки, шапки и полотенца предоставляются." },
   { q: "Соло или группой?", a: "Посещение доступно как соло, так и группой до 4 человек. Пространство полностью ваше — никто не входит без вашего разрешения." },
@@ -892,8 +949,8 @@ export default function Index() {
               <div className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full" style={{ background: "linear-gradient(to bottom, transparent, rgba(200,146,58,0.5), transparent)" }} />
               <div className="px-8 py-7">
                 <span className="block text-3xl mb-3 opacity-30" style={{ color: "var(--eth-gold)", fontFamily: "Georgia, serif" }}>"</span>
-                <p className="text-2xl md:text-3xl leading-relaxed font-light"
-                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.5rem", fontStyle: "normal", letterSpacing: "0.01em" }}>
+                <p className="text-lg md:text-xl leading-relaxed font-light"
+                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", fontSize: "1.15rem", fontStyle: "normal", letterSpacing: "0.01em" }}>
                   Баня — это храм регенерации, где стихии помогают человеку обрести баланс.{" "}
                   <em style={{ color: "var(--eth-gold)", opacity: 0.85 }}>
                     Каждая программа — это продуманный ритуал, в котором жар, пар, травы и прикосновения работают как единая система восстановления.
@@ -902,39 +959,20 @@ export default function Index() {
               </div>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {benefits.map((b, i) => {
-              const iconColors = ["#d4622a","#6aaa80","#c8923a","#e8b86d","#8abeaa"];
-              const iconBg = ["rgba(212,98,42,0.12)","rgba(106,170,128,0.12)","rgba(200,146,58,0.12)","rgba(232,184,109,0.12)","rgba(138,190,170,0.12)"];
-              const iconGlow = ["rgba(212,98,42,0.3)","rgba(106,170,128,0.3)","rgba(200,146,58,0.3)","rgba(232,184,109,0.3)","rgba(138,190,170,0.3)"];
-              return (
-                <div key={i} className="rounded-2xl p-6 eth-card text-center"
-                  style={{
-                    background: "var(--eth-bg3)",
-                    transition: `all 0.4s ease ${i * 0.08}s`,
-                  }}>
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
-                    style={{
-                      background: iconBg[i],
-                      border: `1.5px solid ${iconColors[i]}40`,
-                      boxShadow: `0 0 20px ${iconGlow[i]}, 0 0 40px ${iconGlow[i]}`,
-                      animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${i * 0.2}s infinite`,
-                    }}>
-                    <span className="text-3xl" style={{ filter: `drop-shadow(0 0 6px ${iconColors[i]})` }}>{b.icon}</span>
-                  </div>
-                  <h3 className="text-lg font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{b.title}</h3>
-                  <p className="text-xs leading-relaxed" style={{ color: "var(--eth-stone)" }}>{b.text}</p>
-                </div>
-              );
-            })}
-          </div>
+          <BenefitsCarousel />
 
           {/* Quote block */}
           <div className="mt-14 text-center">
-            <p className="text-3xl md:text-4xl font-light italic"
-              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
-              «Алхимия стихий в ковше»
-            </p>
+            <div className="relative inline-block group">
+              <p className="text-3xl md:text-4xl font-light italic cursor-default"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
+                «Алхимия стихий в ковше»
+              </p>
+              <span className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full text-xs whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
+                style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.08em", fontFamily: "'Golos Text', sans-serif", fontStyle: "normal", boxShadow: "0 4px 16px rgba(200,146,58,0.4)" }}>
+                скидка 15%
+              </span>
+            </div>
           </div>
         </div>
       </section>

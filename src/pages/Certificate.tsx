@@ -243,8 +243,8 @@ function CertPreview({ certStyle, value, recipientName }: {
 
         <div className="w-16 h-px mb-3" style={{ background: `linear-gradient(90deg, transparent, ${p.accent}, transparent)` }} />
 
-        <p className="text-3xl md:text-4xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: p.accent }}>
-          {value || "8 500 ₽"}
+        <p className="font-light mb-1 leading-tight" style={{ fontFamily: "'Cormorant', serif", color: p.accent, fontSize: value && value.length > 10 ? "1.25rem" : "2rem" }}>
+          {value || "Программа"}
         </p>
 
         {recipientName && (
@@ -406,7 +406,7 @@ export default function Certificate() {
   const [showOrder, setShowOrder] = useState(false);
 
   const certValue = certType === "program"
-    ? (selectedProgram?.price ?? "")
+    ? (selectedProgram?.name ?? "")
     : (selectedAmount?.amount ?? "");
 
   const canProceed = certValue && selectedStyle;

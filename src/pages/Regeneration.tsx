@@ -1255,7 +1255,7 @@ export default function Regeneration() {
               Четыре шага к себе настоящему
             </h2>
             <p className="text-lg italic max-w-2xl mx-auto" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Каждый этап — не процедура. Это состояние, которое остаётся с вами навсегда.
+              Каждый этап — это не действие над телом. Это встреча с собой, которую невозможно забыть.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1361,20 +1361,7 @@ export default function Regeneration() {
       {/* ── Biohacking Stages ── */}
       <BiohackingStages />
 
-      {/* ── Традиция кнопка ── */}
-      <section className="py-12 px-6 text-center" style={{ background: "#0f0c08" }}>
-        <div className="max-w-xl mx-auto">
-          <p className="text-sm mb-5 italic" style={{ color: "#8a7a65", fontFamily: "'Cormorant', serif", fontSize: "1rem" }}>
-            Хотите познакомиться с нашими традиционными банными программами?
-          </p>
-          <button onClick={() => navigate("/tradition")}
-            className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-sm uppercase tracking-wider transition-all hover:scale-[1.03]"
-            style={{ background: "linear-gradient(135deg, rgba(155,127,181,0.25), rgba(100,80,140,0.18))", color: "#b99fd8", border: "1px solid rgba(155,127,181,0.35)", fontWeight: 600, letterSpacing: "0.1em" }}>
-            <Icon name="Sparkles" size={18} />
-            Традиционные программы
-          </button>
-        </div>
-      </section>
+
 
       {/* ── Privacy block ── */}
       <section className="py-20 px-6" style={{ background: "#13100c" }}>
@@ -1384,11 +1371,10 @@ export default function Regeneration() {
             <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>Полная приватность</h2>
             <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-8 italic"
               style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Пройденный курс процедур уникален и подобран персонально под каждого гостя.
-              Мы знаем о ваших результатах — как знаете и вы. Остальное сохраним в секрете.
+              Ваш протокол — только ваш. Мы держим его в тайне так же свято, как лес хранит то, что происходит между деревьями.
             </p>
             <p className="text-base" style={{ fontFamily: "'Cormorant', serif", color: "#c8923a", fontStyle: "italic" }}>
-              Лес хранит тайны.
+              Лес не говорит. Мы тоже.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-5">

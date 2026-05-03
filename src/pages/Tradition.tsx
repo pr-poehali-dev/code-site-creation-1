@@ -627,34 +627,7 @@ export default function Tradition() {
               и новейшими технологиями
             </span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => navigate("/regeneration")}
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105"
-              style={{
-                background: "linear-gradient(135deg, rgba(60,30,10,0.9), rgba(80,40,12,0.8))",
-                border: "1px solid rgba(200,146,58,0.35)",
-                color: "var(--eth-gold2)",
-                letterSpacing: "0.15em",
-              }}
-            >
-              БиоХакинг
-              <Icon name="ArrowRight" size={14} />
-            </button>
-            <button
-              onClick={() => navigate("/perspektiva")}
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-105"
-              style={{
-                background: "linear-gradient(135deg, rgba(20,30,60,0.95), rgba(30,20,70,0.9))",
-                border: "1px solid rgba(120,100,200,0.45)",
-                color: "rgba(180,160,240,0.9)",
-                letterSpacing: "0.15em",
-              }}
-            >
-              ✦ Перспектива
-              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(120,100,200,0.2)", color: "rgba(180,160,240,0.8)", fontSize: "0.6rem" }}>NEW</span>
-            </button>
-          </div>
+
         </div>
       </section>
 
