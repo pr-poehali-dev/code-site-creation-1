@@ -663,8 +663,6 @@ export default function Index() {
     { label: "Проект", id: "about" },
     { label: "Рябина и Дым Lounge", id: "banya-nav" },
     { label: "Ваша Карта", id: "tarot-nav" },
-    { label: "Перспектива", id: "perspektiva-nav" },
-    { label: "БиоХакинг", id: "biohacking-nav" },
     { label: "Лавка", id: "shop-nav" },
     { label: "Контакты", id: "contacts" },
   ];
@@ -1123,20 +1121,34 @@ export default function Index() {
                 ))}
               </div>
 
-              <div className="flex gap-3 mb-5">
+              <div className="grid grid-cols-2 gap-3 mb-5">
                 <button
                   onClick={() => navigate("/certificate")}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
                   style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.25), rgba(180,100,40,0.18))", color: "var(--eth-gold)", border: "1px solid rgba(200,146,58,0.35)", fontWeight: 600, letterSpacing: "0.1em" }}>
                   <Icon name="Gift" size={16} />
                   Сертификат
                 </button>
                 <button
                   onClick={() => navigate("/tradition")}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
                   style={{ background: "linear-gradient(135deg, rgba(155,127,181,0.2), rgba(100,80,140,0.15))", color: "#b99fd8", border: "1px solid rgba(155,127,181,0.3)", fontWeight: 600, letterSpacing: "0.1em" }}>
                   <Icon name="Sparkles" size={16} />
                   Традиция
+                </button>
+                <button
+                  onClick={() => navigate("/perspektiva")}
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  style={{ background: "linear-gradient(135deg, rgba(100,80,200,0.2), rgba(80,60,180,0.12))", color: "rgba(180,160,240,0.85)", border: "1px solid rgba(120,100,200,0.3)", fontWeight: 600, letterSpacing: "0.1em" }}>
+                  <Icon name="TreePine" size={16} />
+                  Перспектива
+                </button>
+                <button
+                  onClick={() => navigate("/regeneration")}
+                  className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl transition-all hover:scale-[1.02] hover:shadow-xl text-sm uppercase tracking-wider"
+                  style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.15), rgba(212,98,42,0.1))", color: "rgba(232,184,109,0.85)", border: "1px solid rgba(200,146,58,0.25)", fontWeight: 600, letterSpacing: "0.1em" }}>
+                  <Icon name="Zap" size={16} />
+                  БиоХакинг
                 </button>
               </div>
 
