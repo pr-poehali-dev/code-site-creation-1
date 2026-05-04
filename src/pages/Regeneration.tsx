@@ -1254,9 +1254,7 @@ export default function Regeneration() {
             <h2 className="text-4xl md:text-5xl font-light mb-4" style={{ fontFamily: "'Cormorant', serif", color: "#e8b86d" }}>
               Четыре шага к себе настоящему
             </h2>
-            <p className="text-lg italic max-w-2xl mx-auto" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>
-              Каждый этап — это не действие над телом. Это встреча с собой, которую невозможно забыть.
-            </p>
+            <p className="text-lg italic max-w-2xl mx-auto" style={{ color: "#c8bca8", fontFamily: "'Cormorant', serif", fontSize: "1.1rem" }}>Трансформация начинается не с тела. С встречи с собой. Каждый этап — шаг к этой встрече.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
