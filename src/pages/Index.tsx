@@ -1036,10 +1036,15 @@ export default function Index() {
           {/* Quote block */}
           <div className="mt-14 text-center">
             <button onClick={() => setDiscountOpen(true)} className="relative inline-block group bg-transparent border-0 outline-none cursor-pointer">
-              <p className="text-3xl md:text-4xl font-light italic transition-opacity group-hover:opacity-70"
-                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>
-                «Алхимия стихий в ковше»
-              </p>
+              <p className="md:text-4xl font-light italic transition-opacity group-hover:opacity-70 text-lg"
+                style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold)", opacity: 0.9 }}>✦
+Огонь печи внемлет древним заклинаниям.
+Пар из дубового веника окутывает тело.
+Соль земли растворяется на коже.
+Ароматы трав зовут вспомнить то, что забыто.
+
+Доверьтесь процессу. Ваше тело уже знает путь
+🔥</p>
               <span className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full text-xs whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0"
                 style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.08em", fontFamily: "'Golos Text', sans-serif", fontStyle: "normal", boxShadow: "0 4px 16px rgba(200,146,58,0.4)" }}>
                 скидка 15%
