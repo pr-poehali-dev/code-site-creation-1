@@ -412,7 +412,7 @@ export default function Banya() {
                   {/* Правая часть — цена */}
                   <div className="flex flex-col items-center md:items-end gap-3 flex-shrink-0">
                     <div className="text-center md:text-right">
-                      <p className="text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.9)" }}>4 500 ₽</p>
+                      <p className="text-5xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.9)" }}>5900 ₽</p>
                       <p className="text-sm mt-1" style={{ color: "rgba(220,200,255,0.4)" }}>за час аренды</p>
                     </div>
                     <div className="px-5 py-2.5 rounded-xl text-center"
