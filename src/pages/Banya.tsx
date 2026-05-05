@@ -403,9 +403,7 @@ export default function Banya() {
                       <h3 className="text-2xl md:text-3xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.97)" }}>
                         Баня без пармастера
                       </h3>
-                      <p className="text-base leading-relaxed" style={{ color: "rgba(220,200,255,0.55)", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
-                        Приходите своей компанией и парьтесь в своём ритме — без программы, без расписания. Семь зон полностью в вашем распоряжении.
-                      </p>
+                      <p className="text-base leading-relaxed" style={{ color: "rgba(220,200,255,0.55)", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>Приходите соло или своей компанией и парьтесь в своём ритме — без программы, без расписания. Семь зон полностью в вашем распоряжении.</p>
                     </div>
                   </div>
 
