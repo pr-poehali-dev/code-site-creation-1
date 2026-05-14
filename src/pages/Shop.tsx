@@ -329,91 +329,124 @@ function FloatingCoin({ style }: { style: React.CSSProperties }) {
 }
 
 function Mirror3D({ visible }: { visible: boolean }) {
-  const [angle, setAngle] = useState(40);
+  const [rotY, setRotY] = useState(55);
+  const [rotX, setRotX] = useState(-8);
+  const [glowPulse, setGlowPulse] = useState(false);
+
   useEffect(() => {
     if (!visible) return;
-    let a = 40;
+    // Плавное раскручивание из 55° → 0° по Y, из -8° → 0° по X
+    let ry = 55, rx = -8;
     const t = setInterval(() => {
-      a = a > 0 ? a - 2 : 0;
-      setAngle(a);
-      if (a === 0) clearInterval(t);
-    }, 30);
+      ry = ry > 0 ? Math.max(0, ry - 1.5) : 0;
+      rx = rx < 0 ? Math.min(0, rx + 0.25) : 0;
+      setRotY(ry);
+      setRotX(rx);
+      if (ry === 0 && rx === 0) {
+        clearInterval(t);
+        setGlowPulse(true);
+      }
+    }, 20);
     return () => clearInterval(t);
   }, [visible]);
 
   return (
-    <div className="relative mx-auto mb-4" style={{ width: "140px", height: "180px", perspective: "700px" }}>
-      {/* Outer glow ring */}
+    <div className="relative mx-auto" style={{ width: "160px", height: "200px", perspective: "900px", marginBottom: "8px" }}>
+      {/* Outer ambient rings */}
       <div style={{
-        position: "absolute", inset: "-12px", borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(140,80,200,0.18) 0%, transparent 70%)",
-        animation: "pulseGold 3s ease-in-out infinite",
+        position: "absolute", inset: "-20px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(140,80,200,0.22) 0%, transparent 65%)",
+        animation: glowPulse ? "pulseGold 2.8s ease-in-out infinite" : "none",
         pointerEvents: "none",
+        transition: "opacity 1s",
+        opacity: visible ? 1 : 0,
       }} />
+      <div style={{
+        position: "absolute", inset: "-4px", borderRadius: "50% 50% 44% 44% / 36% 36% 56% 56%",
+        border: "1px solid rgba(180,140,255,0.12)",
+        pointerEvents: "none",
+        animation: glowPulse ? "pulseGold 4s ease-in-out 1s infinite" : "none",
+      }} />
+
+      {/* 3D mirror body */}
       <div style={{
         width: "100%", height: "100%",
         transformStyle: "preserve-3d",
-        transform: `rotateY(${angle}deg)`,
-        transition: "transform 0.05s linear",
+        transform: `rotateY(${rotY}deg) rotateX(${rotX}deg)`,
+        transition: "none",
       }}>
-        {/* Front face — mirror */}
+        {/* Front face */}
         <div style={{
           position: "absolute", inset: 0,
           borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
-          background: "linear-gradient(160deg, #1a0e2a 0%, #0d0818 100%)",
-          border: "2px solid rgba(180,120,255,0.45)",
-          boxShadow: "0 0 60px rgba(140,80,200,0.4), inset 0 0 40px rgba(140,80,200,0.15), 0 0 20px rgba(80,40,160,0.3)",
+          background: "linear-gradient(170deg, #1c0e30 0%, #0d0820 60%, #160b28 100%)",
+          border: "2px solid rgba(190,130,255,0.5)",
+          boxShadow: "0 0 80px rgba(140,80,200,0.45), inset 0 0 50px rgba(140,80,200,0.18), 0 20px 40px rgba(0,0,0,0.6)",
           overflow: "hidden",
+          backfaceVisibility: "hidden",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          {/* Shimmer layers */}
+          {/* Glass shimmer */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(135deg, rgba(200,180,255,0.08) 0%, rgba(140,80,200,0.05) 50%, rgba(80,120,255,0.08) 100%)",
+            background: "linear-gradient(130deg, rgba(220,200,255,0.1) 0%, transparent 40%, rgba(120,80,200,0.06) 100%)",
           }} />
+          {/* Highlight spot */}
           <div style={{
-            position: "absolute", top: "15%", left: "20%", width: "30%", height: "40%",
-            background: "radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%)",
+            position: "absolute", top: "10%", left: "18%", width: "28%", height: "35%",
+            background: "radial-gradient(ellipse, rgba(255,255,255,0.09) 0%, transparent 70%)",
             borderRadius: "50%",
+            transform: "rotate(-15deg)",
           }} />
-          {/* Central mirror emoji */}
+          {/* Mirror surface reflection gradient */}
           <div style={{
-            position: "relative", zIndex: 1,
-            fontSize: "42px",
-            filter: "drop-shadow(0 0 16px rgba(180,140,255,0.9))",
-            animation: "pulseGold 4s ease-in-out infinite",
+            position: "absolute", inset: "8px",
+            borderRadius: "50% 50% 44% 44% / 36% 36% 56% 56%",
+            background: "linear-gradient(150deg, rgba(160,120,255,0.08), rgba(80,60,160,0.05), rgba(200,160,255,0.08))",
+          }} />
+          {/* Central symbol */}
+          <div style={{
+            position: "relative", zIndex: 2,
+            fontSize: "52px",
+            filter: `drop-shadow(0 0 ${glowPulse ? "24px" : "10px"} rgba(190,150,255,0.95))`,
+            transition: "filter 0.5s ease",
+            lineHeight: 1,
           }}>🪞</div>
-          {/* Particles in mirror */}
-          {[...Array(6)].map((_, i) => (
+          {/* Floating particles */}
+          {[...Array(8)].map((_, i) => (
             <div key={i} style={{
               position: "absolute",
-              width: "3px", height: "3px",
+              width: i % 3 === 0 ? "4px" : "2px",
+              height: i % 3 === 0 ? "4px" : "2px",
               borderRadius: "50%",
-              background: "rgba(200,180,255,0.5)",
-              left: `${20 + i * 12}%`,
-              top: `${30 + (i % 3) * 15}%`,
-              animation: `pulseGold ${2 + i * 0.4}s ease-in-out ${i * 0.3}s infinite`,
+              background: `rgba(${180 + i * 8},${140 + i * 5},255,${0.4 + i * 0.05})`,
+              left: `${12 + i * 10}%`,
+              top: `${20 + (i % 4) * 16}%`,
+              animation: `pulseGold ${1.8 + i * 0.35}s ease-in-out ${i * 0.25}s infinite`,
             }} />
           ))}
         </div>
+
         {/* Back face */}
         <div style={{
           position: "absolute", inset: 0,
           borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
-          background: "linear-gradient(160deg, #0a0612, #120a20)",
-          border: "2px solid rgba(140,80,200,0.2)",
+          background: "linear-gradient(160deg, #08040e, #0e0818)",
+          border: "2px solid rgba(100,60,160,0.25)",
           backfaceVisibility: "hidden",
           transform: "rotateY(180deg)",
         }} />
       </div>
+
       {/* Floor reflection */}
       <div style={{
-        position: "absolute", bottom: "-20px", left: "50%",
+        position: "absolute", bottom: "-24px", left: "50%",
         transform: "translateX(-50%)",
-        width: "90px", height: "14px",
-        borderRadius: "50%",
-        background: "rgba(140,80,200,0.25)",
-        filter: "blur(10px)",
+        width: "100px", height: "16px", borderRadius: "50%",
+        background: "rgba(140,80,200,0.28)",
+        filter: "blur(12px)",
+        opacity: visible ? 1 : 0,
+        transition: "opacity 1s ease 0.5s",
       }} />
     </div>
   );
@@ -463,28 +496,59 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
       ))}
 
       <div
-        className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl"
+        className="relative w-full max-w-lg max-h-[94vh] overflow-y-auto rounded-3xl"
         style={{
-          background: "linear-gradient(160deg,#0d0a14,#140f1e,#0a0d14)",
-          border: "1px solid rgba(140,80,200,0.3)",
-          boxShadow: "0 0 120px rgba(140,80,200,0.2), 0 0 60px rgba(80,120,200,0.1)",
+          background: "linear-gradient(170deg,#0c0814 0%,#130d1e 50%,#090c14 100%)",
+          border: "1px solid rgba(140,80,200,0.35)",
+          boxShadow: "0 0 140px rgba(140,80,200,0.25), 0 0 60px rgba(80,40,180,0.15)",
           opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.96)",
-          transition: "all 0.6s cubic-bezier(0.16,1,0.3,1)",
+          transform: visible ? "translateY(0) scale(1)" : "translateY(50px) scale(0.94)",
+          transition: "all 0.7s cubic-bezier(0.16,1,0.3,1)",
         }}
       >
-        {/* Top glow line */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(140,80,200,0.6),rgba(200,146,58,0.4),transparent)" }} />
+        {/* Top shimmer line */}
+        <div style={{ height: "2px", background: "linear-gradient(90deg,transparent,rgba(180,130,255,0.7),rgba(200,146,58,0.5),rgba(180,130,255,0.7),transparent)" }} />
+
+        {/* Step bg accent — unique per step */}
+        <div style={{
+          position: "absolute", inset: 0, borderRadius: "24px", pointerEvents: "none", zIndex: 0,
+          background: step === 0
+            ? "radial-gradient(ellipse at 50% 20%, rgba(140,80,200,0.12) 0%, transparent 60%)"
+            : step === 1
+            ? "radial-gradient(ellipse at 50% 30%, rgba(200,146,58,0.1) 0%, transparent 60%)"
+            : step === 4
+            ? "radial-gradient(ellipse at 50% 20%, rgba(100,60,200,0.14) 0%, transparent 60%)"
+            : "radial-gradient(ellipse at 50% 10%, rgba(120,70,200,0.08) 0%, transparent 50%)",
+          transition: "background 0.8s ease",
+        }} />
 
         {/* Header */}
-        <div className="relative px-6 pt-6 pb-4 text-center">
+        <div className="relative px-7 pt-7 pb-3 text-center" style={{ zIndex: 1 }}>
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-xs transition-all hover:scale-110"
-            style={{ background: "rgba(140,80,200,0.1)", color: "rgba(180,140,255,0.6)", border: "1px solid rgba(140,80,200,0.2)" }}
+            className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-sm transition-all hover:scale-110 hover:rotate-90"
+            style={{ background: "rgba(140,80,200,0.12)", color: "rgba(180,140,255,0.65)", border: "1px solid rgba(140,80,200,0.22)", transition: "all 0.3s ease" }}
           >
             ✕
           </button>
+
+          {/* Progress dots */}
+          <div className="flex items-center justify-center gap-1.5 mb-6">
+            {PRACTICE_STEPS.map((_, i) => (
+              <div key={i} onClick={() => i < step && setStep(i)}
+                className="rounded-full transition-all duration-500"
+                style={{
+                  width: i === step ? "28px" : "5px",
+                  height: "5px",
+                  cursor: i < step ? "pointer" : "default",
+                  background: i === step
+                    ? "linear-gradient(90deg, rgba(180,130,255,0.9), rgba(140,80,200,0.9))"
+                    : i < step
+                    ? "rgba(140,80,200,0.45)"
+                    : "rgba(140,80,200,0.18)",
+                }} />
+            ))}
+          </div>
 
           {/* Mirror for step 0 */}
           {step === 0 && <Mirror3D visible={visible} />}
@@ -583,48 +647,68 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
             </div>
           )}
 
-          {/* Step label */}
-          <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: "rgba(140,80,200,0.6)" }}>
-            {step + 1} / {total} · Истинная Подмена Понятий
-          </p>
-          <h3
-            className="text-2xl font-light mb-1"
-            style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.95)", letterSpacing: "0.02em" }}
-          >
-            {current.title}
-          </h3>
+          {/* Step label + title */}
+          <div className="mb-1">
+            <p className="text-xs uppercase tracking-[0.45em] mb-3" style={{ color: "rgba(160,110,255,0.55)", letterSpacing: "0.4em" }}>
+              {step + 1} из {total} · Истинная Подмена Понятий
+            </p>
+            <h3 style={{
+              fontFamily: "'Cormorant', serif",
+              fontSize: "clamp(1.6rem, 4vw, 2.2rem)",
+              fontWeight: 300,
+              color: "rgba(230,215,255,0.97)",
+              letterSpacing: "0.02em",
+              lineHeight: 1.2,
+              marginBottom: "4px",
+            }}>
+              {current.title}
+            </h3>
+            {/* Decorative line */}
+            <div style={{ height: "1px", width: "60px", margin: "12px auto 0", background: "linear-gradient(90deg,transparent,rgba(160,110,255,0.5),transparent)" }} />
+          </div>
         </div>
 
         {/* Body */}
-        <div className="px-6 pb-6">
-          <div
-            className="rounded-2xl p-5 mb-6"
-            style={{ background: "rgba(140,80,200,0.05)", border: "1px solid rgba(140,80,200,0.12)" }}
-          >
+        <div className="px-7 pb-7" style={{ position: "relative", zIndex: 1 }}>
+
+          {/* Text block */}
+          <div style={{
+            borderRadius: "20px",
+            padding: "24px 26px",
+            marginBottom: "20px",
+            background: "rgba(140,80,200,0.06)",
+            border: "1px solid rgba(160,110,255,0.14)",
+            position: "relative",
+            overflow: "hidden",
+          }}>
+            {/* Left accent bar */}
+            <div style={{
+              position: "absolute", left: 0, top: "16px", bottom: "16px", width: "2px",
+              background: "linear-gradient(to bottom, transparent, rgba(160,110,255,0.5), transparent)",
+              borderRadius: "2px",
+            }} />
             {current.text.split("\n\n").map((para, i) => (
-              <p
-                key={i}
-                className="leading-relaxed mb-3 last:mb-0"
-                style={{
-                  fontFamily: "'Cormorant', serif",
-                  fontSize: "1.05rem",
-                  color: "rgba(220,210,255,0.8)",
-                  fontStyle: "italic",
-                  lineHeight: "1.85",
-                }}
-              >
+              <p key={i} style={{
+                fontFamily: "'Cormorant', serif",
+                fontSize: "clamp(1.05rem, 2.5vw, 1.2rem)",
+                color: i === 0 ? "rgba(230,215,255,0.9)" : "rgba(200,185,245,0.75)",
+                fontStyle: "italic",
+                lineHeight: "1.95",
+                marginBottom: i < current.text.split("\n\n").length - 1 ? "16px" : 0,
+                letterSpacing: "0.01em",
+              }}>
                 {para}
               </p>
             ))}
           </div>
 
           {/* Navigation */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-2">
             {step > 0 && (
               <button
                 onClick={() => setStep(s => s - 1)}
-                className="flex-1 py-3 rounded-full text-sm transition-all hover:opacity-80"
-                style={{ border: "1px solid rgba(140,80,200,0.25)", color: "rgba(180,140,255,0.7)", background: "rgba(140,80,200,0.05)" }}
+                className="flex-1 py-3.5 rounded-full text-sm transition-all hover:opacity-80"
+                style={{ border: "1px solid rgba(140,80,200,0.28)", color: "rgba(180,140,255,0.75)", background: "rgba(140,80,200,0.06)", letterSpacing: "0.05em" }}
               >
                 ← назад
               </button>
@@ -632,16 +716,16 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
             {step < total - 1 ? (
               <button
                 onClick={() => setStep(s => s + 1)}
-                className="flex-1 py-3 rounded-full text-sm tracking-wider transition-all hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.8),rgba(100,60,180,0.9))", color: "white", letterSpacing: "0.1em" }}
+                className="flex-1 py-3.5 rounded-full text-sm tracking-wider transition-all hover:scale-[1.02] hover:shadow-2xl"
+                style={{ background: "linear-gradient(135deg,rgba(150,90,220,0.9),rgba(110,65,200,0.95))", color: "white", letterSpacing: "0.12em", boxShadow: "0 0 30px rgba(140,80,200,0.3)" }}
               >
                 далее →
               </button>
             ) : (
               <button
                 onClick={onClose}
-                className="flex-1 py-3 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.8),rgba(200,146,58,0.6))", color: "white", letterSpacing: "0.12em" }}
+                className="flex-1 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg,rgba(150,90,220,0.9),rgba(200,146,58,0.65))", color: "white", letterSpacing: "0.14em", boxShadow: "0 0 40px rgba(140,80,200,0.35)" }}
               >
                 ✦ завершить практику
               </button>
@@ -649,8 +733,8 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        {/* Bottom glow line */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(200,146,58,0.3),rgba(140,80,200,0.4),transparent)" }} />
+        {/* Bottom shimmer */}
+        <div style={{ height: "2px", background: "linear-gradient(90deg,transparent,rgba(200,146,58,0.35),rgba(160,110,255,0.5),transparent)" }} />
       </div>
     </div>
   );
