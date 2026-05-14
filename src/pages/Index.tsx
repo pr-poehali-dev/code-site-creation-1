@@ -543,60 +543,345 @@ async function sendToTelegram(data: Record<string, string>) {
 
 // ─── Exclusive Programs 3D Carousel ──────────────────────────────────────────
 
+const BOOKING_URL = "https://functions.poehali.dev/4dd43fc7-c646-4678-982b-a88d1a76f014";
+
+const INCLUDED_BASE = [
+  "🧹 Аренда бани",
+  "🛁 Купель",
+  "🍵 Чай, мёд, сушки",
+  "🩴 Халаты, полотенца, шапочки, тапочки и одноразовое бельё",
+];
+
 const EXCLUSIVE_PROGRAMS = [
   {
     id: "watermelon",
     title: "Арбузный лимонад",
+    emoji: "🍉🍾",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/dd845b47-b8ef-410b-8c64-df8c50779fa9.jpg",
     color: "rgba(220,60,80,0.7)",
     glow: "rgba(220,60,80,0.4)",
+    duration: "3 часа (2 пармастера) или 4 часа (1 пармастер)",
+    price: "24 000–38 000 ₽",
+    guests: "до 6 гостей",
+    steps: [
+      "Прогрев в парной с ароматами арбуза и цитрусовых (15 мин)",
+      "Парение «Полосатая свежесть» — дубовый веник, холодная пихта, орошение лимонно-травяным отваром (15 мин)",
+      "Купель (можно дополнить пеленанием на качелях с медитацией +3 500 ₽/гость)",
+      "Комплексный пилинг с цедрой лимона, морской солью и мёдом; отдых в парной (20 мин)",
+      "Завершение кубиками льда в шёлковом мешочке + арбузное масло по телу (10 мин)",
+    ],
+    included: ["Дольки свежего арбуза и лимона"],
   },
   {
     id: "coconut",
     title: "Морозный кокос",
+    emoji: "🥥🧊",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/006504a3-fe00-4962-a388-3db0ff18b498.jpg",
     color: "rgba(120,180,220,0.7)",
     glow: "rgba(120,180,220,0.4)",
+    duration: "3 часа (2 пармастера) или 4 часа (1 пармастер)",
+    price: "35 000–40 000 ₽",
+    guests: "1–2 гостя",
+    tag: "TOP-программа",
+    steps: [
+      "Тропический прогрев с ароматами кокоса и манго, опахивание пальмовым листом (15 мин)",
+      "Экспресс-массаж бамбуковыми палочками с лимфодренажом + орошение кокосовой водой (15 мин)",
+      "Скраб «Экзотический фрукт» — тростниковый сахар и мякоть манго, холодная пихта (10 мин)",
+      "Купель (можно дополнить пеленанием на качелях с медитацией +3 500 ₽/гость)",
+      "Обёртывание «Кокосовая нега» + отдых в парной (25 мин)",
+    ],
+    included: ["Коктейль манго-маракуйя", "Десертные шарики с кокосовой стружкой"],
   },
   {
     id: "eucalyptus",
     title: "Eucalyptus Stone Therapy",
+    emoji: "🗿🪨",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a3a161c0-8d0d-4d33-abac-29283a45ec40.jpg",
     color: "rgba(80,160,100,0.7)",
     glow: "rgba(80,160,100,0.4)",
+    duration: "2 часа (2 пармастера) или 3 часа (1 пармастер)",
+    price: "26 000–32 000 ₽",
+    guests: "1–2 гостя",
+    steps: [
+      "Минеральный арома-прогрев с веником эвкалипта и пихты (15 мин)",
+      "Парение «Кристаллы» — контрасты тонкоструйными лейками (15 мин)",
+      "Погружение в купель с кедровыми шишками и пихтой (можно дополнить пеленанием +3 500 ₽/гость)",
+      "Стоун-терапия горячими камнями (35 мин)",
+    ],
+    included: ["Фруктовый салат с мятой"],
   },
   {
     id: "lokum",
     title: "Рахат-Лукум",
+    emoji: "🍮🍡",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/3238ac23-641e-4c07-bcde-682ecd1eb293.jpg",
     color: "rgba(180,100,200,0.7)",
     glow: "rgba(180,100,200,0.4)",
+    duration: "2 часа (2 пармастера) или 4 часа (1 пармастер)",
+    price: "12 500–16 000 ₽",
+    guests: "1–3 гостя",
+    steps: [
+      "Аромапрогрев (15 мин)",
+      "Пилинг кесе — рукавица кесе, орошение розовой водой (15 мин)",
+      "Обёртывание «Султанское» — шоколад с корицей и кардамоном, отдых в тепле (20 мин)",
+      "Купель (можно дополнить пеленанием на качелях с медитацией +3 500 ₽/гость)",
+      "Масло «Оазис» — сандал и жасмин (10 мин)",
+    ],
+    included: ["Чаепитие с восточными сладостями (рахат-лукум)"],
   },
   {
     id: "pumpkin",
     title: "Тыквенное золото",
+    emoji: "🪎🎃",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/b6870e2f-f81b-4fb7-853e-f6db0a38d088.jpg",
     color: "rgba(220,140,40,0.7)",
     glow: "rgba(220,140,40,0.4)",
+    duration: "2 часа (2 пармастера) или 4 часа (1 пармастер)",
+    price: "25 000–32 000 ₽",
+    guests: "до 6 гостей",
+    steps: [
+      "Тыквенный прогрев с ароматами тыквы и корицы (15 мин)",
+      "Парение «Осенний урожай» — дубовый веник с орошением тыквенным отваром (15 мин)",
+      "Купель (можно дополнить пеленанием на качелях с медитацией +3 500 ₽/гость)",
+      "Пилинг с тыквенными семечками, тростниковым сахаром и маслом тмина (10 мин)",
+      "Обёртывание «Золотая тыква» — маска из тыквенного пюре, мёда и куркумы (25 мин)",
+    ],
+    included: ["Тыквенный латте с корицей"],
   },
   {
     id: "strawberry",
     title: "Клубничное Мохито",
+    emoji: "🍓🥤",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/4bbad490-fe5c-41e7-917a-30efc26764e4.jpg",
     color: "rgba(220,60,100,0.7)",
     glow: "rgba(220,60,100,0.4)",
+    duration: "3 часа (2 пармастера) или 4 часа (1 пармастер)",
+    price: "22 000–28 000 ₽",
+    guests: "до 6 гостей",
+    steps: [
+      "Прогрев в парной + компрессы из охлаждённых ломтиков огурца (15 мин)",
+      "Парение «Хрустящая поляна» — дубовый веник с мятным отваром (15 мин)",
+      "Купель (можно дополнить пеленанием на качелях с медитацией +3 500 ₽/гость)",
+      "Комплексный пилинг с огурцом и кофейной гущей (15 мин)",
+      "Питательная маска из клубники, мёда и йогурта (15 мин)",
+      "Завершение кубиками льда с огуречным отваром + клубничное масло",
+    ],
+    included: ["Клубничное мохито"],
   },
   {
     id: "chamomile",
     title: "Ромашковое поле",
+    emoji: "🌼",
     image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/5663bdbf-42d2-48e3-b053-fdee5a3e23df.jpg",
     color: "rgba(220,200,60,0.7)",
     glow: "rgba(220,200,60,0.4)",
+    duration: "3 часа",
+    price: "18 000–23 000 ₽",
+    guests: "семейная программа",
+    tag: "Семейная программа",
+    steps: [
+      "Лёгкий прогрев с ромашковым паром",
+      "Мягкое парение берёзовыми вениками для детей и дубовыми для взрослых",
+      "Обливание прохладным травяным настоем",
+      "Медово-травяной пилинг или солевое выкатывание (взрослые), молочко из сметаны, мёда и ягод (дети)",
+      "Купель для взрослых (можно дополнить пеленанием +3 500 ₽/гость)",
+      "Пикник с фруктами, сушками, мёдом и морсом",
+    ],
+    included: ["Пикник с фруктами и морсом", "Дополнительно: фотограф + ламинированные фото +4 000 ₽"],
   },
 ];
 
+type ExclusiveProgram = typeof EXCLUSIVE_PROGRAMS[number];
+
+function PrebookingModal({ prog, onClose }: { prog: ExclusiveProgram; onClose: () => void }) {
+  const [step, setStep] = useState<"info" | "form" | "done">("info");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setLoading(true);
+    try {
+      await fetch(BOOKING_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "prebooking", name, phone, email, program: prog.title, comment }),
+      });
+    } catch (_e) { /* ignore network errors */ }
+    setLoading(false);
+    setStep("done");
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(12px)" }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
+
+      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl"
+        style={{ background: "linear-gradient(160deg,#1e1710,#140f0a)", border: `1px solid ${prog.color}`, boxShadow: `0 0 80px ${prog.glow}` }}>
+
+        <button onClick={onClose}
+          className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110"
+          style={{ background: "rgba(255,255,255,0.07)", color: "rgba(240,225,200,0.6)" }}>
+          ✕
+        </button>
+
+        {/* Header image */}
+        <div className="relative h-52 overflow-hidden rounded-t-2xl">
+          <img src={prog.image} alt={prog.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #1e1710 0%, transparent 60%)" }} />
+          <div className="absolute top-3 left-3 flex gap-2">
+            <span className="px-2.5 py-1 rounded-full text-xs font-semibold tracking-widest"
+              style={{ background: "linear-gradient(135deg,var(--eth-ember),var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
+              NEW
+            </span>
+            {prog.tag && (
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold"
+                style={{ background: "rgba(255,255,255,0.12)", color: "white", backdropFilter: "blur(8px)" }}>
+                {prog.tag}
+              </span>
+            )}
+          </div>
+          <div className="absolute bottom-4 left-5">
+            <p className="text-2xl mb-0.5">{prog.emoji}</p>
+            <h3 style={{ fontFamily: "'Cormorant', serif", fontSize: "1.7rem", color: "var(--eth-gold2)", fontWeight: 300, textShadow: "0 2px 20px rgba(0,0,0,0.9)" }}>
+              {prog.title}
+            </h3>
+          </div>
+        </div>
+
+        <div className="p-6">
+          {step === "done" ? (
+            <div className="text-center py-8">
+              <p className="text-5xl mb-5">🎉</p>
+              <h4 style={{ fontFamily: "'Cormorant', serif", fontSize: "1.8rem", color: "var(--eth-gold2)", fontWeight: 300, marginBottom: "12px" }}>
+                Заявка принята!
+              </h4>
+              <p className="text-sm leading-relaxed mb-2" style={{ color: "rgba(240,225,200,0.7)" }}>
+                Мы отправили вам письмо со скидкой&nbsp;<strong style={{ color: "var(--eth-gold)" }}>19%</strong> на программу «{prog.title}».
+              </p>
+              <p className="text-xs" style={{ color: "rgba(240,225,200,0.4)" }}>Проверьте папку «Спам», если письмо не пришло</p>
+              <button onClick={onClose}
+                className="mt-8 px-8 py-3 rounded-full text-sm tracking-widest uppercase transition-all hover:opacity-90"
+                style={{ background: "linear-gradient(135deg,var(--eth-ember),var(--eth-gold))", color: "white" }}>
+                Закрыть
+              </button>
+            </div>
+          ) : step === "form" ? (
+            <form onSubmit={handleSubmit}>
+              <div className="flex items-center gap-3 mb-6">
+                <button type="button" onClick={() => setStep("info")}
+                  className="text-sm transition-opacity hover:opacity-70"
+                  style={{ color: "rgba(200,146,58,0.6)" }}>← Назад</button>
+                <h4 style={{ fontFamily: "'Cormorant', serif", fontSize: "1.4rem", color: "var(--eth-gold2)", fontWeight: 300 }}>
+                  Предбронирование · скидка 19%
+                </h4>
+              </div>
+              <p className="text-xs mb-5 leading-relaxed" style={{ color: "rgba(240,225,200,0.5)" }}>
+                Заполните форму — мы пришлём вам письмо с персональной скидкой 19% на «{prog.title}»
+              </p>
+              <div className="space-y-3">
+                <input required value={name} onChange={e => setName(e.target.value)}
+                  placeholder="Ваше имя *" type="text"
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text',sans-serif" }} />
+                <input required value={phone} onChange={e => setPhone(e.target.value)}
+                  placeholder="Телефон или Telegram *" type="text"
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text',sans-serif" }} />
+                <input value={email} onChange={e => setEmail(e.target.value)}
+                  placeholder="Email для получения скидки" type="email"
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text',sans-serif" }} />
+                <textarea value={comment} onChange={e => setComment(e.target.value)}
+                  placeholder="Пожелания или вопросы" rows={2}
+                  className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "var(--eth-cream)", border: "1px solid rgba(200,146,58,0.2)", fontFamily: "'Golos Text',sans-serif" }} />
+              </div>
+              <button type="submit" disabled={loading}
+                className="w-full mt-5 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:opacity-90 disabled:opacity-50"
+                style={{ background: "linear-gradient(135deg,var(--eth-ember),var(--eth-gold))", color: "white", letterSpacing: "0.12em" }}>
+                {loading ? "Отправляем..." : "Получить скидку 19%"}
+              </button>
+            </form>
+          ) : (
+            <>
+              {/* Info */}
+              <div className="flex flex-wrap gap-3 mb-5">
+                {[
+                  { icon: "⏱", label: prog.duration },
+                  { icon: "💰", label: prog.price },
+                  { icon: "👥", label: prog.guests },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(200,146,58,0.07)", border: "1px solid rgba(200,146,58,0.15)" }}>
+                    <span className="text-xs">{item.icon}</span>
+                    <span className="text-xs" style={{ color: "rgba(240,225,200,0.7)", fontFamily: "'Golos Text',sans-serif" }}>{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Included base */}
+              <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(200,146,58,0.04)", border: "1px solid rgba(200,146,58,0.12)" }}>
+                <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "rgba(200,146,58,0.55)" }}>🧹🪻 В каждую программу входит:</p>
+                <ul className="space-y-1.5">
+                  {INCLUDED_BASE.map((item, i) => (
+                    <li key={i} className="text-xs leading-relaxed" style={{ color: "rgba(240,225,200,0.65)", fontFamily: "'Golos Text',sans-serif" }}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Program steps */}
+              <div className="mb-4">
+                <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "rgba(200,146,58,0.55)" }}>Программа:</p>
+                <ol className="space-y-2.5">
+                  {prog.steps.map((step, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-medium"
+                        style={{ background: prog.color.replace("0.7", "0.15"), color: prog.color.replace("0.7", "1"), border: `1px solid ${prog.color.replace("0.7", "0.3")}` }}>
+                        {i + 1}
+                      </span>
+                      <span className="text-xs leading-relaxed pt-0.5" style={{ color: "rgba(240,225,200,0.7)", fontFamily: "'Golos Text',sans-serif" }}>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Program included */}
+              {prog.included && prog.included.length > 0 && (
+                <div className="rounded-xl p-4 mb-5" style={{ background: `${prog.glow.replace("0.4", "0.06")}`, border: `1px solid ${prog.color.replace("0.7", "0.2")}` }}>
+                  <p className="text-xs uppercase tracking-widest mb-2" style={{ color: prog.color.replace("0.7", "0.7") }}>Дополнительно входит в программу:</p>
+                  {prog.included.map((item, i) => (
+                    <p key={i} className="text-xs leading-relaxed" style={{ color: "rgba(240,225,200,0.7)", fontFamily: "'Golos Text',sans-serif" }}>✦ {item}</p>
+                  ))}
+                </div>
+              )}
+
+              <button onClick={() => setStep("form")}
+                className="w-full py-3.5 rounded-full text-sm tracking-widest uppercase transition-all hover:scale-[1.02] hover:shadow-2xl"
+                style={{ background: "linear-gradient(135deg,var(--eth-ember),var(--eth-gold))", color: "white", letterSpacing: "0.12em" }}>
+                Предбронирование · скидка 19%
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ExclusiveCarousel() {
   const [active, setActive] = useState(0);
+  const [modalProg, setModalProg] = useState<ExclusiveProgram | null>(null);
   const total = EXCLUSIVE_PROGRAMS.length;
   const containerRef = useRef<HTMLDivElement>(null);
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -612,8 +897,13 @@ function ExclusiveCarousel() {
   }, []);
 
   const handleClick = (i: number) => {
-    setActive(i);
-    startAuto();
+    if (i === active) {
+      if (autoRef.current) clearInterval(autoRef.current);
+      setModalProg(EXCLUSIVE_PROGRAMS[i]);
+    } else {
+      setActive(i);
+      startAuto();
+    }
   };
 
   const getCardStyle = (i: number): React.CSSProperties => {
@@ -659,108 +949,118 @@ function ExclusiveCarousel() {
   const prog = EXCLUSIVE_PROGRAMS[active];
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden"
-      style={{ background: "radial-gradient(ellipse at 50% 50%, #110c08 0%, #0a0806 100%)" }}>
+    <>
+      {modalProg && <PrebookingModal prog={modalProg} onClose={() => { setModalProg(null); startAuto(); }} />}
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 60%, ${prog.glow.replace("0.4", "0.06")} 0%, transparent 65%)`, transition: "background 1s ease" }} />
-        {["top-8 left-[10%]","top-20 right-[8%]","bottom-16 left-[15%]","bottom-8 right-[12%]","top-1/2 left-[4%]","top-1/3 right-[3%]"].map((pos, i) => (
-          <span key={i} className={`absolute ${pos}`}
-            style={{ color: "rgba(200,146,58,0.1)", fontSize: i % 2 === 0 ? "7px" : "4px", animation: `pulseGold ${3 + i * 0.7}s ease-in-out ${i * 0.5}s infinite` }}>✦</span>
-        ))}
-      </div>
+      <section className="py-24 px-6 relative overflow-hidden"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, #110c08 0%, #0a0806 100%)" }}>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.4))" }} />
-            <span style={{ color: "rgba(200,146,58,0.6)", fontSize: "1.2rem" }}>✦</span>
-            <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.4), transparent)" }} />
-          </div>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-            style={{ background: "linear-gradient(135deg, rgba(212,98,42,0.15), rgba(200,146,58,0.15))", border: "1px solid rgba(200,146,58,0.2)" }}>
-            <span className="text-xs tracking-[0.35em] uppercase" style={{ color: "var(--eth-gold)", fontFamily: "'Golos Text', sans-serif" }}>NEW</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-light mb-4"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", letterSpacing: "-0.01em" }}>
-            Эксклюзивные программы<br /><em style={{ fontSize: "0.7em", color: "var(--eth-gold)", opacity: 0.85 }}>парения</em>
-          </h2>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 60%, ${prog.glow.replace("0.4", "0.06")} 0%, transparent 65%)`, transition: "background 1s ease" }} />
+          {["top-8 left-[10%]","top-20 right-[8%]","bottom-16 left-[15%]","bottom-8 right-[12%]","top-1/2 left-[4%]","top-1/3 right-[3%]"].map((pos, i) => (
+            <span key={i} className={`absolute ${pos}`}
+              style={{ color: "rgba(200,146,58,0.1)", fontSize: i % 2 === 0 ? "7px" : "4px", animation: `pulseGold ${3 + i * 0.7}s ease-in-out ${i * 0.5}s infinite` }}>✦</span>
+          ))}
         </div>
 
-        {/* 3D Carousel Stage */}
-        <div ref={containerRef} className="relative" style={{ height: "420px", perspective: "1200px" }}>
-          {EXCLUSIVE_PROGRAMS.map((p, i) => (
-            <div key={p.id}
-              onClick={() => handleClick(i)}
-              className="absolute left-1/2 top-0 cursor-pointer select-none"
-              style={{
-                width: "240px",
-                height: "340px",
-                transformStyle: "preserve-3d",
-                transition: "transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.7s ease, filter 0.7s ease",
-                ...getCardStyle(i),
-              }}>
-              <div className="relative w-full h-full rounded-2xl overflow-hidden"
-                style={{ border: i === active ? `1px solid ${p.color}` : "1px solid rgba(255,255,255,0.08)" }}>
-                <img src={p.image} alt={p.title}
-                  className="w-full h-full object-cover"
-                  style={{ transition: "transform 0.5s ease" }} />
-                <div className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 100%)" }} />
-                {i === active && (
-                  <div className="absolute top-3 right-3">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.4))" }} />
+              <span style={{ color: "rgba(200,146,58,0.6)", fontSize: "1.2rem" }}>✦</span>
+              <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.4), transparent)" }} />
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
+              style={{ background: "linear-gradient(135deg, rgba(212,98,42,0.15), rgba(200,146,58,0.15))", border: "1px solid rgba(200,146,58,0.2)" }}>
+              <span className="text-xs tracking-[0.35em] uppercase" style={{ color: "var(--eth-gold)", fontFamily: "'Golos Text', sans-serif" }}>NEW</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-light mb-4"
+              style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", letterSpacing: "-0.01em" }}>
+              Эксклюзивные программы<br /><em style={{ fontSize: "0.7em", color: "var(--eth-gold)", opacity: 0.85 }}>парения</em>
+            </h2>
+            <p className="text-sm" style={{ color: "rgba(240,225,200,0.4)", fontFamily: "'Cormorant', serif", fontStyle: "italic" }}>
+              Нажмите на карточку в центре, чтобы узнать подробнее
+            </p>
+          </div>
+
+          {/* 3D Carousel Stage */}
+          <div ref={containerRef} className="relative" style={{ height: "420px", perspective: "1200px" }}>
+            {EXCLUSIVE_PROGRAMS.map((p, i) => (
+              <div key={p.id}
+                onClick={() => handleClick(i)}
+                className="absolute left-1/2 top-0 cursor-pointer select-none"
+                style={{
+                  width: "240px",
+                  height: "340px",
+                  transformStyle: "preserve-3d",
+                  transition: "transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.7s ease, filter 0.7s ease",
+                  ...getCardStyle(i),
+                }}>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden"
+                  style={{ border: i === active ? `1px solid ${p.color}` : "1px solid rgba(255,255,255,0.08)" }}>
+                  <img src={p.image} alt={p.title}
+                    className="w-full h-full object-cover"
+                    style={{ transition: "transform 0.5s ease" }} />
+                  <div className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 100%)" }} />
+                  <div className="absolute top-3 right-3 flex gap-1.5">
                     <span className="px-2.5 py-1 rounded-full text-xs font-semibold tracking-widest"
                       style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em", fontFamily: "'Golos Text', sans-serif" }}>
                       NEW
                     </span>
                   </div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                  <p className="text-sm font-light leading-snug"
-                    style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)", fontSize: "1rem", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
-                    {p.title}
-                  </p>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                    <p className="text-sm font-light leading-snug mb-1"
+                      style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)", fontSize: "1rem", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+                      {p.title}
+                    </p>
+                    {i === active && (
+                      <p className="text-xs" style={{ color: "rgba(200,146,58,0.8)", fontFamily: "'Golos Text',sans-serif", fontSize: "0.65rem", letterSpacing: "0.1em" }}>
+                        нажмите для деталей
+                      </p>
+                    )}
+                  </div>
+                  <div className="absolute inset-0 rounded-2xl pointer-events-none"
+                    style={{ boxShadow: i === active ? `inset 0 0 40px ${p.glow}` : "none", transition: "box-shadow 0.7s ease" }} />
                 </div>
-                <div className="absolute inset-0 rounded-2xl pointer-events-none"
-                  style={{ boxShadow: i === active ? `inset 0 0 40px ${p.glow}` : "none", transition: "box-shadow 0.7s ease" }} />
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Dots navigation */}
-        <div className="flex items-center justify-center gap-2.5 mt-8">
-          {EXCLUSIVE_PROGRAMS.map((_, i) => (
-            <button key={i} onClick={() => handleClick(i)}
-              className="rounded-full transition-all duration-500"
-              style={{
-                width: i === active ? "28px" : "6px",
-                height: "6px",
-                background: i === active ? "linear-gradient(90deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.25)",
-              }} />
-          ))}
-        </div>
+          {/* Dots navigation */}
+          <div className="flex items-center justify-center gap-2.5 mt-8">
+            {EXCLUSIVE_PROGRAMS.map((_, i) => (
+              <button key={i} onClick={() => { setActive(i); startAuto(); }}
+                className="rounded-full transition-all duration-500"
+                style={{
+                  width: i === active ? "28px" : "6px",
+                  height: "6px",
+                  background: i === active ? "linear-gradient(90deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.25)",
+                }} />
+            ))}
+          </div>
 
-        {/* Nav arrows */}
-        <div className="flex items-center justify-center gap-6 mt-6">
-          <button
-            onClick={() => handleClick((active - 1 + total) % total)}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-            style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
-            ‹
-          </button>
-          <p className="text-sm" style={{ color: "rgba(200,146,58,0.5)", fontFamily: "'Cormorant', serif", fontSize: "0.95rem" }}>
-            {active + 1} / {total}
-          </p>
-          <button
-            onClick={() => handleClick((active + 1) % total)}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-            style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
-            ›
-          </button>
+          {/* Nav arrows */}
+          <div className="flex items-center justify-center gap-6 mt-6">
+            <button
+              onClick={() => { setActive(a => (a - 1 + total) % total); startAuto(); }}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
+              ‹
+            </button>
+            <p className="text-sm" style={{ color: "rgba(200,146,58,0.5)", fontFamily: "'Cormorant', serif", fontSize: "0.95rem" }}>
+              {active + 1} / {total}
+            </p>
+            <button
+              onClick={() => { setActive(a => (a + 1) % total); startAuto(); }}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
+              ›
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
