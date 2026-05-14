@@ -258,55 +258,89 @@ const PRACTICE_STEPS = [
     id: "mirror",
     icon: "🪞",
     title: "Зеркало истины",
+    accent: "rgba(140,80,200,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(140,80,200,0.13) 0%, transparent 65%)",
     text: "Представьте себе зеркало, отражающее не вашу привычную внешность, а вашу суть..\n\nВглядитесь.. Что вы видите? Кого вы видите в нём?..\n\nОтражается ли то что вы хотели бы? Может наоборот то что точно не планировали увидеть..\n\nПрисмотритесь ещё раз..",
   },
   {
     id: "coins",
     icon: "🪙",
     title: "Монеты перемен",
-    text: "К вам подошли и положили в ваши ладони крупные тяжёлые монетки — это бонусы, используя которые вы можете изменить то что видите в этом зеркале, улучшить или полностью перепрошить.\n\nРешившись на изменения, вы подкидываете монетку в воздух и она растворяется..\n\nВзмах вашей руки — и отражение изменилось. Вам нравятся новые перемены?",
+    accent: "rgba(200,146,58,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(200,146,58,0.12) 0%, transparent 65%)",
+    text: "К вам подошли и положили в ваши ладони крупные тяжёлые монетки — это бонусы, используя которые вы можете изменить то что видите в этом зеркале, улучшить или полностью перепрошить, так сказать.\n\nРешившись на изменения, вы подкидываете монетку в воздух и она растворяется..\n\nВзмах вашей руки или клик компьютерной мышки — и отражение изменилось. Вам нравятся новые перемены? Или требуется применить ctrl+z для отмены результата?",
+  },
+  {
+    id: "journey",
+    icon: "🌿",
+    title: "Путешествие сквозь зеркало тайн",
+    accent: "rgba(80,160,100,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(80,160,100,0.1) 0%, transparent 65%)",
+    text: "Вы вышли на улицу после занятия на террасе крыши. У вас приятное ощущение — чувствуется нагрузка информацией на ваш мозг, вы знаете как сможете это применить. Лёгкое чувство эйфории, вы в предвкушении, возможно вы даже сможете стать новатором, применив информацию в своей сфере..\n\nЗа вашей спиной академия Ice Fire. Дует свежий тёплый ветер, моросит дождь, вы идёте по тропинке с множеством самых разных деревьев и цветов. Вы чувствуете защиту и доверие.\n\nВашему взгляду попадается удивительный цветок — вы присаживаетесь, чтобы рассмотреть его поближе.. Это лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..",
+  },
+  {
+    id: "fog",
+    icon: "🌫",
+    title: "Густой туман",
+    accent: "rgba(160,180,220,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(120,140,200,0.12) 0%, transparent 65%)",
+    text: "Время остановилось.\n\nГустой туман заполнил парк, воздух словно подтолкнул вас вперёд — вы чуть не запнулись, но удержались. Сомнений не было: раз ведут энергии — то пойдём, а там на месте уже разберёмся..\n\nУпорно невидимое нечто проводило вас вперёд. Парковая зона закончилась. Вы увидели улицу и ничем не примечательную сталинку. Но вас подталкивало именно к ней — до самой двери у торца.\n\nКоричневая деревянная дверь. Вы повернули дверную ручку и вошли внутрь.",
   },
   {
     id: "shop",
     icon: "🏚",
-    title: "Лавка на краю тумана",
-    text: "Вы вышли на улицу. Лёгкое чувство эйфории, вы в предвкушении. Дует свежий тёплый ветер, моросит дождь. Вашему взгляду попадает удивительный цветок — лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..\n\nВремя остановилось. Густой туман заполнил парк. Вас ведёт невидимое нечто — до самой двери сталинки. Коричневая деревянная дверь. Вы повернули ручку и вошли.\n\nПриглушённый туманом солнечный луч наполнял комнату светом, запах деревянной мебели и хвои. Маленькая лавка. Книжная полка, статуэтки, вешалка с текстурными вещами. За прилавком — женщина в тёплом этническом платке.",
+    title: "Маленькая лавка",
+    accent: "rgba(180,130,80,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(180,130,80,0.1) 0%, transparent 65%)",
+    text: "Приглушённый туманом солнечный луч наполнял комнату своим светом, запах деревянной мебели и хвои — вы оказались в маленькой лавке.\n\nВы прошлись взором вокруг: книжная полка, на которой не только книги, но и разные статуэтки. Вешалка с множеством текстурных вещей. Ещё полка, заполненная предметами. И прилавок, за которым сидит женщина в тёплом этническом шали-платке.\n\nЖенщина подняла на вас взгляд, отложила книжку корешком вверх на прилавок и встала.\n\n— Помочь?\n\nДа, нет — вы поджали губы и отрицательно мотнули головой.",
   },
   {
     id: "dress",
     icon: "🪡",
     title: "Примерочная",
-    text: "Женщина подняла на вас взгляд, отложила книжку корешком вверх и встала.\n\n— Помочь?\n\nДа, нет — вы поджали губы и отрицательно мотнули головой. «С чем тут поможешь, когда я вообще здесь оказался случайно» — подумали вы.\n\nВы провели рукой по висевшей кофте — такая нежная тонкая ткань лесного зелёного. Следующая вещь — гладкая холодная чёрная кожа. Вы решили примерить несколько моделей.\n\nВыйдя из маленькой примерочной, вы встали перед зеркалом. Чёрный кожаный корсет с вышитыми цветами. Вы такое не носили прежде — но теперь видите, как это вам идёт..",
+    accent: "rgba(200,80,100,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(180,60,80,0.1) 0%, transparent 65%)",
+    text: "«С чем тут поможешь, когда я вообще здесь оказался случайно» — подумали вы, и подошли к вещам около окна.\n\nВы провели рукой по висящей на плечах кофте — такая нежная тонкая ткань лесного зелёного цвета. Следующая вещь — гладкая холодная чёрная кожа. Вы решили примерить несколько моделей.\n\nВыйдя из маленькой примерочной, вы встали перед зеркалом. Чёрный кожаный корсет с вышитыми на нём цветами — вы такое не носили прежде, но теперь видите, как это вам идёт..\n\nВы обернулись посмотреть что ещё есть интересного на вешалках — и в этот момент ваше мировосприятие преобразилось. Нет, в лавке ничего не изменилось. Изменились ваши ощущения.\n\nЛавка с самыми уникальными предметами вселенной..",
   },
   {
     id: "book",
     icon: "📖",
     title: "Mendacium Veritas",
-    text: "Женщина держит руку на весу, протягивая вам книгу. Светло-голубая обложка с серебряной гравировкой: ледяной мост над пропастью, через который перепрыгивает сурикат.. Занятно.\n\nУ людей не принято ждать долго, пора решаться. Вы сегодня вообще не планировали покупки, верно? Это всё странный ветер да туман — это они виновники того, что вы открыли дверь лавки. Решайтесь. Выбор за вами.\n\nВы протянули руку, чтобы взять книгу — не потому что решились, а потому что не произнесли «нет».",
+    accent: "rgba(100,140,220,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(80,120,200,0.13) 0%, transparent 65%)",
+    text: "Женщина улыбнулась своим мыслям, сняла с себя платок, положив его на высокий стул, и подошла к книжной полке. Среди множества статуэток и книг она выбрала одну и подошла к вам.\n\nОна протягивает её вам. Возьмёте ли?\n\nЖенщина держит руку на весу, протягивая вам книгу. Светло-голубая обложка с серебряной гравировкой и рисунок — ледяной мост над пропастью, через который перепрыгивает сурикат.. Занятно.\n\nУ людей не принято ждать долго, пора решаться. Вы сегодня вообще не планировали покупки, верно? Это всё странный ветер да туман — это они виновники того, что вы открыли дверь лавки. Решайтесь. Выбор за вами.\n\nВы протянули руку взять книгу — не потому что решились, а потому что не произнесли «нет».",
   },
   {
     id: "payment",
     icon: "🪙",
     title: "Три монеты",
-    text: "Вы подошли к прилавку с корсетом и книгой, протягивая купюры. Цены нигде не указаны. Женщина смотрит на синие бумажки...\n\n— Не пойдёт..\n\nВы в недоумении. Карты нет. Женщина улыбается, вздыхает и стучит пальцем по стеклянной банке, в которой горстка монет — таких же, что вручил вам незнакомец несколько дней назад, когда вы встретили своё истинное отражение..\n\nВы нашли монеты в кармане. Достали три.\n— Сколько за корсет?\n— Три монеты.\n— Так дорого — подметили вы, вспомнив, что изменения вашей внутренней сути стоили вам всего одну монету..\n\nЖенщина вновь улыбнулась, словно прочитав ваши мысли..",
+    accent: "rgba(200,146,58,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(200,146,58,0.13) 0%, transparent 65%)",
+    text: "Вы подошли к прилавку с корсетом и книгой, протягивая купюры. Цены нигде не указаны. Женщина смотрит на синие бумажки, протянутые вами.\n\n— Не пойдёт..\n\nВы в недоумении. Карты нет. Женщина улыбается, вздыхает и стучит пальцем по стеклянной банке, в которой горстка монет — таких же монет, что вручил вам незнакомец несколько дней назад, когда вы встретили своё истинное отражение..\n\nВы нашупали монеты в кармане джинс. Достали три.\n\n— Сколько за корсет?\n— Три монеты.\n— Так дорого — подметили вы, вспомнив, что изменения вашей внутренней сути стоили вам всего одну монету..\n\nЖенщина вновь улыбнулась, словно прочитав ваши мысли..",
   },
   {
     id: "price",
     icon: "⚖️",
     title: "Цена внутреннего и внешнего",
-    text: "Монета, которую ты отдала за глубинные изменения — это не просто монета. Она олицетворяла: твоё время, дисциплину, твёрдую уверенность в необходимости перемен, работу над эго.\n\nЭти три монеты — инструмент, благодаря которому ты взаимодействуешь с миром. Ты покупаешь не корсет с вышитыми цветами — ты приобретаешь самопроявление своей внутренней сути в мир. Люди будут видеть тебя той самой, настоящей.\n\nС таким приобретением твои люди будут видеть тебя всегда, а не растворяться в вечернем сумраке. Стоит ли это того — решать тебе..",
+    accent: "rgba(160,100,220,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(140,80,200,0.13) 0%, transparent 65%)",
+    text: "Монета, которую ты отдала за свои глубинные изменения — это не просто монета. Она олицетворяла: твоё время, дисциплину, твёрдую уверенность в необходимости перемен, работу над эго, твоё осознание. Внутренние перемены стоят очень дорого, верно. А внешние ещё дороже.\n\nЭти три монеты не олицетворяют ни дисциплину, ни упорство, ни дух характера — нет, но они тот инструмент, благодаря которому ты можешь взаимодействовать со многими. Эти три монеты — плата за восприятие тебя окружающим миром.\n\nТы покупаешь не корсет с вышитыми цветами, не просто дизайнерскую ручную работу, на которую ушли месяцы жизни автора — ты приобретаешь самопроявление своей внутренней сути в мир. Люди будут видеть тебя той самой, настоящей, кем ты являешься, той, кем ты видела себя в отражении..\n\nС таким приобретением твои люди будут видеть тебя всегда, а не растворяться в вечернем сумраке, уходя по улице города под светом фонарей. Стоит ли это того — решать тебе..",
   },
   {
     id: "practice",
     icon: "✨",
-    title: "Практика возвращения",
-    text: "Ты решилась? Отлично. С тебя три монеты.\n\nСамоуважение, потенциал, таланты — эти три монеты промелькнули у вас в мыслях. Вы протянули их. Хозяйка лавки скинула монеты в банку — они чуть звякнули. Женщина протянула вам пакет с корсетом и книгой. И нет, она вовсе не забыла взять за книгу — она отдала её вам в дар.\n\nВернитесь к зеркалу, с которого началось ваше преображение..\n\nВы готовы к тому, что люди в вас увидят эту же картину? Может быть, вы хотите что-то ещё доработать — у вас есть на это пара монет, или всё уже готово?\n\nПодумайте, не спешите, и когда решитесь — пойдём дальше..",
+    title: "Вернитесь к зеркалу",
+    accent: "rgba(180,140,255,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(160,110,255,0.14) 0%, transparent 65%)",
+    text: "Хозяйка с мягкой улыбкой наблюдала, как вы с любопытством бродите по старой лавке, изучая предметы и вещи на полках. Таинственная атмосфера магазина наполняет предвкушением новых открытий. Каждая книга и каждая вещь в этой лавке хранит свою историю.\n\nТы решилась? Отлично. С тебя три монеты.\n\nСамоуважение, потенциал, таланты — эти три монеты промелькнули у вас в мыслях. Вы протянули их. Хозяйка скинула монеты в банку — они чуть звякнули. Женщина протянула вам пакет с корсетом и книгой — и нет, она вовсе не забыла взять с вас оплату за книгу, она отдала её вам в дар.\n\nВернитесь к зеркалу, с которого началось ваше преображение..\n\nВы готовы к тому, что люди в вас увидят эту же картину? Может быть, вы хотите что-то ещё доработать — у вас есть на это пара монет, или всё уже готово?\n\nПодумайте, не спешите, и когда решитесь — пойдём дальше..",
   },
   {
     id: "epilogue",
     icon: "🌧",
     title: "На вас так странно смотрят прохожие..",
-    text: "Вы вышли на улицу. Дождь уже прекратился. Мимо проезжали машины.\n\nВы замешкались на пороге — всё-таки следовало заплатить за книжку — и вновь открыли дверь. Но там уже не было старинной лавки. Обычный продуктовый магазин: молоко, свежий хлеб, соль на витрине.\n\nВы вдохнули аромат свежего тёплого хлеба и не удержались. Ещё один холщовый пакет в ваших руках.\n\nВы возвращаетесь в академию. Вот только одно.. На вас так странно смотрят прохожие..",
+    accent: "rgba(120,160,200,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(100,140,180,0.1) 0%, transparent 65%)",
+    text: "Вы кивнули, пожелали хорошего дня и вышли на улицу. Дождь уже прекратился, мимо проезжали машины..\n\nВы замешкались на пороге, думая, что всё-таки следовало бы заплатить за книжку, и вновь открыли дверь — но там уже не было старинной лавки. Это был обычный продуктовый магазин с бумажными пакетами молока, свежим хлебом и солью на витрине.\n\nВы вдохнули аромат свежего тёплого хлеба и не удержались. Ещё один холщовый пакет в ваших руках.\n\nВы возвращаетесь в академию. Вот только одно..\n\nНа вас так странно смотрят прохожие..",
   },
 ];
 
@@ -329,124 +363,102 @@ function FloatingCoin({ style }: { style: React.CSSProperties }) {
 }
 
 function Mirror3D({ visible }: { visible: boolean }) {
-  const [rotY, setRotY] = useState(55);
-  const [rotX, setRotX] = useState(-8);
-  const [glowPulse, setGlowPulse] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     if (!visible) return;
-    // Плавное раскручивание из 55° → 0° по Y, из -8° → 0° по X
-    let ry = 55, rx = -8;
-    const t = setInterval(() => {
-      ry = ry > 0 ? Math.max(0, ry - 1.5) : 0;
-      rx = rx < 0 ? Math.min(0, rx + 0.25) : 0;
-      setRotY(ry);
-      setRotX(rx);
-      if (ry === 0 && rx === 0) {
-        clearInterval(t);
-        setGlowPulse(true);
-      }
-    }, 20);
-    return () => clearInterval(t);
+    const t = setTimeout(() => setRevealed(true), 120);
+    return () => clearTimeout(t);
   }, [visible]);
 
   return (
-    <div className="relative mx-auto" style={{ width: "160px", height: "200px", perspective: "900px", marginBottom: "8px" }}>
-      {/* Outer ambient rings */}
+    <div style={{ perspective: "1000px", width: "170px", height: "210px", margin: "0 auto 12px", position: "relative" }}>
+      {/* Ambient glow behind */}
       <div style={{
-        position: "absolute", inset: "-20px", borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(140,80,200,0.22) 0%, transparent 65%)",
-        animation: glowPulse ? "pulseGold 2.8s ease-in-out infinite" : "none",
+        position: "absolute", inset: "-24px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(140,80,200,0.25) 0%, transparent 65%)",
+        opacity: revealed ? 1 : 0,
+        transition: "opacity 1.2s ease 0.6s",
         pointerEvents: "none",
-        transition: "opacity 1s",
-        opacity: visible ? 1 : 0,
-      }} />
-      <div style={{
-        position: "absolute", inset: "-4px", borderRadius: "50% 50% 44% 44% / 36% 36% 56% 56%",
-        border: "1px solid rgba(180,140,255,0.12)",
-        pointerEvents: "none",
-        animation: glowPulse ? "pulseGold 4s ease-in-out 1s infinite" : "none",
+        animation: revealed ? "pulseGold 3s ease-in-out infinite" : "none",
       }} />
 
-      {/* 3D mirror body */}
+      {/* The mirror — CSS 3D flip from side to front */}
       <div style={{
         width: "100%", height: "100%",
         transformStyle: "preserve-3d",
-        transform: `rotateY(${rotY}deg) rotateX(${rotX}deg)`,
-        transition: "none",
+        transform: revealed ? "rotateY(0deg) rotateX(0deg)" : "rotateY(70deg) rotateX(-12deg)",
+        transition: "transform 1.4s cubic-bezier(0.22,1,0.36,1)",
+        position: "relative",
       }}>
-        {/* Front face */}
+        {/* ── FRONT FACE ── */}
         <div style={{
           position: "absolute", inset: 0,
-          borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
-          background: "linear-gradient(170deg, #1c0e30 0%, #0d0820 60%, #160b28 100%)",
-          border: "2px solid rgba(190,130,255,0.5)",
-          boxShadow: "0 0 80px rgba(140,80,200,0.45), inset 0 0 50px rgba(140,80,200,0.18), 0 20px 40px rgba(0,0,0,0.6)",
-          overflow: "hidden",
           backfaceVisibility: "hidden",
+          borderRadius: "48% 48% 44% 44% / 40% 40% 56% 56%",
+          background: "linear-gradient(165deg, #1e0e34 0%, #0e081c 55%, #180c2c 100%)",
+          border: "2px solid rgba(200,150,255,0.55)",
+          boxShadow: revealed
+            ? "0 0 100px rgba(140,80,200,0.5), inset 0 0 60px rgba(140,80,200,0.2), 0 24px 48px rgba(0,0,0,0.7)"
+            : "0 0 30px rgba(140,80,200,0.2)",
+          transition: "box-shadow 0.8s ease 1s",
+          overflow: "hidden",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          {/* Glass shimmer */}
+          {/* Glassy shimmer diagonal */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(130deg, rgba(220,200,255,0.1) 0%, transparent 40%, rgba(120,80,200,0.06) 100%)",
+            background: "linear-gradient(125deg, rgba(230,210,255,0.11) 0%, transparent 45%, rgba(120,80,220,0.07) 100%)",
           }} />
-          {/* Highlight spot */}
+          {/* Highlight top-left */}
           <div style={{
-            position: "absolute", top: "10%", left: "18%", width: "28%", height: "35%",
-            background: "radial-gradient(ellipse, rgba(255,255,255,0.09) 0%, transparent 70%)",
-            borderRadius: "50%",
-            transform: "rotate(-15deg)",
+            position: "absolute", top: "8%", left: "14%",
+            width: "32%", height: "38%",
+            background: "radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%)",
+            borderRadius: "50%", transform: "rotate(-20deg)",
           }} />
-          {/* Mirror surface reflection gradient */}
+          {/* Inner surface */}
           <div style={{
-            position: "absolute", inset: "8px",
-            borderRadius: "50% 50% 44% 44% / 36% 36% 56% 56%",
-            background: "linear-gradient(150deg, rgba(160,120,255,0.08), rgba(80,60,160,0.05), rgba(200,160,255,0.08))",
+            position: "absolute", inset: "10px",
+            borderRadius: "46% 46% 42% 42% / 38% 38% 54% 54%",
+            background: "linear-gradient(155deg, rgba(170,130,255,0.07), rgba(90,60,180,0.04), rgba(210,170,255,0.07))",
           }} />
-          {/* Central symbol */}
+          {/* Main emoji */}
           <div style={{
-            position: "relative", zIndex: 2,
-            fontSize: "52px",
-            filter: `drop-shadow(0 0 ${glowPulse ? "24px" : "10px"} rgba(190,150,255,0.95))`,
-            transition: "filter 0.5s ease",
-            lineHeight: 1,
+            position: "relative", zIndex: 2, fontSize: "56px", lineHeight: 1,
+            filter: "drop-shadow(0 0 20px rgba(200,160,255,1)) drop-shadow(0 0 40px rgba(140,80,200,0.7))",
+            animation: revealed ? "pulseGold 3.5s ease-in-out 1.5s infinite" : "none",
           }}>🪞</div>
-          {/* Floating particles */}
-          {[...Array(8)].map((_, i) => (
+          {/* Dust particles */}
+          {[...Array(9)].map((_, i) => (
             <div key={i} style={{
               position: "absolute",
-              width: i % 3 === 0 ? "4px" : "2px",
-              height: i % 3 === 0 ? "4px" : "2px",
+              width: i % 2 === 0 ? "3px" : "2px", height: i % 2 === 0 ? "3px" : "2px",
               borderRadius: "50%",
-              background: `rgba(${180 + i * 8},${140 + i * 5},255,${0.4 + i * 0.05})`,
-              left: `${12 + i * 10}%`,
-              top: `${20 + (i % 4) * 16}%`,
-              animation: `pulseGold ${1.8 + i * 0.35}s ease-in-out ${i * 0.25}s infinite`,
+              background: `rgba(${190 + i * 6},${155 + i * 4},255,${0.35 + i * 0.06})`,
+              left: `${10 + i * 9}%`, top: `${18 + (i % 5) * 13}%`,
+              animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${i * 0.22}s infinite`,
             }} />
           ))}
         </div>
 
-        {/* Back face */}
+        {/* ── BACK FACE ── */}
         <div style={{
           position: "absolute", inset: 0,
-          borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
-          background: "linear-gradient(160deg, #08040e, #0e0818)",
-          border: "2px solid rgba(100,60,160,0.25)",
           backfaceVisibility: "hidden",
+          borderRadius: "48% 48% 44% 44% / 40% 40% 56% 56%",
+          background: "linear-gradient(160deg, #09040f, #0f0820)",
+          border: "2px solid rgba(100,60,160,0.3)",
           transform: "rotateY(180deg)",
         }} />
       </div>
 
-      {/* Floor reflection */}
+      {/* Floor shadow */}
       <div style={{
-        position: "absolute", bottom: "-24px", left: "50%",
-        transform: "translateX(-50%)",
-        width: "100px", height: "16px", borderRadius: "50%",
-        background: "rgba(140,80,200,0.28)",
-        filter: "blur(12px)",
-        opacity: visible ? 1 : 0,
-        transition: "opacity 1s ease 0.5s",
+        position: "absolute", bottom: "-26px", left: "50%", transform: "translateX(-50%)",
+        width: "110px", height: "18px", borderRadius: "50%",
+        background: "rgba(140,80,200,0.3)", filter: "blur(14px)",
+        opacity: revealed ? 1 : 0, transition: "opacity 1s ease 0.8s",
       }} />
     </div>
   );
@@ -498,27 +510,21 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
       <div
         className="relative w-full max-w-lg max-h-[94vh] overflow-y-auto rounded-3xl"
         style={{
-          background: "linear-gradient(170deg,#0c0814 0%,#130d1e 50%,#090c14 100%)",
-          border: "1px solid rgba(140,80,200,0.35)",
-          boxShadow: "0 0 140px rgba(140,80,200,0.25), 0 0 60px rgba(80,40,180,0.15)",
+          background: "linear-gradient(170deg,#0b0712 0%,#110b1c 50%,#080b12 100%)",
+          border: `1px solid ${current.accent.replace("0.9", "0.3")}`,
+          boxShadow: `0 0 140px ${current.accent.replace("0.9", "0.2")}, 0 0 60px ${current.accent.replace("0.9", "0.1")}`,
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0) scale(1)" : "translateY(50px) scale(0.94)",
           transition: "all 0.7s cubic-bezier(0.16,1,0.3,1)",
         }}
       >
-        {/* Top shimmer line */}
-        <div style={{ height: "2px", background: "linear-gradient(90deg,transparent,rgba(180,130,255,0.7),rgba(200,146,58,0.5),rgba(180,130,255,0.7),transparent)" }} />
+        {/* Top shimmer line — accent color */}
+        <div style={{ height: "2px", background: `linear-gradient(90deg,transparent,${current.accent.replace("0.9","0.8")},rgba(200,146,58,0.4),${current.accent.replace("0.9","0.8")},transparent)`, transition: "background 0.6s ease" }} />
 
-        {/* Step bg accent — unique per step */}
+        {/* Step bg — from PRACTICE_STEPS data */}
         <div style={{
           position: "absolute", inset: 0, borderRadius: "24px", pointerEvents: "none", zIndex: 0,
-          background: step === 0
-            ? "radial-gradient(ellipse at 50% 20%, rgba(140,80,200,0.12) 0%, transparent 60%)"
-            : step === 1
-            ? "radial-gradient(ellipse at 50% 30%, rgba(200,146,58,0.1) 0%, transparent 60%)"
-            : step === 4
-            ? "radial-gradient(ellipse at 50% 20%, rgba(100,60,200,0.14) 0%, transparent 60%)"
-            : "radial-gradient(ellipse at 50% 10%, rgba(120,70,200,0.08) 0%, transparent 50%)",
+          background: current.bg,
           transition: "background 0.8s ease",
         }} />
 
@@ -533,19 +539,20 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           </button>
 
           {/* Progress dots */}
-          <div className="flex items-center justify-center gap-1.5 mb-6">
-            {PRACTICE_STEPS.map((_, i) => (
+          <div className="flex items-center justify-center gap-1.5 mb-5">
+            {PRACTICE_STEPS.map((s, i) => (
               <div key={i} onClick={() => i < step && setStep(i)}
                 className="rounded-full transition-all duration-500"
                 style={{
-                  width: i === step ? "28px" : "5px",
+                  width: i === step ? "26px" : "5px",
                   height: "5px",
                   cursor: i < step ? "pointer" : "default",
                   background: i === step
-                    ? "linear-gradient(90deg, rgba(180,130,255,0.9), rgba(140,80,200,0.9))"
+                    ? current.accent.replace("0.9", "0.9")
                     : i < step
-                    ? "rgba(140,80,200,0.45)"
-                    : "rgba(140,80,200,0.18)",
+                    ? current.accent.replace("0.9", "0.4")
+                    : "rgba(180,180,200,0.12)",
+                  transition: "all 0.4s ease",
                 }} />
             ))}
           </div>
@@ -717,7 +724,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
               <button
                 onClick={() => setStep(s => s + 1)}
                 className="flex-1 py-3.5 rounded-full text-sm tracking-wider transition-all hover:scale-[1.02] hover:shadow-2xl"
-                style={{ background: "linear-gradient(135deg,rgba(150,90,220,0.9),rgba(110,65,200,0.95))", color: "white", letterSpacing: "0.12em", boxShadow: "0 0 30px rgba(140,80,200,0.3)" }}
+                style={{ background: `linear-gradient(135deg,${current.accent.replace("0.9","0.85")},${current.accent.replace("0.9","0.7")})`, color: "white", letterSpacing: "0.12em", boxShadow: `0 0 30px ${current.accent.replace("0.9","0.3")}`, transition: "background 0.5s ease, box-shadow 0.5s ease" }}
               >
                 далее →
               </button>
@@ -1035,12 +1042,16 @@ export default function Shop() {
       className="relative min-h-screen overflow-x-hidden"
       style={{ background: "var(--forest-bg)", color: "var(--forest-cream)" }}
     >
-      {/* Ambient layers */}
+      {/* Ambient layers — richer, deeper */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background:
-            "radial-gradient(ellipse at 30% 40%, rgba(30,40,20,0.8) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(20,30,15,0.6) 0%, transparent 50%)",
+          background: [
+            "radial-gradient(ellipse at 20% 30%, rgba(20,35,14,0.95) 0%, transparent 55%)",
+            "radial-gradient(ellipse at 85% 65%, rgba(14,22,10,0.8) 0%, transparent 45%)",
+            "radial-gradient(ellipse at 50% 100%, rgba(140,80,200,0.04) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 10% 80%, rgba(80,120,60,0.06) 0%, transparent 40%)",
+          ].join(","),
         }}
       />
       <TreeSilhouettes />
