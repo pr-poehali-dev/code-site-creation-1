@@ -329,58 +329,92 @@ function FloatingCoin({ style }: { style: React.CSSProperties }) {
 }
 
 function Mirror3D({ visible }: { visible: boolean }) {
+  const [angle, setAngle] = useState(40);
+  useEffect(() => {
+    if (!visible) return;
+    let a = 40;
+    const t = setInterval(() => {
+      a = a > 0 ? a - 2 : 0;
+      setAngle(a);
+      if (a === 0) clearInterval(t);
+    }, 30);
+    return () => clearInterval(t);
+  }, [visible]);
+
   return (
-    <div className="relative mx-auto mb-6" style={{ width: "120px", height: "160px", perspective: "600px" }}>
+    <div className="relative mx-auto mb-4" style={{ width: "140px", height: "180px", perspective: "700px" }}>
+      {/* Outer glow ring */}
       <div style={{
-        width: "100%",
-        height: "100%",
+        position: "absolute", inset: "-12px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(140,80,200,0.18) 0%, transparent 70%)",
+        animation: "pulseGold 3s ease-in-out infinite",
+        pointerEvents: "none",
+      }} />
+      <div style={{
+        width: "100%", height: "100%",
         transformStyle: "preserve-3d",
-        transform: visible ? "rotateY(0deg)" : "rotateY(40deg)",
-        transition: "transform 1.5s cubic-bezier(0.25,0.46,0.45,0.94)",
+        transform: `rotateY(${angle}deg)`,
+        transition: "transform 0.05s linear",
       }}>
-        {/* Mirror frame */}
+        {/* Front face — mirror */}
         <div style={{
-          position: "absolute",
-          inset: 0,
-          borderRadius: "50% 50% 48% 48% / 40% 40% 60% 60%",
-          background: "linear-gradient(145deg, #2a1a08, #1a1005)",
-          border: "2px solid rgba(200,146,58,0.4)",
-          boxShadow: "0 0 40px rgba(140,80,200,0.3), inset 0 0 30px rgba(140,80,200,0.1)",
+          position: "absolute", inset: 0,
+          borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
+          background: "linear-gradient(160deg, #1a0e2a 0%, #0d0818 100%)",
+          border: "2px solid rgba(180,120,255,0.45)",
+          boxShadow: "0 0 60px rgba(140,80,200,0.4), inset 0 0 40px rgba(140,80,200,0.15), 0 0 20px rgba(80,40,160,0.3)",
           overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          {/* Mirror surface */}
+          {/* Shimmer layers */}
           <div style={{
-            position: "absolute",
-            inset: "8px",
-            borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
-            background: "linear-gradient(135deg, rgba(140,80,200,0.15) 0%, rgba(80,120,200,0.1) 40%, rgba(200,180,120,0.08) 100%)",
-            backdropFilter: "blur(4px)",
+            position: "absolute", inset: 0,
+            background: "linear-gradient(135deg, rgba(200,180,255,0.08) 0%, rgba(140,80,200,0.05) 50%, rgba(80,120,255,0.08) 100%)",
           }} />
-          {/* Inner glow */}
           <div style={{
-            position: "relative",
-            zIndex: 1,
-            fontSize: "36px",
-            animation: "pulseGold 3s ease-in-out infinite",
-            filter: "drop-shadow(0 0 12px rgba(140,80,200,0.8))",
+            position: "absolute", top: "15%", left: "20%", width: "30%", height: "40%",
+            background: "radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%)",
+            borderRadius: "50%",
+          }} />
+          {/* Central mirror emoji */}
+          <div style={{
+            position: "relative", zIndex: 1,
+            fontSize: "42px",
+            filter: "drop-shadow(0 0 16px rgba(180,140,255,0.9))",
+            animation: "pulseGold 4s ease-in-out infinite",
           }}>🪞</div>
+          {/* Particles in mirror */}
+          {[...Array(6)].map((_, i) => (
+            <div key={i} style={{
+              position: "absolute",
+              width: "3px", height: "3px",
+              borderRadius: "50%",
+              background: "rgba(200,180,255,0.5)",
+              left: `${20 + i * 12}%`,
+              top: `${30 + (i % 3) * 15}%`,
+              animation: `pulseGold ${2 + i * 0.4}s ease-in-out ${i * 0.3}s infinite`,
+            }} />
+          ))}
         </div>
-        {/* Reflection shadow */}
+        {/* Back face */}
         <div style={{
-          position: "absolute",
-          bottom: "-16px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "80px",
-          height: "12px",
-          borderRadius: "50%",
-          background: "rgba(140,80,200,0.2)",
-          filter: "blur(8px)",
+          position: "absolute", inset: 0,
+          borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
+          background: "linear-gradient(160deg, #0a0612, #120a20)",
+          border: "2px solid rgba(140,80,200,0.2)",
+          backfaceVisibility: "hidden",
+          transform: "rotateY(180deg)",
         }} />
       </div>
+      {/* Floor reflection */}
+      <div style={{
+        position: "absolute", bottom: "-20px", left: "50%",
+        transform: "translateX(-50%)",
+        width: "90px", height: "14px",
+        borderRadius: "50%",
+        background: "rgba(140,80,200,0.25)",
+        filter: "blur(10px)",
+      }} />
     </div>
   );
 }
@@ -457,31 +491,78 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
 
           {/* Coins for step 1 */}
           {step === 1 && (
-            <div className="relative mx-auto mb-6" style={{ width: "180px", height: "100px" }}>
-              {coins.map((coin) => (
+            <div className="relative mx-auto mb-4" style={{ width: "200px", height: "110px" }}>
+              {/* Glow base */}
+              <div style={{
+                position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+                width: "140px", height: "20px", borderRadius: "50%",
+                background: "rgba(200,146,58,0.2)", filter: "blur(10px)",
+              }} />
+              {coins.map((coin, idx) => (
                 <div
                   key={coin.id}
-                  className="absolute"
+                  onClick={dissolveACoin}
                   style={{
+                    position: "absolute",
                     left: `${coin.x}%`,
                     top: `${coin.y}%`,
+                    width: "44px", height: "44px",
+                    borderRadius: "50%",
+                    background: coin.dissolved ? "transparent" : "radial-gradient(circle at 35% 30%, #fff8c0, #f0c840 30%, #c8923a 60%, #8a5010 90%)",
+                    boxShadow: coin.dissolved ? "none" : "0 0 20px rgba(200,146,58,0.8), 0 0 8px rgba(200,146,58,0.5), inset 0 1px 4px rgba(255,245,180,0.7)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "18px",
+                    cursor: coin.dissolved ? "default" : "pointer",
                     opacity: coin.dissolved ? 0 : 1,
-                    transform: coin.dissolved ? "scale(0) rotate(180deg)" : "scale(1) rotate(0deg)",
-                    transition: "all 0.8s cubic-bezier(0.34,1.56,0.64,1)",
-                    animation: coin.dissolved ? "none" : "spirit-float 2.5s ease-in-out infinite",
-                    cursor: "pointer",
+                    transform: coin.dissolved
+                      ? "translateY(-50px) scale(0) rotate(180deg)"
+                      : `scale(1) rotate(0deg)`,
+                    transition: "all 0.9s cubic-bezier(0.34,1.2,0.64,1)",
+                    animation: coin.dissolved ? "none" : `spirit-float ${2.2 + idx * 0.5}s ease-in-out ${idx * 0.4}s infinite`,
                   }}
-                  onClick={dissolveACoin}
-                >✦</div>
+                >
+                  {!coin.dissolved && <span style={{ filter: "drop-shadow(0 0 4px rgba(255,200,60,0.6))", lineHeight: 1 }}>✦</span>}
+                </div>
               ))}
-              <p className="absolute bottom-0 w-full text-center text-xs" style={{ color: "rgba(200,146,58,0.5)" }}>
-                {coins.filter(c => !c.dissolved).length > 0 ? "нажмите на монету" : "монеты растворились"}
+              <p className="absolute bottom-0 w-full text-center" style={{ fontSize: "10px", letterSpacing: "0.1em", color: "rgba(200,146,58,0.5)" }}>
+                {coins.filter(c => !c.dissolved).length > 0 ? "нажмите — монета растворится" : "✦ монеты растворились ✦"}
               </p>
             </div>
           )}
 
+          {/* Cards fan for book step (id="book", index 4) */}
+          {step === 4 && (
+            <div className="relative mx-auto mb-4 flex items-center justify-center" style={{ height: "150px", width: "220px" }}>
+              {DECK_CARDS.map((card, i) => {
+                const offsets = [-56, 0, 56];
+                const rotates = [-14, 0, 14];
+                return (
+                  <div key={i} style={{
+                    position: "absolute",
+                    width: "88px", height: "120px",
+                    borderRadius: "9px", overflow: "hidden",
+                    transform: `translateX(${offsets[i]}px) rotate(${rotates[i]}deg)`,
+                    zIndex: i === 1 ? 10 : i === 0 ? 5 : 3,
+                    boxShadow: i === 1
+                      ? "0 6px 36px rgba(140,80,200,0.7), 0 0 16px rgba(140,80,200,0.4)"
+                      : "0 4px 16px rgba(0,0,0,0.7)",
+                    border: i === 1 ? "1px solid rgba(180,140,255,0.55)" : "1px solid rgba(140,80,200,0.15)",
+                  }}>
+                    <img src={card.img} alt={card.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {i !== 1 && <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.38)" }} />}
+                  </div>
+                );
+              })}
+              <div style={{
+                position: "absolute", bottom: "-10px", left: "50%", transform: "translateX(-50%)",
+                width: "140px", height: "16px", borderRadius: "50%",
+                background: "rgba(140,80,200,0.25)", filter: "blur(10px)",
+              }} />
+            </div>
+          )}
+
           {/* Icon for other steps */}
-          {step !== 0 && step !== 1 && step !== 3 && (
+          {step !== 0 && step !== 1 && step !== 4 && (
             <div className="text-4xl mb-4" style={{ filter: "drop-shadow(0 0 16px rgba(140,80,200,0.6))", animation: "spirit-float 4s ease-in-out infinite" }}>
               {current.icon}
             </div>
@@ -562,8 +643,29 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
 
 // ─── Mendacium card for shop ──────────────────────────────────────────────────
 
+const DECK_CARDS = [
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/cc1ae69e-e626-4176-a15f-e83b7dddd6cc.png",
+    label: "Свет",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/81a367f5-2915-42f4-a4f1-03bacba54650.png",
+    label: "Пробуждение",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/66b42de5-7e80-464a-8da0-30b106859196.png",
+    label: "Душа",
+  },
+];
+
 function MendaciumCard({ onOpen }: { onOpen: () => void }) {
   const [hovered, setHovered] = useState(false);
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActiveCard(a => (a + 1) % DECK_CARDS.length), 2800);
+    return () => clearInterval(t);
+  }, []);
 
   return (
     <button
@@ -573,72 +675,133 @@ function MendaciumCard({ onOpen }: { onOpen: () => void }) {
       className="forest-card rounded-2xl text-left w-full group overflow-hidden relative"
       style={{
         background: hovered
-          ? "radial-gradient(ellipse at 40% 60%, #1a0e28 0%, #0d0a16 60%)"
-          : "rgba(14,10,20,0.92)",
+          ? "radial-gradient(ellipse at 40% 60%, #160a24 0%, #0d0a16 60%)"
+          : "rgba(12,8,20,0.95)",
         backdropFilter: "blur(8px)",
-        border: "1px solid rgba(140,80,200,0.25)",
-        boxShadow: hovered ? "0 0 60px rgba(140,80,200,0.2)" : "none",
-        transition: "all 0.4s ease",
+        border: `1px solid ${hovered ? "rgba(140,80,200,0.5)" : "rgba(140,80,200,0.2)"}`,
+        boxShadow: hovered ? "0 0 80px rgba(140,80,200,0.25), 0 0 30px rgba(140,80,200,0.1)" : "0 0 20px rgba(140,80,200,0.05)",
+        transition: "all 0.5s ease",
       }}
     >
-      {/* Photo */}
-      <div className="relative overflow-hidden" style={{ height: "180px" }}>
-        <img
-          src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a8e98a64-1fab-4ba2-ab2d-3f87e0377483.jpg"
-          alt="Mendacium Veritas"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,8,18,0.9) 0%, rgba(10,8,18,0.15) 60%, transparent 100%)" }} />
-        {/* NEW badge */}
-        <div className="absolute top-3 left-3 flex gap-2">
-          <span className="px-2.5 py-1 rounded-full text-xs font-semibold tracking-widest"
-            style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.9),rgba(100,60,200,0.95))", color: "white", letterSpacing: "0.15em" }}>
+      {/* Fan of 3 cards */}
+      <div className="relative overflow-hidden" style={{ height: "220px", background: "linear-gradient(180deg,#0a0616 0%,#120d1e 100%)" }}>
+        {/* Ambient purple glow */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: "radial-gradient(ellipse at 50% 80%, rgba(140,80,200,0.18) 0%, transparent 65%)",
+          transition: "opacity 0.5s",
+          opacity: hovered ? 1 : 0.6,
+        }} />
+
+        {/* Cards fan */}
+        <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: "800px" }}>
+          {DECK_CARDS.map((card, i) => {
+            const offsets = [-62, 0, 62];
+            const rotates = [-18, 0, 18];
+            const scales = [0.82, activeCard === i ? 1.05 : 0.92, 0.82];
+            const isActive = activeCard === i;
+            return (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  width: "100px",
+                  height: "140px",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  transform: `translateX(${offsets[i]}px) rotate(${rotates[i]}deg) scale(${scales[i]})`,
+                  zIndex: isActive ? 10 : i === 1 ? 5 : 1,
+                  transition: "all 0.7s cubic-bezier(0.25,0.46,0.45,0.94)",
+                  boxShadow: isActive
+                    ? "0 8px 40px rgba(140,80,200,0.6), 0 0 20px rgba(140,80,200,0.3)"
+                    : "0 4px 20px rgba(0,0,0,0.6)",
+                  border: isActive ? "1px solid rgba(180,140,255,0.5)" : "1px solid rgba(140,80,200,0.15)",
+                }}
+              >
+                <img src={card.img} alt={card.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: isActive ? "none" : "rgba(0,0,0,0.35)",
+                  transition: "background 0.5s",
+                }} />
+                {isActive && (
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    background: "linear-gradient(to top, rgba(10,6,22,0.9), transparent)",
+                    padding: "6px 6px 4px",
+                    textAlign: "center",
+                  }}>
+                    <span style={{ fontSize: "9px", letterSpacing: "0.2em", color: "rgba(200,180,255,0.8)", textTransform: "uppercase" }}>{card.label}</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Badges */}
+        <div className="absolute top-3 left-3 flex gap-2 z-20">
+          <span className="px-2.5 py-1 rounded-full text-xs font-semibold"
+            style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.95),rgba(100,50,200,1))", color: "white", letterSpacing: "0.12em", fontSize: "0.65rem" }}>
             NEW
           </span>
           <span className="px-2.5 py-1 rounded-full text-xs"
-            style={{ background: "rgba(200,146,58,0.15)", color: "rgba(200,146,58,0.9)", border: "1px solid rgba(200,146,58,0.25)", backdropFilter: "blur(8px)" }}>
+            style={{ background: "rgba(200,146,58,0.12)", color: "rgba(200,146,58,0.85)", border: "1px solid rgba(200,146,58,0.22)", backdropFilter: "blur(8px)", fontSize: "0.65rem" }}>
             Практика
           </span>
         </div>
-        <p className="absolute bottom-3 left-4 text-xs tracking-[0.35em] uppercase" style={{ color: "rgba(180,140,255,0.8)", opacity: 0.9 }}>Зазеркалье</p>
-      </div>
 
-      <div className="p-6">
-        {/* Floating coins decoration */}
-        <div className="flex gap-2 mb-4">
-          {[0,1,2].map(i => (
+        {/* Card dots */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+          {DECK_CARDS.map((_, i) => (
             <div key={i} style={{
-              width: "18px",
-              height: "18px",
-              borderRadius: "50%",
-              background: "radial-gradient(circle at 35% 35%, #f0d080, #c8923a)",
-              boxShadow: "0 0 8px rgba(200,146,58,0.5)",
-              animation: `spirit-float ${2.5+i*0.5}s ease-in-out ${i*0.4}s infinite`,
+              width: i === activeCard ? "16px" : "4px",
+              height: "4px",
+              borderRadius: "2px",
+              background: i === activeCard ? "rgba(180,140,255,0.9)" : "rgba(140,80,200,0.3)",
+              transition: "all 0.4s ease",
             }} />
           ))}
         </div>
+      </div>
 
-        <h3 className="text-2xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.95)" }}>
-          Mendacium Veritas
-        </h3>
-        <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "rgba(140,80,200,0.7)", opacity: 0.9 }}>
-          Истинная Подмена Понятий
-        </p>
+      <div className="p-5">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="text-xl font-light leading-tight" style={{ fontFamily: "'Cormorant', serif", color: "rgba(230,210,255,0.97)", letterSpacing: "0.02em" }}>
+              Mendacium Veritas
+            </h3>
+            <p className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "rgba(140,80,200,0.65)" }}>
+              Истинная Подмена Понятий
+            </p>
+          </div>
+          {/* Animated coin cluster */}
+          <div className="flex gap-1 flex-shrink-0">
+            {[0,1,2].map(i => (
+              <div key={i} style={{
+                width: "14px", height: "14px", borderRadius: "50%",
+                background: "radial-gradient(circle at 35% 35%, #f0d080, #c8923a 60%, #8a5010)",
+                boxShadow: "0 0 6px rgba(200,146,58,0.6)",
+                animation: `spirit-float ${2.2+i*0.4}s ease-in-out ${i*0.35}s infinite`,
+              }} />
+            ))}
+          </div>
+        </div>
 
-        <p className="text-sm leading-relaxed mb-5 italic"
-          style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,180,255,0.65)", fontSize: "0.95rem" }}>
-          Зеркало, отражающее не внешность — а суть. Монеты перемен. Лавка на краю тумана.
+        <p className="text-xs leading-relaxed mb-4 italic"
+          style={{ fontFamily: "'Cormorant', serif", color: "rgba(190,170,240,0.6)", fontSize: "0.88rem", lineHeight: "1.7" }}>
+          Embark on an extraordinary journey where the lines between truth and illusion blur, unlocking the door to self-discovery.
         </p>
 
         <p className="text-xs leading-relaxed"
-          style={{ color: "rgba(140,80,200,0.45)", borderTop: "1px solid rgba(140,80,200,0.12)", paddingTop: "0.75rem" }}>
-          колода · практика · серебряная гравировка · ледяной мост
+          style={{ color: "rgba(140,80,200,0.38)", borderTop: "1px solid rgba(140,80,200,0.1)", paddingTop: "0.65rem", letterSpacing: "0.05em" }}>
+          колода · практика · зеркало · ледяной мост
         </p>
 
-        <div className="flex items-center gap-2 mt-5 text-xs tracking-wider uppercase transition-all group-hover:gap-3"
-          style={{ color: "rgba(180,140,255,0.7)" }}>
-          <span>Открыть практику</span>
-          <Icon name="ArrowRight" size={14} />
+        <div className="flex items-center gap-2 mt-4 text-xs tracking-wider uppercase transition-all group-hover:gap-3"
+          style={{ color: "rgba(170,130,255,0.75)" }}>
+          <span style={{ fontFamily: "'Golos Text',sans-serif" }}>Открыть практику</span>
+          <Icon name="ArrowRight" size={13} />
         </div>
       </div>
     </button>
@@ -686,7 +849,7 @@ export const shopCategories = [
     leafColor: "rgba(122,184,138,0.6)",
     path: "/shop/amulets",
     featured: "дерево · камень · нить · намерение",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/dd527c81-9f5e-404e-af06-38d4a79e4afc.jpg",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/e4c67db1-2476-460f-a1ed-361bf5077a60.jpg",
   },
   {
     id: "brooms",
