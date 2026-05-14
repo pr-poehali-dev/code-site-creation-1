@@ -251,6 +251,382 @@ function Fireflies() {
 
 // ─── Shop data ────────────────────────────────────────────────────────────────
 
+// ─── Mendacium Veritas Modal ──────────────────────────────────────────────────
+
+const PRACTICE_STEPS = [
+  {
+    id: "mirror",
+    icon: "🪞",
+    title: "Зеркало истины",
+    text: "Представьте себе зеркало, отражающее не вашу привычную внешность, а вашу суть..\n\nВглядитесь.. Что вы видите? Кого вы видите в нём?..\n\nОтражается ли то что вы хотели бы? Может наоборот то что точно не планировали увидеть..\n\nПрисмотритесь ещё раз..",
+  },
+  {
+    id: "coins",
+    icon: "🪙",
+    title: "Монеты перемен",
+    text: "К вам подошли и положили в ваши ладони крупные тяжёлые монетки — это бонусы, используя которые вы можете изменить то что видите в этом зеркале, улучшить или полностью перепрошить.\n\nРешившись на изменения, вы подкидываете монетку в воздух и она растворяется..\n\nВзмах вашей руки — и отражение изменилось. Вам нравятся новые перемены?",
+  },
+  {
+    id: "shop",
+    icon: "🏚",
+    title: "Лавка на краю тумана",
+    text: "Вы вышли на улицу. Лёгкое чувство эйфории, вы в предвкушении. Дует свежий тёплый ветер, моросит дождь. Вашему взгляду попадает удивительный цветок — лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..\n\nВремя остановилось. Густой туман заполнил парк. Вас ведёт невидимое нечто — до самой двери сталинки. Коричневая деревянная дверь. Вы повернули ручку и вошли.",
+  },
+  {
+    id: "book",
+    icon: "📖",
+    title: "Mendacium Veritas",
+    text: "Женщина держит руку на весу, протягивая вам книгу. Светло-голубая обложка с серебряной гравировкой: ледяной мост над пропастью, через который перепрыгивает сурикат.\n\nУ людей не принято ждать долго, пора решаться. Вы сегодня вообще не планировали покупки, верно? Решайтесь. Выбор за вами.\n\nВы протянули руку, чтобы взять книгу — не потому что решились, а потому что не произнесли «нет».",
+  },
+  {
+    id: "price",
+    icon: "⚖️",
+    title: "Цена внутреннего и внешнего",
+    text: "Монета, которую ты отдала за свои глубинные изменения — это не просто монета. Она олицетворяла: твоё время, дисциплину, твёрдую уверенность в необходимости перемен, работу над эго.\n\nЭти три монеты — инструмент, благодаря которому ты взаимодействуешь с миром. Ты покупаешь не корсет с вышитыми цветами, ты приобретаешь самопроявление своей внутренней сути в мир.\n\nЛюди будут видеть тебя той самой, настоящей.",
+  },
+  {
+    id: "practice",
+    icon: "✨",
+    title: "Практика возвращения",
+    text: "Вернитесь к зеркалу, с которого началось ваше преображение..\n\nВы готовы к тому, что люди в вас увидят эту же картину? Может быть, вы хотите что-то ещё доработать — у вас есть на это пара монет, или всё уже готово?\n\nПодумайте, не спешите, и когда решитесь — пойдём дальше..",
+  },
+];
+
+function FloatingCoin({ style }: { style: React.CSSProperties }) {
+  return (
+    <div className="absolute pointer-events-none select-none" style={style}>
+      <div style={{
+        width: "32px",
+        height: "32px",
+        borderRadius: "50%",
+        background: "radial-gradient(circle at 35% 35%, #f0d080, #c8923a 60%, #8a5a10)",
+        boxShadow: "0 0 12px rgba(200,146,58,0.6), inset 0 1px 2px rgba(255,240,180,0.5)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "14px",
+      }}>✦</div>
+    </div>
+  );
+}
+
+function Mirror3D({ visible }: { visible: boolean }) {
+  return (
+    <div className="relative mx-auto mb-6" style={{ width: "120px", height: "160px", perspective: "600px" }}>
+      <div style={{
+        width: "100%",
+        height: "100%",
+        transformStyle: "preserve-3d",
+        transform: visible ? "rotateY(0deg)" : "rotateY(40deg)",
+        transition: "transform 1.5s cubic-bezier(0.25,0.46,0.45,0.94)",
+      }}>
+        {/* Mirror frame */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: "50% 50% 48% 48% / 40% 40% 60% 60%",
+          background: "linear-gradient(145deg, #2a1a08, #1a1005)",
+          border: "2px solid rgba(200,146,58,0.4)",
+          boxShadow: "0 0 40px rgba(140,80,200,0.3), inset 0 0 30px rgba(140,80,200,0.1)",
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          {/* Mirror surface */}
+          <div style={{
+            position: "absolute",
+            inset: "8px",
+            borderRadius: "50% 50% 46% 46% / 38% 38% 58% 58%",
+            background: "linear-gradient(135deg, rgba(140,80,200,0.15) 0%, rgba(80,120,200,0.1) 40%, rgba(200,180,120,0.08) 100%)",
+            backdropFilter: "blur(4px)",
+          }} />
+          {/* Inner glow */}
+          <div style={{
+            position: "relative",
+            zIndex: 1,
+            fontSize: "36px",
+            animation: "pulseGold 3s ease-in-out infinite",
+            filter: "drop-shadow(0 0 12px rgba(140,80,200,0.8))",
+          }}>🪞</div>
+        </div>
+        {/* Reflection shadow */}
+        <div style={{
+          position: "absolute",
+          bottom: "-16px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "80px",
+          height: "12px",
+          borderRadius: "50%",
+          background: "rgba(140,80,200,0.2)",
+          filter: "blur(8px)",
+        }} />
+      </div>
+    </div>
+  );
+}
+
+function MendaciumModal({ onClose }: { onClose: () => void }) {
+  const [step, setStep] = useState(0);
+  const [coins, setCoins] = useState([
+    { id: 1, x: 15, y: 20, dissolved: false },
+    { id: 2, x: 75, y: 35, dissolved: false },
+    { id: 3, x: 45, y: 10, dissolved: false },
+  ]);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const t = setTimeout(() => setVisible(true), 80);
+    return () => { document.body.style.overflow = ""; clearTimeout(t); };
+  }, []);
+
+  const total = PRACTICE_STEPS.length;
+  const current = PRACTICE_STEPS[step];
+
+  const dissolveACoin = () => {
+    const alive = coins.filter(c => !c.dissolved);
+    if (alive.length === 0) return;
+    const idx = coins.findIndex(c => c.id === alive[0].id);
+    setCoins(prev => prev.map((c, i) => i === idx ? { ...c, dissolved: true } : c));
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(20px)" }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      {/* Floating coins ambient */}
+      {[
+        { top: "8%", left: "6%", animation: "spirit-float 4s ease-in-out infinite" },
+        { top: "12%", right: "8%", animation: "spirit-float 5s ease-in-out 1s infinite" },
+        { bottom: "15%", left: "10%", animation: "spirit-float 3.5s ease-in-out 0.5s infinite" },
+        { bottom: "10%", right: "12%", animation: "spirit-float 4.5s ease-in-out 1.5s infinite" },
+        { top: "45%", left: "3%", animation: "spirit-float 6s ease-in-out 2s infinite" },
+        { top: "35%", right: "4%", animation: "spirit-float 5.5s ease-in-out 0.8s infinite" },
+      ].map((s, i) => (
+        <FloatingCoin key={i} style={{ ...s, opacity: coins.filter(c => !c.dissolved).length > 0 ? 0.4 : 0.15, transition: "opacity 1s ease" }} />
+      ))}
+
+      <div
+        className="relative w-full max-w-md max-h-[92vh] overflow-y-auto rounded-3xl"
+        style={{
+          background: "linear-gradient(160deg,#0d0a14,#140f1e,#0a0d14)",
+          border: "1px solid rgba(140,80,200,0.3)",
+          boxShadow: "0 0 120px rgba(140,80,200,0.2), 0 0 60px rgba(80,120,200,0.1)",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.96)",
+          transition: "all 0.6s cubic-bezier(0.16,1,0.3,1)",
+        }}
+      >
+        {/* Top glow line */}
+        <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(140,80,200,0.6),rgba(200,146,58,0.4),transparent)" }} />
+
+        {/* Header */}
+        <div className="relative px-6 pt-6 pb-4 text-center">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full text-xs transition-all hover:scale-110"
+            style={{ background: "rgba(140,80,200,0.1)", color: "rgba(180,140,255,0.6)", border: "1px solid rgba(140,80,200,0.2)" }}
+          >
+            ✕
+          </button>
+
+          {/* Mirror for step 0 */}
+          {step === 0 && <Mirror3D visible={visible} />}
+
+          {/* Coins for step 1 */}
+          {step === 1 && (
+            <div className="relative mx-auto mb-6" style={{ width: "180px", height: "100px" }}>
+              {coins.map((coin) => (
+                <div
+                  key={coin.id}
+                  className="absolute"
+                  style={{
+                    left: `${coin.x}%`,
+                    top: `${coin.y}%`,
+                    opacity: coin.dissolved ? 0 : 1,
+                    transform: coin.dissolved ? "scale(0) rotate(180deg)" : "scale(1) rotate(0deg)",
+                    transition: "all 0.8s cubic-bezier(0.34,1.56,0.64,1)",
+                    animation: coin.dissolved ? "none" : "spirit-float 2.5s ease-in-out infinite",
+                    cursor: "pointer",
+                  }}
+                  onClick={dissolveACoin}
+                >✦</div>
+              ))}
+              <p className="absolute bottom-0 w-full text-center text-xs" style={{ color: "rgba(200,146,58,0.5)" }}>
+                {coins.filter(c => !c.dissolved).length > 0 ? "нажмите на монету" : "монеты растворились"}
+              </p>
+            </div>
+          )}
+
+          {/* Icon for other steps */}
+          {step !== 0 && step !== 1 && step !== 3 && (
+            <div className="text-4xl mb-4" style={{ filter: "drop-shadow(0 0 16px rgba(140,80,200,0.6))", animation: "spirit-float 4s ease-in-out infinite" }}>
+              {current.icon}
+            </div>
+          )}
+
+          {/* Step label */}
+          <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: "rgba(140,80,200,0.6)" }}>
+            {step + 1} / {total} · Истинная Подмена Понятий
+          </p>
+          <h3
+            className="text-2xl font-light mb-1"
+            style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.95)", letterSpacing: "0.02em" }}
+          >
+            {current.title}
+          </h3>
+        </div>
+
+        {/* Body */}
+        <div className="px-6 pb-6">
+          <div
+            className="rounded-2xl p-5 mb-6"
+            style={{ background: "rgba(140,80,200,0.05)", border: "1px solid rgba(140,80,200,0.12)" }}
+          >
+            {current.text.split("\n\n").map((para, i) => (
+              <p
+                key={i}
+                className="leading-relaxed mb-3 last:mb-0"
+                style={{
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "1.05rem",
+                  color: "rgba(220,210,255,0.8)",
+                  fontStyle: "italic",
+                  lineHeight: "1.85",
+                }}
+              >
+                {para}
+              </p>
+            ))}
+          </div>
+
+          {/* Navigation */}
+          <div className="flex gap-3">
+            {step > 0 && (
+              <button
+                onClick={() => setStep(s => s - 1)}
+                className="flex-1 py-3 rounded-full text-sm transition-all hover:opacity-80"
+                style={{ border: "1px solid rgba(140,80,200,0.25)", color: "rgba(180,140,255,0.7)", background: "rgba(140,80,200,0.05)" }}
+              >
+                ← назад
+              </button>
+            )}
+            {step < total - 1 ? (
+              <button
+                onClick={() => setStep(s => s + 1)}
+                className="flex-1 py-3 rounded-full text-sm tracking-wider transition-all hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.8),rgba(100,60,180,0.9))", color: "white", letterSpacing: "0.1em" }}
+              >
+                далее →
+              </button>
+            ) : (
+              <button
+                onClick={onClose}
+                className="flex-1 py-3 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.8),rgba(200,146,58,0.6))", color: "white", letterSpacing: "0.12em" }}
+              >
+                ✦ завершить практику
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Bottom glow line */}
+        <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(200,146,58,0.3),rgba(140,80,200,0.4),transparent)" }} />
+      </div>
+    </div>
+  );
+}
+
+// ─── Mendacium card for shop ──────────────────────────────────────────────────
+
+function MendaciumCard({ onOpen }: { onOpen: () => void }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <button
+      onClick={onOpen}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="forest-card rounded-2xl text-left w-full group overflow-hidden relative"
+      style={{
+        background: hovered
+          ? "radial-gradient(ellipse at 40% 60%, #1a0e28 0%, #0d0a16 60%)"
+          : "rgba(14,10,20,0.92)",
+        backdropFilter: "blur(8px)",
+        border: "1px solid rgba(140,80,200,0.25)",
+        boxShadow: hovered ? "0 0 60px rgba(140,80,200,0.2)" : "none",
+        transition: "all 0.4s ease",
+      }}
+    >
+      {/* Photo */}
+      <div className="relative overflow-hidden" style={{ height: "180px" }}>
+        <img
+          src="https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a8e98a64-1fab-4ba2-ab2d-3f87e0377483.jpg"
+          alt="Mendacium Veritas"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,8,18,0.9) 0%, rgba(10,8,18,0.15) 60%, transparent 100%)" }} />
+        {/* NEW badge */}
+        <div className="absolute top-3 left-3 flex gap-2">
+          <span className="px-2.5 py-1 rounded-full text-xs font-semibold tracking-widest"
+            style={{ background: "linear-gradient(135deg,rgba(140,80,200,0.9),rgba(100,60,200,0.95))", color: "white", letterSpacing: "0.15em" }}>
+            NEW
+          </span>
+          <span className="px-2.5 py-1 rounded-full text-xs"
+            style={{ background: "rgba(200,146,58,0.15)", color: "rgba(200,146,58,0.9)", border: "1px solid rgba(200,146,58,0.25)", backdropFilter: "blur(8px)" }}>
+            Практика
+          </span>
+        </div>
+        <p className="absolute bottom-3 left-4 text-xs tracking-[0.35em] uppercase" style={{ color: "rgba(180,140,255,0.8)", opacity: 0.9 }}>Зазеркалье</p>
+      </div>
+
+      <div className="p-6">
+        {/* Floating coins decoration */}
+        <div className="flex gap-2 mb-4">
+          {[0,1,2].map(i => (
+            <div key={i} style={{
+              width: "18px",
+              height: "18px",
+              borderRadius: "50%",
+              background: "radial-gradient(circle at 35% 35%, #f0d080, #c8923a)",
+              boxShadow: "0 0 8px rgba(200,146,58,0.5)",
+              animation: `spirit-float ${2.5+i*0.5}s ease-in-out ${i*0.4}s infinite`,
+            }} />
+          ))}
+        </div>
+
+        <h3 className="text-2xl font-light mb-1" style={{ fontFamily: "'Cormorant', serif", color: "rgba(220,200,255,0.95)" }}>
+          Mendacium Veritas
+        </h3>
+        <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "rgba(140,80,200,0.7)", opacity: 0.9 }}>
+          Истинная Подмена Понятий
+        </p>
+
+        <p className="text-sm leading-relaxed mb-5 italic"
+          style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,180,255,0.65)", fontSize: "0.95rem" }}>
+          Зеркало, отражающее не внешность — а суть. Монеты перемен. Лавка на краю тумана.
+        </p>
+
+        <p className="text-xs leading-relaxed"
+          style={{ color: "rgba(140,80,200,0.45)", borderTop: "1px solid rgba(140,80,200,0.12)", paddingTop: "0.75rem" }}>
+          колода · практика · серебряная гравировка · ледяной мост
+        </p>
+
+        <div className="flex items-center gap-2 mt-5 text-xs tracking-wider uppercase transition-all group-hover:gap-3"
+          style={{ color: "rgba(180,140,255,0.7)" }}>
+          <span>Открыть практику</span>
+          <Icon name="ArrowRight" size={14} />
+        </div>
+      </div>
+    </button>
+  );
+}
+
 export const shopCategories = [
   {
     id: "tarot",
@@ -285,46 +661,18 @@ export const shopCategories = [
     emoji: "🔮",
     title: "Авторские амулеты",
     subtitle: "Обереги",
-    tagline: "Сотканы из нити леса и намерения",
-    depth: "Лесная тропа",
-    bg: "radial-gradient(ellipse at 30% 70%, #082018 0%, #0d1109 60%)",
-    accent: "rgba(80,180,120,0.5)",
-    leafColor: "rgba(80,180,120,0.6)",
+    tagline: "Лес знает, что тебе нужно",
+    depth: "Сердце леса",
+    bg: "radial-gradient(ellipse at 50% 50%, #0e1e0a 0%, #0d1109 60%)",
+    accent: "rgba(122,184,138,0.5)",
+    leafColor: "rgba(122,184,138,0.6)",
     path: "/shop/amulets",
-    featured: "кожа · кость · травы · природные камни",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/05ffad28-6ccc-45e7-a324-934ecbbbd839.jpg",
-  },
-  {
-    id: "crystals",
-    emoji: "💎",
-    title: "Кристаллы",
-    subtitle: "Минералы",
-    tagline: "Земля хранит свои секреты в камнях",
-    depth: "Старые корни",
-    bg: "radial-gradient(ellipse at 70% 30%, #0a1820 0%, #0d1109 60%)",
-    accent: "rgba(80,160,200,0.5)",
-    leafColor: "rgba(80,160,200,0.6)",
-    path: "/shop/crystals",
-    featured: "аметист · горный хрусталь · обсидиан · лабрадор",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/cd0a6513-4f2d-4158-8c4b-bb7fee9e6917.jpg",
-  },
-  {
-    id: "salt",
-    emoji: "✦",
-    title: "Авторская соль",
-    subtitle: "Банная & SPA",
-    tagline: "Морская соль и лесные ароматы",
-    depth: "У ручья",
-    bg: "radial-gradient(ellipse at 50% 50%, #101820 0%, #0d1109 60%)",
-    accent: "rgba(160,200,220,0.5)",
-    leafColor: "rgba(160,200,220,0.6)",
-    path: "/shop/salt",
-    featured: "гималайская · морская · с хвоей · с мёдом",
-    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/5c92fbb6-982e-4f9e-b23a-5a931dd15a0f.jpg",
+    featured: "дерево · камень · нить · намерение",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/dd527c81-9f5e-404e-af06-38d4a79e4afc.jpg",
   },
   {
     id: "brooms",
-    emoji: "🌿",
+    emoji: "🌾",
     title: "Банные веники",
     subtitle: "Авторские",
     tagline: "Вязанные с молитвой и знанием",
@@ -481,7 +829,7 @@ export default function Shop() {
           <p
             className="text-xs uppercase tracking-[0.5em] mb-5"
             style={{ color: "rgba(168,184,144,0.6)" }}
-          >Тропа рябины и дыма</p>
+          >{"Тропа рябины и дыма"}</p>
 
           <h1
             className="text-5xl md:text-7xl font-light leading-tight mb-6"
@@ -566,9 +914,9 @@ export default function Shop() {
           <div className="text-center mb-16">
             <p
               className="text-xs uppercase tracking-[0.5em] mb-4"
-              style={{ color: "rgba(168,184,144,0.5)" }}
+              style={{ color: "rgba(122,184,138,0.5)" }}
             >
-              Тропинки леса
+              тропы
             </p>
             <h2
               className="text-4xl md:text-5xl font-light"
