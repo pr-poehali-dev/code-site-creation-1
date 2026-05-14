@@ -646,15 +646,15 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
 const DECK_CARDS = [
   {
     img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/cc1ae69e-e626-4176-a15f-e83b7dddd6cc.png",
-    label: "Свет",
+    label: "Отшельник",
   },
   {
     img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/81a367f5-2915-42f4-a4f1-03bacba54650.png",
-    label: "Пробуждение",
+    label: "Императрица",
   },
   {
     img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/66b42de5-7e80-464a-8da0-30b106859196.png",
-    label: "Душа",
+    label: "Смерть",
   },
 ];
 
