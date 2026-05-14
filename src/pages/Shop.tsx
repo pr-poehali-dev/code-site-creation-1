@@ -265,50 +265,34 @@ const PRACTICE_STEPS = [
   {
     id: "mirror",
     icon: "🪞",
-    title: "Зеркало истины",
+    title: "Зеркало истины · Монеты перемен",
     accent: "rgba(140,80,200,0.9)",
     bg: "radial-gradient(ellipse at 50% 0%, rgba(140,80,200,0.13) 0%, transparent 65%)",
-    text: "Представьте себе зеркало, отражающее не вашу привычную внешность, а вашу суть..\n\nВглядитесь.. Что вы видите? Кого вы видите в нём?..\n\nОтражается ли то что вы хотели бы? Может наоборот то что точно не планировали увидеть..\n\nПрисмотритесь ещё раз..",
+    text: "Представьте себе зеркало, отражающее не вашу привычную внешность, а вашу суть..\n\nВглядитесь.. Что вы видите? Кого вы видите в нём?.. Отражается ли то что вы хотели бы? Может наоборот то что точно не планировали увидеть.. Присмотритесь ещё раз..\n\nК вам подошли и положили в ваши ладони крупные тяжёлые монетки — это бонусы, используя которые вы можете изменить то что видите в этом зеркале, улучшить или полностью перепрошить, так сказать.\n\nРешившись на изменения, вы подкидываете монетку в воздух и она растворяется.. Взмах вашей руки или клик компьютерной мышки — и отражение изменилось. Вам нравятся новые перемены? Или требуется применить ctrl+z для отмены результата?",
   },
   {
-    id: "coins",
-    icon: "🪙",
-    title: "Монеты перемен",
-    accent: "rgba(200,146,58,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(200,146,58,0.12) 0%, transparent 65%)",
-    text: "К вам подошли и положили в ваши ладони крупные тяжёлые монетки — это бонусы, используя которые вы можете изменить то что видите в этом зеркале, улучшить или полностью перепрошить, так сказать.\n\nРешившись на изменения, вы подкидываете монетку в воздух и она растворяется..\n\nВзмах вашей руки или клик компьютерной мышки — и отражение изменилось. Вам нравятся новые перемены? Или требуется применить ctrl+z для отмены результата?",
+    id: "cards",
+    icon: "🃏",
+    title: "Карты колоды",
+    accent: "rgba(100,140,220,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(80,120,200,0.13) 0%, transparent 65%)",
+    text: "Отшельник · Путь внутрь себя, уединение и мудрость тишины. Тот, кто ищет свет в темноте собственного пути.\n\nИмператрица · Сила плодородия и созидания. Всё живое тянется к ней — она источник и исток.\n\nСмерть · Не конец, а великое преображение. Старое уходит, освобождая место для нового.\n\nМир · Завершённость цикла. Птицы, взмывающие ввысь сквозь огонь — свобода после испытания.\n\nДьявол · Искушение и зеркало теней. Та, что стоит между двух миров и смотрит прямо в глаза.\n\nКолесо Фортуны · Шар в старой библиотеке — силы, которые вращают судьбу. Твой момент перемен.",
   },
   {
     id: "journey",
     icon: "🌿",
-    title: "Путешествие сквозь зеркало тайн",
-    accent: "rgba(80,160,100,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(80,160,100,0.1) 0%, transparent 65%)",
-    text: "Вы вышли на улицу после занятия на террасе крыши. У вас приятное ощущение — чувствуется нагрузка информацией на ваш мозг, вы знаете как сможете это применить. Лёгкое чувство эйфории, вы в предвкушении, возможно вы даже сможете стать новатором, применив информацию в своей сфере..\n\nЗа вашей спиной академия Ice Fire. Дует свежий тёплый ветер, моросит дождь, вы идёте по тропинке с множеством самых разных деревьев и цветов. Вы чувствуете защиту и доверие.\n\nВашему взгляду попадается удивительный цветок — вы присаживаетесь, чтобы рассмотреть его поближе.. Это лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..",
-  },
-  {
-    id: "fog",
-    icon: "🌫",
-    title: "Густой туман",
-    accent: "rgba(160,180,220,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(120,140,200,0.12) 0%, transparent 65%)",
-    text: "Время остановилось.\n\nГустой туман заполнил парк, воздух словно подтолкнул вас вперёд — вы чуть не запнулись, но удержались. Сомнений не было: раз ведут энергии — то пойдём, а там на месте уже разберёмся..\n\nУпорно невидимое нечто проводило вас вперёд. Парковая зона закончилась. Вы увидели улицу и ничем не примечательную сталинку. Но вас подталкивало именно к ней — до самой двери у торца.\n\nКоричневая деревянная дверь. Вы повернули дверную ручку и вошли внутрь.",
+    title: "Путешествие · Густой туман",
+    accent: "rgba(80,160,120,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(60,140,100,0.11) 0%, transparent 65%)",
+    text: "Вы вышли на улицу после занятия на террасе крыши. Лёгкое чувство эйфории, вы в предвкушении — возможно вы даже сможете стать новатором, применив информацию в своей сфере.. За вашей спиной академия Ice Fire.\n\nДует свежий тёплый ветер, моросит дождь. Вашему взгляду попадается удивительный цветок — лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..\n\nВремя остановилось. Густой туман заполнил парк, воздух словно подтолкнул вас вперёд. Сомнений не было: раз ведут энергии — то пойдём, а там на месте уже разберёмся..\n\nПарковая зона закончилась. Вы увидели улицу и ничем не примечательную сталинку. Но вас подталкивало именно к ней — до самой двери у торца. Коричневая деревянная дверь. Вы повернули ручку и вошли.",
   },
   {
     id: "shop",
     icon: "🏚",
-    title: "Маленькая лавка",
-    accent: "rgba(180,130,80,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(180,130,80,0.1) 0%, transparent 65%)",
-    text: "Приглушённый туманом солнечный луч наполнял комнату своим светом, запах деревянной мебели и хвои — вы оказались в маленькой лавке.\n\nВы прошлись взором вокруг: книжная полка, на которой не только книги, но и разные статуэтки. Вешалка с множеством текстурных вещей. Ещё полка, заполненная предметами. И прилавок, за которым сидит женщина в тёплом этническом шали-платке.\n\nЖенщина подняла на вас взгляд, отложила книжку корешком вверх на прилавок и встала.\n\n— Помочь?\n\nДа, нет — вы поджали губы и отрицательно мотнули головой.",
-  },
-  {
-    id: "dress",
-    icon: "🪡",
-    title: "Примерочная",
-    accent: "rgba(200,80,100,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(180,60,80,0.1) 0%, transparent 65%)",
-    text: "«С чем тут поможешь, когда я вообще здесь оказался случайно» — подумали вы, и подошли к вещам около окна.\n\nВы провели рукой по висящей на плечах кофте — такая нежная тонкая ткань лесного зелёного цвета. Следующая вещь — гладкая холодная чёрная кожа. Вы решили примерить несколько моделей.\n\nВыйдя из маленькой примерочной, вы встали перед зеркалом. Чёрный кожаный корсет с вышитыми на нём цветами — вы такое не носили прежде, но теперь видите, как это вам идёт..\n\nВы обернулись посмотреть что ещё есть интересного на вешалках — и в этот момент ваше мировосприятие преобразилось. Нет, в лавке ничего не изменилось. Изменились ваши ощущения.\n\nЛавка с самыми уникальными предметами вселенной..",
+    title: "Маленькая лавка · Примерочная",
+    accent: "rgba(180,120,60,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(180,120,60,0.12) 0%, transparent 65%)",
+    text: "Приглушённый туманом солнечный луч наполнял комнату своим светом, запах деревянной мебели и хвои. Книжная полка, статуэтки, вешалка с текстурными вещами. За прилавком — женщина в тёплом этническом платке.\n\n— Помочь?\n\nДа, нет — вы поджали губы и отрицательно мотнули головой. «С чем тут поможешь, когда я вообще здесь оказался случайно» — подумали вы.\n\nВы провели рукой по висящей кофте — нежная ткань лесного зелёного. Следующая вещь — гладкая холодная чёрная кожа. Вы решили примерить несколько моделей. Выйдя из примерочной, встали перед зеркалом. Чёрный кожаный корсет с вышитыми цветами — вы такое не носили прежде, но теперь видите, как это вам идёт..\n\nВы обернулись — и в этот момент ваше мировосприятие преобразилось. Нет, в лавке ничего не изменилось. Изменились ваши ощущения.\n\nЛавка с самыми уникальными предметами вселенной..",
   },
   {
     id: "book",
@@ -510,99 +494,289 @@ function Mirror3D({ visible }: { visible: boolean }) {
 
   useEffect(() => {
     if (!visible) return;
-    const t = setTimeout(() => setRevealed(true), 120);
+    const t = setTimeout(() => setRevealed(true), 150);
     return () => clearTimeout(t);
   }, [visible]);
 
   return (
-    <div style={{ perspective: "1000px", width: "170px", height: "210px", margin: "0 auto 12px", position: "relative" }}>
-      {/* Ambient glow behind */}
+    <div style={{ perspective: "900px", width: "160px", height: "200px", margin: "0 auto 10px", position: "relative" }}>
+      {/* Outer ambient halo */}
       <div style={{
-        position: "absolute", inset: "-24px", borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(140,80,200,0.25) 0%, transparent 65%)",
-        opacity: revealed ? 1 : 0,
-        transition: "opacity 1.2s ease 0.6s",
-        pointerEvents: "none",
+        position: "absolute", inset: "-20px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(140,80,200,0.22) 0%, transparent 65%)",
+        opacity: revealed ? 1 : 0, transition: "opacity 1s ease 0.8s", pointerEvents: "none",
         animation: revealed ? "pulseGold 3s ease-in-out infinite" : "none",
       }} />
 
-      {/* The mirror — CSS 3D flip from side to front */}
+      {/* 3D card that flips into view */}
       <div style={{
         width: "100%", height: "100%",
         transformStyle: "preserve-3d",
-        transform: revealed ? "rotateY(0deg) rotateX(0deg)" : "rotateY(70deg) rotateX(-12deg)",
-        transition: "transform 1.4s cubic-bezier(0.22,1,0.36,1)",
+        transform: revealed ? "rotateY(0deg) rotateX(0deg)" : "rotateY(75deg) rotateX(-10deg)",
+        transition: "transform 1.3s cubic-bezier(0.22,1,0.36,1)",
         position: "relative",
       }}>
-        {/* ── FRONT FACE ── */}
+        {/* FRONT — mirror surface, no emoji */}
         <div style={{
           position: "absolute", inset: 0,
           backfaceVisibility: "hidden",
-          borderRadius: "48% 48% 44% 44% / 40% 40% 56% 56%",
-          background: "linear-gradient(165deg, #1e0e34 0%, #0e081c 55%, #180c2c 100%)",
-          border: "2px solid rgba(200,150,255,0.55)",
-          boxShadow: revealed
-            ? "0 0 100px rgba(140,80,200,0.5), inset 0 0 60px rgba(140,80,200,0.2), 0 24px 48px rgba(0,0,0,0.7)"
-            : "0 0 30px rgba(140,80,200,0.2)",
-          transition: "box-shadow 0.8s ease 1s",
+          borderRadius: "50% 50% 46% 46% / 42% 42% 58% 58%",
           overflow: "hidden",
-          display: "flex", alignItems: "center", justifyContent: "center",
+          border: "2px solid rgba(190,140,255,0.5)",
+          boxShadow: revealed
+            ? "0 0 90px rgba(140,80,200,0.55), inset 0 0 50px rgba(120,70,200,0.18), 0 20px 50px rgba(0,0,0,0.7)"
+            : "0 0 20px rgba(100,60,160,0.2)",
+          transition: "box-shadow 0.9s ease 0.9s",
         }}>
-          {/* Glassy shimmer diagonal */}
+          {/* Deep glass base */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(125deg, rgba(230,210,255,0.11) 0%, transparent 45%, rgba(120,80,220,0.07) 100%)",
+            background: "linear-gradient(170deg, #18082e 0%, #0c0520 45%, #160a2a 100%)",
           }} />
-          {/* Highlight top-left */}
+          {/* Diagonal shimmer */}
           <div style={{
-            position: "absolute", top: "8%", left: "14%",
-            width: "32%", height: "38%",
-            background: "radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%)",
-            borderRadius: "50%", transform: "rotate(-20deg)",
+            position: "absolute", inset: 0,
+            background: "linear-gradient(118deg, rgba(220,200,255,0.13) 0%, transparent 38%, rgba(100,70,200,0.07) 80%, transparent 100%)",
           }} />
-          {/* Inner surface */}
+          {/* Main glare — top-left oval */}
           <div style={{
-            position: "absolute", inset: "10px",
-            borderRadius: "46% 46% 42% 42% / 38% 38% 54% 54%",
-            background: "linear-gradient(155deg, rgba(170,130,255,0.07), rgba(90,60,180,0.04), rgba(210,170,255,0.07))",
+            position: "absolute", top: "6%", left: "12%",
+            width: "38%", height: "42%",
+            background: "radial-gradient(ellipse at 40% 30%, rgba(255,255,255,0.14) 0%, rgba(200,170,255,0.06) 50%, transparent 80%)",
+            borderRadius: "50%", transform: "rotate(-22deg)",
           }} />
-          {/* Main emoji */}
+          {/* Secondary glare — bottom-right */}
           <div style={{
-            position: "relative", zIndex: 2, fontSize: "56px", lineHeight: 1,
-            filter: "drop-shadow(0 0 20px rgba(200,160,255,1)) drop-shadow(0 0 40px rgba(140,80,200,0.7))",
-            animation: revealed ? "pulseGold 3.5s ease-in-out 1.5s infinite" : "none",
-          }}>🪞</div>
-          {/* Dust particles */}
-          {[...Array(9)].map((_, i) => (
+            position: "absolute", bottom: "10%", right: "8%",
+            width: "22%", height: "28%",
+            background: "radial-gradient(ellipse, rgba(180,140,255,0.08) 0%, transparent 70%)",
+            borderRadius: "50%",
+          }} />
+          {/* Inner depth gradient */}
+          <div style={{
+            position: "absolute", inset: "12px",
+            borderRadius: "48% 48% 44% 44% / 40% 40% 56% 56%",
+            background: "radial-gradient(ellipse at 50% 40%, rgba(160,120,255,0.1) 0%, rgba(80,50,160,0.05) 60%, transparent 100%)",
+          }} />
+          {/* Floating light orb — centre */}
+          <div style={{
+            position: "absolute", top: "50%", left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "30px", height: "30px", borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(220,190,255,0.25) 0%, transparent 70%)",
+            animation: revealed ? "pulseGold 2.5s ease-in-out infinite" : "none",
+          }} />
+          {/* Particle dust */}
+          {[...Array(8)].map((_, i) => (
             <div key={i} style={{
               position: "absolute",
-              width: i % 2 === 0 ? "3px" : "2px", height: i % 2 === 0 ? "3px" : "2px",
+              width: i % 3 === 0 ? "4px" : "2px",
+              height: i % 3 === 0 ? "4px" : "2px",
               borderRadius: "50%",
-              background: `rgba(${190 + i * 6},${155 + i * 4},255,${0.35 + i * 0.06})`,
-              left: `${10 + i * 9}%`, top: `${18 + (i % 5) * 13}%`,
-              animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${i * 0.22}s infinite`,
+              background: `rgba(${195 + i * 7},${160 + i * 5},255,${0.3 + i * 0.07})`,
+              left: `${14 + i * 10}%`,
+              top: `${22 + (i % 4) * 15}%`,
+              animation: revealed ? `pulseGold ${1.9 + i * 0.32}s ease-in-out ${i * 0.24}s infinite` : "none",
             }} />
           ))}
         </div>
 
-        {/* ── BACK FACE ── */}
+        {/* BACK face */}
         <div style={{
           position: "absolute", inset: 0,
           backfaceVisibility: "hidden",
-          borderRadius: "48% 48% 44% 44% / 40% 40% 56% 56%",
-          background: "linear-gradient(160deg, #09040f, #0f0820)",
-          border: "2px solid rgba(100,60,160,0.3)",
+          borderRadius: "50% 50% 46% 46% / 42% 42% 58% 58%",
+          background: "linear-gradient(160deg, #06020e, #0c0618)",
+          border: "2px solid rgba(90,50,140,0.25)",
           transform: "rotateY(180deg)",
         }} />
       </div>
 
-      {/* Floor shadow */}
+      {/* Oval frame around mirror */}
       <div style={{
-        position: "absolute", bottom: "-26px", left: "50%", transform: "translateX(-50%)",
-        width: "110px", height: "18px", borderRadius: "50%",
-        background: "rgba(140,80,200,0.3)", filter: "blur(14px)",
-        opacity: revealed ? 1 : 0, transition: "opacity 1s ease 0.8s",
+        position: "absolute", inset: "-3px",
+        borderRadius: "50% 50% 46% 46% / 42% 42% 58% 58%",
+        border: "1px solid rgba(170,120,255,0.18)",
+        pointerEvents: "none",
+        opacity: revealed ? 1 : 0, transition: "opacity 0.8s ease 1.2s",
       }} />
+
+      {/* Floor shadow ellipse */}
+      <div style={{
+        position: "absolute", bottom: "-22px", left: "50%", transform: "translateX(-50%)",
+        width: "100px", height: "14px", borderRadius: "50%",
+        background: "rgba(140,80,200,0.28)", filter: "blur(12px)",
+        opacity: revealed ? 1 : 0, transition: "opacity 0.9s ease 0.9s",
+      }} />
+    </div>
+  );
+}
+
+function HutOnLegs({ visible }: { visible: boolean }) {
+  const [risen, setRisen] = useState(false);
+  const [glowing, setGlowing] = useState(false);
+
+  useEffect(() => {
+    if (!visible) return;
+    const t1 = setTimeout(() => setRisen(true), 200);
+    const t2 = setTimeout(() => setGlowing(true), 1000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [visible]);
+
+  return (
+    <div style={{ position: "relative", width: "190px", height: "190px", margin: "0 auto 8px", perspective: "700px" }}>
+      {/* Ground glow */}
+      <div style={{
+        position: "absolute", bottom: "8px", left: "50%", transform: "translateX(-50%)",
+        width: glowing ? "150px" : "60px", height: "16px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(180,130,60,0.4) 0%, transparent 75%)",
+        filter: "blur(8px)", transition: "width 1.2s ease 0.8s",
+      }} />
+
+      {/* The hut group — rises up */}
+      <div style={{
+        position: "absolute", bottom: "20px", left: "50%",
+        transform: risen ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(30px)",
+        opacity: risen ? 1 : 0,
+        transition: "transform 1s cubic-bezier(0.22,1,0.36,1), opacity 0.8s ease",
+        transformStyle: "preserve-3d",
+        width: "120px",
+      }}>
+        {/* ── Chicken Legs ── */}
+        <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", display: "flex", gap: "28px" }}>
+          {[{ lx: -2, rx: 8 }, { lx: 2, rx: -8 }].map((leg, li) => (
+            <div key={li} style={{ position: "relative", width: "10px", height: "44px" }}>
+              {/* Upper leg */}
+              <div style={{
+                position: "absolute", bottom: "16px", left: "50%", transform: `translateX(-50%) rotate(${leg.lx}deg)`,
+                width: "7px", height: "28px", borderRadius: "4px 4px 2px 2px",
+                background: "linear-gradient(180deg, #6b4a1a, #3d2808)",
+                boxShadow: glowing ? "0 0 8px rgba(180,120,40,0.4)" : "none",
+                transition: "box-shadow 0.6s ease",
+              }} />
+              {/* Knee joint */}
+              <div style={{
+                position: "absolute", bottom: "14px", left: "50%", transform: "translateX(-50%)",
+                width: "9px", height: "9px", borderRadius: "50%",
+                background: "radial-gradient(circle, #8b6020, #4a2c08)",
+                border: "1px solid rgba(200,140,40,0.3)",
+              }} />
+              {/* Lower leg */}
+              <div style={{
+                position: "absolute", bottom: "3px", left: "50%", transform: `translateX(-50%) rotate(${leg.rx}deg)`,
+                width: "6px", height: "20px", borderRadius: "3px 3px 1px 1px",
+                background: "linear-gradient(180deg, #5a3c14, #2e1c04)",
+              }} />
+              {/* Claw foot */}
+              {[-12, 0, 12].map((angle, ci) => (
+                <div key={ci} style={{
+                  position: "absolute", bottom: 0, left: "50%",
+                  transform: `translateX(-50%) rotate(${angle}deg)`,
+                  transformOrigin: "top center",
+                  width: "2px", height: "10px", borderRadius: "1px",
+                  background: "#2a1604",
+                }} />
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* ── Hut Body ── */}
+        <div style={{
+          position: "absolute", bottom: "42px", left: "50%", transform: "translateX(-50%)",
+          width: "96px", height: "62px",
+          background: "linear-gradient(160deg, #5a3c18 0%, #3a2408 60%, #4a3010 100%)",
+          border: "1.5px solid rgba(200,140,40,0.35)",
+          borderRadius: "6px 6px 4px 4px",
+          boxShadow: glowing
+            ? "0 0 30px rgba(180,120,40,0.35), inset 0 0 20px rgba(120,70,10,0.2)"
+            : "0 4px 20px rgba(0,0,0,0.6)",
+          transition: "box-shadow 0.8s ease",
+          overflow: "hidden",
+        }}>
+          {/* Wood plank lines */}
+          {[20, 35, 50].map(t => (
+            <div key={t} style={{
+              position: "absolute", top: `${t}%`, left: 0, right: 0, height: "1px",
+              background: "rgba(0,0,0,0.25)",
+            }} />
+          ))}
+          {/* Window — glowing */}
+          <div style={{
+            position: "absolute", top: "14px", left: "50%", transform: "translateX(-50%)",
+            width: "22px", height: "22px", borderRadius: "3px",
+            background: glowing
+              ? "radial-gradient(circle, rgba(255,200,80,0.9) 0%, rgba(220,140,20,0.7) 60%, transparent 100%)"
+              : "rgba(40,20,5,0.8)",
+            border: "1px solid rgba(200,140,40,0.5)",
+            boxShadow: glowing ? "0 0 20px rgba(255,180,40,0.8), 0 0 8px rgba(220,120,20,0.6)" : "none",
+            transition: "all 0.8s ease 0.6s",
+          }}>
+            {/* Cross window divider */}
+            <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: "1px", background: "rgba(0,0,0,0.3)" }} />
+            <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: "1px", background: "rgba(0,0,0,0.3)" }} />
+          </div>
+          {/* Door */}
+          <div style={{
+            position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+            width: "18px", height: "28px",
+            background: "linear-gradient(180deg, #2a1608, #1a0c04)",
+            borderRadius: "4px 4px 0 0",
+            border: "1px solid rgba(180,100,20,0.3)",
+          }} />
+        </div>
+
+        {/* ── Roof ── */}
+        <div style={{
+          position: "absolute", bottom: "100px", left: "50%", transform: "translateX(-50%)",
+          width: 0, height: 0,
+          borderLeft: "58px solid transparent",
+          borderRight: "58px solid transparent",
+          borderBottom: "50px solid #4a2e0e",
+          filter: glowing ? "drop-shadow(0 -4px 16px rgba(180,120,40,0.3))" : "none",
+          transition: "filter 0.8s ease",
+        }} />
+        {/* Roof overlay — darker sides */}
+        <div style={{
+          position: "absolute", bottom: "100px", left: "50%", transform: "translateX(-50%)",
+          width: 0, height: 0,
+          borderLeft: "54px solid transparent",
+          borderRight: "54px solid transparent",
+          borderBottom: "46px solid #3a2008",
+          marginBottom: "2px",
+        }} />
+        {/* Chimney */}
+        <div style={{
+          position: "absolute", bottom: "140px", left: "calc(50% + 12px)",
+          width: "12px", height: "20px",
+          background: "linear-gradient(180deg, #2a1806, #1a0e04)",
+          border: "1px solid rgba(140,80,20,0.3)",
+          borderRadius: "2px 2px 0 0",
+        }}>
+          {glowing && (
+            <div style={{
+              position: "absolute", top: "-14px", left: "50%", transform: "translateX(-50%)",
+              width: "8px", height: "16px",
+              background: "radial-gradient(ellipse at 50% 90%, rgba(255,120,20,0.8) 0%, rgba(255,80,0,0.4) 60%, transparent 100%)",
+              borderRadius: "50% 50% 30% 30%", filter: "blur(2px)",
+              animation: "flicker 0.9s ease-in-out infinite alternate",
+            }} />
+          )}
+        </div>
+      </div>
+
+      {/* Floating sparkles around hut */}
+      {glowing && [...Array(5)].map((_, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${20 + i * 14}%`,
+          top: `${15 + (i % 3) * 20}%`,
+          width: "3px", height: "3px", borderRadius: "50%",
+          background: i % 2 === 0 ? "rgba(255,200,80,0.8)" : "rgba(200,140,40,0.6)",
+          boxShadow: "0 0 6px rgba(255,180,40,0.6)",
+          animation: `spirit-float ${2 + i * 0.4}s ease-in-out ${i * 0.3}s infinite`,
+        }} />
+      ))}
     </div>
   );
 }
@@ -747,6 +921,9 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
             </div>
           )}
 
+          {/* Hut on chicken legs for shop step (id="shop", index 4) */}
+          {step === 4 && <HutOnLegs visible={visible} />}
+
           {/* Cards fan for book step (id="book", index 5 now) */}
           {step === 5 && (
             <div className="relative mx-auto mb-4 flex items-center justify-center" style={{ height: "150px", width: "220px" }}>
@@ -794,7 +971,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           )}
 
           {/* Icon for other steps */}
-          {step !== 0 && step !== 1 && step !== 2 && step !== 5 && (
+          {step !== 0 && step !== 1 && step !== 2 && step !== 4 && step !== 5 && (
             <div className="text-4xl mb-4" style={{ filter: "drop-shadow(0 0 16px rgba(140,80,200,0.6))", animation: "spirit-float 4s ease-in-out infinite" }}>
               {current.icon}
             </div>
