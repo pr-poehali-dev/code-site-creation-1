@@ -489,6 +489,79 @@ function Campfire3D({ visible }: { visible: boolean }) {
   );
 }
 
+function FootprintTrail() {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setPhase(p => p + 1), 480);
+    return () => clearInterval(id);
+  }, []);
+
+  // Two rows: left foot offset to the right, right foot to the left
+  // 7 pairs of footprints walking left→right across the container
+  const steps: { x: number; side: "L" | "R" }[] = [
+    { x: 4,  side: "L" },
+    { x: 14, side: "R" },
+    { x: 24, side: "L" },
+    { x: 34, side: "R" },
+    { x: 44, side: "L" },
+    { x: 54, side: "R" },
+    { x: 64, side: "L" },
+    { x: 74, side: "R" },
+    { x: 84, side: "L" },
+  ];
+
+  // offset: left foot slightly left, right foot slightly right
+  const sideOffset = (s: "L" | "R") => s === "L" ? -7 : 7;
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "54px", marginTop: "18px", overflow: "hidden" }}>
+      {steps.map((fp, i) => {
+        // Each step appears when phase passes its index, then fades out after 6 more cycles
+        const age = phase - i;
+        const visible = age >= 0 && age < 7;
+        const opacity = visible ? Math.max(0, 1 - age * 0.15) : 0;
+        const isLeft = fp.side === "L";
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: `calc(${fp.x}% + ${sideOffset(fp.side)}px)`,
+            top: isLeft ? "8px" : "22px",
+            opacity,
+            transition: "opacity 0.45s ease",
+            transform: `rotate(${isLeft ? -8 : 8}deg)`,
+          }}>
+            {/* Foot SVG — simple toe shape */}
+            <svg width="18" height="24" viewBox="0 0 18 24" fill="none">
+              {/* Sole */}
+              <ellipse cx="9" cy="17" rx="6.5" ry="7" fill="rgba(180,140,255,0.22)" />
+              {/* Toes */}
+              <ellipse cx="4"  cy="9"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
+              <ellipse cx="7"  cy="7"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
+              <ellipse cx="10" cy="7"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
+              <ellipse cx="13" cy="8"  rx="2"   ry="2.5" fill="rgba(180,140,255,0.15)" />
+              <ellipse cx="15.5" cy="10" rx="1.6" ry="2.2" fill="rgba(180,140,255,0.12)" />
+              {/* Glow outline */}
+              <ellipse cx="9" cy="17" rx="6.5" ry="7"
+                stroke="rgba(160,110,255,0.35)" strokeWidth="0.8" fill="none"
+                style={{ filter: "blur(0.5px)" }}
+              />
+            </svg>
+          </div>
+        );
+      })}
+
+      {/* Faint dotted trail line */}
+      <div style={{
+        position: "absolute", top: "50%", left: 0, right: 0,
+        height: "1px", transform: "translateY(-50%)",
+        background: "linear-gradient(90deg, transparent, rgba(160,110,255,0.12) 20%, rgba(160,110,255,0.12) 80%, transparent)",
+        pointerEvents: "none",
+      }} />
+    </div>
+  );
+}
+
 function Mirror3D({ visible }: { visible: boolean }) {
   const [revealed, setRevealed] = useState(false);
 
@@ -1030,6 +1103,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
                 {para}
               </p>
             ))}
+            {current.id === "mirror" && <FootprintTrail />}
           </div>
 
           {/* Navigation */}
