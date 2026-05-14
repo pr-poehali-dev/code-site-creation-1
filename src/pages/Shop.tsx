@@ -281,9 +281,9 @@ const PRACTICE_STEPS = [
   {
     id: "journey",
     icon: "🌿",
-    title: "Путешествие · Густой туман",
-    accent: "rgba(80,160,120,0.9)",
-    bg: "radial-gradient(ellipse at 50% 0%, rgba(60,140,100,0.11) 0%, transparent 65%)",
+    title: "✦ Практика II · Путешествие сквозь туман",
+    accent: "rgba(160,200,240,0.9)",
+    bg: "radial-gradient(ellipse at 50% 100%, rgba(60,100,160,0.18) 0%, rgba(80,130,180,0.06) 50%, transparent 80%)",
     text: "Вы вышли на улицу после занятия на террасе крыши. Лёгкое чувство эйфории, вы в предвкушении — возможно вы даже сможете стать новатором, применив информацию в своей сфере.. За вашей спиной академия Ice Fire.\n\nДует свежий тёплый ветер, моросит дождь. Вашему взгляду попадается удивительный цветок — лилия с прозрачными лепестками и огнём в сердцевине. Вы дотрагиваетесь до лепестка..\n\nВремя остановилось. Густой туман заполнил парк, воздух словно подтолкнул вас вперёд. Сомнений не было: раз ведут энергии — то пойдём, а там на месте уже разберёмся..\n\nПарковая зона закончилась. Вы увидели улицу и ничем не примечательную сталинку. Но вас подталкивало именно к ней — до самой двери у торца. Коричневая деревянная дверь. Вы повернули ручку и вошли.",
   },
   {
@@ -498,8 +498,6 @@ function FootprintTrail() {
   }, []);
 
   // Steps walking bottom→top toward the mirror
-  // Each pair: y goes from 90% down to 10% up (bottom of container = closest to reader, top = mirror)
-  // Left foot slightly left of center, right foot slightly right
   const footsteps: { y: number; side: "L" | "R" }[] = [
     { y: 88, side: "L" },
     { y: 76, side: "R" },
@@ -518,36 +516,34 @@ function FootprintTrail() {
       position: "relative", width: "100%", height: "110px",
       marginTop: "14px", overflow: "hidden",
     }}>
-      {/* Faint center path line going upward */}
+      {/* Glowing center path line going upward */}
       <div style={{
         position: "absolute", top: 0, bottom: 0, left: "50%", transform: "translateX(-50%)",
         width: "1px",
-        background: "linear-gradient(to top, transparent, rgba(160,110,255,0.1) 30%, rgba(160,110,255,0.1) 70%, transparent)",
+        background: "linear-gradient(to top, transparent, rgba(180,120,255,0.25) 30%, rgba(180,120,255,0.25) 70%, transparent)",
         pointerEvents: "none",
       }} />
 
-      {/* Soft vanishing point glow at top */}
+      {/* Vanishing point glow at top */}
       <div style={{
         position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
         width: "80px", height: "30px",
-        background: "radial-gradient(ellipse, rgba(160,110,255,0.18) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse, rgba(160,110,255,0.3) 0%, transparent 70%)",
         pointerEvents: "none",
       }} />
 
       {footsteps.map((fp, i) => {
         const age = phase - i;
         const isVisible = age >= 0 && age < FADE_DURATION;
-        // Fade in fast, linger, then fade out slowly
         let opacity = 0;
         if (isVisible) {
-          if (age === 0) opacity = 0.85;
-          else opacity = Math.max(0, 0.85 - (age / FADE_DURATION) * 0.85);
+          if (age === 0) opacity = 1.0;
+          else opacity = Math.max(0, 1.0 - (age / FADE_DURATION) * 1.0);
         }
 
         const isLeft = fp.side === "L";
-        // Perspective: feet further up (lower y%) appear smaller
+        // Perspective: feet further up (lower y%) appear smaller — scale for SIZE only
         const scale = 0.5 + (fp.y / 100) * 0.65;
-        // Horizontal offset: left/right of center, narrower at top (perspective)
         const xOffset = (isLeft ? -1 : 1) * (4 + (fp.y / 100) * 10);
 
         return (
@@ -558,20 +554,19 @@ function FootprintTrail() {
             transform: `translate(-50%, -50%) scale(${scale}) rotate(${isLeft ? -6 : 6}deg)`,
             opacity,
             transition: "opacity 0.5s ease",
+            filter: "drop-shadow(0 0 6px rgba(180,120,255,0.9)) drop-shadow(0 0 12px rgba(160,80,255,0.6))",
           }}>
-            <svg width="20" height="26" viewBox="0 0 20 26" fill="none">
+            <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
               {/* Sole */}
-              <ellipse cx="10" cy="18" rx="7" ry="7.5"
-                fill={`rgba(180,140,255,${0.18 * scale})`} />
+              <ellipse cx="12" cy="21" rx="8.5" ry="8.5"
+                fill="rgba(200,160,255,0.75)"
+                stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
               {/* Toes */}
-              <ellipse cx="4.5" cy="9.5" rx="2.4" ry="2.9" fill={`rgba(180,140,255,${0.16 * scale})`} />
-              <ellipse cx="7.5" cy="7.5" rx="2.3" ry="2.9" fill={`rgba(180,140,255,${0.16 * scale})`} />
-              <ellipse cx="10.5" cy="7"  rx="2.3" ry="2.8" fill={`rgba(180,140,255,${0.15 * scale})`} />
-              <ellipse cx="13.5" cy="8"  rx="2.1" ry="2.6" fill={`rgba(180,140,255,${0.13 * scale})`} />
-              <ellipse cx="16"   cy="10.5" rx="1.7" ry="2.2" fill={`rgba(180,140,255,${0.11 * scale})`} />
-              {/* Glowing outline */}
-              <ellipse cx="10" cy="18" rx="7" ry="7.5"
-                stroke={`rgba(160,110,255,${0.4 * scale})`} strokeWidth="0.9" fill="none" />
+              <ellipse cx="5.5" cy="11" rx="2.7" ry="3.2" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
+              <ellipse cx="9"   cy="8.5" rx="2.6" ry="3.2" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
+              <ellipse cx="12.5" cy="8"  rx="2.6" ry="3.1" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
+              <ellipse cx="16"  cy="9.2" rx="2.4" ry="2.9" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
+              <ellipse cx="19"  cy="12"  rx="1.9" ry="2.4" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
             </svg>
           </div>
         );
@@ -584,6 +579,19 @@ function CardsSlideshow({ visible }: { visible: boolean }) {
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [hovered, setHovered] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
+  const goNext = () => {
+    setPrev(current);
+    setDirection(1);
+    setCurrent(c => (c + 1) % DECK_CARDS.length);
+  };
+  const goPrev = () => {
+    setPrev(current);
+    setDirection(-1);
+    setCurrent(c => (c - 1 + DECK_CARDS.length) % DECK_CARDS.length);
+  };
 
   useEffect(() => {
     if (!visible) return;
@@ -602,10 +610,22 @@ function CardsSlideshow({ visible }: { visible: boolean }) {
   }, [current]);
 
   return (
-    <div style={{
-      position: "relative", width: "140px", height: "190px",
-      margin: "0 auto 14px", perspective: "600px",
-    }}>
+    <div
+      style={{
+        position: "relative", width: "180px", height: "240px",
+        margin: "0 auto 14px", perspective: "600px",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={e => {
+        if (touchStartX.current === null) return;
+        const diff = e.changedTouches[0].clientX - touchStartX.current;
+        if (diff > 40) goPrev();
+        else if (diff < -40) goNext();
+        touchStartX.current = null;
+      }}
+    >
       {/* Ambient glow */}
       <div style={{
         position: "absolute", inset: "-18px", borderRadius: "50%",
@@ -617,7 +637,7 @@ function CardsSlideshow({ visible }: { visible: boolean }) {
       {/* Floor shadow */}
       <div style={{
         position: "absolute", bottom: "-14px", left: "50%", transform: "translateX(-50%)",
-        width: "100px", height: "14px", borderRadius: "50%",
+        width: "120px", height: "14px", borderRadius: "50%",
         background: "rgba(100,140,220,0.2)", filter: "blur(10px)",
       }} />
 
@@ -648,20 +668,6 @@ function CardsSlideshow({ visible }: { visible: boolean }) {
       }}>
         <img src={DECK_CARDS[current].img} alt={DECK_CARDS[current].label}
           style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        {/* Label bar */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0,
-          background: "linear-gradient(to top, rgba(6,10,28,0.95) 0%, rgba(6,10,28,0.5) 60%, transparent 100%)",
-          padding: "18px 8px 10px",
-          textAlign: "center",
-        }}>
-          <span style={{
-            fontFamily: "'Cormorant', serif",
-            fontSize: "13px", letterSpacing: "0.18em",
-            color: "rgba(190,210,255,0.9)", textTransform: "uppercase",
-            textShadow: "0 0 12px rgba(100,160,255,0.5)",
-          }}>{DECK_CARDS[current].label}</span>
-        </div>
         {/* Shimmer overlay */}
         <div style={{
           position: "absolute", inset: 0,
@@ -670,9 +676,35 @@ function CardsSlideshow({ visible }: { visible: boolean }) {
         }} />
       </div>
 
+      {/* Left arrow */}
+      <button
+        onClick={goPrev}
+        style={{
+          position: "absolute", left: "-28px", top: "50%", transform: "translateY(-50%)",
+          zIndex: 10, width: "24px", height: "24px", borderRadius: "50%",
+          background: "rgba(20,20,40,0.65)", border: "1px solid rgba(120,160,255,0.3)",
+          color: "rgba(180,210,255,0.85)", fontSize: "12px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          cursor: "pointer", opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease",
+        }}
+      >‹</button>
+
+      {/* Right arrow */}
+      <button
+        onClick={goNext}
+        style={{
+          position: "absolute", right: "-28px", top: "50%", transform: "translateY(-50%)",
+          zIndex: 10, width: "24px", height: "24px", borderRadius: "50%",
+          background: "rgba(20,20,40,0.65)", border: "1px solid rgba(120,160,255,0.3)",
+          color: "rgba(180,210,255,0.85)", fontSize: "12px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          cursor: "pointer", opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease",
+        }}
+      >›</button>
+
       {/* Dot indicators */}
       <div style={{
-        position: "absolute", bottom: "-26px", left: "50%", transform: "translateX(-50%)",
+        position: "absolute", bottom: "-30px", left: "50%", transform: "translateX(-50%)",
         display: "flex", gap: "5px",
       }}>
         {DECK_CARDS.map((_, i) => (
@@ -807,6 +839,354 @@ function Mirror3D({ visible }: { visible: boolean }) {
         background: "rgba(140,80,200,0.28)", filter: "blur(12px)",
         opacity: revealed ? 1 : 0, transition: "opacity 0.9s ease 0.9s",
       }} />
+    </div>
+  );
+}
+
+function Corset3D({ visible }: { visible: boolean }) {
+  const [risen, setRisen] = useState(false);
+  const [glowing, setGlowing] = useState(false);
+
+  useEffect(() => {
+    if (!visible) return;
+    const t1 = setTimeout(() => setRisen(true), 200);
+    const t2 = setTimeout(() => setGlowing(true), 900);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [visible]);
+
+  // Embroidered flowers: positions and colors
+  const flowers = [
+    { x: 28, y: 30, color: "rgba(220,100,140,0.9)", size: 10 },
+    { x: 68, y: 25, color: "rgba(180,220,100,0.9)", size: 9 },
+    { x: 20, y: 60, color: "rgba(140,180,255,0.9)", size: 8 },
+    { x: 75, y: 58, color: "rgba(255,180,100,0.9)", size: 8 },
+    { x: 45, y: 72, color: "rgba(220,120,200,0.9)", size: 7 },
+    { x: 52, y: 18, color: "rgba(160,255,200,0.85)", size: 7 },
+    { x: 35, y: 48, color: "rgba(255,140,120,0.8)", size: 6 },
+    { x: 62, y: 44, color: "rgba(180,140,255,0.85)", size: 6 },
+  ];
+
+  return (
+    <div style={{
+      position: "relative", width: "180px", height: "200px",
+      margin: "0 auto 10px", perspective: "700px",
+    }}>
+      {/* Ambient glow */}
+      <div style={{
+        position: "absolute", inset: "-16px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(140,80,120,0.22) 0%, transparent 65%)",
+        opacity: glowing ? 1 : 0, transition: "opacity 0.8s ease",
+        animation: glowing ? "pulseGold 3.5s ease-in-out infinite" : "none",
+        pointerEvents: "none",
+      }} />
+
+      {/* Corset body */}
+      <div style={{
+        position: "absolute", bottom: "10px", left: "50%",
+        width: "130px", height: "160px",
+        transform: risen
+          ? "translateX(-50%) rotateY(-8deg) rotateX(4deg) translateY(0)"
+          : "translateX(-50%) rotateY(-8deg) rotateX(4deg) translateY(20px)",
+        opacity: risen ? 1 : 0,
+        transition: "transform 1s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease",
+        transformStyle: "preserve-3d",
+      }}>
+        {/* Main body — black leather */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(160deg, #1a1a1a 0%, #0a0a0a 50%, #141414 100%)",
+          borderRadius: "12px 12px 8px 8px",
+          border: "1px solid rgba(60,60,80,0.6)",
+          boxShadow: glowing
+            ? "0 0 40px rgba(140,80,120,0.35), 0 12px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05)"
+            : "0 8px 30px rgba(0,0,0,0.7)",
+          transition: "box-shadow 0.8s ease",
+          overflow: "hidden",
+        }}>
+          {/* Leather sheen */}
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0, height: "45%",
+            background: "linear-gradient(160deg, rgba(255,255,255,0.06) 0%, transparent 60%)",
+          }} />
+
+          {/* Corset boning lines */}
+          {[20, 35, 50, 65, 80].map((x, bi) => (
+            <div key={bi} style={{
+              position: "absolute", top: "5%", bottom: "5%",
+              left: `${x}%`, width: "1px",
+              background: `linear-gradient(to bottom, transparent, rgba(80,80,100,${0.2 + (bi === 2 ? 0.15 : 0)}), transparent)`,
+            }} />
+          ))}
+
+          {/* Lace-up front — vertical center */}
+          <div style={{
+            position: "absolute", top: "8%", bottom: "8%",
+            left: "50%", transform: "translateX(-50%)", width: "3px",
+            background: "linear-gradient(to bottom, rgba(80,60,100,0.4), rgba(120,80,160,0.3), rgba(80,60,100,0.4))",
+          }} />
+          {/* Lace knots */}
+          {[15, 28, 41, 54, 67, 80].map((t, li) => (
+            <div key={li} style={{
+              position: "absolute", top: `${t}%`, left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "8px", height: "5px",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <div style={{
+                width: "6px", height: "3px",
+                border: "1px solid rgba(140,100,200,0.5)",
+                borderRadius: "2px",
+              }} />
+            </div>
+          ))}
+
+          {/* Embroidered flowers */}
+          {flowers.map((f, fi) => (
+            <div key={fi} style={{
+              position: "absolute",
+              left: `${f.x}%`, top: `${f.y}%`,
+              transform: "translate(-50%, -50%)",
+              opacity: glowing ? 1 : 0.6,
+              transition: `opacity 0.5s ease ${fi * 0.08}s`,
+              filter: glowing ? `drop-shadow(0 0 4px ${f.color})` : "none",
+            }}>
+              {/* Flower petals */}
+              <svg width={f.size * 2} height={f.size * 2} viewBox="-10 -10 20 20" fill="none">
+                {[0, 60, 120, 180, 240, 300].map((angle, pi) => (
+                  <ellipse key={pi}
+                    cx={Math.cos((angle * Math.PI) / 180) * 4.5}
+                    cy={Math.sin((angle * Math.PI) / 180) * 4.5}
+                    rx="3" ry="2"
+                    fill={f.color}
+                    transform={`rotate(${angle}, ${Math.cos((angle * Math.PI) / 180) * 4.5}, ${Math.sin((angle * Math.PI) / 180) * 4.5})`}
+                  />
+                ))}
+                <circle cx="0" cy="0" r="2.5" fill="rgba(255,240,200,0.95)" />
+              </svg>
+            </div>
+          ))}
+        </div>
+
+        {/* Corset top edge */}
+        <div style={{
+          position: "absolute", top: 0, left: "5%", right: "5%", height: "3px",
+          background: "linear-gradient(90deg, rgba(60,60,80,0.4), rgba(120,100,160,0.6), rgba(60,60,80,0.4))",
+          borderRadius: "2px",
+        }} />
+
+        {/* Corset bottom hem */}
+        <div style={{
+          position: "absolute", bottom: 0, left: "5%", right: "5%", height: "3px",
+          background: "linear-gradient(90deg, rgba(60,60,80,0.4), rgba(120,100,160,0.5), rgba(60,60,80,0.4))",
+          borderRadius: "2px",
+        }} />
+
+        {/* Side 3D panel — right */}
+        <div style={{
+          position: "absolute", top: "5%", bottom: "5%",
+          right: "-8px", width: "10px",
+          background: "linear-gradient(90deg, #0a0a0a, #050505)",
+          borderRadius: "0 4px 4px 0",
+          transform: "rotateY(90deg)",
+          transformOrigin: "left center",
+        }} />
+      </div>
+
+      {/* Floating petals */}
+      {glowing && [...Array(5)].map((_, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${15 + i * 16}%`,
+          top: `${5 + (i % 3) * 18}%`,
+          width: "4px", height: "4px", borderRadius: "50%",
+          background: flowers[i % flowers.length].color,
+          boxShadow: `0 0 6px ${flowers[i % flowers.length].color}`,
+          animation: `spirit-float ${2.2 + i * 0.4}s ease-in-out ${i * 0.25}s infinite`,
+        }} />
+      ))}
+
+      {/* Floor shadow */}
+      <div style={{
+        position: "absolute", bottom: "2px", left: "50%", transform: "translateX(-50%)",
+        width: "120px", height: "12px", borderRadius: "50%",
+        background: "rgba(100,60,100,0.3)", filter: "blur(10px)",
+        opacity: risen ? 1 : 0, transition: "opacity 0.8s ease 0.5s",
+      }} />
+    </div>
+  );
+}
+
+function Book3D({ visible }: { visible: boolean }) {
+  const [open, setOpen] = useState(false);
+  const [pageFlip, setPageFlip] = useState(0);
+
+  useEffect(() => {
+    if (!visible) return;
+    const t1 = setTimeout(() => setOpen(true), 300);
+    return () => clearTimeout(t1);
+  }, [visible]);
+
+  useEffect(() => {
+    if (!open) return;
+    const id = setInterval(() => setPageFlip(p => p + 1), 1800);
+    return () => clearInterval(id);
+  }, [open]);
+
+  const pageAngle = (pageFlip % 2 === 0) ? -160 : 0;
+
+  return (
+    <div style={{ perspective: "800px", width: "200px", height: "160px", margin: "0 auto 12px", position: "relative" }}>
+      {/* Glow under book */}
+      <div style={{
+        position: "absolute", bottom: "-10px", left: "50%", transform: "translateX(-50%)",
+        width: "160px", height: "20px", borderRadius: "50%",
+        background: "rgba(100,140,220,0.3)", filter: "blur(14px)",
+        opacity: open ? 1 : 0, transition: "opacity 0.8s ease",
+      }} />
+
+      {/* Book container */}
+      <div style={{
+        position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)",
+        width: "160px", height: "130px",
+        transformStyle: "preserve-3d",
+        transform: open
+          ? "translateX(-50%) rotateX(20deg) rotateY(-10deg)"
+          : "translateX(-50%) rotateX(40deg) rotateY(-30deg)",
+        transition: "transform 1.2s cubic-bezier(0.22,1,0.36,1)",
+      }}>
+        {/* Back cover */}
+        <div style={{
+          position: "absolute", width: "80px", height: "120px",
+          background: "linear-gradient(160deg, #0e1830 0%, #0a1020 100%)",
+          border: "1px solid rgba(100,140,220,0.3)",
+          borderRadius: "3px 8px 8px 3px",
+          left: "80px", top: 0,
+          boxShadow: "4px 4px 20px rgba(0,0,0,0.6)",
+        }} />
+
+        {/* Pages stack */}
+        <div style={{
+          position: "absolute", width: "76px", height: "116px",
+          left: "82px", top: "2px",
+          background: "linear-gradient(90deg, #e8e0d0, #f0ead8)",
+          borderRadius: "0 4px 4px 0",
+          boxShadow: "inset -2px 0 8px rgba(0,0,0,0.15)",
+        }}>
+          {/* Page lines */}
+          {[15,25,35,45,55,65,75,85,95].map(t => (
+            <div key={t} style={{
+              position: "absolute", top: `${t}%`, left: "10%", right: "10%",
+              height: "1px", background: "rgba(100,80,60,0.12)",
+            }} />
+          ))}
+        </div>
+
+        {/* Spine */}
+        <div style={{
+          position: "absolute", width: "12px", height: "120px",
+          left: "68px", top: 0,
+          background: "linear-gradient(90deg, #0a0e1c, #121830, #0e1428)",
+          borderRadius: "3px 0 0 3px",
+          boxShadow: "inset 2px 0 6px rgba(0,0,0,0.5)",
+          border: "1px solid rgba(80,120,200,0.2)",
+        }}>
+          {/* Spine lines */}
+          <div style={{ position: "absolute", top: "12px", left: "2px", right: "2px", height: "1px", background: "rgba(100,140,220,0.4)" }} />
+          <div style={{ position: "absolute", bottom: "12px", left: "2px", right: "2px", height: "1px", background: "rgba(100,140,220,0.4)" }} />
+        </div>
+
+        {/* Front cover */}
+        <div style={{
+          position: "absolute", width: "80px", height: "120px",
+          background: "linear-gradient(160deg, #0e1830 0%, #060e20 60%, #0c1428 100%)",
+          border: "1px solid rgba(100,140,220,0.45)",
+          borderRadius: "3px 8px 8px 3px",
+          left: "80px", top: 0,
+          boxShadow: "0 0 30px rgba(80,120,220,0.3), inset 0 0 20px rgba(60,100,180,0.08)",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px",
+        }}>
+          {/* Cover decoration */}
+          <div style={{
+            width: "50px", height: "50px", borderRadius: "50%",
+            border: "1px solid rgba(120,160,255,0.35)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 0 16px rgba(80,120,220,0.3)",
+          }}>
+            <div style={{
+              width: "34px", height: "34px", borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(100,140,255,0.2) 0%, transparent 70%)",
+              border: "1px solid rgba(100,140,255,0.2)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <span style={{ fontSize: "16px", filter: "drop-shadow(0 0 8px rgba(140,180,255,0.8))" }}>✦</span>
+            </div>
+          </div>
+          <p style={{
+            fontSize: "6px", letterSpacing: "0.2em", textTransform: "uppercase",
+            color: "rgba(140,180,255,0.7)", textAlign: "center", lineHeight: 1.6,
+            textShadow: "0 0 8px rgba(100,150,255,0.5)",
+          }}>MENDACIUM<br/>VERITAS</p>
+        </div>
+
+        {/* Flipping page */}
+        <div style={{
+          position: "absolute", width: "74px", height: "116px",
+          left: "82px", top: "2px",
+          transformStyle: "preserve-3d",
+          transformOrigin: "left center",
+          transform: `rotateY(${pageAngle}deg)`,
+          transition: "transform 1.1s cubic-bezier(0.4,0,0.2,1)",
+          zIndex: 10,
+        }}>
+          {/* Page front */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(160deg, #f0ead8, #e8e0cc)",
+            borderRadius: "0 4px 4px 0",
+            backfaceVisibility: "hidden",
+            padding: "8px",
+            boxShadow: "2px 0 10px rgba(0,0,0,0.2)",
+          }}>
+            {[10,22,34,46,58,70,82].map(t => (
+              <div key={t} style={{
+                position: "absolute", top: `${t}%`, left: "12%",
+                right: `${8 + (t % 3) * 5}%`,
+                height: "1px", background: "rgba(60,40,20,0.15)",
+              }} />
+            ))}
+          </div>
+          {/* Page back */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(160deg, #e8e0cc, #ddd4bc)",
+            borderRadius: "0 4px 4px 0",
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            padding: "8px",
+          }}>
+            {[12,24,36,48,60,72,84].map(t => (
+              <div key={t} style={{
+                position: "absolute", top: `${t}%`, left: "8%",
+                right: `${12 + (t % 4) * 4}%`,
+                height: "1px", background: "rgba(60,40,20,0.12)",
+              }} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Floating sparkles */}
+      {open && [...Array(4)].map((_, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${25 + i * 16}%`,
+          top: `${10 + (i % 2) * 25}%`,
+          width: "3px", height: "3px", borderRadius: "50%",
+          background: i % 2 === 0 ? "rgba(140,180,255,0.9)" : "rgba(100,150,220,0.7)",
+          boxShadow: "0 0 8px rgba(120,160,255,0.7)",
+          animation: `spirit-float ${2 + i * 0.5}s ease-in-out ${i * 0.3}s infinite`,
+        }} />
+      ))}
     </div>
   );
 }
@@ -1123,54 +1503,26 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           {/* Hut on chicken legs for shop step (id="shop", index 4) */}
           {step === 4 && <HutOnLegs visible={visible} />}
 
-          {/* Cards fan for book step (id="book", index 5 now) */}
-          {step === 5 && (
-            <div className="relative mx-auto mb-4 flex items-center justify-center" style={{ height: "150px", width: "220px" }}>
-              {DECK_CARDS.map((card, i) => {
-                const t = DECK_CARDS.length;
-                const d = ((i - (step % t) + t) % t);
-                const nd = d > t / 2 ? d - t : d;
-                const isCtr = nd === 0;
-                const isL = nd === -1;
-                const isR = nd === 1;
-                const vis = isCtr || isL || isR;
-                const tx = isCtr ? 0 : isL ? -60 : 60;
-                const rot = isCtr ? 0 : isL ? -15 : 15;
-                return (
-                  <div key={i} style={{
-                    position: "absolute",
-                    width: "88px", height: "120px",
-                    borderRadius: "9px", overflow: "hidden",
-                    transform: `translateX(${tx}px) rotate(${rot}deg)`,
-                    zIndex: isCtr ? 10 : isL ? 5 : 3,
-                    opacity: vis ? 1 : 0,
-                    pointerEvents: vis ? "auto" : "none",
-                    transition: "all 0.6s ease",
-                    boxShadow: isCtr
-                      ? "0 6px 36px rgba(140,80,200,0.7), 0 0 16px rgba(140,80,200,0.4)"
-                      : "0 4px 16px rgba(0,0,0,0.7)",
-                    border: isCtr ? "1px solid rgba(180,140,255,0.55)" : "1px solid rgba(140,80,200,0.15)",
-                  }}>
-                    <img src={card.img} alt={card.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    {!isCtr && <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.38)" }} />}
-                    {isCtr && (
-                      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top,rgba(10,6,22,0.9),transparent)", padding: "4px", textAlign: "center" }}>
-                        <span style={{ fontSize: "8px", letterSpacing: "0.15em", color: "rgba(200,180,255,0.85)", textTransform: "uppercase" }}>{card.label}</span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-              <div style={{
-                position: "absolute", bottom: "-10px", left: "50%", transform: "translateX(-50%)",
-                width: "140px", height: "16px", borderRadius: "50%",
-                background: "rgba(140,80,200,0.25)", filter: "blur(10px)",
-              }} />
+          {/* 3D Book for book step (id="book", index 5) */}
+          {step === 5 && <Book3D visible={visible} />}
+
+          {/* Corset for epilogue step (id="epilogue", index 9) */}
+          {step === 9 && <Corset3D visible={visible} />}
+
+          {/* Journey chapter banner for step 3 */}
+          {step === 3 && (
+            <div style={{
+              textAlign: "center", padding: "8px 0 4px",
+              fontFamily: "'Cormorant', serif",
+              fontSize: "11px", letterSpacing: "0.5em", textTransform: "uppercase",
+              color: "rgba(160,210,255,0.55)",
+            }}>
+              ✦ &nbsp; Начало второй практики &nbsp; ✦
             </div>
           )}
 
           {/* Icon for other steps */}
-          {step !== 0 && step !== 1 && step !== 2 && step !== 4 && step !== 5 && (
+          {step !== 0 && step !== 1 && step !== 2 && step !== 4 && step !== 5 && step !== 9 && (
             <div className="text-4xl mb-4" style={{ filter: "drop-shadow(0 0 16px rgba(140,80,200,0.6))", animation: "spirit-float 4s ease-in-out infinite" }}>
               {current.icon}
             </div>
@@ -1216,19 +1568,38 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
               background: "linear-gradient(to bottom, transparent, rgba(160,110,255,0.5), transparent)",
               borderRadius: "2px",
             }} />
-            {current.text.split("\n\n").map((para, i) => (
-              <p key={i} style={{
-                fontFamily: "'Cormorant', serif",
-                fontSize: "clamp(1.05rem, 2.5vw, 1.2rem)",
-                color: i === 0 ? "rgba(230,215,255,0.9)" : "rgba(200,185,245,0.75)",
-                fontStyle: "italic",
-                lineHeight: "1.95",
-                marginBottom: i < current.text.split("\n\n").length - 1 ? "16px" : 0,
-                letterSpacing: "0.01em",
-              }}>
-                {para}
-              </p>
-            ))}
+            {current.text.split("\n\n").map((para, i) => {
+              if (current.id === "intro" && para.trim() === "— — —") {
+                return (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px", margin: "20px 0" }}>
+                    <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, transparent, rgba(220,80,30,0.6))" }} />
+                    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                      {(["◆", "◇", "◆"] as string[]).map((s, si) => (
+                        <span key={si} style={{
+                          fontSize: si === 1 ? "8px" : "10px",
+                          color: si === 1 ? "rgba(220,80,30,0.5)" : "rgba(220,80,30,0.8)",
+                          filter: "drop-shadow(0 0 6px rgba(220,80,30,0.6))"
+                        }}>{s}</span>
+                      ))}
+                    </div>
+                    <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(220,80,30,0.6), transparent)" }} />
+                  </div>
+                );
+              }
+              return (
+                <p key={i} style={{
+                  fontFamily: "'Cormorant', serif",
+                  fontSize: "clamp(1.05rem, 2.5vw, 1.2rem)",
+                  color: i === 0 ? "rgba(230,215,255,0.9)" : "rgba(200,185,245,0.75)",
+                  fontStyle: "italic",
+                  lineHeight: "1.95",
+                  marginBottom: i < current.text.split("\n\n").length - 1 ? "16px" : 0,
+                  letterSpacing: "0.01em",
+                }}>
+                  {para}
+                </p>
+              );
+            })}
             {current.id === "mirror" && <FootprintTrail />}
           </div>
 
