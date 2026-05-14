@@ -630,3 +630,14 @@
     transform: translateX(0px) rotate(0deg) scale(1);
   }
 }
+
+@keyframes footLand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}

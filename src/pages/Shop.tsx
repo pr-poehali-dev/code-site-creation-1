@@ -276,7 +276,7 @@ const PRACTICE_STEPS = [
     title: "Карты колоды",
     accent: "rgba(100,140,220,0.9)",
     bg: "radial-gradient(ellipse at 50% 0%, rgba(80,120,200,0.13) 0%, transparent 65%)",
-    text: "Отшельник · Путь внутрь себя, уединение и мудрость тишины. Тот, кто ищет свет в темноте собственного пути.\n\nИмператрица · Сила плодородия и созидания. Всё живое тянется к ней — она источник и исток.\n\nСмерть · Не конец, а великое преображение. Старое уходит, освобождая место для нового.\n\nМир · Завершённость цикла. Птицы, взмывающие ввысь сквозь огонь — свобода после испытания.\n\nДьявол · Искушение и зеркало теней. Та, что стоит между двух миров и смотрит прямо в глаза.\n\nКолесо Фортуны · Шар в старой библиотеке — силы, которые вращают судьбу. Твой момент перемен.",
+    text: "Каждая карта — это зеркало.\n\nОна не предсказывает — она отражает то, что уже живёт внутри тебя.\n\nЛистай и смотри.",
   },
   {
     id: "journey",
@@ -490,84 +490,121 @@ function Campfire3D({ visible }: { visible: boolean }) {
 }
 
 function FootprintTrail() {
-  const [phase, setPhase] = useState(0);
+  // activeStep: index of the foot currently "landing" (0..7), cycles every 600ms
+  const [activeStep, setActiveStep] = useState(-1);
+  const [visible, setVisible] = useState<boolean[]>(Array(8).fill(false));
+
+  // 8 footstep positions bottom→top with perspective
+  const footsteps: { y: number; side: "L" | "R" }[] = [
+    { y: 90, side: "L" },
+    { y: 78, side: "R" },
+    { y: 66, side: "L" },
+    { y: 54, side: "R" },
+    { y: 42, side: "L" },
+    { y: 30, side: "R" },
+    { y: 18, side: "L" },
+    { y:  7, side: "R" },
+  ];
 
   useEffect(() => {
-    const id = setInterval(() => setPhase(p => p + 1), 500);
+    let step = 0;
+    const tick = () => {
+      setActiveStep(step);
+      setVisible(prev => {
+        const next = [...prev];
+        next[step] = true;
+        return next;
+      });
+      step = (step + 1) % footsteps.length;
+      // When we loop back to 0 — reset all to false first
+      if (step === 0) {
+        setTimeout(() => {
+          setVisible(Array(8).fill(false));
+          setActiveStep(-1);
+        }, 400);
+      }
+    };
+    const id = setInterval(tick, 420);
     return () => clearInterval(id);
   }, []);
 
-  // Steps walking bottom→top toward the mirror
-  const footsteps: { y: number; side: "L" | "R" }[] = [
-    { y: 88, side: "L" },
-    { y: 76, side: "R" },
-    { y: 64, side: "L" },
-    { y: 52, side: "R" },
-    { y: 40, side: "L" },
-    { y: 28, side: "R" },
-    { y: 16, side: "L" },
-    { y:  6, side: "R" },
-  ];
-
-  const FADE_DURATION = 9;
+  const FootSVG = ({ side, scale }: { side: "L" | "R"; scale: number }) => (
+    <svg
+      width={Math.round(26 * scale)}
+      height={Math.round(32 * scale)}
+      viewBox="0 0 26 32"
+      fill="none"
+      style={{
+        filter: "drop-shadow(0 0 8px rgba(210,170,255,1)) drop-shadow(0 0 18px rgba(180,100,255,0.8))",
+        transform: side === "R" ? "scaleX(-1)" : "none",
+      }}
+    >
+      {/* Heel + arch + ball — organic foot sole */}
+      <path
+        d="M13 30 C7 30 4 26 4 21 C4 16 6 13 9 11 C10 8 9 4 11 2 C12 1 14 1 15 2 C17 4 16 8 17 11 C20 13 22 16 22 21 C22 26 19 30 13 30 Z"
+        fill="rgba(210,170,255,0.8)"
+        stroke="rgba(230,200,255,0.95)"
+        strokeWidth="1.2"
+      />
+      {/* Toes */}
+      <ellipse cx="8"  cy="9"  rx="2.8" ry="3.5" fill="rgba(210,170,255,0.75)" stroke="rgba(230,200,255,0.9)" strokeWidth="1.1" />
+      <ellipse cx="11.5" cy="7" rx="2.6" ry="3.3" fill="rgba(210,170,255,0.75)" stroke="rgba(230,200,255,0.9)" strokeWidth="1.1" />
+      <ellipse cx="15" cy="6.5" rx="2.5" ry="3.2" fill="rgba(210,170,255,0.75)" stroke="rgba(230,200,255,0.9)" strokeWidth="1.1" />
+      <ellipse cx="18.5" cy="8" rx="2.2" ry="2.8" fill="rgba(210,170,255,0.7)"  stroke="rgba(230,200,255,0.85)" strokeWidth="1.1" />
+      <ellipse cx="21.5" cy="11" rx="1.7" ry="2.2" fill="rgba(210,170,255,0.65)" stroke="rgba(230,200,255,0.8)" strokeWidth="1.0" />
+    </svg>
+  );
 
   return (
     <div style={{
-      position: "relative", width: "100%", height: "110px",
-      marginTop: "14px", overflow: "hidden",
+      position: "relative", width: "100%", height: "120px",
+      marginTop: "16px", overflow: "hidden",
     }}>
-      {/* Glowing center path line going upward */}
+      {/* Center path — vanishing upward */}
       <div style={{
         position: "absolute", top: 0, bottom: 0, left: "50%", transform: "translateX(-50%)",
-        width: "1px",
-        background: "linear-gradient(to top, transparent, rgba(180,120,255,0.25) 30%, rgba(180,120,255,0.25) 70%, transparent)",
+        width: "2px",
+        background: "linear-gradient(to top, rgba(180,120,255,0.35), rgba(180,120,255,0.15) 60%, transparent)",
         pointerEvents: "none",
       }} />
-
-      {/* Vanishing point glow at top */}
+      {/* Vanishing glow */}
       <div style={{
-        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-        width: "80px", height: "30px",
-        background: "radial-gradient(ellipse, rgba(160,110,255,0.3) 0%, transparent 70%)",
+        position: "absolute", top: "-4px", left: "50%", transform: "translateX(-50%)",
+        width: "60px", height: "40px",
+        background: "radial-gradient(ellipse, rgba(200,150,255,0.35) 0%, transparent 75%)",
         pointerEvents: "none",
       }} />
 
       {footsteps.map((fp, i) => {
-        const age = phase - i;
-        const isVisible = age >= 0 && age < FADE_DURATION;
-        let opacity = 0;
-        if (isVisible) {
-          if (age === 0) opacity = 1.0;
-          else opacity = Math.max(0, 1.0 - (age / FADE_DURATION) * 1.0);
-        }
-
         const isLeft = fp.side === "L";
-        // Perspective: feet further up (lower y%) appear smaller — scale for SIZE only
-        const scale = 0.5 + (fp.y / 100) * 0.65;
-        const xOffset = (isLeft ? -1 : 1) * (4 + (fp.y / 100) * 10);
+        const scale = 0.42 + (fp.y / 100) * 0.58;
+        const xOffset = (isLeft ? -1 : 1) * (5 + (fp.y / 100) * 12);
+        const isActive = i === activeStep;
+        const isShown = visible[i];
 
         return (
           <div key={i} style={{
             position: "absolute",
             left: `calc(50% + ${xOffset}px)`,
             top: `${fp.y}%`,
-            transform: `translate(-50%, -50%) scale(${scale}) rotate(${isLeft ? -6 : 6}deg)`,
-            opacity,
-            transition: "opacity 0.5s ease",
-            filter: "drop-shadow(0 0 6px rgba(180,120,255,0.9)) drop-shadow(0 0 12px rgba(160,80,255,0.6))",
+            transform: `translate(-50%, -50%) rotate(${isLeft ? -5 : 5}deg)`,
+            opacity: isShown ? (isActive ? 1 : 0.55) : 0,
+            transition: isActive ? "opacity 0.08s ease" : "opacity 0.9s ease 0.3s",
           }}>
-            <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
-              {/* Sole */}
-              <ellipse cx="12" cy="21" rx="8.5" ry="8.5"
-                fill="rgba(200,160,255,0.75)"
-                stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-              {/* Toes */}
-              <ellipse cx="5.5" cy="11" rx="2.7" ry="3.2" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-              <ellipse cx="9"   cy="8.5" rx="2.6" ry="3.2" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-              <ellipse cx="12.5" cy="8"  rx="2.6" ry="3.1" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-              <ellipse cx="16"  cy="9.2" rx="2.4" ry="2.9" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-              <ellipse cx="19"  cy="12"  rx="1.9" ry="2.4" fill="rgba(200,160,255,0.75)" stroke="rgba(200,160,255,1.0)" strokeWidth="1.5" />
-            </svg>
+            <FootSVG side={fp.side} scale={scale} />
+            {/* Landing pulse ring */}
+            {isActive && (
+              <div style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "36px", height: "22px",
+                borderRadius: "50%",
+                border: "1.5px solid rgba(210,170,255,0.8)",
+                animation: "footLand 0.5s ease-out forwards",
+                pointerEvents: "none",
+              }} />
+            )}
           </div>
         );
       })}
@@ -854,163 +891,192 @@ function Corset3D({ visible }: { visible: boolean }) {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [visible]);
 
-  // Embroidered flowers: positions and colors
+  // Embroidered flowers: left half and right half (symmetric)
   const flowers = [
-    { x: 28, y: 30, color: "rgba(220,100,140,0.9)", size: 10 },
-    { x: 68, y: 25, color: "rgba(180,220,100,0.9)", size: 9 },
-    { x: 20, y: 60, color: "rgba(140,180,255,0.9)", size: 8 },
-    { x: 75, y: 58, color: "rgba(255,180,100,0.9)", size: 8 },
-    { x: 45, y: 72, color: "rgba(220,120,200,0.9)", size: 7 },
-    { x: 52, y: 18, color: "rgba(160,255,200,0.85)", size: 7 },
-    { x: 35, y: 48, color: "rgba(255,140,120,0.8)", size: 6 },
-    { x: 62, y: 44, color: "rgba(180,140,255,0.85)", size: 6 },
+    { cx: 72,  cy: 52,  r: 7,  color: "#e8607a", petals: 6 },
+    { cx: 52,  cy: 78,  r: 6,  color: "#c878e0", petals: 5 },
+    { cx: 88,  cy: 82,  r: 5,  color: "#6eb0f0", petals: 6 },
+    { cx: 60,  cy: 110, r: 5,  color: "#f0a050", petals: 5 },
+    { cx: 90,  cy: 118, r: 4,  color: "#78d090", petals: 6 },
+    { cx: 50,  cy: 140, r: 4,  color: "#e870a8", petals: 5 },
+    // mirrored right half
+    { cx: 148, cy: 52,  r: 7,  color: "#e8607a", petals: 6 },
+    { cx: 168, cy: 78,  r: 6,  color: "#c878e0", petals: 5 },
+    { cx: 132, cy: 82,  r: 5,  color: "#6eb0f0", petals: 6 },
+    { cx: 160, cy: 110, r: 5,  color: "#f0a050", petals: 5 },
+    { cx: 130, cy: 118, r: 4,  color: "#78d090", petals: 6 },
+    { cx: 170, cy: 140, r: 4,  color: "#e870a8", petals: 5 },
   ];
 
   return (
     <div style={{
-      position: "relative", width: "180px", height: "200px",
-      margin: "0 auto 10px", perspective: "700px",
+      position: "relative", width: "220px", height: "220px",
+      margin: "0 auto 10px",
+      opacity: risen ? 1 : 0,
+      transform: risen ? "translateY(0) scale(1)" : "translateY(16px) scale(0.96)",
+      transition: "opacity 0.9s ease, transform 1s cubic-bezier(0.22,1,0.36,1)",
     }}>
-      {/* Ambient glow */}
+      {/* Outer glow */}
       <div style={{
-        position: "absolute", inset: "-16px", borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(140,80,120,0.22) 0%, transparent 65%)",
-        opacity: glowing ? 1 : 0, transition: "opacity 0.8s ease",
-        animation: glowing ? "pulseGold 3.5s ease-in-out infinite" : "none",
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse at 50% 60%, rgba(180,80,140,0.22) 0%, transparent 70%)",
+        opacity: glowing ? 1 : 0, transition: "opacity 1s ease",
+        animation: glowing ? "pulseGold 4s ease-in-out infinite" : "none",
         pointerEvents: "none",
       }} />
 
-      {/* Corset body */}
-      <div style={{
-        position: "absolute", bottom: "10px", left: "50%",
-        width: "130px", height: "160px",
-        transform: risen
-          ? "translateX(-50%) rotateY(-8deg) rotateX(4deg) translateY(0)"
-          : "translateX(-50%) rotateY(-8deg) rotateX(4deg) translateY(20px)",
-        opacity: risen ? 1 : 0,
-        transition: "transform 1s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease",
-        transformStyle: "preserve-3d",
-      }}>
-        {/* Main body — black leather */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(160deg, #1a1a1a 0%, #0a0a0a 50%, #141414 100%)",
-          borderRadius: "12px 12px 8px 8px",
-          border: "1px solid rgba(60,60,80,0.6)",
-          boxShadow: glowing
-            ? "0 0 40px rgba(140,80,120,0.35), 0 12px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05)"
-            : "0 8px 30px rgba(0,0,0,0.7)",
-          transition: "box-shadow 0.8s ease",
-          overflow: "hidden",
-        }}>
-          {/* Leather sheen */}
-          <div style={{
-            position: "absolute", top: 0, left: 0, right: 0, height: "45%",
-            background: "linear-gradient(160deg, rgba(255,255,255,0.06) 0%, transparent 60%)",
-          }} />
+      {/* SVG corset — realistic silhouette */}
+      <svg width="220" height="210" viewBox="0 0 220 210" fill="none" style={{ position: "absolute", top: 0, left: 0 }}>
+        <defs>
+          <linearGradient id="leatherL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#2a2a2e" />
+            <stop offset="40%" stopColor="#111114" />
+            <stop offset="100%" stopColor="#1e1e22" />
+          </linearGradient>
+          <linearGradient id="leatherR" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#222226" />
+            <stop offset="40%" stopColor="#0e0e12" />
+            <stop offset="100%" stopColor="#1a1a1e" />
+          </linearGradient>
+          <linearGradient id="sheen" x1="0%" y1="0%" x2="60%" y2="100%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.09)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </linearGradient>
+          <filter id="glowF">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
 
-          {/* Corset boning lines */}
-          {[20, 35, 50, 65, 80].map((x, bi) => (
-            <div key={bi} style={{
-              position: "absolute", top: "5%", bottom: "5%",
-              left: `${x}%`, width: "1px",
-              background: `linear-gradient(to bottom, transparent, rgba(80,80,100,${0.2 + (bi === 2 ? 0.15 : 0)}), transparent)`,
-            }} />
-          ))}
+        {/* ── Left panel ── wide at top/bottom, narrow at waist */}
+        <path
+          d="M110 8 C85 8 50 18 32 36 C18 50 14 68 16 88 C18 108 28 122 34 138 C40 156 40 172 44 192 L110 192 Z"
+          fill="url(#leatherL)"
+          stroke="rgba(80,60,100,0.5)" strokeWidth="1"
+        />
+        {/* ── Right panel ── mirror */}
+        <path
+          d="M110 8 C135 8 170 18 188 36 C202 50 206 68 204 88 C202 108 192 122 186 138 C180 156 180 172 176 192 L110 192 Z"
+          fill="url(#leatherR)"
+          stroke="rgba(80,60,100,0.5)" strokeWidth="1"
+        />
+        {/* Sheen overlay left */}
+        <path
+          d="M110 8 C85 8 50 18 32 36 C18 50 14 68 16 88 L110 88 Z"
+          fill="url(#sheen)"
+        />
 
-          {/* Lace-up front — vertical center */}
-          <div style={{
-            position: "absolute", top: "8%", bottom: "8%",
-            left: "50%", transform: "translateX(-50%)", width: "3px",
-            background: "linear-gradient(to bottom, rgba(80,60,100,0.4), rgba(120,80,160,0.3), rgba(80,60,100,0.4))",
-          }} />
-          {/* Lace knots */}
-          {[15, 28, 41, 54, 67, 80].map((t, li) => (
-            <div key={li} style={{
-              position: "absolute", top: `${t}%`, left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "8px", height: "5px",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              <div style={{
-                width: "6px", height: "3px",
-                border: "1px solid rgba(140,100,200,0.5)",
-                borderRadius: "2px",
-              }} />
-            </div>
-          ))}
+        {/* ── Boning lines — left ── */}
+        {[0.28, 0.42, 0.56, 0.7].map((t, i) => {
+          const x = 32 + t * 78;
+          return (
+            <line key={i}
+              x1={x} y1="22" x2={x - 4} y2="188"
+              stroke="rgba(100,80,140,0.22)" strokeWidth="1"
+            />
+          );
+        })}
+        {/* ── Boning lines — right ── */}
+        {[0.28, 0.42, 0.56, 0.7].map((t, i) => {
+          const x = 188 - t * 78;
+          return (
+            <line key={i}
+              x1={x} y1="22" x2={x + 4} y2="188"
+              stroke="rgba(100,80,140,0.22)" strokeWidth="1"
+            />
+          );
+        })}
 
-          {/* Embroidered flowers */}
-          {flowers.map((f, fi) => (
-            <div key={fi} style={{
-              position: "absolute",
-              left: `${f.x}%`, top: `${f.y}%`,
-              transform: "translate(-50%, -50%)",
-              opacity: glowing ? 1 : 0.6,
-              transition: `opacity 0.5s ease ${fi * 0.08}s`,
-              filter: glowing ? `drop-shadow(0 0 4px ${f.color})` : "none",
-            }}>
-              {/* Flower petals */}
-              <svg width={f.size * 2} height={f.size * 2} viewBox="-10 -10 20 20" fill="none">
-                {[0, 60, 120, 180, 240, 300].map((angle, pi) => (
-                  <ellipse key={pi}
-                    cx={Math.cos((angle * Math.PI) / 180) * 4.5}
-                    cy={Math.sin((angle * Math.PI) / 180) * 4.5}
-                    rx="3" ry="2"
-                    fill={f.color}
-                    transform={`rotate(${angle}, ${Math.cos((angle * Math.PI) / 180) * 4.5}, ${Math.sin((angle * Math.PI) / 180) * 4.5})`}
-                  />
-                ))}
-                <circle cx="0" cy="0" r="2.5" fill="rgba(255,240,200,0.95)" />
-              </svg>
-            </div>
-          ))}
-        </div>
+        {/* ── Lace center ── */}
+        <line x1="110" y1="10" x2="110" y2="190" stroke="rgba(160,120,200,0.35)" strokeWidth="2" />
+        {/* Lace eyelets + X cross-lacing */}
+        {[22, 42, 62, 82, 102, 122, 142, 162, 180].map((y, li) => (
+          <g key={li}>
+            {/* Eyelet left */}
+            <circle cx="102" cy={y} r="3" fill="#111" stroke="rgba(160,120,200,0.5)" strokeWidth="1.2" />
+            {/* Eyelet right */}
+            <circle cx="118" cy={y} r="3" fill="#111" stroke="rgba(160,120,200,0.5)" strokeWidth="1.2" />
+            {/* X lace cross */}
+            {li < 8 && (
+              <>
+                <line x1="105" y1={y + 2} x2="115" y2={y + 18} stroke="rgba(180,140,220,0.45)" strokeWidth="1.2" />
+                <line x1="115" y1={y + 2} x2="105" y2={y + 18} stroke="rgba(180,140,220,0.45)" strokeWidth="1.2" />
+              </>
+            )}
+          </g>
+        ))}
 
-        {/* Corset top edge */}
-        <div style={{
-          position: "absolute", top: 0, left: "5%", right: "5%", height: "3px",
-          background: "linear-gradient(90deg, rgba(60,60,80,0.4), rgba(120,100,160,0.6), rgba(60,60,80,0.4))",
-          borderRadius: "2px",
-        }} />
+        {/* ── Top sweetheart neckline edge ── */}
+        <path
+          d="M32 36 Q50 12 80 16 Q95 18 110 28 Q125 18 140 16 Q170 12 188 36"
+          stroke="rgba(120,90,160,0.5)" strokeWidth="1.5" fill="none"
+        />
+        {/* ── Bottom scallop hem ── */}
+        {[44, 68, 92, 116, 140, 164, 176].map((x, i) => (
+          <path key={i}
+            d={`M${x} 192 Q${x + 12} 202 ${x + 24} 192`}
+            stroke="rgba(120,90,160,0.4)" strokeWidth="1.2" fill="none"
+          />
+        ))}
 
-        {/* Corset bottom hem */}
-        <div style={{
-          position: "absolute", bottom: 0, left: "5%", right: "5%", height: "3px",
-          background: "linear-gradient(90deg, rgba(60,60,80,0.4), rgba(120,100,160,0.5), rgba(60,60,80,0.4))",
-          borderRadius: "2px",
-        }} />
+        {/* ── Embroidered flowers ── */}
+        {flowers.map((f, fi) => (
+          <g key={fi} style={{
+            opacity: glowing ? 1 : 0.5,
+            transition: `opacity 0.5s ease ${fi * 0.06}s`,
+            filter: glowing ? `url(#glowF)` : "none",
+          }}>
+            {Array.from({ length: f.petals }).map((_, pi) => {
+              const a = (pi / f.petals) * Math.PI * 2;
+              const px = f.cx + Math.cos(a) * f.r * 1.4;
+              const py = f.cy + Math.sin(a) * f.r * 1.4;
+              return (
+                <ellipse key={pi}
+                  cx={px} cy={py}
+                  rx={f.r * 0.65} ry={f.r * 0.45}
+                  fill={f.color}
+                  fillOpacity="0.88"
+                  transform={`rotate(${(a * 180) / Math.PI + 90}, ${px}, ${py})`}
+                />
+              );
+            })}
+            <circle cx={f.cx} cy={f.cy} r={f.r * 0.42} fill="rgba(255,245,200,0.95)" />
+            {/* Leaf stems */}
+            <path
+              d={`M${f.cx - f.r} ${f.cy + f.r * 0.6} Q${f.cx - f.r * 1.8} ${f.cy + f.r * 1.8} ${f.cx - f.r * 0.4} ${f.cy + f.r * 2}`}
+              stroke="rgba(100,180,80,0.6)" strokeWidth="0.9" fill="none"
+            />
+          </g>
+        ))}
 
-        {/* Side 3D panel — right */}
-        <div style={{
-          position: "absolute", top: "5%", bottom: "5%",
-          right: "-8px", width: "10px",
-          background: "linear-gradient(90deg, #0a0a0a, #050505)",
-          borderRadius: "0 4px 4px 0",
-          transform: "rotateY(90deg)",
-          transformOrigin: "left center",
-        }} />
-      </div>
+        {/* ── Overall border glow ── */}
+        <path
+          d="M110 8 C85 8 50 18 32 36 C18 50 14 68 16 88 C18 108 28 122 34 138 C40 156 40 172 44 192 L176 192 C180 172 180 156 186 138 C192 122 202 108 204 88 C206 68 202 50 188 36 C170 18 135 8 110 8 Z"
+          stroke={glowing ? "rgba(160,100,200,0.55)" : "rgba(80,60,100,0.3)"}
+          strokeWidth="1.5" fill="none"
+          style={{ transition: "stroke 0.8s ease" }}
+        />
+      </svg>
 
-      {/* Floating petals */}
-      {glowing && [...Array(5)].map((_, i) => (
+      {/* Floating glow petals */}
+      {glowing && [...Array(6)].map((_, i) => (
         <div key={i} style={{
           position: "absolute",
-          left: `${15 + i * 16}%`,
-          top: `${5 + (i % 3) * 18}%`,
-          width: "4px", height: "4px", borderRadius: "50%",
+          left: `${12 + i * 14}%`,
+          top: `${8 + (i % 3) * 22}%`,
+          width: "5px", height: "3px", borderRadius: "50%",
           background: flowers[i % flowers.length].color,
-          boxShadow: `0 0 6px ${flowers[i % flowers.length].color}`,
-          animation: `spirit-float ${2.2 + i * 0.4}s ease-in-out ${i * 0.25}s infinite`,
+          boxShadow: `0 0 8px ${flowers[i % flowers.length].color}`,
+          animation: `spirit-float ${2 + i * 0.35}s ease-in-out ${i * 0.2}s infinite`,
         }} />
       ))}
 
       {/* Floor shadow */}
       <div style={{
-        position: "absolute", bottom: "2px", left: "50%", transform: "translateX(-50%)",
-        width: "120px", height: "12px", borderRadius: "50%",
-        background: "rgba(100,60,100,0.3)", filter: "blur(10px)",
-        opacity: risen ? 1 : 0, transition: "opacity 0.8s ease 0.5s",
+        position: "absolute", bottom: "0", left: "50%", transform: "translateX(-50%)",
+        width: "130px", height: "14px", borderRadius: "50%",
+        background: "rgba(120,60,120,0.3)", filter: "blur(12px)",
+        opacity: risen ? 1 : 0, transition: "opacity 0.8s ease 0.6s",
       }} />
     </div>
   );
@@ -1624,11 +1690,17 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
               </button>
             ) : (
               <button
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  setTimeout(() => {
+                    const el = document.getElementById("shop-products");
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 320);
+                }}
                 className="flex-1 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg,rgba(150,90,220,0.9),rgba(200,146,58,0.65))", color: "white", letterSpacing: "0.14em", boxShadow: "0 0 40px rgba(140,80,200,0.35)" }}
+                style={{ background: "linear-gradient(135deg,rgba(200,146,58,0.9),rgba(150,90,220,0.75))", color: "white", letterSpacing: "0.12em", boxShadow: "0 0 40px rgba(200,146,58,0.4), 0 0 20px rgba(140,80,200,0.25)" }}
               >
-                ✦ завершить практику
+                ✦ продолжить историю
               </button>
             )}
           </div>
@@ -1667,6 +1739,18 @@ const DECK_CARDS = [
   {
     img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/efb17863-b875-40f7-b476-0f98aabbf2b6.png",
     label: "Колесо Фортуны",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/4c2d6537-5077-40cb-9e13-65319ec9ada4.png",
+    label: "Звезда",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/5b0f10cb-9662-4d07-90f2-f917cf7d4261.png",
+    label: "Сила",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/2f91c33a-5c4b-4165-aa6b-0373b5bcf909.png",
+    label: "Маг",
   },
 ];
 
@@ -2138,7 +2222,7 @@ export default function Shop() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div id="shop-products" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <MendaciumCard onOpen={() => setMendaciumOpen(true)} />
             {shopCategories.map((cat, i) => (
               <button
