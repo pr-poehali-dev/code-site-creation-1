@@ -1427,6 +1427,7 @@ function HutOnLegs({ visible }: { visible: boolean }) {
 }
 
 function MendaciumModal({ onClose }: { onClose: () => void }) {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [coins, setCoins] = useState([
     { id: 1, x: 15, y: 20, dissolved: false },
@@ -1692,10 +1693,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
               <button
                 onClick={() => {
                   onClose();
-                  setTimeout(() => {
-                    const el = document.getElementById("shop-products");
-                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }, 320);
+                  navigate("/veritas");
                 }}
                 className="flex-1 py-3.5 rounded-full text-sm tracking-wider uppercase transition-all hover:scale-[1.02]"
                 style={{ background: "linear-gradient(135deg,rgba(200,146,58,0.9),rgba(150,90,220,0.75))", color: "white", letterSpacing: "0.12em", boxShadow: "0 0 40px rgba(200,146,58,0.4), 0 0 20px rgba(140,80,200,0.25)" }}

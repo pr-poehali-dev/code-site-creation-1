@@ -641,3 +641,42 @@
     opacity: 0;
   }
 }
+
+@keyframes leafFloat {
+  0% {
+    transform: rotate(var(--r, 25deg)) scale(var(--s, 0.9)) translate(0px, 0px);
+    opacity: 0.7;
+  }
+  33% {
+    transform: rotate(calc(var(--r, 25deg) + 18deg)) scale(var(--s, 0.9))
+      translate(6px, -8px);
+    opacity: 0.9;
+  }
+  66% {
+    transform: rotate(calc(var(--r, 25deg) - 12deg)) scale(var(--s, 0.9))
+      translate(-4px, 4px);
+    opacity: 0.75;
+  }
+  100% {
+    transform: rotate(calc(var(--r, 25deg) + 8deg)) scale(var(--s, 0.9))
+      translate(10px, -12px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes windDrift {
+  0% {
+    transform: translateX(-8px) scaleX(0.85);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(12px) scaleX(1.1);
+    opacity: 0;
+  }
+}
