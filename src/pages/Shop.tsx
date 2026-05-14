@@ -534,22 +534,37 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           {step === 4 && (
             <div className="relative mx-auto mb-4 flex items-center justify-center" style={{ height: "150px", width: "220px" }}>
               {DECK_CARDS.map((card, i) => {
-                const offsets = [-56, 0, 56];
-                const rotates = [-14, 0, 14];
+                const t = DECK_CARDS.length;
+                const d = ((i - (step % t) + t) % t);
+                const nd = d > t / 2 ? d - t : d;
+                const isCtr = nd === 0;
+                const isL = nd === -1;
+                const isR = nd === 1;
+                const vis = isCtr || isL || isR;
+                const tx = isCtr ? 0 : isL ? -60 : 60;
+                const rot = isCtr ? 0 : isL ? -15 : 15;
                 return (
                   <div key={i} style={{
                     position: "absolute",
                     width: "88px", height: "120px",
                     borderRadius: "9px", overflow: "hidden",
-                    transform: `translateX(${offsets[i]}px) rotate(${rotates[i]}deg)`,
-                    zIndex: i === 1 ? 10 : i === 0 ? 5 : 3,
-                    boxShadow: i === 1
+                    transform: `translateX(${tx}px) rotate(${rot}deg)`,
+                    zIndex: isCtr ? 10 : isL ? 5 : 3,
+                    opacity: vis ? 1 : 0,
+                    pointerEvents: vis ? "auto" : "none",
+                    transition: "all 0.6s ease",
+                    boxShadow: isCtr
                       ? "0 6px 36px rgba(140,80,200,0.7), 0 0 16px rgba(140,80,200,0.4)"
                       : "0 4px 16px rgba(0,0,0,0.7)",
-                    border: i === 1 ? "1px solid rgba(180,140,255,0.55)" : "1px solid rgba(140,80,200,0.15)",
+                    border: isCtr ? "1px solid rgba(180,140,255,0.55)" : "1px solid rgba(140,80,200,0.15)",
                   }}>
                     <img src={card.img} alt={card.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    {i !== 1 && <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.38)" }} />}
+                    {!isCtr && <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.38)" }} />}
+                    {isCtr && (
+                      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(to top,rgba(10,6,22,0.9),transparent)", padding: "4px", textAlign: "center" }}>
+                        <span style={{ fontSize: "8px", letterSpacing: "0.15em", color: "rgba(200,180,255,0.85)", textTransform: "uppercase" }}>{card.label}</span>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -705,13 +720,22 @@ function MendaciumCard({ onOpen }: { onOpen: () => void }) {
           opacity: hovered ? 1 : 0.6,
         }} />
 
-        {/* Cards fan */}
+        {/* Cards fan — always show active + prev + next */}
         <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: "800px" }}>
           {DECK_CARDS.map((card, i) => {
-            const offsets = [-62, 0, 62];
-            const rotates = [-18, 0, 18];
-            const scales = [0.82, activeCard === i ? 1.05 : 0.92, 0.82];
-            const isActive = activeCard === i;
+            const total = DECK_CARDS.length;
+            const diff = ((i - activeCard + total) % total);
+            const normDiff = diff > total / 2 ? diff - total : diff;
+            const isActive = normDiff === 0;
+            const isPrev = normDiff === -1;
+            const isNext = normDiff === 1;
+            const isVisible = isActive || isPrev || isNext;
+
+            const offset = isActive ? 0 : isPrev ? -68 : isNext ? 68 : 0;
+            const rotate = isActive ? 0 : isPrev ? -20 : isNext ? 20 : 0;
+            const scale = isActive ? 1.07 : 0.8;
+            const zIndex = isActive ? 10 : 3;
+
             return (
               <div
                 key={i}
@@ -721,8 +745,10 @@ function MendaciumCard({ onOpen }: { onOpen: () => void }) {
                   height: "140px",
                   borderRadius: "10px",
                   overflow: "hidden",
-                  transform: `translateX(${offsets[i]}px) rotate(${rotates[i]}deg) scale(${scales[i]})`,
-                  zIndex: isActive ? 10 : i === 1 ? 5 : 1,
+                  transform: `translateX(${offset}px) rotate(${rotate}deg) scale(${scale})`,
+                  zIndex,
+                  opacity: isVisible ? 1 : 0,
+                  pointerEvents: isVisible ? "auto" : "none",
                   transition: "all 0.7s cubic-bezier(0.25,0.46,0.45,0.94)",
                   boxShadow: isActive
                     ? "0 8px 40px rgba(140,80,200,0.6), 0 0 20px rgba(140,80,200,0.3)"
