@@ -619,3 +619,14 @@
 .forest-card:hover::before {
   opacity: 1;
 }
+
+@keyframes cardSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) rotate(6deg) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg) scale(1);
+  }
+}

@@ -493,71 +493,197 @@ function FootprintTrail() {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setPhase(p => p + 1), 480);
+    const id = setInterval(() => setPhase(p => p + 1), 500);
     return () => clearInterval(id);
   }, []);
 
-  // Two rows: left foot offset to the right, right foot to the left
-  // 7 pairs of footprints walking left→right across the container
-  const steps: { x: number; side: "L" | "R" }[] = [
-    { x: 4,  side: "L" },
-    { x: 14, side: "R" },
-    { x: 24, side: "L" },
-    { x: 34, side: "R" },
-    { x: 44, side: "L" },
-    { x: 54, side: "R" },
-    { x: 64, side: "L" },
-    { x: 74, side: "R" },
-    { x: 84, side: "L" },
+  // Steps walking bottom→top toward the mirror
+  // Each pair: y goes from 90% down to 10% up (bottom of container = closest to reader, top = mirror)
+  // Left foot slightly left of center, right foot slightly right
+  const footsteps: { y: number; side: "L" | "R" }[] = [
+    { y: 88, side: "L" },
+    { y: 76, side: "R" },
+    { y: 64, side: "L" },
+    { y: 52, side: "R" },
+    { y: 40, side: "L" },
+    { y: 28, side: "R" },
+    { y: 16, side: "L" },
+    { y:  6, side: "R" },
   ];
 
-  // offset: left foot slightly left, right foot slightly right
-  const sideOffset = (s: "L" | "R") => s === "L" ? -7 : 7;
+  const FADE_DURATION = 9;
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "54px", marginTop: "18px", overflow: "hidden" }}>
-      {steps.map((fp, i) => {
-        // Each step appears when phase passes its index, then fades out after 6 more cycles
+    <div style={{
+      position: "relative", width: "100%", height: "110px",
+      marginTop: "14px", overflow: "hidden",
+    }}>
+      {/* Faint center path line going upward */}
+      <div style={{
+        position: "absolute", top: 0, bottom: 0, left: "50%", transform: "translateX(-50%)",
+        width: "1px",
+        background: "linear-gradient(to top, transparent, rgba(160,110,255,0.1) 30%, rgba(160,110,255,0.1) 70%, transparent)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Soft vanishing point glow at top */}
+      <div style={{
+        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+        width: "80px", height: "30px",
+        background: "radial-gradient(ellipse, rgba(160,110,255,0.18) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      {footsteps.map((fp, i) => {
         const age = phase - i;
-        const visible = age >= 0 && age < 7;
-        const opacity = visible ? Math.max(0, 1 - age * 0.15) : 0;
+        const isVisible = age >= 0 && age < FADE_DURATION;
+        // Fade in fast, linger, then fade out slowly
+        let opacity = 0;
+        if (isVisible) {
+          if (age === 0) opacity = 0.85;
+          else opacity = Math.max(0, 0.85 - (age / FADE_DURATION) * 0.85);
+        }
+
         const isLeft = fp.side === "L";
+        // Perspective: feet further up (lower y%) appear smaller
+        const scale = 0.5 + (fp.y / 100) * 0.65;
+        // Horizontal offset: left/right of center, narrower at top (perspective)
+        const xOffset = (isLeft ? -1 : 1) * (4 + (fp.y / 100) * 10);
+
         return (
           <div key={i} style={{
             position: "absolute",
-            left: `calc(${fp.x}% + ${sideOffset(fp.side)}px)`,
-            top: isLeft ? "8px" : "22px",
+            left: `calc(50% + ${xOffset}px)`,
+            top: `${fp.y}%`,
+            transform: `translate(-50%, -50%) scale(${scale}) rotate(${isLeft ? -6 : 6}deg)`,
             opacity,
-            transition: "opacity 0.45s ease",
-            transform: `rotate(${isLeft ? -8 : 8}deg)`,
+            transition: "opacity 0.5s ease",
           }}>
-            {/* Foot SVG — simple toe shape */}
-            <svg width="18" height="24" viewBox="0 0 18 24" fill="none">
+            <svg width="20" height="26" viewBox="0 0 20 26" fill="none">
               {/* Sole */}
-              <ellipse cx="9" cy="17" rx="6.5" ry="7" fill="rgba(180,140,255,0.22)" />
+              <ellipse cx="10" cy="18" rx="7" ry="7.5"
+                fill={`rgba(180,140,255,${0.18 * scale})`} />
               {/* Toes */}
-              <ellipse cx="4"  cy="9"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
-              <ellipse cx="7"  cy="7"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
-              <ellipse cx="10" cy="7"  rx="2.2" ry="2.8" fill="rgba(180,140,255,0.18)" />
-              <ellipse cx="13" cy="8"  rx="2"   ry="2.5" fill="rgba(180,140,255,0.15)" />
-              <ellipse cx="15.5" cy="10" rx="1.6" ry="2.2" fill="rgba(180,140,255,0.12)" />
-              {/* Glow outline */}
-              <ellipse cx="9" cy="17" rx="6.5" ry="7"
-                stroke="rgba(160,110,255,0.35)" strokeWidth="0.8" fill="none"
-                style={{ filter: "blur(0.5px)" }}
-              />
+              <ellipse cx="4.5" cy="9.5" rx="2.4" ry="2.9" fill={`rgba(180,140,255,${0.16 * scale})`} />
+              <ellipse cx="7.5" cy="7.5" rx="2.3" ry="2.9" fill={`rgba(180,140,255,${0.16 * scale})`} />
+              <ellipse cx="10.5" cy="7"  rx="2.3" ry="2.8" fill={`rgba(180,140,255,${0.15 * scale})`} />
+              <ellipse cx="13.5" cy="8"  rx="2.1" ry="2.6" fill={`rgba(180,140,255,${0.13 * scale})`} />
+              <ellipse cx="16"   cy="10.5" rx="1.7" ry="2.2" fill={`rgba(180,140,255,${0.11 * scale})`} />
+              {/* Glowing outline */}
+              <ellipse cx="10" cy="18" rx="7" ry="7.5"
+                stroke={`rgba(160,110,255,${0.4 * scale})`} strokeWidth="0.9" fill="none" />
             </svg>
           </div>
         );
       })}
+    </div>
+  );
+}
 
-      {/* Faint dotted trail line */}
+function CardsSlideshow({ visible }: { visible: boolean }) {
+  const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const [direction, setDirection] = useState<1 | -1>(1);
+
+  useEffect(() => {
+    if (!visible) return;
+    const id = setInterval(() => {
+      setPrev(c => c);
+      setDirection(1);
+      setCurrent(c => (c + 1) % DECK_CARDS.length);
+    }, 2800);
+    return () => clearInterval(id);
+  }, [visible]);
+
+  // When current changes, clear prev after transition
+  useEffect(() => {
+    const t = setTimeout(() => setPrev(null), 700);
+    return () => clearTimeout(t);
+  }, [current]);
+
+  return (
+    <div style={{
+      position: "relative", width: "140px", height: "190px",
+      margin: "0 auto 14px", perspective: "600px",
+    }}>
+      {/* Ambient glow */}
       <div style={{
-        position: "absolute", top: "50%", left: 0, right: 0,
-        height: "1px", transform: "translateY(-50%)",
-        background: "linear-gradient(90deg, transparent, rgba(160,110,255,0.12) 20%, rgba(160,110,255,0.12) 80%, transparent)",
+        position: "absolute", inset: "-18px", borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(100,140,220,0.2) 0%, transparent 65%)",
+        animation: visible ? "pulseGold 3s ease-in-out infinite" : "none",
         pointerEvents: "none",
       }} />
+
+      {/* Floor shadow */}
+      <div style={{
+        position: "absolute", bottom: "-14px", left: "50%", transform: "translateX(-50%)",
+        width: "100px", height: "14px", borderRadius: "50%",
+        background: "rgba(100,140,220,0.2)", filter: "blur(10px)",
+      }} />
+
+      {/* Previous card — slides/fades out */}
+      {prev !== null && (
+        <div style={{
+          position: "absolute", inset: 0,
+          borderRadius: "12px", overflow: "hidden",
+          border: "1px solid rgba(120,160,255,0.2)",
+          transform: `translateX(${direction * -60}px) rotate(${direction * -8}deg) scale(0.88)`,
+          opacity: 0,
+          transition: "all 0.65s cubic-bezier(0.4,0,0.2,1)",
+          zIndex: 1,
+        }}>
+          <img src={DECK_CARDS[prev].img} alt={DECK_CARDS[prev].label}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </div>
+      )}
+
+      {/* Current card — slides in */}
+      <div key={current} style={{
+        position: "absolute", inset: 0,
+        borderRadius: "12px", overflow: "hidden",
+        border: "1.5px solid rgba(120,160,255,0.45)",
+        boxShadow: "0 0 40px rgba(100,140,220,0.45), 0 12px 40px rgba(0,0,0,0.6)",
+        animation: "cardSlideIn 0.65s cubic-bezier(0.22,1,0.36,1) forwards",
+        zIndex: 2,
+      }}>
+        <img src={DECK_CARDS[current].img} alt={DECK_CARDS[current].label}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        {/* Label bar */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          background: "linear-gradient(to top, rgba(6,10,28,0.95) 0%, rgba(6,10,28,0.5) 60%, transparent 100%)",
+          padding: "18px 8px 10px",
+          textAlign: "center",
+        }}>
+          <span style={{
+            fontFamily: "'Cormorant', serif",
+            fontSize: "13px", letterSpacing: "0.18em",
+            color: "rgba(190,210,255,0.9)", textTransform: "uppercase",
+            textShadow: "0 0 12px rgba(100,160,255,0.5)",
+          }}>{DECK_CARDS[current].label}</span>
+        </div>
+        {/* Shimmer overlay */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(120deg, rgba(180,210,255,0.07) 0%, transparent 50%)",
+          pointerEvents: "none",
+        }} />
+      </div>
+
+      {/* Dot indicators */}
+      <div style={{
+        position: "absolute", bottom: "-26px", left: "50%", transform: "translateX(-50%)",
+        display: "flex", gap: "5px",
+      }}>
+        {DECK_CARDS.map((_, i) => (
+          <div key={i} style={{
+            width: i === current ? "16px" : "4px", height: "4px",
+            borderRadius: "2px",
+            background: i === current ? "rgba(140,180,255,0.8)" : "rgba(140,180,255,0.2)",
+            transition: "all 0.4s ease",
+          }} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -953,14 +1079,16 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           {/* Mirror for step 1 */}
           {step === 1 && <Mirror3D visible={visible} />}
 
-          {/* Coins for step 2 */}
-          {step === 2 && (
-            <div className="relative mx-auto mb-4" style={{ width: "200px", height: "110px" }}>
-              {/* Glow base */}
+          {/* Cards slideshow for step 2 (id="cards") */}
+          {step === 2 && <CardsSlideshow visible={visible} />}
+
+          {/* Coins — shown on mirror step (step=1, id="mirror") below the mirror */}
+          {step === 1 && (
+            <div className="relative mx-auto mb-4" style={{ width: "200px", height: "80px" }}>
               <div style={{
                 position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
                 width: "140px", height: "20px", borderRadius: "50%",
-                background: "rgba(200,146,58,0.2)", filter: "blur(10px)",
+                background: "rgba(200,146,58,0.15)", filter: "blur(10px)",
               }} />
               {coins.map((coin, idx) => (
                 <div
@@ -970,17 +1098,15 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
                     position: "absolute",
                     left: `${coin.x}%`,
                     top: `${coin.y}%`,
-                    width: "44px", height: "44px",
+                    width: "38px", height: "38px",
                     borderRadius: "50%",
                     background: coin.dissolved ? "transparent" : "radial-gradient(circle at 35% 30%, #fff8c0, #f0c840 30%, #c8923a 60%, #8a5010 90%)",
-                    boxShadow: coin.dissolved ? "none" : "0 0 20px rgba(200,146,58,0.8), 0 0 8px rgba(200,146,58,0.5), inset 0 1px 4px rgba(255,245,180,0.7)",
+                    boxShadow: coin.dissolved ? "none" : "0 0 16px rgba(200,146,58,0.8), inset 0 1px 4px rgba(255,245,180,0.7)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "18px",
+                    fontSize: "16px",
                     cursor: coin.dissolved ? "default" : "pointer",
                     opacity: coin.dissolved ? 0 : 1,
-                    transform: coin.dissolved
-                      ? "translateY(-50px) scale(0) rotate(180deg)"
-                      : `scale(1) rotate(0deg)`,
+                    transform: coin.dissolved ? "translateY(-50px) scale(0) rotate(180deg)" : "scale(1) rotate(0deg)",
                     transition: "all 0.9s cubic-bezier(0.34,1.2,0.64,1)",
                     animation: coin.dissolved ? "none" : `spirit-float ${2.2 + idx * 0.5}s ease-in-out ${idx * 0.4}s infinite`,
                   }}
@@ -988,7 +1114,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
                   {!coin.dissolved && <span style={{ filter: "drop-shadow(0 0 4px rgba(255,200,60,0.6))", lineHeight: 1 }}>✦</span>}
                 </div>
               ))}
-              <p className="absolute bottom-0 w-full text-center" style={{ fontSize: "10px", letterSpacing: "0.1em", color: "rgba(200,146,58,0.5)" }}>
+              <p className="absolute bottom-0 w-full text-center" style={{ fontSize: "10px", letterSpacing: "0.1em", color: "rgba(200,146,58,0.45)" }}>
                 {coins.filter(c => !c.dissolved).length > 0 ? "нажмите — монета растворится" : "✦ монеты растворились ✦"}
               </p>
             </div>
