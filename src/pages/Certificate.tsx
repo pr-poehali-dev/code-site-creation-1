@@ -412,7 +412,7 @@ function OrderForm({ certStyle, certValue, certType, selectedProgram }: {
           </p>
         ) : (
           <p className="text-sm" style={{ color: "var(--eth-stone)" }}>
-            Мария свяжется с вами для передачи сертификата.
+            Мы свяжемся с вами для передачи сертификата.
           </p>
         )}
       </div>
@@ -477,7 +477,13 @@ function OrderForm({ certStyle, certValue, certType, selectedProgram }: {
 
       <button type="submit" disabled={status === "loading"}
         className="w-full py-3.5 rounded-xl text-sm font-medium tracking-widest uppercase transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-50"
-        style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em" }}>
+        style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em", position: "relative", overflow: "hidden" }}>
+        <span style={{
+          position: "absolute", top: 0, left: "-100%", width: "60%", height: "100%",
+          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+          animation: "certShine 2.5s ease-in-out infinite",
+          pointerEvents: "none",
+        }} />
         {status === "loading" ? "Отправляем..." : "Получить сертификат на почту"}
       </button>
     </form>
@@ -709,7 +715,7 @@ export default function Certificate() {
       {/* ── Step 4: Order form ───────────────────────────── */}
       {showOrder && (
         <section id="order" className="py-16 px-6 animate-slide-up"
-          style={{ background: "radial-gradient(ellipse at 50% 100%, #2a1808 0%, #1a1410 60%, #0f0c08 100%)" }}>
+          style={{ background: "radial-gradient(ellipse at 50% 100%, #2a1808 0%, #1a1410 60%, #0f0c08 100%)", animation: "certFormPulse 2s ease-in-out infinite" }}>
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center gap-4 mb-10">
               <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
@@ -735,6 +741,16 @@ export default function Certificate() {
               </a>
             </div>
           </div>
+          <style>{`
+            @keyframes certFormPulse {
+              0%, 100% { box-shadow: 0 0 20px rgba(200,146,58,0.1), 0 0 40px rgba(200,146,58,0.05); }
+              50% { box-shadow: 0 0 40px rgba(200,146,58,0.3), 0 0 80px rgba(200,146,58,0.15), 0 0 0 1px rgba(200,146,58,0.2); }
+            }
+            @keyframes certShine {
+              0% { left: -100%; }
+              50%, 100% { left: 150%; }
+            }
+          `}</style>
         </section>
       )}
 

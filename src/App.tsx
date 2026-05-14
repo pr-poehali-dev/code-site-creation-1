@@ -16,6 +16,7 @@ import Perspektiva from "./pages/Perspektiva";
 import Banya from "./pages/Banya";
 import Booking from "./pages/Booking";
 import Veritas from "./pages/Veritas";
+import Pelenanie from "./pages/Pelenanie";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/banya" element={<Banya />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/veritas" element={<Veritas />} />
+          <Route path="/pelenanie" element={<Pelenanie />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

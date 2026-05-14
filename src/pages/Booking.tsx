@@ -5,12 +5,20 @@ import Icon from "@/components/ui/icon";
 const BOOKING_URL = "https://functions.poehali.dev/4dd43fc7-c646-4678-982b-a88d1a76f014";
 
 const PROGRAMS = [
+  "Молочные берега · 3 ч · женская",
+  "Терпкий родник · 3 ч · мужская",
+  "Тайны тумана · 4 ч · 4–6 гостей",
+  "Вглубь лесных троп · 4 ч · 2 гостя",
   "Свежесть полей · 3 ч · 2 гостя",
   "Шёпот предков · 3 ч · 4–6 гостей",
-  "Вглубь лесных троп · 4 ч · 2 гостя",
-  "Тайны тумана · 4 ч · 4–6 гостей",
-  "Молочные берега · 3 ч · 2 гостя",
-  "Терпкий родник · 3 ч · 2 гостя",
+  "Арбузный лимонад · 3–4 ч",
+  "Морозный кокос · 3–4 ч",
+  "Eucalyptus Stone Therapy · 2–3 ч",
+  "Рахат‑лукум · 2–4 ч",
+  "Тыквенное золото · 2–4 ч",
+  "Клубничное мохито · 3–4 ч",
+  "Ромашковое поле · 3 ч · семейная",
+  "Баня без пармастера · от 3 ч",
 ];
 
 // Слоты времени
@@ -18,6 +26,12 @@ const TIME_SLOTS = [
   "10:00", "11:00", "12:00", "13:00", "14:00",
   "15:00", "16:00", "17:00", "18:00", "19:00", "20:00",
 ];
+
+// Занятые слоты по дате (демо-данные; в будущем — из реальных бронирований)
+const BUSY_SLOTS: Record<string, string[]> = {
+  // These are example busy slots — format: "YYYY-MM-DD": ["HH:MM", ...]
+  // Will be populated from real bookings in future; for now show demo
+};
 
 function getMinDate() {
   const d = new Date();
@@ -271,19 +285,68 @@ export default function Booking() {
               <label className="block text-xs uppercase tracking-wider mb-3" style={{ color: "rgba(200,146,58,0.6)" }}>
                 Время начала
               </label>
-              <div className="grid grid-cols-4 gap-2">
-                {TIME_SLOTS.map((t) => (
-                  <button key={t} onClick={() => set("time", t)}
-                    className="py-2.5 rounded-xl text-sm transition-all"
-                    style={{
-                      background: form.time === t ? "rgba(200,146,58,0.2)" : "rgba(255,255,255,0.03)",
-                      border: form.time === t ? "1px solid rgba(200,146,58,0.5)" : "1px solid rgba(200,146,58,0.1)",
-                      color: form.time === t ? "rgba(240,200,140,0.95)" : "rgba(220,200,180,0.5)",
-                    }}>
-                    {t}
-                  </button>
-                ))}
-              </div>
+              {(() => {
+                const busyTimes = form.date ? (BUSY_SLOTS[form.date] || []) : [];
+                return (
+                  <>
+                    <div className="grid grid-cols-4 gap-2">
+                      {TIME_SLOTS.map((t) => {
+                        const isBusy = busyTimes.includes(t);
+                        const isSelected = form.time === t;
+                        return (
+                          <button
+                            key={t}
+                            onClick={() => { if (!isBusy) set("time", t); }}
+                            disabled={isBusy}
+                            className="py-2.5 rounded-xl text-sm transition-all flex flex-col items-center justify-center"
+                            style={{
+                              background: isBusy
+                                ? "rgba(200,80,80,0.08)"
+                                : isSelected
+                                ? "rgba(200,146,58,0.2)"
+                                : "rgba(255,255,255,0.03)",
+                              border: isBusy
+                                ? "1px solid rgba(200,80,80,0.2)"
+                                : isSelected
+                                ? "1px solid rgba(200,146,58,0.5)"
+                                : "1px solid rgba(200,146,58,0.1)",
+                              color: isBusy
+                                ? "rgba(220,200,180,0.25)"
+                                : isSelected
+                                ? "rgba(240,200,140,0.95)"
+                                : "rgba(220,200,180,0.5)",
+                              opacity: isBusy ? 0.35 : 1,
+                              cursor: isBusy ? "not-allowed" : "pointer",
+                              textDecoration: isBusy ? "line-through" : "none",
+                              lineHeight: isBusy ? 1.1 : undefined,
+                            }}>
+                            <span>{t}</span>
+                            {isBusy && (
+                              <span className="text-[9px] tracking-wider mt-0.5" style={{ color: "rgba(200,80,80,0.6)", textDecoration: "none" }}>
+                                занято
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="flex items-center gap-4 mt-3">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded" style={{ background: "rgba(200,146,58,0.2)", border: "1px solid rgba(200,146,58,0.5)" }} />
+                        <span className="text-xs" style={{ color: "rgba(220,200,180,0.4)" }}>выбрано</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded" style={{ background: "rgba(200,80,80,0.08)", border: "1px solid rgba(200,80,80,0.2)" }} />
+                        <span className="text-xs" style={{ color: "rgba(220,200,180,0.4)" }}>занято</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(200,146,58,0.1)" }} />
+                        <span className="text-xs" style={{ color: "rgba(220,200,180,0.4)" }}>свободно</span>
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
             <div className="flex gap-3">

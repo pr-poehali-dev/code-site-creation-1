@@ -1387,6 +1387,38 @@ export default function Regeneration() {
         </div>
       </section>
 
+      {/* ── Пеленание CTA ── */}
+      <section className="py-16 px-6" style={{ background: "rgba(14,10,6,0.98)" }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-3xl overflow-hidden relative"
+            style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.1) 0%, rgba(180,100,40,0.05) 100%)", border: "1px solid rgba(200,146,58,0.3)", boxShadow: "0 0 80px rgba(200,146,58,0.08)" }}>
+            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.6), transparent)" }} />
+            <div className="px-8 py-10 md:px-12 flex flex-col md:flex-row md:items-center gap-8">
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-[0.4em] mb-2" style={{ color: "rgba(200,146,58,0.5)" }}>TOP‑процедура</p>
+                <h3 className="text-3xl md:text-4xl font-light mb-3" style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.97)" }}>
+                  Пеленание
+                </h3>
+                <p className="text-base leading-relaxed italic" style={{ color: "rgba(220,200,255,0.55)", fontFamily: "'Cormorant', serif" }}>
+                  Резкий глоток холода ледяной купели сменяется теплом пледов. Качели, плавное покачивание и звуковая медитация пармастера — колокольчики нада, коши, ручеёк.
+                </p>
+              </div>
+              <div className="flex flex-col items-center md:items-end gap-4 flex-shrink-0">
+                <div className="text-center md:text-right">
+                  <p className="text-4xl font-light" style={{ fontFamily: "'Cormorant', serif", color: "rgba(200,146,58,0.9)" }}>2 500 ₽</p>
+                  <p className="text-sm" style={{ color: "rgba(220,200,255,0.4)" }}>15 минут</p>
+                </div>
+                <button onClick={() => navigate("/pelenanie")}
+                  className="px-8 py-3.5 rounded-2xl text-sm uppercase tracking-widest transition-all hover:scale-[1.03] hover:opacity-90"
+                  style={{ background: "linear-gradient(135deg, rgba(200,146,58,0.4), rgba(180,100,40,0.3))", border: "1px solid rgba(200,146,58,0.4)", color: "rgba(240,200,140,0.95)", fontWeight: 600, letterSpacing: "0.12em" }}>
+                  Все процедуры →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
       <section className="py-24 px-6 text-center relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(200,146,58,0.06) 0%, transparent 65%)" }} />

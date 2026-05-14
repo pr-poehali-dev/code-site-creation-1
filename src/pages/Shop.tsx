@@ -2007,6 +2007,7 @@ export default function Shop() {
   const [entered, setEntered] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mendaciumOpen, setMendaciumOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const t = setTimeout(() => setEntered(true), 80);
@@ -2220,9 +2221,45 @@ export default function Shop() {
             </h2>
           </div>
 
+          {/* Search */}
+          <div className="max-w-md mx-auto mb-10">
+            <div className="relative">
+              <Icon name="Search" size={16} className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                style={{ color: "rgba(122,184,138,0.5)" }} />
+              <input
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Поиск по категориям..."
+                className="w-full pl-11 pr-4 py-3 rounded-2xl text-sm outline-none"
+                style={{
+                  background: "rgba(14,18,10,0.9)",
+                  border: "1px solid rgba(122,184,138,0.2)",
+                  color: "var(--forest-cream)",
+                  fontFamily: "'Golos Text', sans-serif",
+                }}
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2"
+                  style={{ color: "rgba(122,184,138,0.4)" }}>
+                  <Icon name="X" size={14} />
+                </button>
+              )}
+            </div>
+          </div>
+
           <div id="shop-products" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <MendaciumCard onOpen={() => setMendaciumOpen(true)} />
-            {shopCategories.map((cat, i) => (
+            {shopCategories.filter(cat => {
+              if (!searchQuery) return true;
+              const q = searchQuery.toLowerCase();
+              const c = cat as typeof cat & { tagline?: string; desc?: string };
+              return (
+                cat.title?.toLowerCase().includes(q) ||
+                c.tagline?.toLowerCase().includes(q) ||
+                c.desc?.toLowerCase().includes(q)
+              );
+            }).map((cat, i) => (
               <button
                 key={cat.id}
                 onClick={() => navigate(cat.path)}

@@ -347,7 +347,7 @@ function Chatbot() {
 const AUDIO_CACHE_KEY = "eth_audio_cdn_url";
 const UPLOAD_URL = "https://functions.poehali.dev/4dfb7fcc-c7cc-4459-ae3a-0e307c2a0fcc";
 // Прямая ссылка на открытый этнический трек (Pixabay CDN, CORS разрешён для браузеров)
-const ETHNIC_SRC = "https://cdn.pixabay.com/audio/2022/03/15/audio_8cb749b4b4.mp3";
+const ETHNIC_SRC = "https://cdn.pixabay.com/audio/2023/04/10/audio_d462244ed2.mp3";
 
 function AboutAudio() {
   const [playing, setPlaying] = useState(false);
@@ -413,7 +413,7 @@ function AboutAudio() {
         {loading ? <Icon name="Loader" size={14} /> : playing ? <Icon name="Pause" size={14} /> : <Icon name="Play" size={14} />}
       </button>
       <div>
-        <p className="text-xs font-medium leading-tight" style={{ color: "var(--eth-gold2)" }}>Этнический звук</p>
+        <p className="text-xs font-medium leading-tight" style={{ color: "var(--eth-gold2)" }}>Атмосфера бани</p>
         <p className="text-xs opacity-50 leading-tight" style={{ color: "var(--eth-stone)" }}>{playing ? "Играет..." : "Слушать"}</p>
       </div>
       <div className="flex items-end gap-0.5 h-4">
