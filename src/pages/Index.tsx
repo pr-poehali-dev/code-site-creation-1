@@ -541,6 +541,229 @@ async function sendToTelegram(data: Record<string, string>) {
   return res.ok;
 }
 
+// ─── Exclusive Programs 3D Carousel ──────────────────────────────────────────
+
+const EXCLUSIVE_PROGRAMS = [
+  {
+    id: "watermelon",
+    title: "Арбузный лимонад",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/dd845b47-b8ef-410b-8c64-df8c50779fa9.jpg",
+    color: "rgba(220,60,80,0.7)",
+    glow: "rgba(220,60,80,0.4)",
+  },
+  {
+    id: "coconut",
+    title: "Морозный кокос",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/006504a3-fe00-4962-a388-3db0ff18b498.jpg",
+    color: "rgba(120,180,220,0.7)",
+    glow: "rgba(120,180,220,0.4)",
+  },
+  {
+    id: "eucalyptus",
+    title: "Eucalyptus Stone Therapy",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/a3a161c0-8d0d-4d33-abac-29283a45ec40.jpg",
+    color: "rgba(80,160,100,0.7)",
+    glow: "rgba(80,160,100,0.4)",
+  },
+  {
+    id: "lokum",
+    title: "Рахат-Лукум",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/3238ac23-641e-4c07-bcde-682ecd1eb293.jpg",
+    color: "rgba(180,100,200,0.7)",
+    glow: "rgba(180,100,200,0.4)",
+  },
+  {
+    id: "pumpkin",
+    title: "Тыквенное золото",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/b6870e2f-f81b-4fb7-853e-f6db0a38d088.jpg",
+    color: "rgba(220,140,40,0.7)",
+    glow: "rgba(220,140,40,0.4)",
+  },
+  {
+    id: "strawberry",
+    title: "Клубничное Мохито",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/4bbad490-fe5c-41e7-917a-30efc26764e4.jpg",
+    color: "rgba(220,60,100,0.7)",
+    glow: "rgba(220,60,100,0.4)",
+  },
+  {
+    id: "chamomile",
+    title: "Ромашковое поле",
+    image: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/files/5663bdbf-42d2-48e3-b053-fdee5a3e23df.jpg",
+    color: "rgba(220,200,60,0.7)",
+    glow: "rgba(220,200,60,0.4)",
+  },
+];
+
+function ExclusiveCarousel() {
+  const [active, setActive] = useState(0);
+  const total = EXCLUSIVE_PROGRAMS.length;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startAuto = () => {
+    if (autoRef.current) clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => setActive(a => (a + 1) % total), 3500);
+  };
+
+  useEffect(() => {
+    startAuto();
+    return () => { if (autoRef.current) clearInterval(autoRef.current); };
+  }, []);
+
+  const handleClick = (i: number) => {
+    setActive(i);
+    startAuto();
+  };
+
+  const getCardStyle = (i: number): React.CSSProperties => {
+    const diff = ((i - active + total) % total);
+    const normalizedDiff = diff > total / 2 ? diff - total : diff;
+    const abs = Math.abs(normalizedDiff);
+
+    if (abs === 0) {
+      return {
+        transform: "translateX(-50%) translateY(-12%) rotateY(0deg) scale(1.08)",
+        zIndex: 20,
+        opacity: 1,
+        filter: "brightness(1) drop-shadow(0 20px 60px rgba(200,146,58,0.5))",
+      };
+    }
+    if (abs === 1) {
+      const dir = normalizedDiff > 0 ? 1 : -1;
+      return {
+        transform: `translateX(calc(-50% + ${dir * 200}px)) translateY(0%) rotateY(${dir * -28}deg) scale(0.82)`,
+        zIndex: 15,
+        opacity: 0.85,
+        filter: "brightness(0.75) drop-shadow(0 10px 30px rgba(0,0,0,0.5))",
+      };
+    }
+    if (abs === 2) {
+      const dir = normalizedDiff > 0 ? 1 : -1;
+      return {
+        transform: `translateX(calc(-50% + ${dir * 350}px)) translateY(8%) rotateY(${dir * -40}deg) scale(0.65)`,
+        zIndex: 10,
+        opacity: 0.55,
+        filter: "brightness(0.5) drop-shadow(0 6px 20px rgba(0,0,0,0.6))",
+      };
+    }
+    const dir = normalizedDiff > 0 ? 1 : -1;
+    return {
+      transform: `translateX(calc(-50% + ${dir * 480}px)) translateY(15%) rotateY(${dir * -50}deg) scale(0.5)`,
+      zIndex: 5,
+      opacity: 0.25,
+      filter: "brightness(0.3)",
+    };
+  };
+
+  const prog = EXCLUSIVE_PROGRAMS[active];
+
+  return (
+    <section className="py-24 px-6 relative overflow-hidden"
+      style={{ background: "radial-gradient(ellipse at 50% 50%, #110c08 0%, #0a0806 100%)" }}>
+
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 60%, ${prog.glow.replace("0.4", "0.06")} 0%, transparent 65%)`, transition: "background 1s ease" }} />
+        {["top-8 left-[10%]","top-20 right-[8%]","bottom-16 left-[15%]","bottom-8 right-[12%]","top-1/2 left-[4%]","top-1/3 right-[3%]"].map((pos, i) => (
+          <span key={i} className={`absolute ${pos}`}
+            style={{ color: "rgba(200,146,58,0.1)", fontSize: i % 2 === 0 ? "7px" : "4px", animation: `pulseGold ${3 + i * 0.7}s ease-in-out ${i * 0.5}s infinite` }}>✦</span>
+        ))}
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, transparent, rgba(200,146,58,0.4))" }} />
+            <span style={{ color: "rgba(200,146,58,0.6)", fontSize: "1.2rem" }}>✦</span>
+            <div className="h-px flex-1 max-w-[60px]" style={{ background: "linear-gradient(90deg, rgba(200,146,58,0.4), transparent)" }} />
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
+            style={{ background: "linear-gradient(135deg, rgba(212,98,42,0.15), rgba(200,146,58,0.15))", border: "1px solid rgba(200,146,58,0.2)" }}>
+            <span className="text-xs tracking-[0.35em] uppercase" style={{ color: "var(--eth-gold)", fontFamily: "'Golos Text', sans-serif" }}>NEW</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-light mb-4"
+            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)", letterSpacing: "-0.01em" }}>
+            Эксклюзивные программы<br /><em style={{ fontSize: "0.7em", color: "var(--eth-gold)", opacity: 0.85 }}>парения</em>
+          </h2>
+        </div>
+
+        {/* 3D Carousel Stage */}
+        <div ref={containerRef} className="relative" style={{ height: "420px", perspective: "1200px" }}>
+          {EXCLUSIVE_PROGRAMS.map((p, i) => (
+            <div key={p.id}
+              onClick={() => handleClick(i)}
+              className="absolute left-1/2 top-0 cursor-pointer select-none"
+              style={{
+                width: "240px",
+                height: "340px",
+                transformStyle: "preserve-3d",
+                transition: "transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.7s ease, filter 0.7s ease",
+                ...getCardStyle(i),
+              }}>
+              <div className="relative w-full h-full rounded-2xl overflow-hidden"
+                style={{ border: i === active ? `1px solid ${p.color}` : "1px solid rgba(255,255,255,0.08)" }}>
+                <img src={p.image} alt={p.title}
+                  className="w-full h-full object-cover"
+                  style={{ transition: "transform 0.5s ease" }} />
+                <div className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%, transparent 100%)" }} />
+                {i === active && (
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold tracking-widest"
+                      style={{ background: "linear-gradient(135deg, var(--eth-ember), var(--eth-gold))", color: "white", letterSpacing: "0.15em", fontFamily: "'Golos Text', sans-serif" }}>
+                      NEW
+                    </span>
+                  </div>
+                )}
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <p className="text-sm font-light leading-snug"
+                    style={{ fontFamily: "'Cormorant', serif", color: "rgba(240,225,200,0.95)", fontSize: "1rem", textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+                    {p.title}
+                  </p>
+                </div>
+                <div className="absolute inset-0 rounded-2xl pointer-events-none"
+                  style={{ boxShadow: i === active ? `inset 0 0 40px ${p.glow}` : "none", transition: "box-shadow 0.7s ease" }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Dots navigation */}
+        <div className="flex items-center justify-center gap-2.5 mt-8">
+          {EXCLUSIVE_PROGRAMS.map((_, i) => (
+            <button key={i} onClick={() => handleClick(i)}
+              className="rounded-full transition-all duration-500"
+              style={{
+                width: i === active ? "28px" : "6px",
+                height: "6px",
+                background: i === active ? "linear-gradient(90deg, var(--eth-ember), var(--eth-gold))" : "rgba(200,146,58,0.25)",
+              }} />
+          ))}
+        </div>
+
+        {/* Nav arrows */}
+        <div className="flex items-center justify-center gap-6 mt-6">
+          <button
+            onClick={() => handleClick((active - 1 + total) % total)}
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+            style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
+            ‹
+          </button>
+          <p className="text-sm" style={{ color: "rgba(200,146,58,0.5)", fontFamily: "'Cormorant', serif", fontSize: "0.95rem" }}>
+            {active + 1} / {total}
+          </p>
+          <button
+            onClick={() => handleClick((active + 1) % total)}
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+            style={{ border: "1px solid rgba(200,146,58,0.3)", color: "rgba(200,146,58,0.7)", background: "rgba(200,146,58,0.05)" }}>
+            ›
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Poetic Section ───────────────────────────────────────────────────────────
 
 const POEM_LINES = [
@@ -1049,6 +1272,9 @@ export default function Index() {
 
       {/* ── Poetic Interlude — с анимацией ───────────────── */}
       <PoeticSection />
+
+      {/* ── Exclusive Programs 3D Carousel ───────────────── */}
+      <ExclusiveCarousel />
 
       {/* ── О проекте (перед FAQ) ───────────────────────── */}
       <section id="about" className="relative min-h-screen flex flex-col justify-center overflow-hidden"
