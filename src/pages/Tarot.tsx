@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
@@ -342,90 +342,274 @@ const tarotCards = [
   },
 ];
 
-// ─── Single card with flip ────────────────────────────────────────────────────
+// ─── 3D Tarot Deck ────────────────────────────────────────────────────────────
 
-function TarotCard({
-  card,
-  isFlipped,
-  onClick,
+function TarotDeck({
+  cards,
+  onSelect,
+  deckOpen,
+  onOpenDeck,
+  hoveredCard,
+  onHover,
+  flippingCard,
 }: {
-  card: typeof tarotCards[0];
-  isFlipped: boolean;
-  onClick: () => void;
+  cards: typeof tarotCards;
+  onSelect: (card: typeof tarotCards[0]) => void;
+  deckOpen: boolean;
+  onOpenDeck: () => void;
+  hoveredCard: string | null;
+  onHover: (id: string | null) => void;
+  flippingCard: string | null;
 }) {
-  return (
-    <button
-      onClick={onClick}
-      className="relative group focus:outline-none"
-      style={{ perspective: "1200px", width: "100%", aspectRatio: "2/3.2" }}
-      aria-label={`Карта ${card.name}`}
-    >
-      <div
-        className="w-full h-full transition-all duration-700"
-        style={{
-          transformStyle: "preserve-3d",
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-          position: "relative",
-        }}
-      >
-        {/* ── Back ── */}
-        <div
-          className="absolute inset-0 rounded-2xl flex flex-col items-center justify-center overflow-hidden"
-          style={{
-            backfaceVisibility: "hidden",
-            background: "linear-gradient(160deg, #211b14, #1a1410)",
-            border: "1px solid rgba(200,146,58,0.18)",
-            boxShadow: "0 8px 40px rgba(0,0,0,0.6)",
-          }}
-        >
-          {/* Diagonal stripe texture */}
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ background: "repeating-linear-gradient(45deg, #c8923a, #c8923a 1px, transparent 1px, transparent 12px)" }} />
-          {/* Inner border */}
-          <div className="absolute inset-3 rounded-xl opacity-20"
-            style={{ border: "1px solid #c8923a" }} />
+  const isMobileRef = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-          <span className="text-5xl mb-3 opacity-30 relative z-10" style={{ color: "#c8923a" }}>◆</span>
-          <div className="w-10 h-px mb-2 relative z-10" style={{ background: "rgba(200,146,58,0.3)" }} />
-          <span className="text-xs uppercase tracking-[0.35em] opacity-30 relative z-10" style={{ color: "#c8923a" }}>Таро</span>
-          <div className="w-10 h-px mt-2 relative z-10" style={{ background: "rgba(200,146,58,0.3)" }} />
+  useEffect(() => {
+    function check() {
+      const m = window.innerWidth < 768;
+      isMobileRef.current = m;
+      setIsMobile(m);
+    }
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
-          {/* Hover hint */}
-          <p className="absolute bottom-4 text-xs tracking-widest uppercase opacity-0 group-hover:opacity-50 transition-all duration-300"
-            style={{ color: "#c8923a" }}>открыть</p>
+  if (!deckOpen) {
+    // Thick stacked closed deck
+    return (
+      <div className="flex flex-col items-center" style={{ perspective: "800px" }}>
+        {/* Sparkles */}
+        <div className="relative" style={{ width: 140, height: 200 }}>
+          {[
+            { top: "-24px", left: "-28px", delay: "0s", size: "14px" },
+            { top: "-18px", right: "-32px", delay: "0.4s", size: "10px" },
+            { top: "50%", left: "-36px", delay: "0.8s", size: "12px" },
+            { top: "50%", right: "-38px", delay: "1.2s", size: "10px" },
+            { bottom: "-20px", left: "-22px", delay: "0.6s", size: "11px" },
+            { bottom: "-16px", right: "-26px", delay: "1.5s", size: "13px" },
+          ].map((s, i) => (
+            <span
+              key={i}
+              className="absolute pointer-events-none"
+              style={{
+                ...s,
+                color: "#c8923a",
+                fontSize: s.size,
+                animation: `pulseGold ${2 + i * 0.3}s ease-in-out ${s.delay} infinite`,
+                filter: "drop-shadow(0 0 6px rgba(200,146,58,0.8))",
+              }}
+            >✦</span>
+          ))}
+
+          {/* Stack layers bottom → top */}
+          {Array.from({ length: 10 }).map((_, i) => {
+            const offset = (9 - i) * 2;
+            const lightness = 18 + i * 2;
+            return (
+              <div
+                key={i}
+                className="absolute rounded-xl"
+                style={{
+                  width: 120,
+                  height: 170,
+                  left: "50%",
+                  transform: `translateX(-50%) translateY(${offset}px)`,
+                  background: `linear-gradient(160deg, #${lightness.toString(16).padStart(2,"0")}1810, #1a1410)`,
+                  border: "1px solid rgba(200,146,58,0.25)",
+                  zIndex: i,
+                }}
+              />
+            );
+          })}
+
+          {/* Top card — clickable */}
+          <button
+            onClick={onOpenDeck}
+            aria-label="Открыть колоду"
+            className="absolute rounded-xl flex flex-col items-center justify-center overflow-hidden"
+            style={{
+              width: 120,
+              height: 170,
+              left: "50%",
+              transform: "translateX(-50%) translateY(0px)",
+              background: "linear-gradient(160deg, #2e2418, #1a1410)",
+              border: "1px solid rgba(200,146,58,0.45)",
+              boxShadow: "0 0 40px rgba(200,146,58,0.25), 0 12px 40px rgba(0,0,0,0.7)",
+              zIndex: 11,
+              animation: "pulseGold 2.5s ease-in-out infinite",
+              cursor: "pointer",
+            }}
+          >
+            <div className="absolute inset-0 opacity-[0.05]"
+              style={{ background: "repeating-linear-gradient(45deg, #c8923a, #c8923a 1px, transparent 1px, transparent 12px)" }} />
+            <div className="absolute inset-3 rounded-lg opacity-25"
+              style={{ border: "1px solid #c8923a" }} />
+            <span className="text-4xl relative z-10"
+              style={{ color: "#c8923a", filter: "drop-shadow(0 0 12px rgba(200,146,58,0.9))" }}>◆</span>
+            <div className="w-8 h-px my-2 relative z-10" style={{ background: "rgba(200,146,58,0.4)" }} />
+            <span className="text-xs uppercase tracking-[0.35em] relative z-10 opacity-50" style={{ color: "#c8923a" }}>Таро</span>
+          </button>
+
+          {/* Shadow under deck */}
+          <div className="absolute"
+            style={{
+              bottom: "-12px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 100,
+              height: 14,
+              background: "radial-gradient(ellipse, rgba(0,0,0,0.6), transparent 70%)",
+              borderRadius: "50%",
+              zIndex: 0,
+            }} />
         </div>
 
-        {/* ── Front ── */}
-        <div
-          className="absolute inset-0 rounded-2xl flex flex-col items-center justify-center p-3 overflow-hidden"
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-            background: card.bgPattern,
-            border: `1px solid ${card.color}35`,
-            boxShadow: `0 0 40px ${card.glow}, 0 8px 40px rgba(0,0,0,0.6)`,
-          }}
-        >
-          <div className="absolute inset-0 opacity-20"
-            style={{ background: `radial-gradient(ellipse at 50% 30%, ${card.glow}, transparent 65%)` }} />
-
-          <p className="text-xs tracking-widest relative z-10 mb-2 opacity-50" style={{ color: card.color }}>{card.archetype}</p>
-          <span className="text-5xl block mb-2 relative z-10" style={{ color: card.color }}>{card.symbol}</span>
-          <h3 className="text-lg font-light text-center relative z-10 leading-tight"
-            style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
-            {card.name}
-          </h3>
-          <div className="flex flex-wrap gap-1 justify-center mt-2 relative z-10">
-            {card.keywords.map(k => (
-              <span key={k} className="rounded-full px-2 py-0.5"
-                style={{ background: `${card.color}18`, color: card.color, fontSize: "9px", letterSpacing: "0.05em" }}>
-                {k}
-              </span>
-            ))}
-          </div>
-        </div>
+        <p className="mt-8 text-xs uppercase tracking-[0.3em] opacity-50 text-center"
+          style={{ color: "var(--eth-stone)" }}>
+          Нажмите чтобы открыть колоду
+        </p>
       </div>
-    </button>
+    );
+  }
+
+  // ── Mobile fallback: 2-col grid ─────────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <div className="grid grid-cols-2 gap-3">
+        {cards.map(card => {
+          const isFlipping = flippingCard === card.id;
+          return (
+            <button
+              key={card.id}
+              onClick={() => onSelect(card)}
+              onMouseEnter={() => onHover(card.id)}
+              onMouseLeave={() => onHover(null)}
+              className="relative rounded-xl overflow-hidden focus:outline-none"
+              style={{
+                aspectRatio: "2/3",
+                background: isFlipping ? card.bgPattern : "linear-gradient(160deg, #2e2418, #1a1410)",
+                border: `1px solid ${hoveredCard === card.id ? "rgba(200,146,58,0.6)" : "rgba(200,146,58,0.22)"}`,
+                boxShadow: hoveredCard === card.id
+                  ? "0 0 30px rgba(200,146,58,0.55)"
+                  : "0 4px 20px rgba(0,0,0,0.5)",
+                transition: "all 0.3s ease",
+                transform: isFlipping ? "rotateY(180deg)" : "none",
+              }}
+            >
+              {isFlipping ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
+                  <span className="text-3xl mb-1" style={{ color: card.color }}>{card.symbol}</span>
+                  <p className="text-xs text-center font-light"
+                    style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{card.name}</p>
+                </div>
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 opacity-[0.04]"
+                    style={{ background: "repeating-linear-gradient(45deg, #c8923a, #c8923a 1px, transparent 1px, transparent 12px)" }} />
+                  <div className="absolute inset-2 rounded-lg opacity-20"
+                    style={{ border: "1px solid #c8923a" }} />
+                  <span className="text-3xl relative z-10 opacity-30" style={{ color: "#c8923a" }}>◆</span>
+                  <span className="text-xs uppercase tracking-[0.3em] relative z-10 opacity-25 mt-1"
+                    style={{ color: "#c8923a" }}>Таро</span>
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
+  // ── Desktop fan ──────────────────────────────────────────────────────────────
+  const total = cards.length;
+  const spreadX = 520;
+  const cardW = 90;
+  const cardH = 130;
+
+  return (
+    <div
+      className="relative mx-auto"
+      style={{
+        perspective: "1200px",
+        height: 260,
+        width: "100%",
+        maxWidth: 1100,
+      }}
+    >
+      {cards.map((card, i) => {
+        const offset = total > 1 ? (i / (total - 1)) * 2 - 1 : 0; // -1 to +1
+        const tx = offset * spreadX;
+        const ty = Math.abs(offset) * 0.15 * 80;
+        const rY = offset * 25;
+        const rZ = offset * 18;
+        const isHovered = hoveredCard === card.id;
+        const isFlipping = flippingCard === card.id;
+        const distFromCenter = Math.abs(offset);
+        const zBase = Math.round((1 - distFromCenter) * 14);
+
+        const translateY = isHovered ? ty - 30 : ty;
+        const scale = isHovered ? 1.15 : 0.85;
+        const zIndex = isHovered ? 50 : zBase;
+
+        const transform = isFlipping
+          ? `translateX(${tx}px) translateY(${translateY}px) rotateZ(${rZ}deg) rotateY(180deg) scale(${scale})`
+          : `translateX(${tx}px) translateY(${translateY}px) rotateY(${rY}deg) rotateZ(${rZ}deg) scale(${scale})`;
+
+        return (
+          <div
+            key={card.id}
+            onClick={() => onSelect(card)}
+            onMouseEnter={() => onHover(card.id)}
+            onMouseLeave={() => onHover(null)}
+            className="absolute rounded-xl overflow-hidden cursor-pointer"
+            style={{
+              width: cardW,
+              height: cardH,
+              left: "50%",
+              top: "50%",
+              marginLeft: -cardW / 2,
+              marginTop: -cardH / 2,
+              transform,
+              transformStyle: "preserve-3d",
+              transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, z-index 0s",
+              zIndex,
+              boxShadow: isHovered
+                ? "0 0 40px rgba(200,146,58,0.8), 0 12px 40px rgba(0,0,0,0.6)"
+                : "0 4px 20px rgba(0,0,0,0.5)",
+              background: isFlipping
+                ? card.bgPattern
+                : "linear-gradient(160deg, #2e2418, #1a1410)",
+              border: `1px solid ${isHovered ? "rgba(200,146,58,0.65)" : "rgba(200,146,58,0.22)"}`,
+            }}
+          >
+            {isFlipping ? (
+              // Front face after flip
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-2"
+                style={{ background: card.bgPattern }}>
+                <div className="absolute inset-0 opacity-20"
+                  style={{ background: `radial-gradient(ellipse at 50% 30%, ${card.glow}, transparent 65%)` }} />
+                <span className="text-2xl relative z-10 mb-1" style={{ color: card.color }}>{card.symbol}</span>
+                <p className="text-xs text-center font-light relative z-10 leading-tight"
+                  style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>{card.name}</p>
+              </div>
+            ) : (
+              // Card back
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="absolute inset-0 opacity-[0.05]"
+                  style={{ background: "repeating-linear-gradient(45deg, #c8923a, #c8923a 1px, transparent 1px, transparent 12px)" }} />
+                <div className="absolute inset-2 rounded-lg opacity-20"
+                  style={{ border: "1px solid #c8923a" }} />
+                <span className="text-2xl relative z-10 opacity-30" style={{ color: "#c8923a" }}>◆</span>
+                <div className="w-5 h-px my-1 relative z-10 opacity-30" style={{ background: "#c8923a" }} />
+                <span className="text-[8px] uppercase tracking-[0.3em] relative z-10 opacity-25"
+                  style={{ color: "#c8923a" }}>Таро</span>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -611,24 +795,32 @@ function shuffle<T>(arr: T[]): T[] {
 
 export default function Tarot() {
   const navigate = useNavigate();
-  const [flipped, setFlipped] = useState<string | null>(null);
   const [selected, setSelected] = useState<typeof tarotCards[0] | null>(null);
   const [showBooking, setShowBooking] = useState(false);
-  const [deck, setDeck] = useState(() => shuffle(tarotCards));
+  const [deck] = useState(() => shuffle(tarotCards));
+  const [deckOpen, setDeckOpen] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [flippingCard, setFlippingCard] = useState<string | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   function handleCardClick(card: typeof tarotCards[0]) {
-    if (flipped === card.id) return;
-    setFlipped(card.id);
+    if (flippingCard === card.id) return;
+    setFlippingCard(card.id);
     setSelected(null);
     setShowBooking(false);
-    setTimeout(() => setSelected(card), 500);
+    setTimeout(() => {
+      setSelected(card);
+      setTimeout(() => {
+        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }, 700);
   }
 
   function handleReset() {
-    setFlipped(null);
+    setFlippingCard(null);
     setSelected(null);
     setShowBooking(false);
-    setDeck(shuffle(tarotCards));
+    setDeckOpen(false);
   }
 
   function handleBook() {
@@ -646,7 +838,7 @@ export default function Tarot() {
           className="flex items-center gap-2 hover:opacity-70 transition-opacity"
           style={{ color: "var(--eth-gold2)" }}>
           <Icon name="ArrowLeft" size={18} />
-          <span className="text-sm tracking-wider" style={{ fontFamily: "'Cormorant', serif" }}>Мария · Пармастер</span>
+          <span className="text-sm tracking-wider" style={{ fontFamily: "'Cormorant', serif" }}>Иней & Магма corp.</span>
         </button>
         <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--eth-stone)" }}>Таро</p>
       </nav>
@@ -731,47 +923,50 @@ export default function Tarot() {
       {/* ── Card Spread ─────────────────────────────────── */}
       <section id="spread" className="py-24 px-6"
         style={{ background: "radial-gradient(ellipse at 50% 0%, #1e1530 0%, #0f0c08 60%)" }}>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
 
-          <div className="text-center mb-12">
+          <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.4em] mb-4" style={{ color: "var(--eth-stone)" }}>Расклад</p>
             <h2 className="text-4xl md:text-5xl font-light mb-4"
               style={{ fontFamily: "'Cormorant', serif", color: "var(--eth-gold2)" }}>
               Выберите свою карту
             </h2>
             <p className="text-sm max-w-sm mx-auto" style={{ color: "var(--eth-stone)" }}>
-              Сосредоточьтесь. Какая из шести карт притягивает взгляд?
+              {deckOpen
+                ? "Сосредоточьтесь. Какая карта притягивает взгляд?"
+                : "Сосредоточьтесь на своём состоянии. Нажмите на колоду."}
             </p>
           </div>
 
-          {/* 6 cards grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-            {deck.map(card => (
-              <TarotCard
-                key={card.id}
-                card={card}
-                isFlipped={flipped === card.id}
-                onClick={() => handleCardClick(card)}
-              />
-            ))}
-          </div>
+          {/* 3D Deck */}
+          <TarotDeck
+            cards={deck}
+            onSelect={handleCardClick}
+            deckOpen={deckOpen}
+            onOpenDeck={() => setDeckOpen(true)}
+            hoveredCard={hoveredCard}
+            onHover={setHoveredCard}
+            flippingCard={flippingCard}
+          />
 
           {/* Hint */}
-          {!flipped && (
-            <p className="text-center mt-6 text-xs tracking-widest uppercase animate-pulse-gold"
+          {deckOpen && !flippingCard && (
+            <p className="text-center mt-8 text-xs tracking-widest uppercase animate-pulse-gold"
               style={{ color: "var(--eth-stone)", opacity: 0.45 }}>
               Нажмите на карту, которая притягивает
             </p>
           )}
 
           {/* Program panel */}
-          {selected && (
-            <ProgramPanel
-              card={selected}
-              onBook={handleBook}
-              onReset={handleReset}
-            />
-          )}
+          <div ref={panelRef}>
+            {selected && (
+              <ProgramPanel
+                card={selected}
+                onBook={handleBook}
+                onReset={handleReset}
+              />
+            )}
+          </div>
         </div>
       </section>
 
