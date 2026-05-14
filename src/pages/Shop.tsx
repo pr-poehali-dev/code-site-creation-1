@@ -656,6 +656,18 @@ const DECK_CARDS = [
     img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/66b42de5-7e80-464a-8da0-30b106859196.png",
     label: "Смерть",
   },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/e84c4cbe-b93a-4126-aa77-dc3b215ee030.png",
+    label: "Мир",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/6dd3f4e9-c256-4878-b69d-8b473e9357eb.png",
+    label: "Дьявол",
+  },
+  {
+    img: "https://cdn.poehali.dev/projects/da18a679-098e-494d-8de1-a558d89808d6/bucket/efb17863-b875-40f7-b476-0f98aabbf2b6.png",
+    label: "Колесо Фортуны",
+  },
 ];
 
 function MendaciumCard({ onOpen }: { onOpen: () => void }) {
