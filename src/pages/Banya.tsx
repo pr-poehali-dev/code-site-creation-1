@@ -91,16 +91,17 @@ const zones = [
   },
   {
     icon: "🌙",
-    title: "Качели в парной",
+    title: "Качели",
     color: "#b99fd8",
     colorDim: "rgba(185,159,216,0.1)",
     border: "rgba(185,159,216,0.2)",
-    desc: "Деревянные качели прямо в пространстве бани — для паузы между заходами. Покачивание снижает уровень кортизола, помогает телу остыть в своём ритме и создаёт ощущение невесомости. Здесь не нужно ничего делать — просто быть.",
+    desc: "Деревянные качели в открытом пространстве — для паузы между заходами и не только. Покачивание снижает уровень кортизола, помогает телу отдохнуть в своём ритме и создаёт ощущение невесомости. Здесь можно просто быть — или выбрать то, что нужно именно сейчас.",
     features: [
+      "Пеленание на качелях — укутывание в тёплую ткань, покой и невесомость",
+      "Звуковая медитация с пармастером — поющие чаши, колокольчики «нада», полная тишина внутри",
+      "Отдых в пледе — укутаться, наблюдать природу, никуда не спешить",
       "Натуральное дерево ручной работы",
-      "Идеально между заходами в парную",
       "Снижение кортизола и нервного напряжения",
-      "Ощущение невесомости и покоя",
     ],
   },
 ];
@@ -239,49 +240,94 @@ export default function Banya() {
       {/* Зоны */}
       <section className="py-20 px-6 relative overflow-hidden" style={{ background: "rgba(8,5,18,0.98)" }}>
 
-        {/* Анимированные берёзовые брёвна — фон */}
+        {/* Берёзовые стволы — декоративный фон */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { left: "1%",  width: 60, delay: 0,   opacity: 0.28 },
-            { left: "8%",  width: 44, delay: 0.9, opacity: 0.18 },
-            { left: "15%", width: 66, delay: 1.6, opacity: 0.22 },
-            { left: "77%", width: 54, delay: 0.4, opacity: 0.25 },
-            { left: "86%", width: 46, delay: 1.2, opacity: 0.20 },
-            { left: "93%", width: 62, delay: 2.1, opacity: 0.24 },
+            { left: "0%",   width: 72, delay: 0,    opacity: 0.38, lean: 1  },
+            { left: "6%",   width: 50, delay: 1.1,  opacity: 0.22, lean: -1 },
+            { left: "13%",  width: 80, delay: 0.5,  opacity: 0.30, lean: 0.5},
+            { left: "19%",  width: 38, delay: 2.0,  opacity: 0.14, lean: -0.8},
+            { left: "74%",  width: 44, delay: 1.8,  opacity: 0.16, lean: 0.6},
+            { left: "80%",  width: 68, delay: 0.3,  opacity: 0.32, lean: -0.5},
+            { left: "88%",  width: 52, delay: 1.4,  opacity: 0.24, lean: 1  },
+            { left: "94%",  width: 78, delay: 0.8,  opacity: 0.36, lean: -1 },
           ].map((b, i) => (
             <div key={i} className="absolute top-0 bottom-0"
               style={{
                 left: b.left,
                 width: `${b.width}px`,
                 opacity: b.opacity,
-                background: `linear-gradient(90deg,
-                  transparent 0%,
-                  rgba(180,160,130,0.4) 8%,
-                  rgba(235,220,198,0.92) 22%,
-                  rgba(252,244,228,1) 42%,
-                  rgba(240,228,208,0.95) 58%,
-                  rgba(210,195,170,0.8) 76%,
-                  rgba(180,160,130,0.3) 92%,
-                  transparent 100%)`,
-                borderRadius: "45%",
-                animation: `birch-sway ${5.5 + i * 0.6}s ease-in-out ${b.delay}s infinite alternate`,
-                filter: "drop-shadow(0 0 8px rgba(220,200,170,0.15))",
+                animation: `birch-sway ${6 + i * 0.55}s ease-in-out ${b.delay}s infinite alternate`,
+                transformOrigin: "bottom center",
               }}>
-              {[8, 19, 31, 43, 56, 68, 80, 91].map((top, j) => (
-                <div key={j} className="absolute"
-                  style={{
-                    top: `${top}%`,
-                    left: j % 2 === 0 ? "12%" : "22%",
-                    width: j % 2 === 0 ? "62%" : "52%",
-                    height: `${3 + (j % 3) * 2}px`,
-                    background: "rgba(30,20,10,0.6)",
-                    borderRadius: "50%",
-                    transform: `rotate(${j % 2 === 0 ? -2 : 3}deg) scaleX(${0.85 + (j % 3) * 0.1})`,
-                    filter: "blur(0.3px)",
-                  }} />
+              {/* Основной ствол — 3D цилиндр через многослойный градиент */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: `linear-gradient(90deg,
+                  rgba(20,14,8,0.6) 0%,
+                  rgba(120,100,74,0.5) 6%,
+                  rgba(200,185,160,0.88) 16%,
+                  rgba(245,236,218,1) 32%,
+                  rgba(255,248,234,1) 46%,
+                  rgba(248,238,220,0.98) 56%,
+                  rgba(220,205,182,0.9) 70%,
+                  rgba(160,140,110,0.55) 84%,
+                  rgba(30,20,10,0.45) 93%,
+                  transparent 100%)`,
+                borderRadius: "38%",
+                filter: "drop-shadow(-3px 0 12px rgba(0,0,0,0.45)) drop-shadow(3px 0 6px rgba(240,220,190,0.08))",
+              }} />
+              {/* Тёмная теневая полоса — объём */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: `linear-gradient(90deg,
+                  rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 18%,
+                  transparent 38%, transparent 62%,
+                  rgba(0,0,0,0.10) 80%, rgba(0,0,0,0.40) 100%)`,
+                borderRadius: "38%",
+              }} />
+              {/* Берёзовые отметины — горизонтальные полосы */}
+              {[7, 14, 22, 30, 39, 48, 57, 65, 73, 81, 89, 96].map((top, j) => (
+                <div key={j} style={{
+                  position: "absolute",
+                  top: `${top}%`,
+                  left: j % 3 === 0 ? "8%" : j % 3 === 1 ? "18%" : "12%",
+                  width: j % 3 === 0 ? "68%" : j % 3 === 1 ? "54%" : "60%",
+                  height: `${2 + (j % 4)}px`,
+                  background: `rgba(18,10,4,${0.55 + (j % 3) * 0.08})`,
+                  borderRadius: "50%",
+                  transform: `rotate(${j % 2 === 0 ? -1.5 : 2}deg) scaleX(${0.8 + (j % 4) * 0.06})`,
+                  filter: "blur(0.4px)",
+                }} />
               ))}
+              {/* Поперечные глазки — характерные пятна берёзы */}
+              {[18, 42, 63, 84].map((top, j) => (
+                <div key={j} style={{
+                  position: "absolute",
+                  top: `${top}%`,
+                  left: `${28 + (j % 2) * 14}%`,
+                  width: `${14 + (j % 3) * 4}px`,
+                  height: `${6 + (j % 2) * 4}px`,
+                  background: "rgba(14,8,4,0.7)",
+                  borderRadius: "50%",
+                  transform: `rotate(${j % 2 === 0 ? -3 : 4}deg)`,
+                  filter: "blur(0.6px)",
+                }} />
+              ))}
+              {/* Мягкое свечение сердцевины */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "radial-gradient(ellipse at 42% 30%, rgba(255,248,230,0.06) 0%, transparent 60%)",
+                borderRadius: "38%",
+              }} />
             </div>
           ))}
+          {/* Лёгкая дымка снизу */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "160px",
+            background: "linear-gradient(to top, rgba(8,5,18,0.9), transparent)",
+            pointerEvents: "none",
+          }} />
         </div>
 
         <div className="max-w-5xl mx-auto relative">
