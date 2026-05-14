@@ -255,6 +255,14 @@ function Fireflies() {
 
 const PRACTICE_STEPS = [
   {
+    id: "intro",
+    icon: "🔥",
+    title: "Mendacium Veritas",
+    accent: "rgba(220,80,30,0.9)",
+    bg: "radial-gradient(ellipse at 50% 0%, rgba(220,80,30,0.14) 0%, transparent 65%)",
+    text: "Embark on an extraordinary journey where the lines between truth and illusion blur, unlocking the door to self-discovery.\n\nExplore a captivating deck of cards that will guide you through the intricate maze of your own consciousness.\n\n— — —\n\nОтправьтесь в необыкновенное путешествие, где грань между правдой и иллюзией стирается, открывая дверь к познанию себя.\n\nИсследуйте завораживающую колоду карт, которая проведёт вас сквозь запутанный лабиринт вашего собственного сознания.",
+  },
+  {
     id: "mirror",
     icon: "🪞",
     title: "Зеркало истины",
@@ -358,6 +366,141 @@ function FloatingCoin({ style }: { style: React.CSSProperties }) {
         justifyContent: "center",
         fontSize: "14px",
       }}>✦</div>
+    </div>
+  );
+}
+
+function Campfire3D({ visible }: { visible: boolean }) {
+  const [lit, setLit] = useState(false);
+  const [fullBlaze, setFullBlaze] = useState(false);
+
+  useEffect(() => {
+    if (!visible) return;
+    const t1 = setTimeout(() => setLit(true), 300);
+    const t2 = setTimeout(() => setFullBlaze(true), 1200);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [visible]);
+
+  return (
+    <div style={{ position: "relative", width: "180px", height: "200px", margin: "0 auto 8px", perspective: "600px" }}>
+      {/* Ground glow */}
+      <div style={{
+        position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)",
+        width: fullBlaze ? "160px" : "60px", height: fullBlaze ? "30px" : "12px",
+        borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(220,80,20,0.5) 0%, rgba(200,60,10,0.2) 50%, transparent 80%)",
+        filter: "blur(8px)",
+        transition: "all 1.2s ease",
+      }} />
+
+      {/* 3D Log base */}
+      <div style={{
+        position: "absolute", bottom: "30px", left: "50%", transform: "translateX(-50%) rotateX(55deg)",
+        width: "100px", transformStyle: "preserve-3d",
+      }}>
+        {/* Log 1 */}
+        <div style={{
+          position: "absolute", bottom: 0, left: "10px",
+          width: "80px", height: "16px", borderRadius: "8px",
+          background: "linear-gradient(90deg, #3d1a08, #6b3010, #3d1a08)",
+          transform: "rotate(-25deg) translateY(8px)",
+          boxShadow: lit ? "0 2px 12px rgba(200,80,20,0.6)" : "none",
+          transition: "box-shadow 0.8s ease",
+        }} />
+        {/* Log 2 */}
+        <div style={{
+          position: "absolute", bottom: 0, left: "10px",
+          width: "80px", height: "16px", borderRadius: "8px",
+          background: "linear-gradient(90deg, #4a2010, #7a3818, #4a2010)",
+          transform: "rotate(25deg) translateY(8px)",
+          boxShadow: lit ? "0 2px 12px rgba(200,80,20,0.6)" : "none",
+          transition: "box-shadow 0.8s ease 0.2s",
+        }} />
+        {/* Embers log top */}
+        <div style={{
+          position: "absolute", bottom: "6px", left: "30px",
+          width: "40px", height: "10px", borderRadius: "5px",
+          background: lit ? "linear-gradient(90deg,#8b3010,#d4500a,#8b3010)" : "#3d1a08",
+          boxShadow: lit ? "0 0 16px rgba(220,80,20,0.9), 0 0 6px rgba(255,140,40,0.5)" : "none",
+          transition: "all 1s ease 0.4s",
+        }} />
+      </div>
+
+      {/* Flame layers — CSS 3D */}
+      <div style={{
+        position: "absolute", bottom: "52px", left: "50%", transform: "translateX(-50%)",
+        width: "70px", height: fullBlaze ? "120px" : lit ? "60px" : "0px",
+        transition: "height 1s ease 0.6s",
+        transformStyle: "preserve-3d",
+      }}>
+        {/* Core flame */}
+        <div style={{
+          position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+          width: fullBlaze ? "50px" : "28px",
+          height: "100%",
+          background: "radial-gradient(ellipse at 50% 80%, #ff8020 0%, #ff4000 40%, #ff6010 70%, transparent 100%)",
+          borderRadius: "50% 50% 30% 30% / 60% 60% 40% 40%",
+          filter: "blur(2px)",
+          animation: lit ? "flicker 0.8s ease-in-out infinite alternate" : "none",
+          transition: "width 0.8s ease",
+          opacity: lit ? 1 : 0,
+        }} />
+        {/* Outer flame */}
+        <div style={{
+          position: "absolute", bottom: 0, left: "50%", transform: "translateX(-52%)",
+          width: fullBlaze ? "70px" : "40px",
+          height: fullBlaze ? "90%" : "70%",
+          background: "radial-gradient(ellipse at 50% 85%, rgba(255,140,0,0.7) 0%, rgba(255,60,0,0.5) 45%, transparent 80%)",
+          borderRadius: "50% 50% 30% 30% / 60% 60% 40% 40%",
+          filter: "blur(4px)",
+          animation: lit ? "flicker 1.1s ease-in-out 0.15s infinite alternate" : "none",
+          transition: "width 0.9s ease 0.1s, height 0.9s ease 0.1s",
+          opacity: lit ? 0.85 : 0,
+        }} />
+        {/* Tip flame — blue-white */}
+        <div style={{
+          position: "absolute", bottom: "40%", left: "50%", transform: "translateX(-50%)",
+          width: fullBlaze ? "22px" : "12px",
+          height: fullBlaze ? "55%" : "40%",
+          background: "radial-gradient(ellipse at 50% 90%, rgba(255,220,120,0.9) 0%, rgba(255,100,20,0.6) 60%, transparent 100%)",
+          borderRadius: "50% 50% 30% 30% / 70% 70% 30% 30%",
+          filter: "blur(1px)",
+          animation: lit ? "flicker 0.6s ease-in-out 0.3s infinite alternate" : "none",
+          opacity: fullBlaze ? 1 : 0,
+          transition: "opacity 0.6s ease 1s, width 0.8s ease",
+        }} />
+      </div>
+
+      {/* Sparks */}
+      {fullBlaze && [...Array(7)].map((_, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          bottom: `${70 + i * 12}px`,
+          left: `${50 + (i % 2 === 0 ? 1 : -1) * (8 + i * 5)}%`,
+          width: "3px", height: "3px",
+          borderRadius: "50%",
+          background: i % 3 === 0 ? "#ffdd60" : i % 3 === 1 ? "#ff8020" : "#ff4400",
+          boxShadow: "0 0 4px rgba(255,160,40,0.8)",
+          animation: `spirit-float ${1 + i * 0.3}s ease-in-out ${i * 0.2}s infinite`,
+          opacity: 0.9,
+        }} />
+      ))}
+
+      {/* English title glow text */}
+      <div style={{
+        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+        width: "200px", textAlign: "center",
+        opacity: fullBlaze ? 1 : 0, transition: "opacity 1s ease 1.5s",
+      }}>
+        <p style={{
+          fontFamily: "'Cormorant', serif",
+          fontSize: "0.7rem",
+          letterSpacing: "0.35em",
+          color: "rgba(255,140,40,0.7)",
+          textTransform: "uppercase",
+          textShadow: "0 0 20px rgba(220,80,20,0.5)",
+        }}>Truth · Illusion · Self</p>
+      </div>
     </div>
   );
 }
@@ -557,11 +700,14 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
             ))}
           </div>
 
-          {/* Mirror for step 0 */}
-          {step === 0 && <Mirror3D visible={visible} />}
+          {/* Campfire for intro step (step 0) */}
+          {step === 0 && <Campfire3D visible={visible} />}
 
-          {/* Coins for step 1 */}
-          {step === 1 && (
+          {/* Mirror for step 1 */}
+          {step === 1 && <Mirror3D visible={visible} />}
+
+          {/* Coins for step 2 */}
+          {step === 2 && (
             <div className="relative mx-auto mb-4" style={{ width: "200px", height: "110px" }}>
               {/* Glow base */}
               <div style={{
@@ -601,8 +747,8 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
             </div>
           )}
 
-          {/* Cards fan for book step (id="book", index 4) */}
-          {step === 4 && (
+          {/* Cards fan for book step (id="book", index 5 now) */}
+          {step === 5 && (
             <div className="relative mx-auto mb-4 flex items-center justify-center" style={{ height: "150px", width: "220px" }}>
               {DECK_CARDS.map((card, i) => {
                 const t = DECK_CARDS.length;
@@ -648,7 +794,7 @@ function MendaciumModal({ onClose }: { onClose: () => void }) {
           )}
 
           {/* Icon for other steps */}
-          {step !== 0 && step !== 1 && step !== 4 && (
+          {step !== 0 && step !== 1 && step !== 2 && step !== 5 && (
             <div className="text-4xl mb-4" style={{ filter: "drop-shadow(0 0 16px rgba(140,80,200,0.6))", animation: "spirit-float 4s ease-in-out infinite" }}>
               {current.icon}
             </div>
